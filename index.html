@@ -52,6 +52,63 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2019-04-05T20:26:38.000Z"><a href="/2019/04/05/leetcode459/">2019-04-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/05/leetcode459/">LeetCode - String Tag Q459</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-459-Repeated-Substring-Pattern"><a href="#LeetCode-Q-459-Repeated-Substring-Pattern" class="headerlink" title="LeetCode Q 459 - Repeated Substring Pattern"></a>LeetCode Q 459 - Repeated Substring Pattern</h1><p>Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: KMP Algorithm</strong><br>Since we need to find the repeated pattern of the string, we can use KMP Algorithm. </p>
+<ul>
+<li><strong>KMP</strong> is usually used to solve <strong>Pattern Matching Substring Search</strong> problem. It can pre-calculate the longest length <code>L</code> of proper prefix which is also a suffix costs <strong>O(n) time</strong> and <strong>O(n) space</strong>.</li>
+<li><strong>The basic idea behind KMP</strong> is: whenever we detect a mismatch (after some matches), we already know some of the characters in the text of the next window. We take advantage of this information to avoid matching the characters that we know will anyway match. </li>
+<li>We use  a table to store this information.<br><code>int[] table = new int[str.length()];</code><br>table[i] denotes the longest prefix which is also proper suffix.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<pre><code>public boolean repeatedSubstringPattern(String s) {
+    if (s == null || s.length() &lt;= 1)
+        return false;
+    int len = s.length();
+    int[] prefix = new int[len];
+    int i = 0, j = 1;
+    while (j &lt; len) {
+        if (s.charAt(i) == s.charAt(j)) {
+            prefix[j++] = ++i;
+        } else if (i == 0) {
+            j++;
+        } else if (i != 0) {
+            i = prefix[i - 1];
+        }
+    }
+    return prefix[len - 1] != 0 &amp;&amp; len % (len - prefix[len - 1]) == 0;
+}
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2019-04-05T17:11:15.000Z"><a href="/2019/04/05/leetcodeQ522/">2019-04-05</a></time>
       
       
@@ -265,7 +322,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a> <a href="/tags/leetcode-string/" style="font-size: 20px;">leetcode, string</a>
+    <a href="/tags/Leetcode-String-KMP-algorithm/" style="font-size: 10px;">Leetcode, String, KMP algorithm</a> <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a> <a href="/tags/leetcode-String/" style="font-size: 20px;">leetcode, String</a>
   </div>
 </div>
 
