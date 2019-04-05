@@ -3,15 +3,15 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>b | Tong Shi&#39;s Blog</title>
+  <title>LeetCode - String Tag | Tong Shi&#39;s Blog</title>
   <meta name="author" content="Tong Shi">
   
-  <meta name="description" content>
+  <meta name="description" content="LeetCode Q 521 - Longest Uncommon Subsequence IGiven a group of two strings, find the longest uncommon subsequence of this group of two strings.The in">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="b">
+  <meta property="og:title" content="LeetCode - String Tag">
   <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 
   
@@ -53,23 +53,35 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2019-04-02T20:47:28.000Z"><a href="/2019/04/02/b/">2019-04-02</a></time>
+        <time datetime="2019-04-05T16:56:55.000Z"><a href="/2019/04/05/leetcodeQ521/">2019-04-05</a></time>
       
       
   
-    <h1 class="title">b</h1>
+    <h1 class="title">LeetCode - String Tag</h1>
   
 
     </header>
     <div class="entry">
       
-        <img src="/2019/04/02/b/Tahm_Kench_Poro.jpg" title="Tahm Img">
+        <h1 id="LeetCode-Q-521-Longest-Uncommon-Subsequence-I"><a href="#LeetCode-Q-521-Longest-Uncommon-Subsequence-I" class="headerlink" title="LeetCode Q 521 - Longest Uncommon Subsequence I"></a>LeetCode Q 521 - Longest Uncommon Subsequence I</h1><p>Given a group of two strings, find the longest uncommon subsequence of this group of two strings.<br>The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm:</strong><br>    It is straitforward that we can divide this question into two cases:</p>
+<ul>
+<li>Two input strings equal, then return -1;</li>
+<li>Two input strings differ, then return the length of the longer one.</li>
+</ul>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLUSlength</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a.equals(b))</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> Math.max(a.length(), b.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer>
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/leetcode-string/">leetcode, string</a>
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
