@@ -3,15 +3,15 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>LeetCode - String Tag Q521 | Tong Shi&#39;s Blog</title>
+  <title>LeetCode - Math Tag Q13 | Tong Shi&#39;s Blog</title>
   <meta name="author" content="Tong Shi">
   
-  <meta name="description" content="LeetCode Q 521 - Longest Uncommon Subsequence IGiven a group of two strings, find the longest uncommon subsequence of this group of two strings.The in">
+  <meta name="description" content="LeetCode Q 13 - Roman to IntegerSolutionCode:12345678910111213141516public int romanToInt(String s) &amp;#123;    Map&amp;lt;Character, Integer&amp;gt; map = new ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="LeetCode - String Tag Q521">
+  <meta property="og:title" content="LeetCode - Math Tag Q13">
   <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 
   
@@ -53,23 +53,17 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2019-04-05T16:56:55.000Z"><a href="/2019/04/05/leetcodeQ521/">2019-04-05</a></time>
+        <time datetime="2019-04-07T13:49:56.000Z"><a href="/2019/04/07/leetcodeQ13/">2019-04-07</a></time>
       
       
   
-    <h1 class="title">LeetCode - String Tag Q521</h1>
+    <h1 class="title">LeetCode - Math Tag Q13</h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="LeetCode-Q-521-Longest-Uncommon-Subsequence-I"><a href="#LeetCode-Q-521-Longest-Uncommon-Subsequence-I" class="headerlink" title="LeetCode Q 521 - Longest Uncommon Subsequence I"></a>LeetCode Q 521 - Longest Uncommon Subsequence I</h1><p>Given a group of two strings, find the longest uncommon subsequence of this group of two strings.<br>The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm:</strong><br>    It is straitforward that we can divide this question into two cases:</p>
-<ul>
-<li>Two input strings equal, then return -1;</li>
-<li>Two input strings differ, then return the length of the longer one.</li>
-</ul>
-<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLUSlength</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a.equals(b))</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> Math.max(a.length(), b.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="LeetCode-Q-13-Roman-to-Integer"><a href="#LeetCode-Q-13-Roman-to-Integer" class="headerlink" title="LeetCode Q 13 - Roman to Integer"></a>LeetCode Q 13 - Roman to Integer</h1><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">'I'</span>, <span class="number">1</span>);    map.put(<span class="string">'V'</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">'X'</span>, <span class="number">10</span>);   map.put(<span class="string">'L'</span>, <span class="number">50</span>);</span><br><span class="line">    map.put(<span class="string">'C'</span>, <span class="number">100</span>);  map.put(<span class="string">'D'</span>, <span class="number">500</span>);</span><br><span class="line">    map.put(<span class="string">'M'</span>, <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = map.get(s.charAt(s.length() - <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(s.charAt(i)) &gt;= map.get(s.charAt(i + <span class="number">1</span>)))</span><br><span class="line">            res += map.get(s.charAt(i));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res -= map.get(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -79,7 +73,7 @@
         
   
   <div class="tags">
-    <a href="/tags/LeetCode/">LeetCode</a>, <a href="/tags/String/">String</a>
+    <a href="/tags/LeetCode/">LeetCode</a>, <a href="/tags/String/">String</a>, <a href="/tags/Math/">Math</a>
   </div>
 
         

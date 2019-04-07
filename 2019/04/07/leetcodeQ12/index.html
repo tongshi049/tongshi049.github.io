@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>LeetCode - Math Tag Q12 | Tong Shi&#39;s Blog</title>
+  <meta name="author" content="Tong Shi">
+  
+  <meta name="description" content="LeetCode Q 12 - Integer to RomanRoman numerals are represented by seven different symbols: I, V, X, L, C, D and M. Given an integer, convert it to a r">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="LeetCode - Math Tag Q12">
+  <meta property="og:site_name" content="Tong Shi&#39;s Blog">
+
+  
+    <meta property="og:image" content>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+</html>
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Tong Shi&#39;s Blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/author">About Me</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-07T13:27:42.000Z"><a href="/2019/04/07/leetcodeQ12/">2019-04-07</a></time>
+      
+      
+  
+    <h1 class="title">LeetCode - Math Tag Q12</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-12-Integer-to-Roman"><a href="#LeetCode-Q-12-Integer-to-Roman" class="headerlink" title="LeetCode Q 12 - Integer to Roman"></a>LeetCode Q 12 - Integer to Roman</h1><p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M. Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (num != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num &gt;= <span class="number">1000</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">'M'</span>); num -= <span class="number">1000</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">900</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"CM"</span>); num -= <span class="number">900</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">500</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"D"</span>); num -= <span class="number">500</span>;</span><br><span class="line">        &#125;  <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"CD"</span>); num -= <span class="number">400</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"C"</span>); num -= <span class="number">100</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"XC"</span>); num -= <span class="number">90</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">50</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"L"</span>); num -= <span class="number">50</span>;</span><br><span class="line">        &#125;  <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">40</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"XL"</span>); num -= <span class="number">40</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"X"</span>); num -= <span class="number">10</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">9</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"IX"</span>); num -= <span class="number">9</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"V"</span>); num -= <span class="number">5</span>;</span><br><span class="line">        &#125;   <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">4</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"IV"</span>); num -= <span class="number">4</span>; </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"I"</span>); num -= <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Code: A concise version</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;	</span><br><span class="line">	String[] thous = &#123;<span class="string">""</span>, <span class="string">"M"</span>, <span class="string">"MM"</span>, <span class="string">"MMM"</span>&#125;;</span><br><span class="line">        String[] huns = &#123;<span class="string">""</span>, <span class="string">"C"</span>, <span class="string">"CC"</span>, <span class="string">"CCC"</span>, <span class="string">"CD"</span>, <span class="string">"D"</span>, <span class="string">"DC"</span>, <span class="string">"DCC"</span>, <span class="string">"DCCC"</span>, <span class="string">"CM"</span>&#125;;</span><br><span class="line">        String[] tens = &#123;<span class="string">""</span>, <span class="string">"X"</span>, <span class="string">"XX"</span>, <span class="string">"XXX"</span>, <span class="string">"XL"</span>, <span class="string">"L"</span>, <span class="string">"LX"</span>, <span class="string">"LXX"</span>, <span class="string">"LXXX"</span>, <span class="string">"XC"</span>&#125;;</span><br><span class="line">        String[] ones = &#123;<span class="string">""</span>, <span class="string">"I"</span>, <span class="string">"II"</span>, <span class="string">"III"</span>, <span class="string">"IV"</span>, <span class="string">"V"</span>, <span class="string">"VI"</span>, <span class="string">"VII"</span>, <span class="string">"VIII"</span>, <span class="string">"IX"</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> thous[num / <span class="number">1000</span>] + huns[num / <span class="number">100</span> % <span class="number">10</span>] + tens[num / <span class="number">10</span> % <span class="number">10</span>] + ones[num % <span class="number">10</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/LeetCode/">LeetCode</a>, <a href="/tags/String/">String</a>, <a href="/tags/Math/">Math</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Cat1/">Cat1</a><small>1</small></li>
+  
+    <li><a href="/categories/Cat1/Cat1-1/">Cat1.1</a><small>1</small></li>
+  
+    <li><a href="/categories/Cat2/">Cat2</a><small>1</small></li>
+  
+    <li><a href="/categories/Cat3/">Cat3</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/Integer-Overflow/" style="font-size: 10px;">Integer Overflow</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/String/" style="font-size: 16.67px;">String</a> <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 Tong Shi
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
