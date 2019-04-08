@@ -52,6 +52,223 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2019-04-08T17:11:35.000Z"><a href="/2019/04/08/leetcodeQ43/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ43/">LeetCode - Math Tag Q43</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-43-Multiply-Strings"><a href="#LeetCode-Q-43-Multiply-Strings" class="headerlink" title="LeetCode Q 43 - Multiply Strings"></a>LeetCode Q 43 - Multiply Strings</h1><p>Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (num1.equals(<span class="string">"0"</span>) || num2.equals(<span class="string">"0"</span>))</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">	<span class="keyword">int</span> len1 = num1.length(), len2 = num2.length();</span><br><span class="line">	<span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[len1 + len2 - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++) &#123;</span><br><span class="line">			num[i + j] += (num1.charAt(i) - <span class="string">'0'</span>) * (num2.charAt(j) - <span class="string">'0'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = num.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">int</span> origin = num[i] + carry;</span><br><span class="line">		carry = origin / <span class="number">10</span>;</span><br><span class="line">		num[i] = origin % <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	<span class="keyword">if</span> (carry != <span class="number">0</span>)</span><br><span class="line">		sb.append((<span class="keyword">char</span>) (carry + <span class="string">'0'</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++)</span><br><span class="line">		sb.append((<span class="keyword">char</span>) (arr[i] + <span class="string">'0'</span>));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T17:00:44.000Z"><a href="/2019/04/08/leetcodeQ69/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ69/">LeetCode - Math Tag Q69</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-69-Sqrt-x"><a href="#LeetCode-Q-69-Sqrt-x" class="headerlink" title="LeetCode Q 69 - Sqrt(x)"></a>LeetCode Q 69 - Sqrt(x)</h1><p>Implement int sqrt(int x).</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to check every number from 1 to n / 2, to see<br><code>if ((i * i == x) || (i * i &lt; x) &amp;&amp; ((i+1) * (i+1) &gt; x))</code><br>We can improve the efficiency by using binary search.</p>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">1</span>, right = Integer.MAX_VALUE;</span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (mid == x / mid) <span class="comment">//use mid * mid &gt; x has a potential to cause overflow</span></span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (mid &gt; x / mid)</span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (mid + <span class="number">1</span> &gt; x / (mid + <span class="number">1</span>))</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T16:39:42.000Z"><a href="/2019/04/08/leetcodeQ50/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ50/">LeetCode - Math Tag Q50</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-50-Pow-x-n"><a href="#LeetCode-Q-50-Pow-x-n" class="headerlink" title="LeetCode Q 50 - Pow(x, n)"></a>LeetCode Q 50 - Pow(x, n)</h1><p>Implement pow(x, n), which calculates x raised to the power n.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to utilize simple multiplication. We do x <em> x </em> x <em> x </em> … n times. This approach has a potential to cause time limit exceeds, when n is very large.<br>Instead we can utilize redouble the x, say </p>
+<ul>
+<li>for n = 2, we do x * x</li>
+<li>for n = 4, we do x <em> x, then do (x </em> x) <em> (x </em> x)…<br>if n is odd, then multipy an additional tempX.<br>Next, we will solve this question recursively and iteratively<br><strong>Code: Recursive Method</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line">	<span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		x = <span class="number">1</span> / x;</span><br><span class="line">		n = -n;</span><br><span class="line">		<span class="keyword">if</span> (-n == Integer.MIN_VALUE)</span><br><span class="line">			<span class="keyword">return</span> x * myPower(x, n - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span> ? myPow(x * x, n / <span class="number">2</span>) : myPow(x * x, n / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Code: Iterative Method</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">boolean</span> isNegative = <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		x = <span class="number">1</span> / x;</span><br><span class="line">		n = -(n + <span class="number">1</span>); <span class="comment">// Avoid overflow when n == MIN_VALUE</span></span><br><span class="line">		isNegative <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span> ans = <span class="number">1</span>, temp = x;</span><br><span class="line">	<span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">1</span>) </span><br><span class="line">			ans *= temp;</span><br><span class="line">		temp *= temp;</span><br><span class="line">		n /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T16:13:23.000Z"><a href="/2019/04/08/leetcodeQ29/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ29/">LeetCode - Math Tag Q29</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-29-Divide-Two-Integers"><a href="#LeetCode-Q-29-Divide-Two-Integers" class="headerlink" title="LeetCode Q 29 - Divide Two Integers"></a>LeetCode Q 29 - Divide Two Integers</h1><p>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to utilize subtraction, checking how many times a dividend can substract a divisor. But this approach has a potential to cause time limit exceeds, when the dividend is very large.<br>So, we increase the divisor at each substraction, say we double the divisor.<br>At the same time, we need a variable to record how many times is the current divisor of the original divisor.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>To deal with the corner case, int need to be converted to long first, then take the absolute value.</li>
+<li>tempDivisor should not double anymore if we know it will larger than dividend.</li>
+</ul>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (divisor == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> dividend &gt;= <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">	<span class="keyword">if</span> (dividend == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sign = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>) || (dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">		sign = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> dividendLong = Math.abs((<span class="keyword">long</span>) dividend);</span><br><span class="line">	<span class="keyword">long</span> divisorLong = Math.abs((<span class="keyword">long</span>) divisor);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> res = divideHelper(dividendLong, divisorLong);</span><br><span class="line">	<span class="keyword">return</span> sign * (<span class="keyword">int</span>) res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">divideHelper</span><span class="params">(<span class="keyword">long</span> dividend, <span class="keyword">long</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">long</span> sum = divisor, multiplication = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (sum + sum &lt; divisor) &#123;</span><br><span class="line">		sum += sum; multiplication += multiplication;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> multiplication + divideHelper(dividend - sum, divisor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T15:42:35.000Z"><a href="/2019/04/08/gcd/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/gcd/">Number-Theoretic Algorithm - gcd</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Euclid’s-algorithm"><a href="#Euclid’s-algorithm" class="headerlink" title="Euclid’s algorithm"></a>Euclid’s algorithm</h1><h2 id="Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers"><a href="#Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers" class="headerlink" title="Euclid’s algorithm for efficiently computing the greatest common divisor of two integers."></a>Euclid’s algorithm for efficiently computing the greatest common divisor of two integers.</h2><p><strong>PseudoCode:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Eucilid(a, b)</span><br><span class="line">	<span class="keyword">if</span> b == <span class="number">0</span></span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> Eucilid(b, a mod b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T15:26:24.000Z"><a href="/2019/04/08/leetcodeQ60/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ60/">LeetCode - Math Tag Q60</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-60-Permutation-Sequence"><a href="#LeetCode-Q-60-Permutation-Sequence" class="headerlink" title="LeetCode Q 60 - Permutation Sequence"></a>LeetCode Q 60 - Permutation Sequence</h1><p>Given n and k, return the kth permutation sequence.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Cantor Unfold</strong><br>The detailed description can be found in <a href="https://zh.wikipedia.org/zh-cn/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80" target="_blank" rel="noopener">wekipedia</a>.<br><em>Cantor expansion is a double shot that is fully aligned to a natural number and is often used for spatial compression when building hash tables. The essence of Cantor’s expansion is to calculate the current order in all the order from small to large, and therefore reversible.</em></p>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// use list to store the num which we have chosen</span></span><br><span class="line">	List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">		ist.add(i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] fac = <span class="keyword">new</span> <span class="keyword">int</span>[n]; fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) </span><br><span class="line">        fac[i] = fac[i - <span class="number">1</span>] * i;</span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    k--;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> index = k / fac[i - <span class="number">1</span>];</span><br><span class="line">        k = k % fac[i - <span class="number">1</span>];</span><br><span class="line">        sb.append(list.get(index));</span><br><span class="line">        list.remove(index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2019-04-07T13:49:56.000Z"><a href="/2019/04/07/leetcodeQ13/">2019-04-07</a></time>
       
       
@@ -185,250 +402,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-05T20:26:38.000Z"><a href="/2019/04/05/leetcode459/">2019-04-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/05/leetcode459/">LeetCode - String Tag Q459</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-459-Repeated-Substring-Pattern"><a href="#LeetCode-Q-459-Repeated-Substring-Pattern" class="headerlink" title="LeetCode Q 459 - Repeated Substring Pattern"></a>LeetCode Q 459 - Repeated Substring Pattern</h1><p>Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: KMP Algorithm</strong><br>Since we need to find the repeated pattern of the string, we can use KMP Algorithm. </p>
-<ul>
-<li><strong>KMP</strong> is usually used to solve <strong>Pattern Matching Substring Search</strong> problem. It can pre-calculate the longest length <code>L</code> of proper prefix which is also a suffix costs <strong>O(n) time</strong> and <strong>O(n) space</strong>.</li>
-<li><strong>The basic idea behind KMP</strong> is: whenever we detect a mismatch (after some matches), we already know some of the characters in the text of the next window. We take advantage of this information to avoid matching the characters that we know will anyway match. </li>
-<li>We use  a table to store this information.<br><code>int[] table = new int[str.length()];</code><br>table[i] denotes the longest prefix which is also proper suffix.</li>
-</ul>
-<p><strong>Code:</strong></p>
-<pre><code>public boolean repeatedSubstringPattern(String s) {
-    if (s == null || s.length() &lt;= 1)
-        return false;
-    int len = s.length();
-    int[] prefix = new int[len];
-    int i = 0, j = 1;
-    while (j &lt; len) {
-        if (s.charAt(i) == s.charAt(j)) {
-            prefix[j++] = ++i;
-        } else if (i == 0) {
-            j++;
-        } else if (i != 0) {
-            i = prefix[i - 1];
-        }
-    }
-    return prefix[len - 1] != 0 &amp;&amp; len % (len - prefix[len - 1]) == 0;
-}
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-05T17:11:15.000Z"><a href="/2019/04/05/leetcodeQ522/">2019-04-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/05/leetcodeQ522/">LeetCode - String Tag Q522</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-522-Longest-Uncommon-Subsequence-II"><a href="#LeetCode-Q-522-Longest-Uncommon-Subsequence-II" class="headerlink" title="LeetCode Q 522 - Longest Uncommon Subsequence II"></a>LeetCode Q 522 - Longest Uncommon Subsequence II</h1><p>Given a list of strings, you need to find the longest uncommon subsequence among them. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be <strong>any</strong> subsequence of the other strings.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Sort</strong></p>
-<ul>
-<li>First step: sort the given array. We sort the given array according to its length and also its lexicographical order.<br>tips 1:  It’s straightforward that we should sort the array according to length of string, since we want to find the string having the longest length and at the same time it is not the subsequence of others.<br>tips 2: We also consider the lexicographical order of strings, because we want to skip duplicates.</li>
-<li>Second step: go through the array having the longest length and at the same time it is not the subsequence of others.<br>tips: In this step, we can just check if the candidate string is the subsequence of the first string in the array. We can do this recursively or iteratively.</li>
-</ul>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLUSlength</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// Step 1: sort the accroding to its length and lexicographical order.</span></span><br><span class="line">	<span class="comment">// Put the longer one first, and put the duplicates together. </span></span><br><span class="line">	Arrays.sort(strs, <span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (s1.length() != s2.length())</span><br><span class="line">                <span class="keyword">return</span> s2.length() - s1.length();</span><br><span class="line">            <span class="keyword">return</span> s1.compareTo(s2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Step 2: traverse the array, find it</span></span><br><span class="line">    String s = strs[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">1</span>, count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; strs.length) &#123;</span><br><span class="line">    	<span class="keyword">while</span> (index &lt; strs.length() &amp;&amp; s.equals(strs[index])) &#123;</span><br><span class="line">    		index++; count++;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">if</span> (count == <span class="number">0</span> &amp;&amp; (s.equals(strs[<span class="number">0</span>]) || isSubsequence(strs[<span class="number">0</span>], s)))</span><br><span class="line">    		<span class="keyword">return</span> s.length();</span><br><span class="line">    	<span class="keyword">if</span> (index &lt; strs.length)&#123;</span><br><span class="line">    		s = strs[index++]; count = <span class="number">0</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// identify if the last string is the answer</span></span><br><span class="line">    <span class="keyword">if</span> (count == <span class="number">0</span> &amp;&amp; !isSubsequence(strs[<span class="number">0</span>], s)) </span><br><span class="line">        <span class="keyword">return</span> s.length();</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// how to decide if a string is a substring of strs[0]</span></span><br><span class="line"><span class="comment">// Recursive method</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSubsequnce</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (s2.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">if</span> (s1.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">int</span> index = s1.indexOf(s2.charAt(<span class="number">0</span>));</span><br><span class="line">	<span class="keyword">if</span> (index == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">return</span> isSubsequnce(s1.substring(index + <span class="number">1</span>), s2.substring(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Iterative method</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSubsequnce</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> index =  -<span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">   	<span class="keyword">while</span> (j &lt; s2.length()) &#123;</span><br><span class="line">   	<span class="comment">//s.indexOf(str, startIndex)</span></span><br><span class="line">		index = s1.indexOf(s2.charAt(j++), index + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (index == -<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> j == s2.length();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-05T16:56:55.000Z"><a href="/2019/04/05/leetcodeQ521/">2019-04-05</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/05/leetcodeQ521/">LeetCode - String Tag Q521</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-521-Longest-Uncommon-Subsequence-I"><a href="#LeetCode-Q-521-Longest-Uncommon-Subsequence-I" class="headerlink" title="LeetCode Q 521 - Longest Uncommon Subsequence I"></a>LeetCode Q 521 - Longest Uncommon Subsequence I</h1><p>Given a group of two strings, find the longest uncommon subsequence of this group of two strings.<br>The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm:</strong><br>    It is straitforward that we can divide this question into two cases:</p>
-<ul>
-<li>Two input strings equal, then return -1;</li>
-<li>Two input strings differ, then return the length of the longer one.</li>
-</ul>
-<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLUSlength</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (a.equals(b))</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> Math.max(a.length(), b.length());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-02T20:47:28.000Z"><a href="/2019/04/02/b/">2019-04-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/02/b/">b</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <img src="/2019/04/02/b/Tahm_Kench_Poro.jpg" title="Tahm Img">
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-02T20:22:57.000Z"><a href="/2019/04/02/a/">2019-04-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/02/a/">a</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'Hello World!'</span>);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-02T20:20:04.574Z"><a href="/2019/04/02/hello-world/">2019-04-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/02/hello-world/">Hello World</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
+  
+    <a href="/page/2/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -461,7 +439,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Integer-Overflow/" style="font-size: 10px;">Integer Overflow</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 13.33px;">Math</a> <a href="/tags/String/" style="font-size: 16.67px;">String</a> <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a>
+    <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Integer-Overflow/" style="font-size: 12.5px;">Integer Overflow</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 17.5px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 12.5px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
   </div>
 </div>
 
