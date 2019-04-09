@@ -6,8 +6,7 @@
   <title>Excel Sheet Column Title | Tong Shi&#39;s Blog</title>
   <meta name="author" content="Tong Shi">
   
-  <meta name="description" content="LeetCode Q 168 - Excel Sheet Column TitleGiven a positive integer, return its corresponding column title as appear in an Excel sheet.
-SolutionAlgorith">
+  <meta name="description" content="LeetCode Q 168 - Excel Sheet Column TitleGiven a positive integer, return its corresponding column title as appear in an Excel sheet.">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -64,7 +63,7 @@ SolutionAlgorith">
     </header>
     <div class="entry">
       
-        <h1 id="LeetCode-Q-168-Excel-Sheet-Column-Title"><a href="#LeetCode-Q-168-Excel-Sheet-Column-Title" class="headerlink" title="LeetCode Q 168 - Excel Sheet Column Title"></a>LeetCode Q 168 - Excel Sheet Column Title</h1><p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
+        <h1 id="LeetCode-Q-168-Excel-Sheet-Column-Title"><a href="#LeetCode-Q-168-Excel-Sheet-Column-Title" class="headerlink" title="LeetCode Q 168 - Excel Sheet Column Title"></a>LeetCode Q 168 - Excel Sheet Column Title</h1><p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.<br><a id="more"></a></p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm</strong><br>Bases Convert</p>
 <p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	<span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">		n--;</span><br><span class="line">		sb.append((<span class="keyword">char</span>)(n % <span class="number">26</span> + <span class="string">'A'</span>));</span><br><span class="line">		n /= <span class="number">26</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sb.reverse().toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 

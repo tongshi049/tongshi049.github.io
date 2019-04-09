@@ -6,8 +6,7 @@
   <title>Happy Number | Tong Shi&#39;s Blog</title>
   <meta name="author" content="Tong Shi">
   
-  <meta name="description" content="LeetCode Q 202 - Happy NumberWrite an algorithm to determine if a number is “happy”
-SolutionCode:123456789101112131415161718public boolean isHappy(int">
+  <meta name="description" content="LeetCode Q 202 - Happy NumberWrite an algorithm to determine if a number is “happy”">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -64,7 +63,7 @@ SolutionCode:123456789101112131415161718public boolean isHappy(int">
     </header>
     <div class="entry">
       
-        <h1 id="LeetCode-Q-202-Happy-Number"><a href="#LeetCode-Q-202-Happy-Number" class="headerlink" title="LeetCode Q 202 - Happy Number"></a>LeetCode Q 202 - Happy Number</h1><p>Write an algorithm to determine if a number is “happy”</p>
+        <h1 id="LeetCode-Q-202-Happy-Number"><a href="#LeetCode-Q-202-Happy-Number" class="headerlink" title="LeetCode Q 202 - Happy Number"></a>LeetCode Q 202 - Happy Number</h1><p>Write an algorithm to determine if a number is “happy”<br><a id="more"></a></p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">	<span class="keyword">while</span> (n != <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!set.add(n))</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		n = getNextNumber(n);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getNextNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">		res += (n % <span class="number">10</span>) ^ (n % <span class="number">10</span>);</span><br><span class="line">		n /= <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
