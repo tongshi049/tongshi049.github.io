@@ -52,11 +52,218 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2019-04-08T15:42:35.000Z"><a href="/2019/04/08/gcd/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/gcd/">Number-Theoretic Algorithm - gcd</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Euclid’s-algorithm"><a href="#Euclid’s-algorithm" class="headerlink" title="Euclid’s algorithm"></a>Euclid’s algorithm</h1><h2 id="Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers"><a href="#Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers" class="headerlink" title="Euclid’s algorithm for efficiently computing the greatest common divisor of two integers."></a>Euclid’s algorithm for efficiently computing the greatest common divisor of two integers.</h2><p><strong>PseudoCode:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Eucilid(a, b)</span><br><span class="line">	<span class="keyword">if</span> b == <span class="number">0</span></span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> Eucilid(b, a mod b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-08T15:26:24.000Z"><a href="/2019/04/08/leetcodeQ60/">2019-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/08/leetcodeQ60/">Permutation Sequence</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-60-Permutation-Sequence"><a href="#LeetCode-Q-60-Permutation-Sequence" class="headerlink" title="LeetCode Q 60 - Permutation Sequence"></a>LeetCode Q 60 - Permutation Sequence</h1><p>Given n and k, return the kth permutation sequence.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Cantor Unfold</strong><br>The detailed description can be found in <a href="https://zh.wikipedia.org/zh-cn/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80" target="_blank" rel="noopener">wekipedia</a>.<br><em>Cantor expansion is a double shot that is fully aligned to a natural number and is often used for spatial compression when building hash tables. The essence of Cantor’s expansion is to calculate the current order in all the order from small to large, and therefore reversible.</em></p>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// use list to store the num which we have chosen</span></span><br><span class="line">	List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">		ist.add(i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] fac = <span class="keyword">new</span> <span class="keyword">int</span>[n]; fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) </span><br><span class="line">        fac[i] = fac[i - <span class="number">1</span>] * i;</span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    k--;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> index = k / fac[i - <span class="number">1</span>];</span><br><span class="line">        k = k % fac[i - <span class="number">1</span>];</span><br><span class="line">        sb.append(list.get(index));</span><br><span class="line">        list.remove(index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-07T13:49:56.000Z"><a href="/2019/04/07/leetcodeQ13/">2019-04-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/07/leetcodeQ13/">Roman to Integer</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-13-Roman-to-Integer"><a href="#LeetCode-Q-13-Roman-to-Integer" class="headerlink" title="LeetCode Q 13 - Roman to Integer"></a>LeetCode Q 13 - Roman to Integer</h1><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">'I'</span>, <span class="number">1</span>);    map.put(<span class="string">'V'</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">'X'</span>, <span class="number">10</span>);   map.put(<span class="string">'L'</span>, <span class="number">50</span>);</span><br><span class="line">    map.put(<span class="string">'C'</span>, <span class="number">100</span>);  map.put(<span class="string">'D'</span>, <span class="number">500</span>);</span><br><span class="line">    map.put(<span class="string">'M'</span>, <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = map.get(s.charAt(s.length() - <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(s.charAt(i)) &gt;= map.get(s.charAt(i + <span class="number">1</span>)))</span><br><span class="line">            res += map.get(s.charAt(i));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res -= map.get(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-07T13:27:42.000Z"><a href="/2019/04/07/leetcodeQ12/">2019-04-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/07/leetcodeQ12/">Integer to Roman</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-12-Integer-to-Roman"><a href="#LeetCode-Q-12-Integer-to-Roman" class="headerlink" title="LeetCode Q 12 - Integer to Roman"></a>LeetCode Q 12 - Integer to Roman</h1><p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M. Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">intToRoman</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">while</span> (num != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num &gt;= <span class="number">1000</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">'M'</span>); num -= <span class="number">1000</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">900</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"CM"</span>); num -= <span class="number">900</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">500</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"D"</span>); num -= <span class="number">500</span>;</span><br><span class="line">        &#125;  <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"CD"</span>); num -= <span class="number">400</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"C"</span>); num -= <span class="number">100</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"XC"</span>); num -= <span class="number">90</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">50</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"L"</span>); num -= <span class="number">50</span>;</span><br><span class="line">        &#125;  <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">40</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"XL"</span>); num -= <span class="number">40</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">10</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"X"</span>); num -= <span class="number">10</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">9</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"IX"</span>); num -= <span class="number">9</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"V"</span>); num -= <span class="number">5</span>;</span><br><span class="line">        &#125;   <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">4</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"IV"</span>); num -= <span class="number">4</span>; </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            sb.append(<span class="string">"I"</span>); num -= <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Code: A concise version</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;	</span><br><span class="line">	String[] thous = &#123;<span class="string">""</span>, <span class="string">"M"</span>, <span class="string">"MM"</span>, <span class="string">"MMM"</span>&#125;;</span><br><span class="line">        String[] huns = &#123;<span class="string">""</span>, <span class="string">"C"</span>, <span class="string">"CC"</span>, <span class="string">"CCC"</span>, <span class="string">"CD"</span>, <span class="string">"D"</span>, <span class="string">"DC"</span>, <span class="string">"DCC"</span>, <span class="string">"DCCC"</span>, <span class="string">"CM"</span>&#125;;</span><br><span class="line">        String[] tens = &#123;<span class="string">""</span>, <span class="string">"X"</span>, <span class="string">"XX"</span>, <span class="string">"XXX"</span>, <span class="string">"XL"</span>, <span class="string">"L"</span>, <span class="string">"LX"</span>, <span class="string">"LXX"</span>, <span class="string">"LXXX"</span>, <span class="string">"XC"</span>&#125;;</span><br><span class="line">        String[] ones = &#123;<span class="string">""</span>, <span class="string">"I"</span>, <span class="string">"II"</span>, <span class="string">"III"</span>, <span class="string">"IV"</span>, <span class="string">"V"</span>, <span class="string">"VI"</span>, <span class="string">"VII"</span>, <span class="string">"VIII"</span>, <span class="string">"IX"</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> thous[num / <span class="number">1000</span>] + huns[num / <span class="number">100</span> % <span class="number">10</span>] + tens[num / <span class="number">10</span> % <span class="number">10</span>] + ones[num % <span class="number">10</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-06T14:10:06.000Z"><a href="/2019/04/06/leetcodeQ9/">2019-04-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/06/leetcodeQ9/">Reverse Integer</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-7-Reverse-Integer"><a href="#LeetCode-Q-7-Reverse-Integer" class="headerlink" title="LeetCode Q 7 - Reverse Integer"></a>LeetCode Q 7 - Reverse Integer</h1><p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Revert half of the int</strong><br>First, we can transform the int to string, and solve this problem.<br>Second, we can revert the number itself, and then compare the number with original number, if they are the same, then the number is a palindrome. However, if the reversed number is larger than Integer.MAX_VALUE, we will hit integer overflow problem.<br>Following the thoughts , to avoid the overflow issue of the reverted number, what if we only revert half of the \text{int}int number? After all, the reverse of the last half of the palindrome should be the same as the first half of the number, if the number is a palindrome.</p>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>)) <span class="comment">//30, 400,... are not palindrome</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (x &gt; num) &#123;</span><br><span class="line">        num = <span class="number">10</span> * num + x % <span class="number">10</span>;</span><br><span class="line">        x /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> x == num || x == num / <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-06T13:52:04.000Z"><a href="/2019/04/06/leetcodeQ7/">2019-04-06</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/06/leetcodeQ7/">Reverse Integer</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LeetCode-Q-7-Reverse-Integer"><a href="#LeetCode-Q-7-Reverse-Integer" class="headerlink" title="LeetCode Q 7 - Reverse Integer"></a>LeetCode Q 7 - Reverse Integer</h1><p>Given a 32-bit signed integer, reverse digits of an integer.<br><strong>Note</strong>:<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm:</strong><br>The tricky is we need to identify if the overflow issue would happen at every conversion.<br><code>if (res &lt; Integer.MIN_VALUE / 10 || res &gt; Integer.MAX_VALUE / 10)</code><br><strong>Note</strong>: res * 10 &lt; Integer.MIN_VALUE doesn’t work, because if res is overflow, then res will be transformed before multiplication.</p>
+<p><strong>Code: Approach 2</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    String str = Integer.toString(x);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = str.length() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (str.charAt(i) != str.charAt(j))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        i++; j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Code: Approach 1</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;	</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">0</span> || x &lt; Integer.MIN_VALUE || x &gt; Integer.MAX_VALUE)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (res &lt; Integer.MIN_VALUE / <span class="number">10</span> || res &gt; Integer.MAX_VALUE / <span class="number">10</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		res = res * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">		x /= <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2019-04-05T20:26:38.000Z"><a href="/2019/04/05/leetcode459/">2019-04-05</a></time>
       
       
   
-    <h1 class="title"><a href="/2019/04/05/leetcode459/">LeetCode - String Tag Q459</a></h1>
+    <h1 class="title"><a href="/2019/04/05/leetcode459/">Repeated Substring Pattern</a></h1>
   
 
     </header>
@@ -69,25 +276,8 @@
 <li><strong>The basic idea behind KMP</strong> is: whenever we detect a mismatch (after some matches), we already know some of the characters in the text of the next window. We take advantage of this information to avoid matching the characters that we know will anyway match. </li>
 <li>We use  a table to store this information.<br><code>int[] table = new int[str.length()];</code><br>table[i] denotes the longest prefix which is also proper suffix.</li>
 </ul>
-<p><strong>Code:</strong></p>
-<pre><code>public boolean repeatedSubstringPattern(String s) {
-    if (s == null || s.length() &lt;= 1)
-        return false;
-    int len = s.length();
-    int[] prefix = new int[len];
-    int i = 0, j = 1;
-    while (j &lt; len) {
-        if (s.charAt(i) == s.charAt(j)) {
-            prefix[j++] = ++i;
-        } else if (i == 0) {
-            j++;
-        } else if (i != 0) {
-            i = prefix[i - 1];
-        }
-    }
-    return prefix[len - 1] != 0 &amp;&amp; len % (len - prefix[len - 1]) == 0;
-}
-</code></pre>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">repeatedSubstringPattern</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() &lt;= <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> len = s.length();</span><br><span class="line">    <span class="keyword">int</span>[] prefix = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(i) == s.charAt(j)) &#123;</span><br><span class="line">            prefix[j++] = ++i;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">            i = prefix[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prefix[len - <span class="number">1</span>] != <span class="number">0</span> &amp;&amp; len % (len - prefix[len - <span class="number">1</span>]) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <footer>
@@ -113,7 +303,7 @@
       
       
   
-    <h1 class="title"><a href="/2019/04/05/leetcodeQ522/">LeetCode - String Tag Q522</a></h1>
+    <h1 class="title"><a href="/2019/04/05/leetcodeQ522/">Longest Uncommon Subsequence II</a></h1>
   
 
     </header>
@@ -152,7 +342,7 @@
       
       
   
-    <h1 class="title"><a href="/2019/04/05/leetcodeQ521/">LeetCode - String Tag Q521</a></h1>
+    <h1 class="title"><a href="/2019/04/05/leetcodeQ521/">Longest Uncommon Subsequence I</a></h1>
   
 
     </header>
@@ -213,85 +403,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-02T20:22:57.000Z"><a href="/2019/04/02/a/">2019-04-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/02/a/">a</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">'Hello World!'</span>);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-02T20:20:04.574Z"><a href="/2019/04/02/hello-world/">2019-04-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/02/hello-world/">Hello World</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/" class="alignleft prev">Prev</a>
   
+  
+    <a href="/page/3/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
