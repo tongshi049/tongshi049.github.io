@@ -52,6 +52,134 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2019-04-11T18:19:37.000Z"><a href="/2019/04/11/multithreading-currentThread/">2019-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/11/multithreading-currentThread/">Java Thread - currentThread() methods</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="currentThread"><a href="#currentThread" class="headerlink" title="currentThread()"></a>currentThread()</h2><p>The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object</p>
+<p><strong>EXAMPLE</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreaTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Fight"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Current Thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				attack();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"current main thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">		t.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>OUTPUT</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">current main thread is: main</span><br><span class="line">Fight</span><br><span class="line">Current Thread is: Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-11T17:50:45.000Z"><a href="/2019/04/11/threadII/">2019-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/11/threadII/">Java Thread II - Lifecycle and States</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued"><a href="#Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued" class="headerlink" title="Lifecycle and States of a Thread in Java (to be continued)"></a>Lifecycle and States of a Thread in Java (to be continued)</h1><p><strong>States:</strong><br>1) New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2019-04-11T16:00:37.000Z"><a href="/2019/04/11/multithread/">2019-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2019/04/11/multithread/">Java Thread I - Creation</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h1><p>Multithreading is a Java feature that allows concurrent execution of two or more parts of a program for maximum utilization of CPU. Each part of such program is called a thread. So, threads are light-weight processes within a process.</p>
+<p><strong>Threads can be created by using two mechanisms:</strong></p>
+<ol>
+<li>Extending the Thread class</li>
+<li>Implementing the Runnable Interface**</li>
+</ol>
+<h2 id="Thread-cration-by-extending-the-Thread-class"><a href="#Thread-cration-by-extending-the-Thread-class" class="headerlink" title="Thread cration by extending the Thread class"></a>Thread cration by extending the Thread class</h2><ul>
+<li>create a class that extends the <strong>java.lang.Thread</strong> class</li>
+<li>override the run() method, a thread begins its life inside run() method.</li>
+<li>call start() method to start the execution of a thread. Start() invokes the run() method on the Thread object</li>
+</ul>
+<p><strong>Example:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Thread start: "</span> + <span class="keyword">this</span>.name + <span class="string">", i= "</span> + i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyThread mt1 = <span class="keyword">new</span> MyThread(<span class="string">"thread1"</span>);</span><br><span class="line">        MyThread mt2 = <span class="keyword">new</span> MyThread(<span class="string">"thread2"</span>);</span><br><span class="line">        MyThread mt3 = <span class="keyword">new</span> MyThread(<span class="string">"thread3"</span>);</span><br><span class="line"></span><br><span class="line">        mt1.start();</span><br><span class="line">        mt2.start();</span><br><span class="line">        mt3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Thread-cration-by-implementing-the-Runnable-interface"><a href="#Thread-cration-by-implementing-the-Runnable-interface" class="headerlink" title="Thread cration by implementing the Runnable interface"></a>Thread cration by implementing the Runnable interface</h2><ul>
+<li>create a new class which implements java.lang.Runnable interface</li>
+<li>override run() method</li>
+<li>construct an object of the new class</li>
+<li>instantiate a Thread object from the Runaable: Thread t = new Thread(r)</li>
+<li>call start() method on this object</li>
+</ul>
+<p><strong>Example:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyRunnable</span> <span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Thread start: "</span> + <span class="keyword">this</span>.name + <span class="string">", i= "</span> + i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	MyRunnable mr1 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable1"</span>);</span><br><span class="line">	MyRunnable mr2 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable2"</span>);</span><br><span class="line">	MyRunnable mr3 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable3"</span>);</span><br><span class="line">	Thread t1 = <span class="keyword">new</span> Thread(mr1);</span><br><span class="line">	Thread t2 = <span class="keyword">new</span> Thread(mr2);</span><br><span class="line">	Thread t3 = <span class="keyword">new</span> Thread(mr3);</span><br><span class="line"></span><br><span class="line">	t1.start();</span><br><span class="line">	t2.start();</span><br><span class="line">	t3.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Supplymentary"><a href="#Supplymentary" class="headerlink" title="Supplymentary"></a>Supplymentary</h2><h3 id="java-lang-Thread"><a href="#java-lang-Thread" class="headerlink" title="java.lang.Thread"></a>java.lang.Thread</h3><ul>
+<li>Thread(Runnable target)<br>constructs a new thread that calls the run() method of the specified target</li>
+<li>void start()<br>starts this thread, causing the run() method to be called. This method will return immediately. The new thread runs concurrently.</li>
+<li>void run()<br>calls the run method of the associated Runnable.</li>
+</ul>
+<h3 id="java-lang-Runnable"><a href="#java-lang-Runnable" class="headerlink" title="java.lang.Runnable"></a>java.lang.Runnable</h3><ul>
+<li>void run()<br>must be overriden and supplied with instructions for the task that you want to have executed.</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2019-04-11T15:49:10.000Z"><a href="/2019/04/11/leetcodeQ367/">2019-04-11</a></time>
       
       
@@ -302,114 +430,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-10T16:18:25.000Z"><a href="/2019/04/10/leetcodeQ268/">2019-04-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/10/leetcodeQ268/">Missing Number</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-268-Missing-Number"><a href="#LeetCode-Q-268-Missing-Number" class="headerlink" title="LeetCode Q 268 - Missing Number"></a>LeetCode Q 268 - Missing Number</h1><p>Given an array containing n distinct numbers taken from 0, 1, 2, …, n, find the one that is missing from the array.<br>
-      
-    </p></div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2019/04/10/leetcodeQ268/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-10T16:14:32.000Z"><a href="/2019/04/10/leetcodeQ258/">2019-04-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/10/leetcodeQ258/">Add Digits</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-258-Add-Digits"><a href="#LeetCode-Q-258-Add-Digits" class="headerlink" title="LeetCode Q 258 - Add Digits"></a>LeetCode Q 258 - Add Digits</h1><p>Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.<br>
-      
-    </p></div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2019/04/10/leetcodeQ258/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-10T16:07:32.000Z"><a href="/2019/04/10/leetcodeQ231/">2019-04-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2019/04/10/leetcodeQ231/">Power of Two</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="LeetCode-Q-231-Power-of-Two"><a href="#LeetCode-Q-231-Power-of-Two" class="headerlink" title="LeetCode Q 231 - Power of Two"></a>LeetCode Q 231 - Power of Two</h1><p>Given an integer, write a function to determine if it is a power of two.<br>
-      
-    </p></div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2019/04/10/leetcodeQ231/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -431,13 +451,13 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Cat1/">Cat1</a><small>1</small></li>
+    <li><a href="/categories/Cat1/">Cat1</a><small>0</small></li>
   
-    <li><a href="/categories/Cat1/Cat1-1/">Cat1.1</a><small>1</small></li>
+    <li><a href="/categories/Cat1/Cat1-1/">Cat1.1</a><small>0</small></li>
   
-    <li><a href="/categories/Cat2/">Cat2</a><small>1</small></li>
+    <li><a href="/categories/Cat2/">Cat2</a><small>0</small></li>
   
-    <li><a href="/categories/Cat3/">Cat3</a><small>1</small></li>
+    <li><a href="/categories/Cat3/">Cat3</a><small>0</small></li>
   
   </ul>
 </div>
@@ -447,7 +467,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/Binary-Search/" style="font-size: 12.5px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/DP/" style="font-size: 12.5px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 12.5px;">Integer Overflow</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 17.5px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 12.5px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Stack/" style="font-size: 12.5px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/Tag1/" style="font-size: 10px;">Tag1</a> <a href="/tags/Tag2/" style="font-size: 10px;">Tag2</a> <a href="/tags/Tag3/" style="font-size: 10px;">Tag3</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    <a href="/tags/Binary-Search/" style="font-size: 12px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 12px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 14px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 12px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Stack/" style="font-size: 12px;">Stack</a> <a href="/tags/String/" style="font-size: 16px;">String</a> <a href="/tags/Thread/" style="font-size: 14px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
   </div>
 </div>
 

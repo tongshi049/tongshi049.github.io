@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-11T15:53:13.756Z</updated>
+  <updated>2019-04-11T18:31:48.438Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Thread - currentThread() methods</title>
+    <link href="http://yoursite.com/2019/04/11/multithreading-currentThread/"/>
+    <id>http://yoursite.com/2019/04/11/multithreading-currentThread/</id>
+    <published>2019-04-11T18:19:37.000Z</published>
+    <updated>2019-04-11T18:31:48.438Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="currentThread"><a href="#currentThread" class="headerlink" title="currentThread()"></a>currentThread()</h2><p>The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object</p><p><strong>EXAMPLE</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreaTest</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">"Fight"</span>);</span><br><span class="line">System.out.println(<span class="string">"Current Thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">attack();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">"current main thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">t.start();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><strong>OUTPUT</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">current main thread is: main</span><br><span class="line">Fight</span><br><span class="line">Current Thread is: Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;currentThread&quot;&gt;&lt;a href=&quot;#currentThread&quot; class=&quot;headerlink&quot; title=&quot;currentThread()&quot;&gt;&lt;/a&gt;currentThread()&lt;/h2&gt;&lt;p&gt;The &lt;strong&gt;java.lang.
+      
+    
+    </summary>
+    
+    
+      <category term="Java Basic" scheme="http://yoursite.com/tags/Java-Basic/"/>
+    
+      <category term="Thread" scheme="http://yoursite.com/tags/Thread/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Thread II - Lifecycle and States</title>
+    <link href="http://yoursite.com/2019/04/11/threadII/"/>
+    <id>http://yoursite.com/2019/04/11/threadII/</id>
+    <published>2019-04-11T17:50:45.000Z</published>
+    <updated>2019-04-11T18:33:18.418Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued"><a href="#Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued" class="headerlink" title="Lifecycle and States of a Thread in Java (to be continued)"></a>Lifecycle and States of a Thread in Java (to be continued)</h1><p><strong>States:</strong><br>1) New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued&quot;&gt;&lt;a href=&quot;#Lifecycle-and-States-of-a-Thread-in-Java-to-be-continued&quot; class=
+      
+    
+    </summary>
+    
+    
+      <category term="Java Basic" scheme="http://yoursite.com/tags/Java-Basic/"/>
+    
+      <category term="Thread" scheme="http://yoursite.com/tags/Thread/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Thread I - Creation</title>
+    <link href="http://yoursite.com/2019/04/11/multithread/"/>
+    <id>http://yoursite.com/2019/04/11/multithread/</id>
+    <published>2019-04-11T16:00:37.000Z</published>
+    <updated>2019-04-11T18:33:36.556Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h1><p>Multithreading is a Java feature that allows concurrent execution of two or more parts of a program for maximum utilization of CPU. Each part of such program is called a thread. So, threads are light-weight processes within a process.</p><p><strong>Threads can be created by using two mechanisms:</strong></p><ol><li>Extending the Thread class</li><li>Implementing the Runnable Interface**</li></ol><h2 id="Thread-cration-by-extending-the-Thread-class"><a href="#Thread-cration-by-extending-the-Thread-class" class="headerlink" title="Thread cration by extending the Thread class"></a>Thread cration by extending the Thread class</h2><ul><li>create a class that extends the <strong>java.lang.Thread</strong> class</li><li>override the run() method, a thread begins its life inside run() method.</li><li>call start() method to start the execution of a thread. Start() invokes the run() method on the Thread object</li></ul><p><strong>Example:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">System.out.println(<span class="string">"Thread start: "</span> + <span class="keyword">this</span>.name + <span class="string">", i= "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyThread mt1 = <span class="keyword">new</span> MyThread(<span class="string">"thread1"</span>);</span><br><span class="line">        MyThread mt2 = <span class="keyword">new</span> MyThread(<span class="string">"thread2"</span>);</span><br><span class="line">        MyThread mt3 = <span class="keyword">new</span> MyThread(<span class="string">"thread3"</span>);</span><br><span class="line"></span><br><span class="line">        mt1.start();</span><br><span class="line">        mt2.start();</span><br><span class="line">        mt3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="Thread-cration-by-implementing-the-Runnable-interface"><a href="#Thread-cration-by-implementing-the-Runnable-interface" class="headerlink" title="Thread cration by implementing the Runnable interface"></a>Thread cration by implementing the Runnable interface</h2><ul><li>create a new class which implements java.lang.Runnable interface</li><li>override run() method</li><li>construct an object of the new class</li><li>instantiate a Thread object from the Runaable: Thread t = new Thread(r)</li><li>call start() method on this object</li></ul><p><strong>Example:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyRunnable</span> <span class="params">(String name)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">System.out.println(<span class="string">"Thread start: "</span> + <span class="keyword">this</span>.name + <span class="string">", i= "</span> + i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">MyRunnable mr1 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable1"</span>);</span><br><span class="line">MyRunnable mr2 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable2"</span>);</span><br><span class="line">MyRunnable mr3 = <span class="keyword">new</span> MyRunnable(<span class="string">"Runnable3"</span>);</span><br><span class="line">Thread t1 = <span class="keyword">new</span> Thread(mr1);</span><br><span class="line">Thread t2 = <span class="keyword">new</span> Thread(mr2);</span><br><span class="line">Thread t3 = <span class="keyword">new</span> Thread(mr3);</span><br><span class="line"></span><br><span class="line">t1.start();</span><br><span class="line">t2.start();</span><br><span class="line">t3.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="Supplymentary"><a href="#Supplymentary" class="headerlink" title="Supplymentary"></a>Supplymentary</h2><h3 id="java-lang-Thread"><a href="#java-lang-Thread" class="headerlink" title="java.lang.Thread"></a>java.lang.Thread</h3><ul><li>Thread(Runnable target)<br>constructs a new thread that calls the run() method of the specified target</li><li>void start()<br>starts this thread, causing the run() method to be called. This method will return immediately. The new thread runs concurrently.</li><li>void run()<br>calls the run method of the associated Runnable.</li></ul><h3 id="java-lang-Runnable"><a href="#java-lang-Runnable" class="headerlink" title="java.lang.Runnable"></a>java.lang.Runnable</h3><ul><li>void run()<br>must be overriden and supplied with instructions for the task that you want to have executed.</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Multithreading&quot;&gt;&lt;a href=&quot;#Multithreading&quot; class=&quot;headerlink&quot; title=&quot;Multithreading&quot;&gt;&lt;/a&gt;Multithreading&lt;/h1&gt;&lt;p&gt;Multithreading is a Ja
+      
+    
+    </summary>
+    
+    
+      <category term="Java Basic" scheme="http://yoursite.com/tags/Java-Basic/"/>
+    
+      <category term="Thread" scheme="http://yoursite.com/tags/Thread/"/>
+    
+  </entry>
   
   <entry>
     <title>Valid Perfect Square</title>
@@ -393,76 +468,6 @@
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Rectangle Overlap</title>
-    <link href="http://yoursite.com/2019/04/09/leetcodeQ836/"/>
-    <id>http://yoursite.com/2019/04/09/leetcodeQ836/</id>
-    <published>2019-04-09T15:29:24.000Z</published>
-    <updated>2019-04-09T17:14:03.297Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-836-Rectangle-Overlap"><a href="#LeetCode-Q-836-Rectangle-Overlap" class="headerlink" title="LeetCode Q 836 - Rectangle Overlap"></a>LeetCode Q 836 - Rectangle Overlap</h1><p>A rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) are the coordinates of its bottom-left corner, and (x2, y2) are the coordinates of its top-right corner.<br>Given two (axis-aligned) rectangles, return whether they overlap.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isRectangleOverlap</span><span class="params">(<span class="keyword">int</span>[] rec1, <span class="keyword">int</span>[] rec2)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (Math.max(rec1[<span class="number">0</span>], rec2[<span class="number">0</span>]) &lt; Math.min(rec1[<span class="number">2</span>], rec2[<span class="number">2</span>]) </span><br><span class="line">       &amp;&amp; Math.max(rec1[<span class="number">1</span>], rec2[<span class="number">1</span>]) &lt; Math.min(rec1[<span class="number">3</span>], rec2[<span class="number">3</span>]))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h1 id="LeetCode-Q-223-Rectangle-Area"><a href="#LeetCode-Q-223-Rectangle-Area" class="headerlink" title="LeetCode Q 223 - Rectangle Area"></a>LeetCode Q 223 - Rectangle Area</h1><p>Find the total area covered by two rectilinear rectangles in a 2D plane.<br>Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.</p><h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = (C - A) * (D - B) + (G - E) * (H - F);</span><br><span class="line">    <span class="keyword">int</span> length = <span class="number">0</span>, width = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> left = Math.max(A, E);</span><br><span class="line">    <span class="keyword">int</span> right = Math.min(C, G);</span><br><span class="line">    <span class="keyword">int</span> top = Math.min(D, H);</span><br><span class="line">    <span class="keyword">int</span> bottom = Math.max(B, F);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> overlap = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right &amp;&amp; bottom &lt; top)</span><br><span class="line">        overlap = (right - left) * (top - bottom);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res - overlap;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-836-Rectangle-Overlap&quot;&gt;&lt;a href=&quot;#LeetCode-Q-836-Rectangle-Overlap&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 836 - Rectangle Overlap&quot;&gt;&lt;/a&gt;LeetCode Q 836 - Rectangle Overlap&lt;/h1&gt;&lt;p&gt;A rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) are the coordinates of its bottom-left corner, and (x2, y2) are the coordinates of its top-right corner.&lt;br&gt;Given two (axis-aligned) rectangles, return whether they overlap.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Multiply Strings</title>
-    <link href="http://yoursite.com/2019/04/08/leetcodeQ43/"/>
-    <id>http://yoursite.com/2019/04/08/leetcodeQ43/</id>
-    <published>2019-04-08T17:11:35.000Z</published>
-    <updated>2019-04-09T17:13:31.410Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-43-Multiply-Strings"><a href="#LeetCode-Q-43-Multiply-Strings" class="headerlink" title="LeetCode Q 43 - Multiply Strings"></a>LeetCode Q 43 - Multiply Strings</h1><p>Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><img src="/2019/04/08/leetcodeQ43/solution.jpg" title="Algorithm"><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (num1.equals(<span class="string">"0"</span>) || num2.equals(<span class="string">"0"</span>))</span><br><span class="line"><span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line"><span class="keyword">int</span> len1 = num1.length(), len2 = num2.length();</span><br><span class="line"><span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[len1 + len2 - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++) &#123;</span><br><span class="line">num[i + j] += (num1.charAt(i) - <span class="string">'0'</span>) * (num2.charAt(j) - <span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = num.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="keyword">int</span> origin = num[i] + carry;</span><br><span class="line">carry = origin / <span class="number">10</span>;</span><br><span class="line">num[i] = origin % <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">if</span> (carry != <span class="number">0</span>)</span><br><span class="line">sb.append((<span class="keyword">char</span>) (carry + <span class="string">'0'</span>));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++)</span><br><span class="line">sb.append((<span class="keyword">char</span>) (arr[i] + <span class="string">'0'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-43-Multiply-Strings&quot;&gt;&lt;a href=&quot;#LeetCode-Q-43-Multiply-Strings&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 43 - Multiply Strings&quot;&gt;&lt;/a&gt;LeetCode Q 43 - Multiply Strings&lt;/h1&gt;&lt;p&gt;Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sqrt(x)</title>
-    <link href="http://yoursite.com/2019/04/08/leetcodeQ69/"/>
-    <id>http://yoursite.com/2019/04/08/leetcodeQ69/</id>
-    <published>2019-04-08T17:00:44.000Z</published>
-    <updated>2019-04-09T17:13:53.713Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-69-Sqrt-x"><a href="#LeetCode-Q-69-Sqrt-x" class="headerlink" title="LeetCode Q 69 - Sqrt(x)"></a>LeetCode Q 69 - Sqrt(x)</h1><p>Implement int sqrt(int x).<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to check every number from 1 to n / 2, to see<br><code>if ((i * i == x) || (i * i &lt; x) &amp;&amp; ((i+1) * (i+1) &gt; x))</code><br>We can improve the efficiency by using binary search.</p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (x &lt;= <span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> x;</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">1</span>, right = Integer.MAX_VALUE;</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (mid == x / mid) <span class="comment">//use mid * mid &gt; x has a potential to cause overflow</span></span><br><span class="line"><span class="keyword">return</span> mid;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (mid &gt; x / mid)</span><br><span class="line">right = mid - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (mid + <span class="number">1</span> &gt; x / (mid + <span class="number">1</span>))</span><br><span class="line"><span class="keyword">return</span> mid;</span><br><span class="line">left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-69-Sqrt-x&quot;&gt;&lt;a href=&quot;#LeetCode-Q-69-Sqrt-x&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 69 - Sqrt(x)&quot;&gt;&lt;/a&gt;LeetCode Q 69 - Sqrt(x)&lt;/h1&gt;&lt;p&gt;Implement int sqrt(int x).&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
     
   </entry>
   
