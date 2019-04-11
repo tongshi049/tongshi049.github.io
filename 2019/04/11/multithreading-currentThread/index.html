@@ -6,8 +6,7 @@
   <title>Java Thread - currentThread() methods | Tong Shi&#39;s Blog</title>
   <meta name="author" content="Tong Shi">
   
-  <meta name="description" content="currentThread()The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object
-EXAMPLE12345678910111213141516">
+  <meta name="description" content="currentThread()The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -22,6 +21,7 @@ EXAMPLE12345678910111213141516">
   <link href="/favicon.png" rel="icon">
   <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
@@ -64,8 +64,7 @@ EXAMPLE12345678910111213141516">
     </header>
     <div class="entry">
       
-        <h2 id="currentThread"><a href="#currentThread" class="headerlink" title="currentThread()"></a>currentThread()</h2><p>The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object</p>
-<p><strong>EXAMPLE</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreaTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Fight"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Current Thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				attack();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"current main thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">		t.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="currentThread"><a href="#currentThread" class="headerlink" title="currentThread()"></a>currentThread()</h2><p>The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object<br><a id="more"></a><br><strong>EXAMPLE</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreaTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Fight"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Current Thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				attack();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"current main thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">		t.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>OUTPUT</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">current main thread is: main</span><br><span class="line">Fight</span><br><span class="line">Current Thread is: Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
 
       
@@ -114,21 +113,6 @@ EXAMPLE12345678910111213141516">
 </div>
 
   
-<div class="widget tag">
-  <h3 class="title">Categories</h3>
-  <ul class="entry">
-  
-    <li><a href="/categories/Cat1/">Cat1</a><small>0</small></li>
-  
-    <li><a href="/categories/Cat1/Cat1-1/">Cat1.1</a><small>0</small></li>
-  
-    <li><a href="/categories/Cat2/">Cat2</a><small>0</small></li>
-  
-    <li><a href="/categories/Cat3/">Cat3</a><small>0</small></li>
-  
-  </ul>
-</div>
-
 
   
 <div class="widget tagcloud">

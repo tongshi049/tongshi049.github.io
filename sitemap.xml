@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/04/11/multithreading-currentThread/</loc>
+    
+    <lastmod>2019-04-11T18:43:37.547Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/11/multithread/</loc>
+    
+    <lastmod>2019-04-11T18:43:27.001Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/04/02/b/</loc>
     
     <lastmod>2019-04-11T18:34:54.075Z</lastmod>
@@ -16,23 +30,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/04/11/multithread/</loc>
-    
-    <lastmod>2019-04-11T18:33:36.556Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2019/04/11/threadII/</loc>
     
     <lastmod>2019-04-11T18:33:18.418Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/11/multithreading-currentThread/</loc>
-    
-    <lastmod>2019-04-11T18:31:48.438Z</lastmod>
     
   </url>
   
