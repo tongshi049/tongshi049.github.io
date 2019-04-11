@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-10T16:40:54.246Z</updated>
+  <updated>2019-04-11T15:53:13.756Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Valid Perfect Square</title>
+    <link href="http://yoursite.com/2019/04/11/leetcodeQ367/"/>
+    <id>http://yoursite.com/2019/04/11/leetcodeQ367/</id>
+    <published>2019-04-11T15:49:10.000Z</published>
+    <updated>2019-04-11T15:53:13.756Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-367-Valid-Perfect-Square"><a href="#LeetCode-Q-367-Valid-Perfect-Square" class="headerlink" title="LeetCode Q 367 - Valid Perfect Square"></a>LeetCode Q 367 - Valid Perfect Square</h1><p>Given a positive integer num, write a function which returns True if num is a perfect square else False.</p><p><strong>Note: Do not</strong> use any built-in library function such as sqrt.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPerfectSquare</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">1</span>, right = Integer.MAX_VALUE;</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (num % mid == <span class="number">0</span> &amp;&amp; mid == num / mid)</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (mid &gt; num / mid)</span><br><span class="line">right = mid - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (mid + <span class="number">1</span> &gt; num / (mid + <span class="number">1</span>))</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-367-Valid-Perfect-Square&quot;&gt;&lt;a href=&quot;#LeetCode-Q-367-Valid-Perfect-Square&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 367 - Valid Perfect Square&quot;&gt;&lt;/a&gt;LeetCode Q 367 - Valid Perfect Square&lt;/h1&gt;&lt;p&gt;Given a positive integer num, write a function which returns True if num is a perfect square else False.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note: Do not&lt;/strong&gt; use any built-in library function such as sqrt.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Integer Break</title>
+    <link href="http://yoursite.com/2019/04/11/leetcodeQ343/"/>
+    <id>http://yoursite.com/2019/04/11/leetcodeQ343/</id>
+    <published>2019-04-11T15:40:21.000Z</published>
+    <updated>2019-04-11T15:48:44.586Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-343-Integer-Break"><a href="#LeetCode-Q-343-Integer-Break" class="headerlink" title="LeetCode Q 343 - Integer Break"></a>LeetCode Q 343 - Integer Break</h1><p>Given a positive integer n, break it into the sum of <strong>at least</strong> two positive integers and maximize the product of those integers. Return the maximum product you can get.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>DP function:</strong><br><code>dp[n] = Max{Max(dp[i], i) * Max(dp[n - i], n - i)},  i &lt; n</code></p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">Arrays.fill(dp, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// dp[1] = 1; dp[2] = 1;</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; j++)</span><br><span class="line">dp[i] = Math.max(dp[i], Math.max(dp[i - j], i - j) * Math.max(dp[j], j));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-343-Integer-Break&quot;&gt;&lt;a href=&quot;#LeetCode-Q-343-Integer-Break&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 343 - Integer Break&quot;&gt;&lt;/a&gt;LeetCode Q 343 - Integer Break&lt;/h1&gt;&lt;p&gt;Given a positive integer n, break it into the sum of &lt;strong&gt;at least&lt;/strong&gt; two positive integers and maximize the product of those integers. Return the maximum product you can get.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bulb Switcher</title>
+    <link href="http://yoursite.com/2019/04/11/leetcodeQ319/"/>
+    <id>http://yoursite.com/2019/04/11/leetcodeQ319/</id>
+    <published>2019-04-11T15:36:48.000Z</published>
+    <updated>2019-04-11T15:40:03.709Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-319-Bulb-Switcher"><a href="#LeetCode-Q-319-Bulb-Switcher" class="headerlink" title="LeetCode Q 319 - Bulb Switcher"></a>LeetCode Q 319 - Bulb Switcher</h1><p>There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it’s off or turning off if it’s on). For the i-th round, you toggle every i bulb. For the n-th round, you only toggle the last bulb. Find how many bulbs are on after n rounds.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>A bulb ends up on iff it is <strong>switched an odd number of times</strong>.</p><p>Call them bulb 1 to bulb n. Bulb i is switched in round d if and only if d divides i. So bulb i ends up on if and only if it has an <strong>odd number of divisors</strong>.</p><p><strong>Divisors come in pairs</strong>, like i=12 has divisors 1 and 12, 2 and 6, and 3 and 4. Except when i is a square, like 36 has divisors 1 and 36, 2 and 18, 3 and 12, 4 and 9, and double divisor 6. <strong>So bulb i ends up on if and only if i is a square</strong>.</p><p>So just count the square numbers.</p><p>Let R = int(sqrt(n)). That’s the root of the largest square in the range [1,n]. And 1 is the smallest root. So you have the roots from 1 to R, that’s R roots. Which correspond to the R squares.</p><p><strong>Note:</strong>the return type of Math.sqrt is double, we need to cast it to int.</p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bulbSwitch</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>) Math.sqrt(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-319-Bulb-Switcher&quot;&gt;&lt;a href=&quot;#LeetCode-Q-319-Bulb-Switcher&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 319 - Bulb Switcher&quot;&gt;&lt;/a&gt;LeetCode Q 319 - Bulb Switcher&lt;/h1&gt;&lt;p&gt;There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it’s off or turning off if it’s on). For the i-th round, you toggle every i bulb. For the n-th round, you only toggle the last bulb. Find how many bulbs are on after n rounds.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Perfect Squares</title>
+    <link href="http://yoursite.com/2019/04/11/leetcodeQ279/"/>
+    <id>http://yoursite.com/2019/04/11/leetcodeQ279/</id>
+    <published>2019-04-11T15:34:47.000Z</published>
+    <updated>2019-04-11T15:35:20.699Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-279-Perfect-Squares"><a href="#LeetCode-Q-279-Perfect-Squares" class="headerlink" title="LeetCode Q 279 - Perfect Squares"></a>LeetCode Q 279 - Perfect Squares</h1><p>Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, …) which sum to n.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>DP function:</strong><br><code>dp[n] = Min{ dp[n - i*i] + 1 },  n - i*i &gt;=0 &amp;&amp; i &gt;= 1</code></p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i * i &lt;= n; i++) </span><br><span class="line">dp[i * i] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j * j &lt;= i; j++) &#123;</span><br><span class="line">dp[i] = Math.min(dp[i], dp[i - j * j] + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-279-Perfect-Squares&quot;&gt;&lt;a href=&quot;#LeetCode-Q-279-Perfect-Squares&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 279 - Perfect Squares&quot;&gt;&lt;/a&gt;LeetCode Q 279 - Perfect Squares&lt;/h1&gt;&lt;p&gt;Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, …) which sum to n.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Super Ugly Number</title>
+    <link href="http://yoursite.com/2019/04/11/leetcodeQ313/"/>
+    <id>http://yoursite.com/2019/04/11/leetcodeQ313/</id>
+    <published>2019-04-11T15:08:08.000Z</published>
+    <updated>2019-04-11T15:22:28.087Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-313-Super-Ugly-Number"><a href="#LeetCode-Q-313-Super-Ugly-Number" class="headerlink" title="LeetCode Q 313 - Super Ugly Number"></a>LeetCode Q 313 - Super Ugly Number</h1><p>Write a program to find the nth super ugly number.</p><p>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nthSuperUglyNumber</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] primes)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span>[] times = <span class="keyword">new</span> <span class="keyword">int</span>[primes.length];</span><br><span class="line"><span class="keyword">int</span>[] uglys = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">uglys[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">uglys[i] = Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; primes.length; j++) </span><br><span class="line">uglys[i] = Math.min(uglys[i], primes[j] * uglys[times[j]]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; times.lnegth; j++)</span><br><span class="line"><span class="keyword">if</span> (uglys[times[j]] * primes[j] == uglys[i])</span><br><span class="line">times[j]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> ugly[n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><strong>Code: Heap + Set</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">nthSuperUglyNumber</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[] primes)</span> </span>&#123;</span><br><span class="line">PriorityQueue&lt;Long&gt; que = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">Set&lt;Long&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">que.offer(<span class="number">1L</span>); set.add(<span class="number">1L</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line"><span class="keyword">long</span> num = que.poll();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> prime: primes) &#123;</span><br><span class="line"><span class="keyword">if</span> (set.add(prime * num))</span><br><span class="line">que.offer(prime * num);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> que.poll().intValue(); <span class="comment">// need to convert it into int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-313-Super-Ugly-Number&quot;&gt;&lt;a href=&quot;#LeetCode-Q-313-Super-Ugly-Number&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 313 - Super Ugly Number&quot;&gt;&lt;/a&gt;LeetCode Q 313 - Super Ugly Number&lt;/h1&gt;&lt;p&gt;Write a program to find the nth super ugly number.&lt;/p&gt;
+&lt;p&gt;Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+  </entry>
   
   <entry>
     <title>Ugly Number II</title>
@@ -345,129 +463,6 @@
       <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
     
       <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pow(x, n)</title>
-    <link href="http://yoursite.com/2019/04/08/leetcodeQ50/"/>
-    <id>http://yoursite.com/2019/04/08/leetcodeQ50/</id>
-    <published>2019-04-08T16:39:42.000Z</published>
-    <updated>2019-04-09T17:13:34.668Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-50-Pow-x-n"><a href="#LeetCode-Q-50-Pow-x-n" class="headerlink" title="LeetCode Q 50 - Pow(x, n)"></a>LeetCode Q 50 - Pow(x, n)</h1><p>Implement pow(x, n), which calculates x raised to the power n.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to utilize simple multiplication. We do x <em> x </em> x <em> x </em> … n times. This approach has a potential to cause time limit exceeds, when n is very large.<br>Instead we can utilize redouble the x, say </p><ul><li>for n = 2, we do x * x</li><li>for n = 4, we do x <em> x, then do (x </em> x) <em> (x </em> x)…<br>if n is odd, then multipy an additional tempX.<br>Next, we will solve this question recursively and iteratively<br><strong>Code: Recursive Method</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">x = <span class="number">1</span> / x;</span><br><span class="line">n = -n;</span><br><span class="line"><span class="keyword">if</span> (-n == Integer.MIN_VALUE)</span><br><span class="line"><span class="keyword">return</span> x * myPower(x, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span> ? myPow(x * x, n / <span class="number">2</span>) : myPow(x * x, n / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p><strong>Code: Iterative Method</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> isNegative = <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">x = <span class="number">1</span> / x;</span><br><span class="line">n = -(n + <span class="number">1</span>); <span class="comment">// Avoid overflow when n == MIN_VALUE</span></span><br><span class="line">isNegative <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> ans = <span class="number">1</span>, temp = x;</span><br><span class="line"><span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">1</span>) </span><br><span class="line">ans *= temp;</span><br><span class="line">temp *= temp;</span><br><span class="line">n /= <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-50-Pow-x-n&quot;&gt;&lt;a href=&quot;#LeetCode-Q-50-Pow-x-n&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 50 - Pow(x, n)&quot;&gt;&lt;/a&gt;LeetCode Q 50 - Pow(x, n)&lt;/h1&gt;&lt;p&gt;Implement pow(x, n), which calculates x raised to the power n.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="Multiplication" scheme="http://yoursite.com/tags/Multiplication/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Divide Two Integers</title>
-    <link href="http://yoursite.com/2019/04/08/leetcodeQ29/"/>
-    <id>http://yoursite.com/2019/04/08/leetcodeQ29/</id>
-    <published>2019-04-08T16:13:23.000Z</published>
-    <updated>2019-04-09T17:12:39.719Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-29-Divide-Two-Integers"><a href="#LeetCode-Q-29-Divide-Two-Integers" class="headerlink" title="LeetCode Q 29 - Divide Two Integers"></a>LeetCode Q 29 - Divide Two Integers</h1><p>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to utilize subtraction, checking how many times a dividend can substract a divisor. But this approach has a potential to cause time limit exceeds, when the dividend is very large.<br>So, we increase the divisor at each substraction, say we double the divisor.<br>At the same time, we need a variable to record how many times is the current divisor of the original divisor.</p><p><strong>Note:</strong></p><ul><li>To deal with the corner case, int need to be converted to long first, then take the absolute value.</li><li>tempDivisor should not double anymore if we know it will larger than dividend.</li></ul><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (divisor == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> dividend &gt;= <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line"><span class="keyword">if</span> (dividend == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sign = -<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>) || (dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">sign = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> dividendLong = Math.abs((<span class="keyword">long</span>) dividend);</span><br><span class="line"><span class="keyword">long</span> divisorLong = Math.abs((<span class="keyword">long</span>) divisor);</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> res = divideHelper(dividendLong, divisorLong);</span><br><span class="line"><span class="keyword">return</span> sign * (<span class="keyword">int</span>) res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">divideHelper</span><span class="params">(<span class="keyword">long</span> dividend, <span class="keyword">long</span> divisor)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line"><span class="keyword">long</span> sum = divisor, multiplication = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (sum + sum &lt; divisor) &#123;</span><br><span class="line">sum += sum; multiplication += multiplication;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> multiplication + divideHelper(dividend - sum, divisor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-29-Divide-Two-Integers&quot;&gt;&lt;a href=&quot;#LeetCode-Q-29-Divide-Two-Integers&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 29 - Divide Two Integers&quot;&gt;&lt;/a&gt;LeetCode Q 29 - Divide Two Integers&lt;/h1&gt;&lt;p&gt;Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="Integer Overflow" scheme="http://yoursite.com/tags/Integer-Overflow/"/>
-    
-      <category term="Multiplication" scheme="http://yoursite.com/tags/Multiplication/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Number-Theoretic Algorithm - gcd</title>
-    <link href="http://yoursite.com/2019/04/08/gcd/"/>
-    <id>http://yoursite.com/2019/04/08/gcd/</id>
-    <published>2019-04-08T15:42:35.000Z</published>
-    <updated>2019-04-08T16:05:35.628Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Euclid’s-algorithm"><a href="#Euclid’s-algorithm" class="headerlink" title="Euclid’s algorithm"></a>Euclid’s algorithm</h1><h2 id="Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers"><a href="#Euclid’s-algorithm-for-efficiently-computing-the-greatest-common-divisor-of-two-integers" class="headerlink" title="Euclid’s algorithm for efficiently computing the greatest common divisor of two integers."></a>Euclid’s algorithm for efficiently computing the greatest common divisor of two integers.</h2><p><strong>PseudoCode:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Eucilid(a, b)</span><br><span class="line"><span class="keyword">if</span> b == <span class="number">0</span></span><br><span class="line"><span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">return</span> Eucilid(b, a mod b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Euclid’s-algorithm&quot;&gt;&lt;a href=&quot;#Euclid’s-algorithm&quot; class=&quot;headerlink&quot; title=&quot;Euclid’s algorithm&quot;&gt;&lt;/a&gt;Euclid’s algorithm&lt;/h1&gt;&lt;h2 id=&quot;E
-      
-    
-    </summary>
-    
-    
-      <category term="Number-Theoretic Algorithm" scheme="http://yoursite.com/tags/Number-Theoretic-Algorithm/"/>
-    
-      <category term="gcd" scheme="http://yoursite.com/tags/gcd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Permutation Sequence</title>
-    <link href="http://yoursite.com/2019/04/08/leetcodeQ60/"/>
-    <id>http://yoursite.com/2019/04/08/leetcodeQ60/</id>
-    <published>2019-04-08T15:26:24.000Z</published>
-    <updated>2019-04-09T17:13:51.299Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-60-Permutation-Sequence"><a href="#LeetCode-Q-60-Permutation-Sequence" class="headerlink" title="LeetCode Q 60 - Permutation Sequence"></a>LeetCode Q 60 - Permutation Sequence</h1><p>Given n and k, return the kth permutation sequence.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Cantor Unfold</strong><br>The detailed description can be found in <a href="https://zh.wikipedia.org/zh-cn/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80" target="_blank" rel="noopener">wekipedia</a>.<br><em>Cantor expansion is a double shot that is fully aligned to a natural number and is often used for spatial compression when building hash tables. The essence of Cantor’s expansion is to calculate the current order in all the order from small to large, and therefore reversible.</em></p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// use list to store the num which we have chosen</span></span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) </span><br><span class="line">ist.add(i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] fac = <span class="keyword">new</span> <span class="keyword">int</span>[n]; fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) </span><br><span class="line">        fac[i] = fac[i - <span class="number">1</span>] * i;</span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    k--;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> index = k / fac[i - <span class="number">1</span>];</span><br><span class="line">        k = k % fac[i - <span class="number">1</span>];</span><br><span class="line">        sb.append(list.get(index));</span><br><span class="line">        list.remove(index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-60-Permutation-Sequence&quot;&gt;&lt;a href=&quot;#LeetCode-Q-60-Permutation-Sequence&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 60 - Permutation Sequence&quot;&gt;&lt;/a&gt;LeetCode Q 60 - Permutation Sequence&lt;/h1&gt;&lt;p&gt;Given n and k, return the kth permutation sequence.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="Cantor Unfold" scheme="http://yoursite.com/tags/Cantor-Unfold/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Roman to Integer</title>
-    <link href="http://yoursite.com/2019/04/07/leetcodeQ13/"/>
-    <id>http://yoursite.com/2019/04/07/leetcodeQ13/</id>
-    <published>2019-04-07T13:49:56.000Z</published>
-    <updated>2019-04-09T17:13:21.666Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-13-Roman-to-Integer"><a href="#LeetCode-Q-13-Roman-to-Integer" class="headerlink" title="LeetCode Q 13 - Roman to Integer"></a>LeetCode Q 13 - Roman to Integer</h1><p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">'I'</span>, <span class="number">1</span>);    map.put(<span class="string">'V'</span>, <span class="number">5</span>);</span><br><span class="line">    map.put(<span class="string">'X'</span>, <span class="number">10</span>);   map.put(<span class="string">'L'</span>, <span class="number">50</span>);</span><br><span class="line">    map.put(<span class="string">'C'</span>, <span class="number">100</span>);  map.put(<span class="string">'D'</span>, <span class="number">500</span>);</span><br><span class="line">    map.put(<span class="string">'M'</span>, <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = map.get(s.charAt(s.length() - <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = s.length() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(s.charAt(i)) &gt;= map.get(s.charAt(i + <span class="number">1</span>)))</span><br><span class="line">            res += map.get(s.charAt(i));</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res -= map.get(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-13-Roman-to-Integer&quot;&gt;&lt;a href=&quot;#LeetCode-Q-13-Roman-to-Integer&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 13 - Roman to Integer&quot;&gt;&lt;/a&gt;LeetCode Q 13 - Roman to Integer&lt;/h1&gt;&lt;p&gt;Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
     
   </entry>
   
