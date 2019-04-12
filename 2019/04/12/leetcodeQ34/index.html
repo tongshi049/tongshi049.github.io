@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Find First and Last Position of Element in Sorted Array | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 34 - Find First and Last Position of Element in Sorted ArrayGiven an array of integers nums sorted in ascending order, find the starting and ending position of a given target value. Your al">
+<meta name="keywords" content="LeetCode,Binary Search">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Find First and Last Position of Element in Sorted Array">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/leetcodeQ34/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 34 - Find First and Last Position of Element in Sorted ArrayGiven an array of integers nums sorted in ascending order, find the starting and ending position of a given target value. Your al">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-12T21:34:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Find First and Last Position of Element in Sorted Array">
+<meta name="twitter:description" content="LeetCode Q 34 - Find First and Last Position of Element in Sorted ArrayGiven an array of integers nums sorted in ascending order, find the starting and ending position of a given target value. Your al">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ34" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/leetcodeQ34/" class="article-date">
+  <time datetime="2019-04-12T21:26:54.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Find First and Last Position of Element in Sorted Array
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LeetCode-Q-34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#LeetCode-Q-34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="LeetCode Q 34 - Find First and Last Position of Element in Sorted Array"></a>LeetCode Q 34 - Find First and Last Position of Element in Sorted Array</h1><p>Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.</p>
+<p>Your algorithm’s runtime complexity must be in the order of <strong>O(log n)</strong>.</p>
+<p>If the target is not found in the array, return [-1, -1].<br><a id="more"></a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>First we use binary search to find the target number, if it exists then we want to find the first and last index.<br>When finding these two indexes, we should also use binary search. Or our algorithm has a potential to become linear search when the data is like [1,1,1,1,1,1,1,2,3], then the time complexity would become <strong>O(n)</strong>.</p>
+<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] searchRange(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">		eturn <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length;</span><br><span class="line">	<span class="keyword">int</span> index = bs(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line">	<span class="keyword">if</span> (index == -<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;;</span><br><span class="line">	Arrays.fill(res, index);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// find the left boundary</span></span><br><span class="line">	left = index;</span><br><span class="line">	<span class="keyword">while</span> (left &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		left = bs(nums, <span class="number">0</span>, left - <span class="number">1</span>, target);</span><br><span class="line">		<span class="keyword">if</span> (left == -<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span> res[<span class="number">0</span>] = left;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// find the right boundary</span></span><br><span class="line">	right = index;</span><br><span class="line">	<span class="keyword">while</span> (right &lt;= nums.length - <span class="number">1</span>) &#123;</span><br><span class="line">		right = bs(nums, right + <span class="number">1</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line">		<span class="keyword">if</span> (right == -<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span> res[<span class="number">1</span>] = right;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">bs</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) left = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/leetcodeQ34/" data-id="cjuel0lqg005je8vevkxbxll1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/leetcodeQ74/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          leetcodeQ74
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/12/leetcodeQ35/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Search Insert Position</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 14.29px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.14px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 11.43px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.43px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 12.86px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18.57px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 11.43px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.43px;">Stack</a> <a href="/tags/String/" style="font-size: 15.71px;">String</a> <a href="/tags/Thread/" style="font-size: 12.86px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ74/">leetcodeQ74</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ34/">Find First and Last Position of Element in Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ35/">Search Insert Position</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ368/">Largest Divisible Subset</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ4/">Median of Two Sorted Arrays</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
