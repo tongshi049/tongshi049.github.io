@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-11T18:43:37.547Z</updated>
+  <updated>2019-04-12T18:10:39.891Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,103 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Find Minimum in Rotated Sorted Array II</title>
+    <link href="http://yoursite.com/2019/04/12/leetcodeQ154/"/>
+    <id>http://yoursite.com/2019/04/12/leetcodeQ154/</id>
+    <published>2019-04-12T17:56:16.000Z</published>
+    <updated>2019-04-12T18:10:39.891Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-154-Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#LeetCode-Q-154-Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="LeetCode Q 154 - Find Minimum in Rotated Sorted Array II"></a>LeetCode Q 154 - Find Minimum in Rotated Sorted Array II</h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).<br>Find the minimum element. The array may contain <strong>duplicates</strong>.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Similar to Q81, in the worst case, the time complexity becomes O(n).<br>So, we don’t need to use binary search.</p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> min = nums[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] &lt; min) min = nums[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><strong>Code: Use fake binary sesarch</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (nums[mid] &gt; nums[nums.length - <span class="number">1</span>]) left = mid + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] == nums[nums.length - <span class="number">1</span>]) right--;</span><br><span class="line"><span class="comment">//When num[mid] == num[hi], we couldn't sure the position of minimum in mid's left or right, </span></span><br><span class="line"><span class="comment">//so just let upper bound reduce one.</span></span><br><span class="line"><span class="keyword">else</span> right = mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> nums[left];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-154-Find-Minimum-in-Rotated-Sorted-Array-II&quot;&gt;&lt;a href=&quot;#LeetCode-Q-154-Find-Minimum-in-Rotated-Sorted-Array-II&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 154 - Find Minimum in Rotated Sorted Array II&quot;&gt;&lt;/a&gt;LeetCode Q 154 - Find Minimum in Rotated Sorted Array II&lt;/h1&gt;&lt;p&gt;Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.&lt;br&gt;(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).&lt;br&gt;Find the minimum element. The array may contain &lt;strong&gt;duplicates&lt;/strong&gt;.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Find Minimum in Rotated Sorted Array</title>
+    <link href="http://yoursite.com/2019/04/12/leetcodeQ153/"/>
+    <id>http://yoursite.com/2019/04/12/leetcodeQ153/</id>
+    <published>2019-04-12T17:54:02.000Z</published>
+    <updated>2019-04-12T17:56:01.146Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-153-Find-Minimum-in-Rotated-Sorted-Array"><a href="#LeetCode-Q-153-Find-Minimum-in-Rotated-Sorted-Array" class="headerlink" title="LeetCode Q 153 - Find Minimum in Rotated Sorted Array"></a>LeetCode Q 153 - Find Minimum in Rotated Sorted Array</h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).<br>Find the minimum element.<br>You may assume <strong>no duplicate</strong> exists in the array.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (left == right || nums[left] &lt; nums[right])</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; nums[nums.length - <span class="number">1</span>])</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            right = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> nums[left];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-153-Find-Minimum-in-Rotated-Sorted-Array&quot;&gt;&lt;a href=&quot;#LeetCode-Q-153-Find-Minimum-in-Rotated-Sorted-Array&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 153 - Find Minimum in Rotated Sorted Array&quot;&gt;&lt;/a&gt;LeetCode Q 153 - Find Minimum in Rotated Sorted Array&lt;/h1&gt;&lt;p&gt;Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.&lt;br&gt;(i.e.,  [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2]).&lt;br&gt;Find the minimum element.&lt;br&gt;You may assume &lt;strong&gt;no duplicate&lt;/strong&gt; exists in the array.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Search in Rotated Sorted Array II</title>
+    <link href="http://yoursite.com/2019/04/12/leetcodeQ81/"/>
+    <id>http://yoursite.com/2019/04/12/leetcodeQ81/</id>
+    <published>2019-04-12T17:46:22.000Z</published>
+    <updated>2019-04-12T17:53:29.006Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-81-Search-in-Rotated-Sorted-Array-II"><a href="#LeetCode-Q-81-Search-in-Rotated-Sorted-Array-II" class="headerlink" title="LeetCode Q 81 - Search in Rotated Sorted Array II"></a>LeetCode Q 81 - Search in Rotated Sorted Array II</h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).<br>You are given a target value to search. If found in the array return true, otherwise return false.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>For this question, we need to know the <strong>worst case</strong> is<br><strong>there is a 0 in the array like [1, 1, 1, 1, 1,…, 1].</strong><br>In this case, we cannot use binary search. The time complexity of the algorithm will become O(n).<br>Therefore, we can just use a for loop to solve it.<br>This question is testing whether we can think of the worst case.</p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> booelan <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line"><span class="keyword">if</span> (num == target) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-81-Search-in-Rotated-Sorted-Array-II&quot;&gt;&lt;a href=&quot;#LeetCode-Q-81-Search-in-Rotated-Sorted-Array-II&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 81 - Search in Rotated Sorted Array II&quot;&gt;&lt;/a&gt;LeetCode Q 81 - Search in Rotated Sorted Array II&lt;/h1&gt;&lt;p&gt;Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.&lt;br&gt;(i.e., [0,0,1,2,2,5,6] might become [2,5,6,0,0,1,2]).&lt;br&gt;You are given a target value to search. If found in the array return true, otherwise return false.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Search in Rotated Sorted Array</title>
+    <link href="http://yoursite.com/2019/04/12/leetcodeQ33/"/>
+    <id>http://yoursite.com/2019/04/12/leetcodeQ33/</id>
+    <published>2019-04-12T17:37:49.000Z</published>
+    <updated>2019-04-12T17:46:01.165Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-Q-33-Search-in-Rotated-Sorted-Array"><a href="#LeetCode-Q-33-Search-in-Rotated-Sorted-Array" class="headerlink" title="LeetCode Q 33 - Search in Rotated Sorted Array"></a>LeetCode Q 33 - Search in Rotated Sorted Array</h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).<br>You are given a target value to search. If found in the array return its index, otherwise return -1.</p><p>You may assume <strong>no duplicate</strong> exists in the array.<br>Your algorithm’s runtime complexity must be in the order of O(log n).<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"><span class="comment">// find the rotation position</span></span><br><span class="line"><span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (nums[mid] &gt; nums[nums.length - <span class="number">1</span>])</span><br><span class="line">left = mid + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">right = mid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// now left indicates the rotation position, i.e left is the index of minimum number in the array</span></span><br><span class="line"><span class="keyword">if</span> (nums[left] == target) <span class="keyword">return</span> left;</span><br><span class="line"><span class="keyword">if</span> (left == <span class="number">0</span>) <span class="keyword">return</span> binarySearch(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line"><span class="keyword">if</span> (target &gt;= nums[<span class="number">0</span>]) <span class="keyword">return</span> binarySearch(nums, <span class="number">0</span>, left - <span class="number">1</span>, target);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">return</span> binarySearch(nums, left + <span class="number">1</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line"><span class="keyword">return</span> mid;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)</span><br><span class="line">right = mid - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;LeetCode-Q-33-Search-in-Rotated-Sorted-Array&quot;&gt;&lt;a href=&quot;#LeetCode-Q-33-Search-in-Rotated-Sorted-Array&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 33 - Search in Rotated Sorted Array&quot;&gt;&lt;/a&gt;LeetCode Q 33 - Search in Rotated Sorted Array&lt;/h1&gt;&lt;p&gt;Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.&lt;br&gt;(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).&lt;br&gt;You are given a target value to search. If found in the array return its index, otherwise return -1.&lt;/p&gt;
+&lt;p&gt;You may assume &lt;strong&gt;no duplicate&lt;/strong&gt; exists in the array.&lt;br&gt;Your algorithm’s runtime complexity must be in the order of O(log n).&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Thread - currentThread() methods</title>
@@ -375,86 +472,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;LeetCode-Q-171-Excel-Sheet-Column-Number&quot;&gt;&lt;a href=&quot;#LeetCode-Q-171-Excel-Sheet-Column-Number&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 171 - Excel Sheet Column Number&quot;&gt;&lt;/a&gt;LeetCode Q 171 - Excel Sheet Column Number&lt;/h1&gt;&lt;p&gt;Given a column title as appear in an Excel sheet, return its corresponding column number.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Excel Sheet Column Title</title>
-    <link href="http://yoursite.com/2019/04/09/leetcode168/"/>
-    <id>http://yoursite.com/2019/04/09/leetcode168/</id>
-    <published>2019-04-09T16:00:22.000Z</published>
-    <updated>2019-04-09T17:11:54.968Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-168-Excel-Sheet-Column-Title"><a href="#LeetCode-Q-168-Excel-Sheet-Column-Title" class="headerlink" title="LeetCode Q 168 - Excel Sheet Column Title"></a>LeetCode Q 168 - Excel Sheet Column Title</h1><p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm</strong><br>Bases Convert</p><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">n--;</span><br><span class="line">sb.append((<span class="keyword">char</span>)(n % <span class="number">26</span> + <span class="string">'A'</span>));</span><br><span class="line">n /= <span class="number">26</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> sb.reverse().toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-168-Excel-Sheet-Column-Title&quot;&gt;&lt;a href=&quot;#LeetCode-Q-168-Excel-Sheet-Column-Title&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 168 - Excel Sheet Column Title&quot;&gt;&lt;/a&gt;LeetCode Q 168 - Excel Sheet Column Title&lt;/h1&gt;&lt;p&gt;Given a positive integer, return its corresponding column title as appear in an Excel sheet.&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Factorial Trailing Zeroes</title>
-    <link href="http://yoursite.com/2019/04/09/leetcode172/"/>
-    <id>http://yoursite.com/2019/04/09/leetcode172/</id>
-    <published>2019-04-09T15:44:55.000Z</published>
-    <updated>2019-04-09T17:12:00.360Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-172-Factorial-Trailing-Zeroes"><a href="#LeetCode-Q-172-Factorial-Trailing-Zeroes" class="headerlink" title="LeetCode Q 172 - Factorial Trailing Zeroes"></a>LeetCode Q 172 - Factorial Trailing Zeroes</h1><p>Given an integer n, return the number of trailing zeroes in n!.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm</strong><br>The number of tailing zeroes is related to the number of divisors 2 and 5. And 2 is smaller than 5, so this number is determined by the number of divisor 5.<br>Therefore, we calculate the number in 1 ~ n, which is multiplication of 5, 25, 125, 625,…</p><p><strong>Code: Method 1 (Not Correct)</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> num = <span class="number">5</span>, res = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (num &lt;= n) &#123;</span><br><span class="line">res += n / num;</span><br><span class="line">num *= <span class="number">5</span>;  <span class="comment">// this will cause integer overflow </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>Code: Method 2</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trailingZeroes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (n &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">res += n / <span class="number">5</span>;</span><br><span class="line">n /= <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-172-Factorial-Trailing-Zeroes&quot;&gt;&lt;a href=&quot;#LeetCode-Q-172-Factorial-Trailing-Zeroes&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 172 - Factorial Trailing Zeroes&quot;&gt;&lt;/a&gt;LeetCode Q 172 - Factorial Trailing Zeroes&lt;/h1&gt;&lt;p&gt;Given an integer n, return the number of trailing zeroes in n!.&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Happy Number</title>
-    <link href="http://yoursite.com/2019/04/09/leetcode202/"/>
-    <id>http://yoursite.com/2019/04/09/leetcode202/</id>
-    <published>2019-04-09T15:40:59.000Z</published>
-    <updated>2019-04-09T17:12:05.754Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-202-Happy-Number"><a href="#LeetCode-Q-202-Happy-Number" class="headerlink" title="LeetCode Q 202 - Happy Number"></a>LeetCode Q 202 - Happy Number</h1><p>Write an algorithm to determine if a number is “happy”<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="keyword">while</span> (n != <span class="number">1</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (!set.add(n))</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">n = getNextNumber(n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getNextNumber</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">res += (n % <span class="number">10</span>) ^ (n % <span class="number">10</span>);</span><br><span class="line">n /= <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-202-Happy-Number&quot;&gt;&lt;a href=&quot;#LeetCode-Q-202-Happy-Number&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 202 - Happy Number&quot;&gt;&lt;/a&gt;LeetCode Q 202 - Happy Number&lt;/h1&gt;&lt;p&gt;Write an algorithm to determine if a number is “happy”&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Count Primes</title>
-    <link href="http://yoursite.com/2019/04/09/leetcode204/"/>
-    <id>http://yoursite.com/2019/04/09/leetcode204/</id>
-    <published>2019-04-09T15:38:37.000Z</published>
-    <updated>2019-04-09T17:12:13.944Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="LeetCode-Q-204-Count-Primes"><a href="#LeetCode-Q-204-Count-Primes" class="headerlink" title="LeetCode Q 204 - Count Primes"></a>LeetCode Q 204 - Count Primes</h1><p>Count the number of prime numbers less than a non-negative number, n.<br><a id="more"></a></p><h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] notPrime = <span class="keyword">new</span> <span class="keyword">boolean</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!notPrime[i]) &#123;</span><br><span class="line">            res++;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> num = <span class="number">2</span>; num * i &lt; n; num++) </span><br><span class="line">                notPrime[num * i] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;LeetCode-Q-204-Count-Primes&quot;&gt;&lt;a href=&quot;#LeetCode-Q-204-Count-Primes&quot; class=&quot;headerlink&quot; title=&quot;LeetCode Q 204 - Count Primes&quot;&gt;&lt;/a&gt;LeetCode Q 204 - Count Primes&lt;/h1&gt;&lt;p&gt;Count the number of prime numbers less than a non-negative number, n.&lt;br&gt;
     
     </summary>
     

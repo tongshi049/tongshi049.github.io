@@ -1,68 +1,91 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
+
+  
   <title>Reverse Integer | Tong Shi&#39;s Blog</title>
-  <meta name="author" content="Tong Shi">
-  
-  <meta name="description" content="LeetCode Q 7 - Reverse IntegerDetermine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="Reverse Integer">
-  <meta property="og:site_name" content="Tong Shi&#39;s Blog">
-
+  <meta name="description" content="LeetCode Q 7 - Reverse IntegerDetermine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.">
+<meta name="keywords" content="LeetCode,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse Integer">
+<meta property="og:url" content="http://yoursite.com/2019/04/06/leetcodeQ9/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 7 - Reverse IntegerDetermine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-11T16:23:32.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reverse Integer">
+<meta name="twitter:description" content="LeetCode Q 7 - Reverse IntegerDetermine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.">
   
-    <meta property="og:image" content>
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
-
-  <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="https://oindk07nf.qnssl.com/atom-one-dark.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
-
 <body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Tong Shi&#39;s Blog</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/author">About Me</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
 </header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/06/leetcodeQ9/" class="article-date">
+  <time datetime="2019-04-06T14:10:06.000Z" itemprop="datePublished">2019-04-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2019-04-06T14:10:06.000Z"><a href="/2019/04/06/leetcodeQ9/">2019-04-06</a></time>
-      
-      
-  
-    <h1 class="title">Reverse Integer</h1>
+    <h1 class="article-title" itemprop="name">
+      Reverse Integer
+    </h1>
   
 
-    </header>
-    <div class="entry">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <h1 id="LeetCode-Q-7-Reverse-Integer"><a href="#LeetCode-Q-7-Reverse-Integer" class="headerlink" title="LeetCode Q 7 - Reverse Integer"></a>LeetCode Q 7 - Reverse Integer</h1><p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.<br><a id="more"></a></p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Algorithm: Revert half of the int</strong><br>First, we can transform the int to string, and solve this problem.<br>Second, we can revert the number itself, and then compare the number with original number, if they are the same, then the number is a palindrome. However, if the reversed number is larger than Integer.MAX_VALUE, we will hit integer overflow problem.<br>Following the thoughts , to avoid the overflow issue of the reverted number, what if we only revert half of the \text{int}int number? After all, the reverse of the last half of the palindrome should be the same as the first half of the number, if the number is a palindrome.</p>
@@ -70,82 +93,138 @@
 
       
     </div>
-    <footer>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/06/leetcodeQ9/" data-id="cjued5wu2002x7cvecdm5is8c" class="article-share-link">Share</a>
       
-        
-        
-  
-  <div class="tags">
-    <a href="/tags/LeetCode/">LeetCode</a>, <a href="/tags/Math/">Math</a>
-  </div>
-
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
       
-      <div class="clearfix"></div>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/07/leetcodeQ12/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Integer to Roman
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/06/leetcodeQ7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Reverse Integer</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-</div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
+</section>
+        
+          <aside id="sidebar">
+  
+    
 
   
-
-  
-<div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
-  <div class="entry">
-    <a href="/tags/Binary-Search/" style="font-size: 12px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 12px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 12px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 14px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 12px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Stack/" style="font-size: 12px;">Stack</a> <a href="/tags/String/" style="font-size: 16px;">String</a> <a href="/tags/Thread/" style="font-size: 14px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cantor-Unfold/">Cantor Unfold</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat1-Cat1-1/">Cat1,Cat1.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat2/">Cat2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat3/">Cat3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Integer-Overflow/">Integer Overflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMP-algorithm/">KMP algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Multiplication/">Multiplication</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Number-Theoretic-Algorithm/">Number-Theoretic Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcd/">gcd</a></li></ul>
+    </div>
   </div>
-</div>
 
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 16.67px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 11.67px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.67px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 13.33px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18.33px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 11.67px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Stack/" style="font-size: 11.67px;">Stack</a> <a href="/tags/String/" style="font-size: 16.67px;">String</a> <a href="/tags/Thread/" style="font-size: 13.33px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ154/">Find Minimum in Rotated Sorted Array II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ153/">Find Minimum in Rotated Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ81/">Search in Rotated Sorted Array II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ33/">Search in Rotated Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/multithreading-currentThread/">Java Thread - currentThread() methods</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
-    <div class="clearfix"></div>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
-  <footer id="footer" class="inner"><div class="alignleft">
+</footer>
+    </div>
+    <nav id="mobile-nav">
   
-  &copy; 2019 Tong Shi
+    <a href="/" class="mobile-nav-link">Home</a>
   
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
 
 
 
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
+  </div>
 </body>
 </html>

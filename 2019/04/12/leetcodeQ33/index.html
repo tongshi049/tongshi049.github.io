@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Search in Rotated Sorted Array | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 33 - Search in Rotated Sorted ArraySuppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).You are">
+<meta name="keywords" content="LeetCode,Binary Search,Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search in Rotated Sorted Array">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/leetcodeQ33/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 33 - Search in Rotated Sorted ArraySuppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).You are">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-12T17:46:01.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Search in Rotated Sorted Array">
+<meta name="twitter:description" content="LeetCode Q 33 - Search in Rotated Sorted ArraySuppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).You are">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ33" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/leetcodeQ33/" class="article-date">
+  <time datetime="2019-04-12T17:37:49.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Search in Rotated Sorted Array
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LeetCode-Q-33-Search-in-Rotated-Sorted-Array"><a href="#LeetCode-Q-33-Search-in-Rotated-Sorted-Array" class="headerlink" title="LeetCode Q 33 - Search in Rotated Sorted Array"></a>LeetCode Q 33 - Search in Rotated Sorted Array</h1><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).<br>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume <strong>no duplicate</strong> exists in the array.<br>Your algorithm’s runtime complexity must be in the order of O(log n).<br><a id="more"></a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	<span class="comment">// find the rotation position</span></span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (nums[mid] &gt; nums[nums.length - <span class="number">1</span>])</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			right = mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// now left indicates the rotation position, i.e left is the index of minimum number in the array</span></span><br><span class="line">	<span class="keyword">if</span> (nums[left] == target) <span class="keyword">return</span> left;</span><br><span class="line">	<span class="keyword">if</span> (left == <span class="number">0</span>) <span class="keyword">return</span> binarySearch(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line">	<span class="keyword">if</span> (target &gt;= nums[<span class="number">0</span>]) <span class="keyword">return</span> binarySearch(nums, <span class="number">0</span>, left - <span class="number">1</span>, target);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> binarySearch(nums, left + <span class="number">1</span>, nums.length - <span class="number">1</span>, target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)</span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/leetcodeQ33/" data-id="cjued5wt8001p7cvezame1db6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/leetcodeQ81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Search in Rotated Sorted Array II
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/11/multithreading-currentThread/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java Thread - currentThread() methods</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Array/">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cantor-Unfold/">Cantor Unfold</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat1-Cat1-1/">Cat1,Cat1.1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat2/">Cat2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cat3/">Cat3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Heap/">Heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Integer-Overflow/">Integer Overflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMP-algorithm/">KMP algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Multiplication/">Multiplication</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Number-Theoretic-Algorithm/">Number-Theoretic Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/">Stack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gcd/">gcd</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 16.67px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 11.67px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.67px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 13.33px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18.33px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 11.67px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Stack/" style="font-size: 11.67px;">Stack</a> <a href="/tags/String/" style="font-size: 16.67px;">String</a> <a href="/tags/Thread/" style="font-size: 13.33px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ154/">Find Minimum in Rotated Sorted Array II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ153/">Find Minimum in Rotated Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ81/">Search in Rotated Sorted Array II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/leetcodeQ33/">Search in Rotated Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/multithreading-currentThread/">Java Thread - currentThread() methods</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
