@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
 
   
   <title>Divide Two Integers | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LeetCode Q 29 - Divide Two IntegersGiven two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+  <meta name="description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
 <meta name="keywords" content="LeetCode,Math,Integer Overflow,Multiplication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Divide Two Integers">
 <meta property="og:url" content="http://yoursite.com/2019/04/08/leetcodeQ29/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
-<meta property="og:description" content="LeetCode Q 29 - Divide Two IntegersGiven two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+<meta property="og:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-04-09T17:12:39.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Divide Two Integers">
-<meta name="twitter:description" content="LeetCode Q 29 - Divide Two IntegersGiven two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+<meta name="twitter:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -28,11 +28,11 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 </html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
       <header id="header">
   <div id="banner"></div>
@@ -89,19 +89,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="LeetCode-Q-29-Divide-Two-Integers"><a href="#LeetCode-Q-29-Divide-Two-Integers" class="headerlink" title="LeetCode Q 29 - Divide Two Integers"></a>LeetCode Q 29 - Divide Two Integers</h1><p>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.<br><a id="more"></a></p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Basic idea is to utilize subtraction, checking how many times a dividend can substract a divisor. But this approach has a potential to cause time limit exceeds, when the dividend is very large.<br>So, we increase the divisor at each substraction, say we double the divisor.<br>At the same time, we need a variable to record how many times is the current divisor of the original divisor.</p>
+        <h1 id="leetcode-q-29-divide-two-integers"><a class="markdownIt-Anchor" href="#leetcode-q-29-divide-two-integers"></a> LeetCode Q 29 - Divide Two Integers</h1>
+<p>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<p>Basic idea is to utilize subtraction, checking how many times a dividend can substract a divisor. But this approach has a potential to cause time limit exceeds, when the dividend is very large.<br>
+So, we increase the divisor at each substraction, say we double the divisor.<br>
+At the same time, we need a variable to record how many times is the current divisor of the original divisor.</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li>To deal with the corner case, int need to be converted to long first, then take the absolute value.</li>
 <li>tempDivisor should not double anymore if we know it will larger than dividend.</li>
 </ul>
-<p><strong>Code:</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (divisor == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> dividend &gt;= <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">	<span class="keyword">if</span> (dividend == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sign = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>) || (dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">		sign = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> dividendLong = Math.abs((<span class="keyword">long</span>) dividend);</span><br><span class="line">	<span class="keyword">long</span> divisorLong = Math.abs((<span class="keyword">long</span>) divisor);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> res = divideHelper(dividendLong, divisorLong);</span><br><span class="line">	<span class="keyword">return</span> sign * (<span class="keyword">int</span>) res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">divideHelper</span><span class="params">(<span class="keyword">long</span> dividend, <span class="keyword">long</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">long</span> sum = divisor, multiplication = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (sum + sum &lt; divisor) &#123;</span><br><span class="line">		sum += sum; multiplication += multiplication;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> multiplication + divideHelper(dividend - sum, divisor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (divisor == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> dividend &gt;= <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">	<span class="keyword">if</span> (dividend == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sign = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>) || (dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">		sign = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> dividendLong = Math.abs((<span class="keyword">long</span>) dividend);</span><br><span class="line">	<span class="keyword">long</span> divisorLong = Math.abs((<span class="keyword">long</span>) divisor);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> res = divideHelper(dividendLong, divisorLong);</span><br><span class="line">	<span class="keyword">return</span> sign * (<span class="keyword">int</span>) res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">divideHelper</span><span class="params">(<span class="keyword">long</span> dividend, <span class="keyword">long</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">long</span> sum = divisor, multiplication = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (sum + sum &lt; divisor) &#123;</span><br><span class="line">		sum += sum; multiplication += multiplication;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> multiplication + divideHelper(dividend - sum, divisor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/leetcodeQ29/" data-id="cjuh4kbuu0018agve2alwhyqi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/08/leetcodeQ29/" data-id="cjuism4mi001sw8vexio0p8f4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Integer-Overflow/">Integer Overflow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Multiplication/">Multiplication</a></li></ul>
@@ -143,7 +149,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 14.29px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.14px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 11.43px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.43px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 12.86px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Math/" style="font-size: 18.57px;">Math</a> <a href="/tags/Multiplication/" style="font-size: 11.43px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.43px;">Stack</a> <a href="/tags/String/" style="font-size: 15.71px;">String</a> <a href="/tags/Thread/" style="font-size: 12.86px;">Thread</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15.71px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.14px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 12.86px;">DP</a> <a href="/tags/Heap/" style="font-size: 10px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.43px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 12.86px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.43px;">Linked List</a> <a href="/tags/Math/" style="font-size: 18.57px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.43px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.86px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.43px;">Stack</a> <a href="/tags/String/" style="font-size: 14.29px;">String</a> <a href="/tags/Thread/" style="font-size: 12.86px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 12.86px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -165,23 +171,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/14/leetcodeQ209/">Minimum Size Subarray Sum</a>
+            <a href="/2019/04/15/leetcodeQ142/">Linked List Cycle II</a>
           </li>
         
           <li>
-            <a href="/2019/04/14/leetcodeQ167-1/">Two Sum II - Input array is sorted</a>
+            <a href="/2019/04/15/leetcodeQ287/">leetcodeQ287</a>
           </li>
         
           <li>
-            <a href="/2019/04/14/leetcodeQ162/">Find Peak Element</a>
+            <a href="/2019/04/15/leetcodeQ278/">First Bad Version</a>
           </li>
         
           <li>
-            <a href="/2019/04/14/leetcodeQ222/">Count Complete Tree Nodes</a>
+            <a href="/2019/04/15/leetcodeQ275/">H-Index II</a>
           </li>
         
           <li>
-            <a href="/2019/04/14/leetcodeQ240/">Search a 2D Matrix II</a>
+            <a href="/2019/04/15/leetcodeQ23/">Merge k Sorted Lists</a>
           </li>
         
       </ul>
@@ -225,5 +231,37 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
