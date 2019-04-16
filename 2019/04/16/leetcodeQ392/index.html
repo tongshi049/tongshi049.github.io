@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Is Subsequence | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 392 - Is Subsequence Given a string s and a string t, check if s is subsequence of t. You may assume that there is only lower case English letters in both s and t. t is potentially a very">
+<meta name="keywords" content="LeetCode,String,Binary Search,HashMap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Is Subsequence">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/leetcodeQ392/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 392 - Is Subsequence Given a string s and a string t, check if s is subsequence of t. You may assume that there is only lower case English letters in both s and t. t is potentially a very">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-16T17:49:53.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Subsequence">
+<meta name="twitter:description" content="LeetCode Q 392 - Is Subsequence Given a string s and a string t, check if s is subsequence of t. You may assume that there is only lower case English letters in both s and t. t is potentially a very">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ392" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/16/leetcodeQ392/" class="article-date">
+  <time datetime="2019-04-16T17:10:15.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Is Subsequence
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-392-is-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-392-is-subsequence"></a> LeetCode Q 392 - Is Subsequence</h1>
+<p>Given a string s and a string t, check if s is subsequence of t.<br>
+You may assume that there is only lower case English letters in both s and t. t is potentially a very long (length is about  500,000) string, and s is a short string (&lt;=100).<br>
+<strong>Follow up:</strong><br>
+If there are lots of incoming S, say S1, S2, … , Sk where k &gt;= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="1-solution-1"><a class="markdownIt-Anchor" href="#1-solution-1"></a> 1. Solution 1</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubsequence</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">if</span> (s.length() &gt; t.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; s.length() &amp;&amp; j &lt; t.length()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s.charAt(i) == t.charAt(j)) i++;</span><br><span class="line">		j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i == s.length();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubsequence</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">if</span> (s.length() &gt; t.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> index = t.indexOf(s.charAt(i));</span><br><span class="line">		<span class="keyword">if</span> (index == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		t = t.substring(index + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-solution-of-follow-up-question"><a class="markdownIt-Anchor" href="#2-solution-of-follow-up-question"></a> 2. Solution of Follow Up Question</h3>
+<table bgcolor="#ccf2ff" ">
+	<td>&emsp;If we check each s in this way, then it would be O(kn) time where k is the number of s and n is the length of t. This is inefficient. <br> &emsp;Since there is a lot of s, it would be reasonable to preprocess t to generate something that is easy to search for if a character of s is in t. Sounds like a HashMap, which is super suitable for search for existing stuff. 
+	</td>
+</table>
+<ol>
+<li>
+<p>Build a map, key is the char in String t, value is a list contianing the index of the char in t.</p>
+</li>
+<li>
+<p>Use binary search to find if each char in String s exists in t.</p>
+</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubsequence</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">	Map&lt;Character, List&lt;Integer&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t.length(); i++) &#123;</span><br><span class="line">		map.putIfAbsent(t.charAt(i), <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">		map.get(t.charAt(i)).add(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> prev = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> ch: s.toCharArray()) &#123;</span><br><span class="line">		prev = binarySearch(map, ch, prev);</span><br><span class="line">		<span class="keyword">if</span> (index == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		prev++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(Map&lt;Character, List&lt;Integer&gt;&gt; map, <span class="keyword">char</span> ch, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!map.containsKey(ch)) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	List&lt;Integer&gt; list = map.get(ch);</span><br><span class="line">	<span class="keyword">int</span> lo = <span class="number">0</span>, hi = list.size() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (list.get(mid) &lt; index)</span><br><span class="line">			lo = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			hi = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> lo == list.size() ? -<span class="number">1</span> : list.get(lo);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ392/" data-id="cjuk1ly9m0077n8veltq20nxm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashMap/">HashMap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/16/leetcodeQ218/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          The Skyline Problem
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/16/leetcodeQ378/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kth Smallest Element in a Sorted Matrix</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 16.25px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.5px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 13.75px;">DP</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Heap/" style="font-size: 13.75px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.25px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/Math/" style="font-size: 18.75px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.25px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.5px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.25px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.25px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 12.5px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ436/">Find Right Interval</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ218/">The Skyline Problem</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ392/">Is Subsequence</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ378/">Kth Smallest Element in a Sorted Matrix</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ374/">Guess Number Higher or Lower</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

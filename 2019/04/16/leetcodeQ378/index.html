@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Kth Smallest Element in a Sorted Matrix | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 378 - Kth Smallest Element in a Sorted Matrix Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix. Note that">
+<meta name="keywords" content="LeetCode,Binary Search,Array,Heap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kth Smallest Element in a Sorted Matrix">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/leetcodeQ378/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 378 - Kth Smallest Element in a Sorted Matrix Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix. Note that">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-16T17:09:30.187Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kth Smallest Element in a Sorted Matrix">
+<meta name="twitter:description" content="LeetCode Q 378 - Kth Smallest Element in a Sorted Matrix Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix. Note that">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ378" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/16/leetcodeQ378/" class="article-date">
+  <time datetime="2019-04-16T16:13:03.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kth Smallest Element in a Sorted Matrix
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-378-kth-smallest-element-in-a-sorted-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-378-kth-smallest-element-in-a-sorted-matrix"></a> LeetCode Q 378 - Kth Smallest Element in a Sorted Matrix</h1>
+<p>Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.<br>
+<strong>Note</strong> that it is the kth smallest element in the sorted order, not the kth distinct element.</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-heap"><a class="markdownIt-Anchor" href="#solution-1-heap"></a> Solution 1: Heap</h3>
+<ol>
+<li>we offer the numbers in the first row to the que.</li>
+<li>we do the following k - 1 times: Poll a number and offer the number below it to the que if it has.</li>
+<li>the value of the first item in the queue is the answer</li>
+</ol>
+<p><strong><font color="#06bcf9">Time Complexity: O(klogn)</font></strong><br>
+<strong><font color="#06bcf9">Space Complexity: O(n)</font></strong><br>
+<strong>k</strong>: how many times we do the loop.   <strong>n</strong>: matrix row no.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// int[] arr = &#123;val, row, col&#125;;</span></span><br><span class="line">	Queue&lt;\<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a,b) -&gt; (a[<span class="number">0</span>] - b[<span class="number">0</span>]));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix[<span class="number">0</span>].length; i++) </span><br><span class="line">		pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;matrix[<span class="number">0</span>]\[i], <span class="number">0</span>, i&#125;);</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">while</span> (k != <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] temp = pq.poll();</span><br><span class="line">		<span class="keyword">if</span> (temp[<span class="number">1</span>] + <span class="number">1</span> &lt; matrix.length)</span><br><span class="line">			pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;matrix[temp[<span class="number">1</span>] + <span class="number">1</span>][temp[<span class="number">2</span>]], temp[<span class="number">1</span>] + <span class="number">1</span>, temp[<span class="number">2</span>]&#125;);</span><br><span class="line">		k--;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> pq.peek()[<span class="number">0</span>]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-binary-search"><a class="markdownIt-Anchor" href="#solution-2-binary-search"></a> Solution 2: Binary Search</h3>
+<ol>
+<li>choose matrix[0][0] as left and matrix[n-1][n-1] as right, and get the mid.</li>
+<li>count the number of numbers less or equal to mid.</li>
+</ol>
+<ul>
+<li><code>if (number &lt; k)</code>: this mid is smaller than the target, so we let <code>left = mid + 1</code>;</li>
+<li><code>if (number &gt; k)</code>: this mid is larget than the target, so we let <code>right = mid - 1</code>;</li>
+<li><strong><code>if (number == k)</code></strong>: there exists two cases. 1) this mid may be the target 2) this mid is not in the matrix and larger than the target<br>
+<strong>Then we keep shrinking the range, let <code>right = mid - 1</code>, this guarantees left is the kthSmallest</strong></li>
+</ul>
+<p><strong><font color="#06bcf9">Time Complexity: O(logRange*nlogn)</font></strong><br>
+Every time we call the count method, it costs <strong>O(nlogn)</strong> time.<br>
+The maximum range is Integer.MAX_VALUE - Integer.MIN_VALUE = 2^23 - 1. So logRange is no more than 32, which can be regarded as a constant.<br>
+So the <strong>time complexity if O(nlogn)</strong>.<br>
+<strong><font color="#06bcf9">Space Complexity: O(1)</font></strong><br>
+<strong>k</strong>: how many times we do the loop.   <strong>n</strong>: matrix row no.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = matrix.length, left = matrix[<span class="number">0</span>]\[<span class="number">0</span>], right = matrix[n-<span class="number">1</span>]\[n-<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> count = countLessEqual(matrix, mid, n);</span><br><span class="line">		<span class="keyword">if</span> (count &lt; k)</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="comment">// mid &gt;= k</span></span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countLessEqual</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>[] numbers: matris) &#123;</span><br><span class="line">		<span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (numbers[mid] &gt; target) right = mid - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> left = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		res += left;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-3-optimized-solution-based-on-solution-2"><a class="markdownIt-Anchor" href="#solution-3-optimized-solution-based-on-solution-2"></a> Solution 3: Optimized Solution based on Solution 2</h3>
+<p>We <strong>optimize</strong> the countLessEqual Method. This method is similar to <a href="/2019/04/14/leetcodeQ240/" title="Search a 2D Matrix II">Search a 2D Matrix II</a>.</p>
+<p><strong><font color="#06bcf9">Time Complexity: O(n)</font></strong><br>
+<strong><font color="#06bcf9">Space Complexity: O(1)</font></strong><br>
+<strong>k</strong>: how many times we do the loop.   <strong>n</strong>: matrix row no.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = matrix.length, left = matrix[<span class="number">0</span>]\[<span class="number">0</span>], right = matrix[n-<span class="number">1</span>]\[n-<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">int</span> count = countLessEqual(matrix, mid, n);</span><br><span class="line">		<span class="keyword">if</span> (count &lt; k)</span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="comment">// mid &gt;= k</span></span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countLessEqual</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> row = <span class="number">0</span>, col = n - <span class="number">1</span>;</span><br><span class="line">	whiel (left &lt; n &amp;&amp; col &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (matrix[row]\[col] &lt;= target) &#123;</span><br><span class="line">			res += col + <span class="number">1</span>; row++;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			col--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><font color="#06bcf9">Comparison of time complexities of Solution 1 and Solution3:</font></strong></p>
+<table bgcolor="#ccf2ff" ">
+	<tr style="font-weight: bold;">
+		<th>k</th>
+		<th>O(1)</th>
+		<th>O(n)</th>
+		<th>O(n^2)</th>
+	</tr>
+	<tr>
+		<td style="font-weight: bold;">Solution 1:</td>
+		<td>logn</td>
+		<td>nlogn</td>
+		<td>n^2*logn</td>
+	</tr>
+	<tr>
+		<td style="font-weight: bold;">Solution 3:</td>
+		<td>n</td>
+		<td>n</td>
+		<td>n</td>
+	</tr>
+</table>
+<p><strong><font color="tomato">When k is constant, Solution 1 is better. Otherwise Solution 2 is better.</font></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ378/" data-id="cjujzkenq0072n8vegu14paxg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Heap/">Heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/16/leetcodeQ392/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Is Subsequence
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/16/leetcodeQ374/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Guess Number Higher or Lower</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 16.25px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.5px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 13.75px;">DP</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Heap/" style="font-size: 13.75px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.25px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/Math/" style="font-size: 18.75px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.25px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.5px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.25px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.25px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 12.5px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ436/">Find Right Interval</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ218/">The Skyline Problem</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ392/">Is Subsequence</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ378/">Kth Smallest Element in a Sorted Matrix</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ374/">Guess Number Higher or Lower</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
