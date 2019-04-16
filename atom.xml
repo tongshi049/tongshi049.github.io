@@ -40,9 +40,9 @@ For any interval i, you need to store the minimum interval j’s index, which me
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
-      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
-    
       <category term="Sweep Line" scheme="http://yoursite.com/tags/Sweep-Line/"/>
+    
+      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
     
   </entry>
   
@@ -67,9 +67,9 @@ For any interval i, you need to store the minimum interval j’s index, which me
     
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
-      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
-    
       <category term="Sweep Line" scheme="http://yoursite.com/tags/Sweep-Line/"/>
+    
+      <category term="Heap" scheme="http://yoursite.com/tags/Heap/"/>
     
   </entry>
   
