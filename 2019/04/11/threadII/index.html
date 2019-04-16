@@ -7,18 +7,22 @@
   
   <title>Java Thread II - Lifecycle and States | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Lifecycle and States of a Thread in Java (to be continued) States:  New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated">
+  <meta name="description" content="Lifecycle and States of a Thread in Java (to be continued) This article is taking this great article as a reference. A thread in Java has the follownig possible states: NEW, RUNNABLE, TIMEDWAITING, W">
 <meta name="keywords" content="Java Basic,Thread">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Thread II - Lifecycle and States">
 <meta property="og:url" content="http://yoursite.com/2019/04/11/threadII/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
-<meta property="og:description" content="Lifecycle and States of a Thread in Java (to be continued) States:  New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated">
+<meta property="og:description" content="Lifecycle and States of a Thread in Java (to be continued) This article is taking this great article as a reference. A thread in Java has the follownig possible states: NEW, RUNNABLE, TIMEDWAITING, W">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-11T18:33:18.418Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycle_and_states.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycleII.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycleIII.png">
+<meta property="og:updated_time" content="2019-04-16T01:35:39.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Thread II - Lifecycle and States">
-<meta name="twitter:description" content="Lifecycle and States of a Thread in Java (to be continued) States:  New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated">
+<meta name="twitter:description" content="Lifecycle and States of a Thread in Java (to be continued) This article is taking this great article as a reference. A thread in Java has the follownig possible states: NEW, RUNNABLE, TIMEDWAITING, W">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/11/threadII/life_cycle_and_states.png">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -90,15 +94,57 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="lifecycle-and-states-of-a-thread-in-java-to-be-continued"><a class="markdownIt-Anchor" href="#lifecycle-and-states-of-a-thread-in-java-to-be-continued"></a> Lifecycle and States of a Thread in Java (to be continued)</h1>
-<p><strong>States:</strong></p>
+<p>This article is taking <a href="https://www.geeksforgeeks.org/lifecycle-and-states-of-a-thread-in-java/" target="_blank" rel="noopener">this great article</a> as a reference.</p>
+<p><strong>A thread in Java has the follownig possible states:</strong><br>
+<strong><font color="#06bcf9">NEW, RUNNABLE, TIMEDWAITING, WAITING, BLOCKED, TERMINATED</font></strong></p>
+<a id="more"></a>
+<p>The diagrams shown below represent the relationships between different states of a thread at any instant of time.</p>
+<img src="/2019/04/11/threadII/life_cycle_and_states.png">
+<p><strong>Image Source:</strong> <a href="https://www.geeksforgeeks.org/lifecycle-and-states-of-a-thread-in-java/" target="_blank" rel="noopener">Lifecycle and States of a Thread in Java - geeksforgeeks</a></p>
+<img src="/2019/04/11/threadII/life_cycleII.png">
+<p><strong>Image Source:</strong> <a href="https://www.javatpoint.com/life-cycle-of-a-thread" target="_blank" rel="noopener">Life cycle of a Thread (Thread States) - java T point</a></p>
+<img src="/2019/04/11/threadII/life_cycleIII.png">
+<p><strong>Image Source:</strong> <a href="https://www.uml-diagrams.org/examples/java-6-thread-state-machine-diagram-example.html" target="_blank" rel="noopener">Protocol state machine example - Thread states and life cycle in Java 6</a></p>
+<h2 id="life-cycle-of-a-thread"><a class="markdownIt-Anchor" href="#life-cycle-of-a-thread"></a> Life Cycle of A Thread</h2>
 <ol>
-<li>New, 2) Runnable, 3) Blocked, 4) Waiting, 5) Timed Waiting, 6) Terminated</li>
+<li><strong>new:</strong> The thread is in new state if you create an instance of Thread class but before the invocation of start() method.</li>
+<li><strong>runnable:</strong> The thread is in runnable state after invocation of start() method, but the thread scheduler has not selected it to be the running thread.<br>
+At the lower operating system (OS) level, JVM’s <strong>runnable</strong> state could be considered as a composite state with two substates. When a thread transitions to the runnable JVM state, the thread first goes into the ready substate. Thread scheduling decides when the thread could actually start, proceed or be suspended. <code></code> is explicit recommendation to thread scheduler to pause the currently executing thread to allow some other thread to execute.<br>
+A thread in the runnable state is executing from the JVM point of view but in fact it may be waiting for some resources from the operating system.</li>
+<li><strong>time waiting:</strong> Timed waiting is a thread state for a thread waiting with a specified waiting time. A thread is in the timed waiting state due to calling one of the following methods with a specified positive waiting time:<br>
+<code></code><br>
+<code></code><br>
+<code></code><br>
+<code>LockSupport.partNanos(timeout)</code><br>
+<code>LockSupport.partUntil(timeout)</code></li>
+<li><strong>Not Runnable(Blocked/Waiting States):</strong> This is the state when the thread is still alive, but is currently not eligible to run.<br>
+1). <strong>blocking:</strong> Thread state for a thread blocked waiting for a monitor lock. A thread in the blocked state is waiting for a monitor lock to enter a synchronized block/method or reenter a synchronized block/method after calling <code></code>.<br>
+2). <strong>waiting：</strong> A thread in the waiting state is waiting for another thread to perform a particular action. For example, a thread that has called Object.wait() on an object is waiting for another thread to call Object.notify() or Object.notifyAll() on that object. A thread is in the waiting state due to the calling one of the following methods without timeout:<br>
+<code></code><br>
+<code></code><br>
+<code></code></li>
 </ol>
+<p><em><strong>Note:</strong></em> if the thread is in the <strong>waiting</strong> states, it will not compete for the lock. After other threads calling Object.notify() or Object.notifyAll() on that object, then this thread goes to <strong>blocked</strong> states, ready to compete the lock.<br>
+5. <strong>Terminated:</strong> A thread is in terminated or dead state when its run() method exits.</p>
+<h2 id="-15-"><a class="markdownIt-Anchor" href="#-15-"></a> <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html" target="_blank" rel="noopener">Java API - Class Thread</a></h2>
+<h4 id="1-public-threadstate-getstate"><a class="markdownIt-Anchor" href="#1-public-threadstate-getstate"></a> <code>1. public Thread.State getState()</code></h4>
+<p>Returns the state of this thread. This method is designed for use in monitoring of the system state, not for synchronization control.</p>
+<h4 id="2-javalangthreadstate-class"><a class="markdownIt-Anchor" href="#2-javalangthreadstate-class"></a> <code>2. java.lang.Thread.State class</code></h4>
+<p>Defines the <strong>ENUM</strong> constants for the state of a thread.</p>
+<ol>
+<li>Constant type: New <code>Declaration: public static final Thread.State NEW</code></li>
+<li>Constant type: Runnable <code>Declaration: public static final Thread.State RUNNABLE</code></li>
+<li>Constant type: Blocked <code>Declaration: public static final Thread.State BLOCKED</code></li>
+<li>Constant type: Waiting <code>Declaration: public static final Thread.State WAITING</code></li>
+<li>Constant type: Timed Waiting <code>Declaration: public static final Thread.State TIMED_WAITING</code></li>
+<li>Constant type: Terminated <code>Declaration: public static final Thread.State TERMINATED</code></li>
+</ol>
+<p>hello <a href="http://yoursite.com/2019/04/11/threadII/">http://yoursite.com/2019/04/11/threadII/</a> bye</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/threadII/" data-id="cjuiubgeo003m4kvezt0tmxg4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/threadII/" data-id="cjuj6rx8z003mwwveuk4kapt5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
@@ -113,7 +159,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Java Thread - currentThread() methods
+          Java Thread - Commonly Used Methods
         
       </div>
     </a>

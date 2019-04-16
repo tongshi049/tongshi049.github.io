@@ -141,13 +141,14 @@
 <li>Write the sorted data to disk.<br>
 Repeat steps 1 and 2 until all of the data is in sorted 100 MB chunks (there are 900MB / 100MB = 9 chunks), which now need to be merged into one single output file.</li>
 <li>Read the first 10 MB (= 100MB / (9 chunks + 1)) of each sorted chunk into input buffers in main memory and allocate the remaining 10 MB for an output buffer. (In practice, it might provide better performance to make the output buffer larger and the input buffers slightly smaller.)</li>
-<li>Perform a <strong>9-way merge</strong> and store the result in the output buffer. Whenever the output buffer fills, write it to the final sorted file and empty it. Whenever any of the 9 input buffers empties, fill it with the next 10 MB of its associated 100 MB sorted chunk until no more data from the chunk is available. This is the key step that makes external merge sort work externally – because the merge algorithm only makes one pass sequentially through each of the chunks, each chunk does not have to be loaded completely; rather, sequential parts of the chunk can be loaded as needed. We can do the <strong>n-way merge</strong> like <a href="/2019/04/15/leetcodeQ23/" title="Merge k Sorted Lists">Merge k Sorted Lists</a>.</li>
+<li>Perform a <strong>9-way merge</strong> and store the result in the output buffer. Whenever the output buffer fills, write it to the final sorted file and empty it. Whenever any of the 9 input buffers empties, fill it with the next 10 MB of its associated 100 MB sorted chunk until no more data from the chunk is available. This is the key step that makes external merge sort work externally – because the merge algorithm only makes one pass sequentially through each of the chunks, each chunk does not have to be loaded completely; rather, sequential parts of the chunk can be loaded as needed. We can do the <strong>n-way merge</strong> like .</li>
 </ol>
+<p>hello <a href="http://yoursite.com/2019/04/15/leetcodeQ350/">http://yoursite.com/2019/04/15/leetcodeQ350/</a> bye</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ350/" data-id="cjuiubgdy002f4kvestg1k059" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ350/" data-id="cjuj6rx8b002fwwvegq4zawjy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sort/">Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Two-Pointers/">Two Pointers</a></li></ul>

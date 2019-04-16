@@ -5,20 +5,20 @@
   
 
   
-  <title>Java Thread - currentThread() methods | Tong Shi&#39;s Blog</title>
+  <title>Java Thread - Commonly Used Methods | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="currentThread() The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
+  <meta name="description" content="1. currentThread() – java.lang.Thread  The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
 <meta name="keywords" content="Java Basic,Thread">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Thread - currentThread() methods">
+<meta property="og:title" content="Java Thread - Commonly Used Methods">
 <meta property="og:url" content="http://yoursite.com/2019/04/11/multithreading-currentThread/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
-<meta property="og:description" content="currentThread() The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
+<meta property="og:description" content="1. currentThread() – java.lang.Thread  The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-11T18:43:37.547Z">
+<meta property="og:updated_time" content="2019-04-16T02:41:23.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Thread - currentThread() methods">
-<meta name="twitter:description" content="currentThread() The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
+<meta name="twitter:title" content="Java Thread - Commonly Used Methods">
+<meta name="twitter:description" content="1. currentThread() – java.lang.Thread  The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java Thread - currentThread() methods
+      Java Thread - Commonly Used Methods
     </h1>
   
 
@@ -89,18 +89,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="currentthread"><a class="markdownIt-Anchor" href="#currentthread"></a> currentThread()</h2>
-<p>The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object</p>
+        <h2 id="1-currentthread-javalangthread"><a class="markdownIt-Anchor" href="#1-currentthread-javalangthread"></a> 1. currentThread() – java.lang.Thread</h2>
+<p> The <strong>java.lang.Thread.currentThread()</strong> method returns a reference to the currently executing thread object</p>
 <a id="more"></a>
 <p><strong>EXAMPLE</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreaTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Fight"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Current Thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				attack();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"current main thread is: "</span> + Thread.currentThread().getName());</span><br><span class="line">		t.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>OUTPUT</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">current main thread is: main</span><br><span class="line">Fight</span><br><span class="line">Current Thread is: Thread-<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-join-javalangthread"><a class="markdownIt-Anchor" href="#2-join-javalangthread"></a> 2. join() – java.lang.Thread</h2>
+<p><strong><code>public final void join() throws InterruptedException</code></strong><br>
+ Waits for this thread to die. An invocation of this method behaves in exactly the same way as the invocation join(0).<br>
+<strong>Throws:</strong> InterruptedException -  if any thread has interrupted the current thread. The interrupted status of the current thread is cleared when this exception is thrown.</p>
+<h2 id="3-joinlong-millis-javalangthread"><a class="markdownIt-Anchor" href="#3-joinlong-millis-javalangthread"></a> 3. join(long millis) – java.lang.Thread</h2>
+<p><strong><code>public final void join(long millis) throws InterruptedException</code></strong><br>
+ Waits at most millis milliseconds for this thread to die. A timeout of 0 means to wait forever.<br>
+ This implementation uses a loop of this.wait calls conditioned on this.isAlive. As a thread terminates the this.notifyAll method is invoked. It is recommended that applications not use wait, notify, or notifyAll on Thread instances.</p>
+<p><strong><font color="#06bcf9">Tips:</font></strong></p>
+<table bgcolor="#ccf2ff" "><td>&emsp;Join method actually determines the exection of threads. When a thread calls Thread.join(), then this method will grad the CPU resource. This Method can be used in the following case.<br>
+&emsp;There is a sub-thread that costs long time. Then we can let that thread call subthread.join() thead to grab the CPU resource from the main thread. This guarantees that this sub-thread will return the result to the main thread before the main thread terminates. Or else our main thread may finish before the sub-thread, say it may not receive the result from sub-thread.</td></table>
+<h2 id="3-sleeplong-millis-javalangthread"><a class="markdownIt-Anchor" href="#3-sleeplong-millis-javalangthread"></a> 3. sleep(long millis) – java.lang.Thread</h2>
+<p><strong><code>public static void sleep(long millis) throws InterruptedException</code></strong><br>
+ Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers. The thread does not lose ownership of any monitors.</p>
+<p><strong><font color="#06bcf9">Tips:</font></strong></p>
+<table bgcolor="#ccf2ff" "><td>&emsp;When a thread calls Thread.sleep(), it will not occupy the CPU resource, but it won't release the lock resource it grabs.</td></table>
+<h2 id="4-start-javalangthread"><a class="markdownIt-Anchor" href="#4-start-javalangthread"></a> 4. start() – java.lang.Thread</h2>
+<p><strong><code>public void start()</code></strong><br>
+ Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.<br>
+ The result is that two threads are running concurrently: the current thread (which returns from the call to the start method) and the other thread (which executes its run method).<br>
+ It is never legal to start a thread more than once. In particular, a thread may not be restarted once it has completed execution.</p>
+<h2 id="5-yield-javalangthread"><a class="markdownIt-Anchor" href="#5-yield-javalangthread"></a> 5. yield() – java.lang.Thread</h2>
+<p><strong><code>public static void yield()</code></strong><br>
+ A hint to the scheduler that the current thread is willing to yield its current use of a processor. The scheduler is free to ignore this hint.<br>
+ Yield is a heuristic attempt to improve relative progression between threads that would otherwise over-utilise a CPU. Its use should be combined with detailed profiling and benchmarking to ensure that it actually has the desired effect.<br>
+ It is rarely appropriate to use this method. It may be useful for debugging or testing purposes, where it may help to reproduce bugs due to race conditions. It may also be useful when designing concurrency control constructs such as the ones in the java.util.concurrent.locks package.</p>
+<p><strong><font color="#06bcf9">Tips:</font></strong></p>
+<table bgcolor="#ccf2ff" "><td>&emsp;When a thread calls this method, it tells the scheduler that I am willing to degrade my priority, I can transfer from RUNNING state to RUNNABLE state.</td></table>
+<h2 id="6-interrupt-javalangthread"><a class="markdownIt-Anchor" href="#6-interrupt-javalangthread"></a> 6. interrupt() – java.lang.Thread</h2>
+<p><strong><code>public void interrupt()</code></strong><br>
+ Interrupts this thread.<br>
+ Unless the current thread is interrupting itself, which is always permitted, the checkAccess method of this thread is invoked, which may cause a SecurityException to be thrown.<br>
+ If this thread is blocked in an invocation of the wait(), wait(long), or wait(long, int) methods of the Object class, or of the join(), join(long), join(long, int), sleep(long), or sleep(long, int), methods of this class, then its interrupt status will be cleared and it will receive an InterruptedException.<br>
+ If this thread is blocked in an I/O operation upon an interruptible channel then the channel will be closed, the thread’s interrupt status will be set, and the thread will receive a ClosedByInterruptException.<br>
+ If this thread is blocked in a Selector then the thread’s interrupt status will be set and it will return immediately from the selection operation, possibly with a non-zero value, just as if the selector’s wakeup method were invoked.<br>
+ If none of the previous conditions hold then this thread’s interrupt status will be set.<br>
+ Interrupting a thread that is not alive need not have any effect.</p>
+<p><strong><font color="#06bcf9">Tips:</font></strong></p>
+<table bgcolor="#ccf2ff" "><td>&emsp;Thread.interrupt() sets the interrupted status/flag of the target thread. Then code running in that target thread MAY poll the interrupted status and handle it appropriately.<br> 
+&emsp;It is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.<br> 
+&emsp;Some methods that block such as Object.wait() may consume the interrupted status immediately and throw an appropriate exception (usually InterruptedException)</td></table>
+<p>hello <a href="http://yoursite.com/2019/04/11/multithreading-currentThread/">http://yoursite.com/2019/04/11/multithreading-currentThread/</a> bye</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/multithreading-currentThread/" data-id="cjuiubgem003k4kve6664iyta" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/multithreading-currentThread/" data-id="cjuj6rx8v003hwwve4uugkmgy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
