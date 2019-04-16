@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycle_and_states.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycleII.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/11/threadII/life_cycleIII.png">
-<meta property="og:updated_time" content="2019-04-16T01:35:39.011Z">
+<meta property="og:updated_time" content="2019-04-16T02:58:35.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Thread II - Lifecycle and States">
 <meta name="twitter:description" content="Lifecycle and States of a Thread in Java (to be continued) This article is taking this great article as a reference. A thread in Java has the follownig possible states: NEW, RUNNABLE, TIMEDWAITING, W">
@@ -109,20 +109,20 @@
 <ol>
 <li><strong>new:</strong> The thread is in new state if you create an instance of Thread class but before the invocation of start() method.</li>
 <li><strong>runnable:</strong> The thread is in runnable state after invocation of start() method, but the thread scheduler has not selected it to be the running thread.<br>
-At the lower operating system (OS) level, JVM’s <strong>runnable</strong> state could be considered as a composite state with two substates. When a thread transitions to the runnable JVM state, the thread first goes into the ready substate. Thread scheduling decides when the thread could actually start, proceed or be suspended. <code></code> is explicit recommendation to thread scheduler to pause the currently executing thread to allow some other thread to execute.<br>
+At the lower operating system (OS) level, JVM’s <strong>runnable</strong> state could be considered as a composite state with two substates. When a thread transitions to the runnable JVM state, the thread first goes into the ready substate. Thread scheduling decides when the thread could actually start, proceed or be suspended. <code><a href="/2019/04/11/multithreading-currentThread/" title="Thread.yield()">Thread.yield()</a></code> is explicit recommendation to thread scheduler to pause the currently executing thread to allow some other thread to execute.<br>
 A thread in the runnable state is executing from the JVM point of view but in fact it may be waiting for some resources from the operating system.</li>
 <li><strong>time waiting:</strong> Timed waiting is a thread state for a thread waiting with a specified waiting time. A thread is in the timed waiting state due to calling one of the following methods with a specified positive waiting time:<br>
-<code></code><br>
-<code></code><br>
-<code></code><br>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="Thread.sleep(sleeptime)">Thread.sleep(sleeptime)</a></code><br>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="Object.wait(timeout)">Object.wait(timeout)</a></code><br>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="Thread.join(timeout)">Thread.join(timeout)</a></code><br>
 <code>LockSupport.partNanos(timeout)</code><br>
 <code>LockSupport.partUntil(timeout)</code></li>
 <li><strong>Not Runnable(Blocked/Waiting States):</strong> This is the state when the thread is still alive, but is currently not eligible to run.<br>
-1). <strong>blocking:</strong> Thread state for a thread blocked waiting for a monitor lock. A thread in the blocked state is waiting for a monitor lock to enter a synchronized block/method or reenter a synchronized block/method after calling <code></code>.<br>
+1). <strong>blocking:</strong> Thread state for a thread blocked waiting for a monitor lock. A thread in the blocked state is waiting for a monitor lock to enter a synchronized block/method or reenter a synchronized block/method after calling <code><a href="/2019/04/11/multithreading-currentThread/" title="Object.wait()">Object.wait()</a></code>.<br>
 2). <strong>waiting：</strong> A thread in the waiting state is waiting for another thread to perform a particular action. For example, a thread that has called Object.wait() on an object is waiting for another thread to call Object.notify() or Object.notifyAll() on that object. A thread is in the waiting state due to the calling one of the following methods without timeout:<br>
-<code></code><br>
-<code></code><br>
-<code></code></li>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="Object.wait()">Object.wait()</a></code><br>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="Thread.join()">Thread.join()</a></code><br>
+<code><a href="/2019/04/11/multithreading-currentThread/" title="LockSupport.park()">LockSupport.park()</a></code></li>
 </ol>
 <p><em><strong>Note:</strong></em> if the thread is in the <strong>waiting</strong> states, it will not compete for the lock. After other threads calling Object.notify() or Object.notifyAll() on that object, then this thread goes to <strong>blocked</strong> states, ready to compete the lock.<br>
 5. <strong>Terminated:</strong> A thread is in terminated or dead state when its run() method exits.</p>
@@ -139,12 +139,11 @@ A thread in the runnable state is executing from the JVM point of view but in fa
 <li>Constant type: Timed Waiting <code>Declaration: public static final Thread.State TIMED_WAITING</code></li>
 <li>Constant type: Terminated <code>Declaration: public static final Thread.State TERMINATED</code></li>
 </ol>
-<p>hello <a href="http://yoursite.com/2019/04/11/threadII/">http://yoursite.com/2019/04/11/threadII/</a> bye</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/threadII/" data-id="cjuj6vctl007h20vel97r06is" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/threadII/" data-id="cjuj7pyeb003ijgvef5onxlp2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
