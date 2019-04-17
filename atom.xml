@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-17T02:11:09.739Z</updated>
+  <updated>2019-04-17T15:56:33.386Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,155 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Contiguous Array</title>
+    <link href="http://yoursite.com/2019/04/17/leetcodeQ525/"/>
+    <id>http://yoursite.com/2019/04/17/leetcodeQ525/</id>
+    <published>2019-04-17T15:11:34.000Z</published>
+    <updated>2019-04-17T15:56:33.386Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-525-contiguous-array"><a class="markdownIt-Anchor" href="#leetcode-q-525-contiguous-array"></a> LeetCode Q 525 - Contiguous Array</h1><p>Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>Our solution will be explained with an example.<br><code>input array: [0, 1, 0, 0, 0, 1, 1, 1]</code><br>Use a variable <code>sum</code>. Traverse the array, when meet a 0, sum - 1; when meed a 1, sum + 1.<br>From the following image, we can find that if at any moment, the countcount becomes zero, it implies that we’ve encountered equal number of zeros and ones from the beginning till the current index of the array(ii). Not only this, another point to be noted is that if we encounter the same countcount twice while traversing the array, it means that the number of zeros and ones are equal between the indices corresponding to the equal countcount values.</p><img src="leetcodeQ525.png" width="50%" height="50%"><p>Therefore, we use a map to store that information. Say <strong>key</strong> is the sum val, <strong>value</strong> denotes the index. In every iteration, 1) update sum; 2) see if that sum is already a key of the map, if it is then update maxLen = Max(maxLen, i - map.get(sum)).</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>, maxLength = <span class="number">0</span>; map.put(<span class="number">0</span>, -<span class="number">1</span>); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] == <span class="number">0</span>)</span><br><span class="line">sum--;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">sum++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (map.containsKey(sum))</span><br><span class="line">maxLength = Math.max(maxLength, i - map.get(sum));</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">map.put(sum, i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> maxLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-525-contiguous-array&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-525-contiguous-array&quot;&gt;&lt;/a&gt; LeetCode Q 525 - Contiguous Array&lt;/h1&gt;
+&lt;p&gt;Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Two Sum</title>
+    <link href="http://yoursite.com/2019/04/17/leetcodeQ1/"/>
+    <id>http://yoursite.com/2019/04/17/leetcodeQ1/</id>
+    <published>2019-04-17T15:05:56.000Z</published>
+    <updated>2019-04-17T15:09:19.951Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-1-two-sum"><a class="markdownIt-Anchor" href="#leetcode-q-1-two-sum"></a> LeetCode Q 1 - Two Sum</h1><p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p><p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the same element twice.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (map.containsKey(target - nums[i]))</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;map.get(target - nums[i]), i&#125;;</span><br><span class="line">map.put(nums[i], i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-1-two-sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-1-two-sum&quot;&gt;&lt;/a&gt; LeetCode Q 1 - Two Sum&lt;/h1&gt;
+&lt;p&gt;Given an array of integers, return indices of the two numbers such that they add up to a specific target.&lt;/p&gt;
+&lt;p&gt;You may assume that each input would have &lt;strong&gt;exactly&lt;/strong&gt; one solution, and you may not use the same element twice.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>4Sum II</title>
+    <link href="http://yoursite.com/2019/04/17/leetcodeQ454/"/>
+    <id>http://yoursite.com/2019/04/17/leetcodeQ454/</id>
+    <published>2019-04-17T14:53:43.000Z</published>
+    <updated>2019-04-17T15:10:13.836Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-454-4sum-ii"><a class="markdownIt-Anchor" href="#leetcode-q-454-4sum-ii"></a> LeetCode Q 454 - 4Sum II</h1><p>Given four lists A, B, C, D of integer values, compute how many tuples (i, j, k, l) there are such that A[i] + B[j] + C[k] + D[l] is zero.</p><p>To make problem a bit easier, all A, B, C, D have same length of N where 0 ≤ N ≤ 500. All integers are in the range of -2^28 to 2^28 - 1 and the result is guaranteed to be at most 2^31 - 1.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>The solution is quite similar to <a href="/2019/04/17/leetcodeQ1/" title="Two Sum">Two Sum</a>.<br>We use a HashMap to store the possible sum of every pair in A and B.<br>Then we check if the sum of some pair in C and D equals to -key in the map.</p><p><strong>Time Complexity: O(n^2)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fourSumCount</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B, <span class="keyword">int</span>[] C, <span class="keyword">int</span>[] D)</span> </span>&#123;</span><br><span class="line">&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> a: A) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> b: B) &#123;</span><br><span class="line">map.put(a + b, map.getOrDefault(a + b, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> c: C) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> d: D) &#123;</span><br><span class="line"><span class="keyword">if</span> (map.containsKey(-c-d)) res += map.get(-c-d);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-454-4sum-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-454-4sum-ii&quot;&gt;&lt;/a&gt; LeetCode Q 454 - 4Sum II&lt;/h1&gt;
+&lt;p&gt;Given four lists A, B, C, D of integer values, compute how many tuples (i, j, k, l) there are such that A[i] + B[j] + C[k] + D[l] is zero.&lt;/p&gt;
+&lt;p&gt;To make problem a bit easier, all A, B, C, D have same length of N where 0 ≤ N ≤ 500. All integers are in the range of -2^28 to 2^28 - 1 and the result is guaranteed to be at most 2^31 - 1.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>4Sum</title>
+    <link href="http://yoursite.com/2019/04/17/leetcodeQ18/"/>
+    <id>http://yoursite.com/2019/04/17/leetcodeQ18/</id>
+    <published>2019-04-17T14:40:41.000Z</published>
+    <updated>2019-04-17T15:05:23.681Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-18-4sum"><a class="markdownIt-Anchor" href="#leetcode-q-18-4sum"></a> LeetCode Q 18 - 4Sum</h1><p>Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that <code>a + b + c + d = target?</code>Find all unique quadruplets in the array which gives the sum of target.</p><p>**Note:**The solution set must not contain duplicate quadruplets.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>The key points are, 1) how we deal with duplicates, 2) how to make use of boundary case to make our code more effecient.</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; fourSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> len = nums.length;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line"><span class="keyword">if</span> (len &lt; <span class="number">4</span> || nums[<span class="number">0</span>] * <span class="number">4</span> &gt; target || nums[len - <span class="number">1</span>] * <span class="number">4</span> &lt; target)</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">3</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target) <span class="keyword">break</span>; <span class="comment">// i is too large;</span></span><br><span class="line"><span class="keyword">if</span> (nums[i] + nums[len - <span class="number">1</span>] + nums[len - <span class="number">2</span>] + nums[len - <span class="number">3</span>] &lt; target) <span class="keyword">continue</span>; <span class="comment">// i is too small;</span></span><br><span class="line"><span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// skip duplicates</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length - <span class="number">2</span>; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target) <span class="keyword">break</span>; <span class="comment">// j is too large;</span></span><br><span class="line"><span class="keyword">if</span> (nums[i] + nums[j] + nums[len - <span class="number">1</span>] + nums[len - <span class="number">2</span>] &lt; target) <span class="keyword">continue</span>; <span class="comment">// j is too small;</span></span><br><span class="line"><span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) <span class="keyword">continue</span>; <span class="comment">// skip duplicates</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> start = j + <span class="number">1</span>, end = len - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line"><span class="keyword">int</span> sum = nums[i] + nums[j] + nums[start] + nums[end];</span><br><span class="line"><span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">res.add(Arrays.asList(nums[i], nums[j], nums[start], nums[end]));</span><br><span class="line"><span class="keyword">while</span> (start &lt; end &amp;&amp; nums[start] = nums[start+<span class="number">1</span>]) start++;</span><br><span class="line"><span class="keyword">while</span> (start &lt; end &amp;&amp; nums[end] = nums[end-<span class="number">1</span>]) end--;</span><br><span class="line">start++; end--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) end--;</span><br><span class="line"><span class="keyword">else</span> start++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-18-4sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-18-4sum&quot;&gt;&lt;/a&gt; LeetCode Q 18 - 4Sum&lt;/h1&gt;
+&lt;p&gt;Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that &lt;code&gt;a + b + c + d = target?&lt;/code&gt;Find all unique quadruplets in the array which gives the sum of target.&lt;/p&gt;
+&lt;p&gt;**Note:**The solution set must not contain duplicate quadruplets.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Longest Substring Without Repeating Characters</title>
+    <link href="http://yoursite.com/2019/04/17/leetcodeQ3/"/>
+    <id>http://yoursite.com/2019/04/17/leetcodeQ3/</id>
+    <published>2019-04-17T14:27:02.000Z</published>
+    <updated>2019-04-17T14:40:05.561Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-3-longest-substring-without-repeating-characters"><a class="markdownIt-Anchor" href="#leetcode-q-3-longest-substring-without-repeating-characters"></a> LeetCode Q 3 - Longest Substring Without Repeating Characters</h1><p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>The solution is intuitional. Use two pointers applying sliding window algorithm and sweeping the whole string, then find the max length.</p><p>We can use a <strong>HashSet</strong> or an <strong>array</strong> to detect repeated character.</p><h3 id="method-1-use-a-hashset"><a class="markdownIt-Anchor" href="#method-1-use-a-hashset"></a> Method 1: Use a HashSet</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>; r &lt; s.length(); ) &#123;</span><br><span class="line"><span class="keyword">if</span> (set.contains(s.charAt(r))) &#123;</span><br><span class="line">set.add(s.charAt(r++));</span><br><span class="line">maxLen = Math.max(maxLen, set.size());</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">set.remove(s.charAt(l++));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>Runtime: 9ms.</strong></p><h3 id="method-2-use-an-array"><a class="markdownIt-Anchor" href="#method-2-use-an-array"></a> Method 2: Use an array</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</span><br><span class="line"><span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>; r &lt; s.length(); r++) &#123;</span><br><span class="line">count[s.charAt(r)]++;</span><br><span class="line"><span class="keyword">while</span> (count[s.charAt(r)] &gt; <span class="number">1</span>)</span><br><span class="line">count[s.charAt(l++)]--;</span><br><span class="line">maxLen = Math.max(maxLen, r - l + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>Runtime: 3ms.</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-3-longest-substring-without-repeating-characters&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-3-longest-substring-without-repeating-characters&quot;&gt;&lt;/a&gt; LeetCode Q 3 - Longest Substring Without Repeating Characters&lt;/h1&gt;
+&lt;p&gt;Given a string, find the length of the &lt;strong&gt;longest substring&lt;/strong&gt; without repeating characters.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
+    
+      <category term="Sliding Window" scheme="http://yoursite.com/tags/Sliding-Window/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Reflection in Java</title>
+    <link href="http://yoursite.com/2019/04/16/reflection-in-java/"/>
+    <id>http://yoursite.com/2019/04/16/reflection-in-java/</id>
+    <published>2019-04-17T02:13:50.000Z</published>
+    <updated>2019-04-17T02:14:50.561Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="reflection-in-java-to-be-continued"><a class="markdownIt-Anchor" href="#reflection-in-java-to-be-continued"></a> Reflection in Java (to be continued)</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;reflection-in-java-to-be-continued&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#reflection-in-java-to-be-continued&quot;&gt;&lt;/a&gt; Reflection in Java 
+      
+    
+    </summary>
+    
+    
+      <category term="Java Baisc" scheme="http://yoursite.com/tags/Java-Baisc/"/>
+    
+      <category term="Reflection" scheme="http://yoursite.com/tags/Reflection/"/>
+    
+  </entry>
   
   <entry>
     <title>synchronized Keyword in Java</title>
@@ -406,164 +555,6 @@ There is only one duplicate number in the array, but it could be repeated more t
       <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
     
       <category term="Sort" scheme="http://yoursite.com/tags/Sort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Intersection of Two Arrays</title>
-    <link href="http://yoursite.com/2019/04/15/leetcodeQ349/"/>
-    <id>http://yoursite.com/2019/04/15/leetcodeQ349/</id>
-    <published>2019-04-15T17:04:20.000Z</published>
-    <updated>2019-04-15T17:16:24.814Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-349-intersection-of-two-arrays"><a class="markdownIt-Anchor" href="#leetcode-q-349-intersection-of-two-arrays"></a> LeetCode Q 349 - Intersection of Two Arrays</h1><p>Given two arrays, write a function to compute their intersection.<br><strong>Note:</strong></p><ul><li>Each element in the result must be unique.</li><li>The result can be in any order.</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="method-1-use-two-set"><a class="markdownIt-Anchor" href="#method-1-use-two-set"></a> Method 1: Use Two Set</h3><p><strong>Time Complexity: O(n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] intersection(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">    Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    Set&lt;Integer&gt; duplicates = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num: nums1) </span><br><span class="line">        set.add(num);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num: nums2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (set.contains(num))</span><br><span class="line">            duplicates.add(num);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[duplicates.size()];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num: duplicates)</span><br><span class="line">        res[index++] = num;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="method-2-sort-two-arrays-and-use-two-pointers-to-find-duplicates"><a class="markdownIt-Anchor" href="#method-2-sort-two-arrays-and-use-two-pointers-to-find-duplicates"></a> Method 2: Sort two arrays, and use two pointers to find duplicates</h3><p><strong>Time Complexity: O(nlogn)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] intersection(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">    Arrays.sort(nums1); Arrays.sort(nums2);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[nums1.length];</span><br><span class="line">    <span class="keyword">while</span> (i &lt; nums1.length &amp;&amp; j &lt; nums2.length) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums1[i] == nums2[j]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (index == <span class="number">0</span> || temp[index - <span class="number">1</span>] != nums1[i]) </span><br><span class="line">                temp[index++] = nums1[i];</span><br><span class="line">            i++; j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums1[i] &gt; nums2[j]) &#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[index];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; index; m++) </span><br><span class="line">        res[m] = temp[m];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-349-intersection-of-two-arrays&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-349-intersection-of-two-arrays&quot;&gt;&lt;/a&gt; LeetCode Q 349 - Intersection of Two Arrays&lt;/h1&gt;
-&lt;p&gt;Given two arrays, write a function to compute their intersection.&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Each element in the result must be unique.&lt;/li&gt;
-&lt;li&gt;The result can be in any order.&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
-    
-      <category term="Array" scheme="http://yoursite.com/tags/Array/"/>
-    
-      <category term="Sort" scheme="http://yoursite.com/tags/Sort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Longest Increasing Subsequence</title>
-    <link href="http://yoursite.com/2019/04/15/leetcodeQ300/"/>
-    <id>http://yoursite.com/2019/04/15/leetcodeQ300/</id>
-    <published>2019-04-15T16:23:23.000Z</published>
-    <updated>2019-04-15T17:03:52.340Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-300-longest-increasing-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-300-longest-increasing-subsequence"></a> LeetCode Q 300 - Longest Increasing Subsequence</h1><p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="method-1-dynamic-programming"><a class="markdownIt-Anchor" href="#method-1-dynamic-programming"></a> Method 1: Dynamic Programming</h3><p><strong>Time Complexity: O(n^2)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">Arrays.fill(dp, <span class="number">1</span>); <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] &gt; nums[j]) </span><br><span class="line">dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">res = Math.max(res, dp[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="method-2-binary-search"><a class="markdownIt-Anchor" href="#method-2-binary-search"></a> Method 2: Binary Search</h3><p><strong>We can find the length as follows:</strong><br>input array: [10, 9, 2, 5, 3, 7]<br>helper array (tails): [0, 0, 0, 0, 0, 0]</p><ul><li>tails: [0, 0, 0, 0, 0, 0], len = 0;</li><li>tails: [10, 0, 0, 0, 0, 0], len = 1;</li><li>tails: [9, 0, 0, 0, 0, 0], len = 1;</li><li>tails: [2, 0, 0, 0, 0, 0], len = 1;</li><li>tails: [2, 5, 0, 0, 0, 0], len = 2;</li><li>tails: [2, 3, 0, 0, 0, 0], len = 2;</li><li>tails: [2, 3, 7, 0, 0, 0], len = 3;</li></ul><p><strong>Our strategy determined by the following conditions.</strong></p><ul><li>Case 1: If nums[i] is largest among all end candidates of active lists, we will clone the largest active list, and extend it by A[i].</li><li>Case 2: If nums[i] is in between, we will find a list with largest end element that is smaller than A[i]. Clone and extend this list by A[i]. We will discard all other lists of same length as that of this modified list.</li></ul><p><strong>Time Complexity: O(nlogn)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span>[] tails = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"><span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line"><span class="comment">// use bineary searth to find the largest tail i, that num &lt;= tail[i];</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = len;</span><br><span class="line"><span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = i + (j - i) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (tails[mid] &lt; num) </span><br><span class="line">i = mid + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">j = mid;</span><br><span class="line">&#125;</span><br><span class="line">tails[i] = num; <span class="comment">// update the tail </span></span><br><span class="line"><span class="keyword">if</span> (i == len) len++; <span class="comment">// case 1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-300-longest-increasing-subsequence&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-300-longest-increasing-subsequence&quot;&gt;&lt;/a&gt; LeetCode Q 300 - Longest Increasing Subsequence&lt;/h1&gt;
-&lt;p&gt;Given an unsorted array of integers, find the length of longest increasing subsequence.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Minimum Size Subarray Sum</title>
-    <link href="http://yoursite.com/2019/04/14/leetcodeQ209/"/>
-    <id>http://yoursite.com/2019/04/14/leetcodeQ209/</id>
-    <published>2019-04-14T17:36:58.000Z</published>
-    <updated>2019-04-14T17:53:03.173Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-209-minimum-size-subarray-sum"><a class="markdownIt-Anchor" href="#leetcode-q-209-minimum-size-subarray-sum"></a> LeetCode Q 209 - Minimum Size Subarray Sum</h1><p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a <strong>contiguous</strong> subarray of which the sum ≥ s. If there isn’t one, return 0 instead.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="method-1-sliding-window"><a class="markdownIt-Anchor" href="#method-1-sliding-window"></a> Method 1: Sliding Window</h3><p><strong>Time Complexity: O(n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, minLength = Integer.MAX_VALUE, sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (right &lt; nums.length) &#123;</span><br><span class="line">sum += nums[right];</span><br><span class="line"><span class="keyword">while</span> (left &lt;= right &amp;&amp; sum &gt; s) &#123;</span><br><span class="line">minLength = Math.min(minLength, right - left + <span class="number">1</span>);</span><br><span class="line">sum -= nums[left++];</span><br><span class="line">&#125;</span><br><span class="line">right++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> minLen == Integer.MAX_VALUE ? <span class="number">0</span> : minLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="method-2-binary-search"><a class="markdownIt-Anchor" href="#method-2-binary-search"></a> Method 2: Binary Search</h3><p>Since the given array contains only positive integers, the subarray sum can only increase by including more elements. Therefore, you don’t have to include more elements once the current subarray already has a sum large enough. This gives the linear time complexity solution by maintaining a minimum window with a two indices.</p><p>As to NLogN solution, logN immediately reminds you of binary search. In this case, you cannot sort as the current order actually matters. How does one get an ordered array then? Since all elements are positive, the cumulative sum must be strictly increasing. Then, a subarray sum can expressed as the difference between two cumulative sum. Hence, given a start index for the cumulative sum array, the other end index can be searched using binary search</p><p><strong>Time Complexity: O(nlogn)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span>[] sums = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; dp.length; i++) sums[i] = nums[i - <span class="number">1</span>] + sums[i - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> minLength = Integer.MAX_VALUE</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">int</span> end = binarySearch(sums, i + <span class="number">1</span>, sums.length - <span class="number">1</span>, s + sums[i]);</span><br><span class="line"><span class="keyword">if</span> (end == sums.length) <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">else</span> (end - i &lt; minLength) minLength = end - i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> minLen == Integer.MAX_VALUE ? <span class="number">0</span> : minLength;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] sums, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = (sums[lo] + sums[hi]) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (nums[mid] &gt;= key) </span><br><span class="line">hi = mid - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">lo = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> lo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-209-minimum-size-subarray-sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-209-minimum-size-subarray-sum&quot;&gt;&lt;/a&gt; LeetCode Q 209 - Minimum Size Subarray Sum&lt;/h1&gt;
-&lt;p&gt;Given an array of &lt;strong&gt;n&lt;/strong&gt; positive integers and a positive integer &lt;strong&gt;s&lt;/strong&gt;, find the minimal length of a &lt;strong&gt;contiguous&lt;/strong&gt; subarray of which the sum ≥ s. If there isn’t one, return 0 instead.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
-      <category term="Sliding Window" scheme="http://yoursite.com/tags/Sliding-Window/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Two Sum II - Input array is sorted</title>
-    <link href="http://yoursite.com/2019/04/14/leetcodeQ167-1/"/>
-    <id>http://yoursite.com/2019/04/14/leetcodeQ167-1/</id>
-    <published>2019-04-14T17:35:27.000Z</published>
-    <updated>2019-04-14T17:36:21.093Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-167-two-sum-ii-input-array-is-sorted"><a class="markdownIt-Anchor" href="#leetcode-q-167-two-sum-ii-input-array-is-sorted"></a> LeetCode Q 167 - Two Sum II - Input array is sorted</h1><p>Given an array of integers that is already <em><strong>sorted in ascending order</strong></em>, find two numbers such that they add up to a specific target number.</p><p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="method-1"><a class="markdownIt-Anchor" href="#method-1"></a> Method 1</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] numbers, <span class="keyword">int</span> target) &#123;</span><br><span class="line"><span class="keyword">int</span> idx1 = <span class="number">0</span>, idx2 = numbers.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (numbers[idx1] + numbers[idx2] != target) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numbers[idx1] + numbers[idx2] &gt; target)</span><br><span class="line">            idx2--;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            idx1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;idx1 + <span class="number">1</span>, idx2 + <span class="number">1</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-167-two-sum-ii-input-array-is-sorted&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-167-two-sum-ii-input-array-is-sorted&quot;&gt;&lt;/a&gt; LeetCode Q 167 - Two Sum II - Input array is sorted&lt;/h1&gt;
-&lt;p&gt;Given an array of integers that is already &lt;em&gt;&lt;strong&gt;sorted in ascending order&lt;/strong&gt;&lt;/em&gt;, find two numbers such that they add up to a specific target number.&lt;/p&gt;
-&lt;p&gt;The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Find Peak Element</title>
-    <link href="http://yoursite.com/2019/04/14/leetcodeQ162/"/>
-    <id>http://yoursite.com/2019/04/14/leetcodeQ162/</id>
-    <published>2019-04-14T17:09:42.000Z</published>
-    <updated>2019-04-14T17:33:12.033Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-162-find-peak-element"><a class="markdownIt-Anchor" href="#leetcode-q-162-find-peak-element"></a> LeetCode Q 162 - Find Peak Element</h1><p>A peak element is an element that is greater than its neighbors.<br>Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.<br>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.<br>You may imagine that nums[-1] = nums[n] = -∞.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line"><span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line"><span class="keyword">if</span> (nums[mid] &gt; nums[mid + <span class="number">1</span>]) </span><br><span class="line">right = mid;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-162-find-peak-element&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-162-find-peak-element&quot;&gt;&lt;/a&gt; LeetCode Q 162 - Find Peak Element&lt;/h1&gt;
-&lt;p&gt;A peak element is an element that is greater than its neighbors.&lt;br&gt;
-Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.&lt;br&gt;
-The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.&lt;br&gt;
-You may imagine that nums[-1] = nums[n] = -∞.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Count Complete Tree Nodes</title>
-    <link href="http://yoursite.com/2019/04/14/leetcodeQ222/"/>
-    <id>http://yoursite.com/2019/04/14/leetcodeQ222/</id>
-    <published>2019-04-14T16:08:19.000Z</published>
-    <updated>2019-04-14T17:30:53.545Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-222-count-complete-tree-nodes"><a class="markdownIt-Anchor" href="#leetcode-q-222-count-complete-tree-nodes"></a> LeetCode Q 222 - Count Complete Tree Nodes</h1><p>Given a complete binary tree, count the number of nodes.</p><p><strong>Note</strong>:<br>Definition of a complete binary tree from Wikipedia:<br>In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="method-1"><a class="markdownIt-Anchor" href="#method-1"></a> Method 1</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span> + countNodes(root.left) + countNodes(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>The time complexity of this method O(n). We can do it better as follows.</p><h3 id="method-2"><a class="markdownIt-Anchor" href="#method-2"></a> Method 2</h3><p>First, use divide and conquer to find the number of nodes.<br>We use <code>height(root) == height(root.right) - 1</code> to check if the child is a complete tree.</p><ul><li>If it is, then we can let <code>root = root.right</code>and find the number of nodes in the right child.</li><li>If it isn’t, then we can let <code>root = root.left</code> and find the number of nodes in the left child.</li></ul><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"><span class="comment">//return countNodesRecursive(root);</span></span><br><span class="line"><span class="keyword">return</span> countNodesIterative(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodesRecursive</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> height = getHeight(root);</span><br><span class="line"><span class="keyword">return</span> height &lt; <span class="number">0</span> ? <span class="number">0</span> : getHeight(root.right) == height - <span class="number">1</span> ? (<span class="number">1</span> &lt;&lt; height) + countNodes(root.right) : (<span class="number">1</span> &lt;&lt; (height - <span class="number">1</span>)) + countNodes(root.left);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodesIterative</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>, height = getHeight(root);</span><br><span class="line"><span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (getHeight(root.right) == height - <span class="number">1</span>) &#123;</span><br><span class="line">count += <span class="number">1</span> &lt;&lt; height;</span><br><span class="line">root = root.right;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">count += <span class="number">1</span> &lt;&lt; (height - <span class="number">1</span>);</span><br><span class="line">root = root.left;</span><br><span class="line">&#125;</span><br><span class="line">height--; <span class="comment">// don't forget this.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> root == <span class="keyword">null</span> ? -<span class="number">1</span> : <span class="number">1</span> + getHeight(root.left);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-222-count-complete-tree-nodes&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-222-count-complete-tree-nodes&quot;&gt;&lt;/a&gt; LeetCode Q 222 - Count Complete Tree Nodes&lt;/h1&gt;
-&lt;p&gt;Given a complete binary tree, count the number of nodes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:&lt;br&gt;
-Definition of a complete binary tree from Wikipedia:&lt;br&gt;
-In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
     
   </entry>
   
