@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/04/16/synchronized-keyword-java/</loc>
+    
+    <lastmod>2019-04-17T02:11:09.739Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/16/java-lang-object-method/</loc>
+    
+    <lastmod>2019-04-17T01:14:29.030Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/11/multithreading-currentThread/</loc>
+    
+    <lastmod>2019-04-17T00:30:38.316Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/11/threadII/</loc>
+    
+    <lastmod>2019-04-17T00:23:23.711Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/author/index.html</loc>
     
     <lastmod>2019-04-16T19:57:39.583Z</lastmod>
@@ -47,20 +75,6 @@
     <loc>http://yoursite.com/2019/04/16/leetcodeQ374/</loc>
     
     <lastmod>2019-04-16T16:12:23.215Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/11/threadII/</loc>
-    
-    <lastmod>2019-04-16T02:58:35.828Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/11/multithreading-currentThread/</loc>
-    
-    <lastmod>2019-04-16T02:41:23.145Z</lastmod>
     
   </url>
   

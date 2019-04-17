@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Java Thread - Commonly Used Methods - java.lang.Object Class | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="wait() and notify() method is in java.lang.Object Class Why they are in java.lang.Object Class rather than in java.lang.Thread Class?">
+<meta name="keywords" content="Java Basic,Thread">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Thread - Commonly Used Methods - java.lang.Object Class">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/java-lang-object-method/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="wait() and notify() method is in java.lang.Object Class Why they are in java.lang.Object Class rather than in java.lang.Thread Class?">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-17T01:14:29.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Thread - Commonly Used Methods - java.lang.Object Class">
+<meta name="twitter:description" content="wait() and notify() method is in java.lang.Object Class Why they are in java.lang.Object Class rather than in java.lang.Thread Class?">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java-lang-object-method" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/16/java-lang-object-method/" class="article-date">
+  <time datetime="2019-04-17T00:21:17.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java Thread - Commonly Used Methods - java.lang.Object Class
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="+1"><code>wait()</code> and <code>notify()</code> method is in java.lang.Object Class</font><br>
+<strong><font color="#06bcf9">Why they are in java.lang.Object Class rather than in java.lang.Thread Class?</font></strong></p>
+<table bgcolor="#ccf2ff" ">
+	<td>
+	&emsp;The threads are the things accessing the data structure. The locks are on the data structure object in order to keep the threads from accessing the data structure in an unsafe way.<br>
+	&emsp;In Java, we use lock objects as synchronization, mutex, and communication points between threads. We <span style="font-weight: bold;">synchronize on a lock object</span> to get mutex access to an important code block and to synchronize memory. We <span style="font-weight: bold;">wait on an object</span> if we are waiting for some condition to change – some resource to become available. We <span style="font-weight: bold;">notify on an object</span> if we want to awaken sleeping threads.
+	</td>
+</table>
+<a id="more"></a>
+<h2 id="1-nofity-javalangobject"><a class="markdownIt-Anchor" href="#1-nofity-javalangobject"></a> 1. nofity() – java.lang.Object</h2>
+<p><strong><code>public final void notify()</code></strong><br>
+ Wakes up a single thread that is waiting on this object’s monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is arbitrary and occurs at the discretion of the implementation. A thread waits on an object’s monitor by calling one of the wait methods.<br>
+ The awakened thread will not be able to proceed until the current thread <strong>relinquishes the lock on this object</strong>. The awakened thread will compete in the usual manner with any other threads that might be actively competing to synchronize on this object; for example, the awakened thread <strong>enjoys no reliable privilege or disadvantage</strong> in being the next thread to lock this object.</p>
+<p> This method should only <strong>be called by a thread that is the owner of this object’s monitor</strong>. A thread becomes the owner of the object’s monitor in one of three ways:</p>
+<ul>
+<li>By executing a synchronized instance method of that object.</li>
+<li>By executing the body of a synchronized statement that synchronizes on the object.</li>
+<li>For objects of type Class, by executing a synchronized static method of that class.<br>
+Only one thread at a time can own an object’s monitor.</li>
+</ul>
+<p><strong><font color="#06bcf9">Tips:</font></strong></p>
+<table bgcolor="#ccf2ff" ">
+	<td>
+		<span style="font-weight: bold;">wait() <span style="font-weight: bold;">makes current thread release the lock.</span><br><span style="font-weight: bold;">notify()</span> signals other waiting thread(s) which then try to acquire the lock.
+	</span></td>
+</table>
+<h2 id="2-nofityall-javalangobject"><a class="markdownIt-Anchor" href="#2-nofityall-javalangobject"></a> 2. nofityAll() – java.lang.Object</h2>
+<p><strong><code>public final void notifyAll()</code></strong><br>
+ Wakes up all threads that are waiting on this object’s monitor. A thread waits on an object’s monitor by calling one of the wait methods.</p>
+<h2 id="3-wait-javalangobject"><a class="markdownIt-Anchor" href="#3-wait-javalangobject"></a> 3. wait() – java.lang.Object</h2>
+<p><strong><code>public final void wait(long timeout) throws InterruptedException</code></strong><br>
+ Causes the current thread to <strong>wait</strong> until either another thread invokes the <strong>notify() method or the notifyAll()</strong> method for this object, or <strong>a specified amount of time has elapsed</strong>.<br>
+ <strong>The current thread must own this object’s monitor</strong>.</p>
+<p> This method causes the current thread (call it T) to place itself in the <strong><font size="+1">wait set</font></strong> for this object and then to relinquish any and all synchronization claims on this object. Thread T becomes disabled for thread scheduling purposes and lies dormant until one of four things happens:</p>
+<ul>
+<li>Some other thread invokes the notify method for this object and thread T happens to be arbitrarily chosen as the thread to be awakened.</li>
+<li>Some other thread invokes the notifyAll method for this object.<br>
+Some other thread interrupts thread T.</li>
+<li>The specified amount of real time has elapsed, more or less. If timeout is zero, however, then real time is not taken into consideration and the thread simply waits until notified.</li>
+<li>The thread T is then removed from the wait set for this object and re-enabled for thread scheduling. It then competes in the usual manner with other threads for the right to synchronize on the object; once it has gained control of the object, all its synchronization claims on the object are restored to the status quo ante - that is, to the situation as of the time that the wait method was invoked. Thread T then returns from the invocation of the wait method. Thus, on return from the wait method, the synchronization state of the object and of thread T is exactly as it was when the wait method was invoked.</li>
+</ul>
+<p> If the current thread is interrupted by any thread before or while it is waiting, then an <strong>InterruptedException</strong> is thrown. This exception is not thrown until the lock status of this object has been restored as described above.</p>
+<p><font color="tomato" size="+1">Note that the wait method, as it places the current thread into the wait set for this object, unlocks only this object; any other objects on which the current thread may be synchronized remain locked while the thread waits.<br>
+This method should only be called by a thread that is the owner of this object’s monitor.</font></p>
+<p><strong><font color="#06bcf9">For example:</font></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// locks should be final objects so the object we are synchronizing on never changes</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Object lock = <span class="keyword">new</span> Object();</span><br><span class="line">...</span><br><span class="line"><span class="comment">// ensure that the thread has a mutex lock on some key code</span></span><br><span class="line"><span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">// i need to wait for other threads to finish with some resource</span></span><br><span class="line">	<span class="comment">// this releases the lock and waits on the associated monitor</span></span><br><span class="line">	lock.wait();</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">// i need to signal another thread that some state has changed and they can awake and continue to run </span></span><br><span class="line">	lock.notify();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/16/java-lang-object-method/" data-id="cjukjs2ud0006jcve79w4bjbc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/16/synchronized-keyword-java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          synchronized Keyword in Java
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/16/leetcodeQ436/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Find Right Interval</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 16.67px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.78px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Heap/" style="font-size: 13.33px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.11px;">Integer Overflow</a> <a href="/tags/Java-Basic/" style="font-size: 14.44px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.11px;">Linked List</a> <a href="/tags/Math/" style="font-size: 18.89px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Sliding-Window/" style="font-size: 10px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.22px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.11px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14.44px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 12.22px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/16/synchronized-keyword-java/">synchronized Keyword in Java</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/java-lang-object-method/">Java Thread - Commonly Used Methods - java.lang.Object Class</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ436/">Find Right Interval</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ218/">The Skyline Problem</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/16/leetcodeQ392/">Is Subsequence</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
