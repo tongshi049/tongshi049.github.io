@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 <meta property="og:description" content="1. currentThread() – java.lang.Thread  The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-17T00:30:38.316Z">
+<meta property="og:updated_time" content="2019-04-18T16:30:19.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Thread - Commonly Used Methods - java.lang.Thread Class">
 <meta name="twitter:description" content="1. currentThread() – java.lang.Thread  The java.lang.Thread.currentThread() method returns a reference to the currently executing thread object">
@@ -105,13 +105,13 @@
  Waits at most millis milliseconds for this thread to die. A timeout of 0 means to wait forever.<br>
  This implementation uses a loop of this.wait calls conditioned on this.isAlive. As a thread terminates the this.notifyAll method is invoked. It is recommended that applications not use wait, notify, or notifyAll on Thread instances.</p>
 <p><strong><font color="#06bcf9">Tips:</font></strong></p>
-<table bgcolor="#ccf2ff" "><td>&emsp;Join method actually determines the exection of threads. When a thread calls Thread.join(), then this method will grad the CPU resource. This Method can be used in the following case.<br>
+<table bgcolor="#ccf2ff"><td>&emsp;Join method actually determines the exection of threads. When a thread calls Thread.join(), then this method will grad the CPU resource. This Method can be used in the following case.<br>
 &emsp;There is a sub-thread that costs long time. Then we can let that thread call subthread.join() thead to grab the CPU resource from the main thread. This guarantees that this sub-thread will return the result to the main thread before the main thread terminates. Or else our main thread may finish before the sub-thread, say it may not receive the result from sub-thread.</td></table>
 <h2 id="3-sleeplong-millis-javalangthread"><a class="markdownIt-Anchor" href="#3-sleeplong-millis-javalangthread"></a> 3. sleep(long millis) – java.lang.Thread</h2>
 <p><strong><code>public static void sleep(long millis) throws InterruptedException</code></strong><br>
  Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers. The thread does not lose ownership of any monitors.</p>
 <p><strong><font color="#06bcf9">Tips:</font></strong></p>
-<table bgcolor="#ccf2ff" "><td>&emsp;When a thread calls Thread.sleep(), it will not occupy the CPU resource, but it won't release the lock resource it grabs.</td></table>
+<table bgcolor="#ccf2ff"><td>&emsp;When a thread calls Thread.sleep(), it will not occupy the CPU resource, but it won't release the lock resource it grabs.</td></table>
 <h2 id="4-start-javalangthread"><a class="markdownIt-Anchor" href="#4-start-javalangthread"></a> 4. start() – java.lang.Thread</h2>
 <p><strong><code>public void start()</code></strong><br>
  Causes this thread to begin execution; the Java Virtual Machine calls the run method of this thread.<br>
@@ -123,7 +123,7 @@
  Yield is a heuristic attempt to improve relative progression between threads that would otherwise over-utilise a CPU. Its use should be combined with detailed profiling and benchmarking to ensure that it actually has the desired effect.<br>
  It is rarely appropriate to use this method. It may be useful for debugging or testing purposes, where it may help to reproduce bugs due to race conditions. It may also be useful when designing concurrency control constructs such as the ones in the java.util.concurrent.locks package.</p>
 <p><strong><font color="#06bcf9">Tips:</font></strong></p>
-<table bgcolor="#ccf2ff" "><td>&emsp;When a thread calls this method, it tells the scheduler that I am willing to degrade my priority, I can transfer from RUNNING state to RUNNABLE state.</td></table>
+<table bgcolor="#ccf2ff"><td>&emsp;When a thread calls this method, it tells the scheduler that I am willing to degrade my priority, I can transfer from RUNNING state to RUNNABLE state.</td></table>
 <h2 id="6-interrupt-javalangthread"><a class="markdownIt-Anchor" href="#6-interrupt-javalangthread"></a> 6. interrupt() – java.lang.Thread</h2>
 <p><strong><code>public void interrupt()</code></strong><br>
  Interrupts this thread.<br>
@@ -134,14 +134,14 @@
  If none of the previous conditions hold then this thread’s interrupt status will be set.<br>
  Interrupting a thread that is not alive need not have any effect.</p>
 <p><strong><font color="#06bcf9">Tips:</font></strong></p>
-<table bgcolor="#ccf2ff" "><td>&emsp;Thread.interrupt() sets the interrupted status/flag of the target thread. Then code running in that target thread MAY poll the interrupted status and handle it appropriately.<br> 
+<table bgcolor="#ccf2ff"><td>&emsp;Thread.interrupt() sets the interrupted status/flag of the target thread. Then code running in that target thread MAY poll the interrupted status and handle it appropriately.<br> 
 &emsp;It is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.<br> 
 &emsp;Some methods that block such as Object.wait() may consume the interrupted status immediately and throw an appropriate exception (usually InterruptedException)</td></table>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/multithreading-currentThread/" data-id="cjulsl71w009b9kveren9cab7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/multithreading-currentThread/" data-id="cjumv7nh8004j4kvetsehec5m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
@@ -183,7 +183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 16.67px;">Array</a> <a href="/tags/Binary-Search/" style="font-size: 17.78px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/HashTable/" style="font-size: 14.44px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 13.33px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.11px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 14.44px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.11px;">Linked List</a> <a href="/tags/Math/" style="font-size: 18.89px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 11.11px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.22px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11.11px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14.44px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 13.33px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 17px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 10px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 18px;">Binary Search</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/DP/" style="font-size: 13px;">DP</a> <a href="/tags/HashTable/" style="font-size: 16px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 13px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 14px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11px;">Linked List</a> <a href="/tags/Math/" style="font-size: 19px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 11px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12px;">Sort</a> <a href="/tags/Stack/" style="font-size: 11px;">Stack</a> <a href="/tags/String/" style="font-size: 15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14px;">Thread</a> <a href="/tags/Two-Pointers/" style="font-size: 13px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -205,23 +205,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/17/leetcodeQ525/">Contiguous Array</a>
+            <a href="/2019/04/18/leetcodeQ166/">Fraction to Recurring Decimal</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/leetcodeQ1/">Two Sum</a>
+            <a href="/2019/04/18/leetcodeQ49/">Group Anagrams</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/leetcodeQ454/">4Sum II</a>
+            <a href="/2019/04/18/leetcodeQ36/">Valid Sudoku</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/leetcodeQ18/">4Sum</a>
+            <a href="/2019/04/18/leetcodeQ37/">Soduku Solver</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/leetcodeQ3/">Longest Substring Without Repeating Characters</a>
+            <a href="/2019/04/17/leetcodeQ380/">Insert Delete GetRandom O(1)</a>
           </li>
         
       </ul>
