@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-18T16:02:15.792Z</updated>
+  <updated>2019-04-18T17:10:46.506Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Concated Words</title>
+    <link href="http://yoursite.com/2019/04/18/leetcodeQ472/"/>
+    <id>http://yoursite.com/2019/04/18/leetcodeQ472/</id>
+    <published>2019-04-18T16:44:21.000Z</published>
+    <updated>2019-04-18T17:10:46.506Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-472-concated-words"><a class="markdownIt-Anchor" href="#leetcode-q-472-concated-words"></a> LeetCode Q 472 - Concated Words</h1><p>Given a list of words (<strong>without duplicates</strong>), please write a program that returns all concatenated words in the given list of words.<br>A concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array.<br>E.g. Input: [“cat”,“cats”,“catsdogcats”,“dog”,“dogcatsdog”,“hippopotamuses”,“rat”,“ratcatdogcat”]<br>Output: [“catsdogcats”,“dogcatsdog”,“ratcatdogcat”]</p><a id="more"></a><h2 id="solution-trie-backtracking"><a class="markdownIt-Anchor" href="#solution-trie-backtracking"></a> Solution : Trie + Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findAllConcatenatedWordsInADict</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (words == <span class="keyword">null</span> || words.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line"><span class="comment">// build the trie</span></span><br><span class="line"><span class="keyword">for</span> (String word: words) &#123;</span><br><span class="line"><span class="keyword">if</span> (word.length() == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">insert(word);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// search for concatenated word</span></span><br><span class="line"><span class="keyword">for</span> (String word: words) &#123;</span><br><span class="line"><span class="keyword">if</span> (word.length() == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (isConcatenated(word, <span class="number">0</span>, <span class="number">0</span>)) res.add(word);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">TrieNode[] parent;</span><br><span class="line"><span class="keyword">boolean</span> is End;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">TrieNode</span><span class="params">()</span> </span>&#123; parent = <span class="keyword">new</span> TrieNode[<span class="number">26</span>]; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> TrieNode root = <span class="keyword">new</span> TrieNode();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">TrieNode node = root;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: word.toCharArray()) &#123;</span><br><span class="line"><span class="keyword">if</span> (node.children[ch - <span class="string">'a'</span>] == <span class="keyword">null</span>) </span><br><span class="line">node.children[ch - <span class="string">'a'</span>] = <span class="keyword">new</span> TrieNode();</span><br><span class="line">node = node.children[ch - <span class="string">'a'</span>];</span><br><span class="line">&#125;</span><br><span class="line">node.isEnd = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use backtracking the check if the current word is a concatenated word</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isConcatenated</span><span class="params">(String word, <span class="keyword">int</span> index, <span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Boundary case</span></span><br><span class="line"><span class="keyword">if</span> (index &gt;= word.length()) <span class="keyword">return</span> count &gt; <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">TrieNode node = root;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; word.length(); i++) &#123;</span><br><span class="line"><span class="keyword">char</span> ch = word.charAt(i);</span><br><span class="line"><span class="keyword">if</span> (node.children[ch - <span class="string">'a'</span>] == <span class="keyword">null</span>) <span class="comment">// our constraints</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">node = node.children[ch - <span class="string">'a'</span>];</span><br><span class="line"><span class="keyword">if</span> (node.isEnd) &#123;</span><br><span class="line"><span class="keyword">if</span> (isConcatenated(word, i + <span class="number">1</span>, count + <span class="number">1</span>)) <span class="comment">// explore</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-472-concated-words&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-472-concated-words&quot;&gt;&lt;/a&gt; LeetCode Q 472 - Concated Words&lt;/h1&gt;
+&lt;p&gt;Given a list of words (&lt;strong&gt;without duplicates&lt;/strong&gt;), please write a program that returns all concatenated words in the given list of words.&lt;br&gt;
+A concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array.&lt;br&gt;
+E.g. Input: [“cat”,“cats”,“catsdogcats”,“dog”,“dogcatsdog”,“hippopotamuses”,“rat”,“ratcatdogcat”]&lt;br&gt;
+Output: [“catsdogcats”,“dogcatsdog”,“ratcatdogcat”]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Trie" scheme="http://yoursite.com/tags/Trie/"/>
+    
+  </entry>
   
   <entry>
     <title>Fraction to Recurring Decimal</title>
@@ -530,33 +558,6 @@ You call a pre-defined API guess(int num) which returns 3 possible results (-1, 
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linked List Cycle II</title>
-    <link href="http://yoursite.com/2019/04/15/leetcodeQ142/"/>
-    <id>http://yoursite.com/2019/04/15/leetcodeQ142/</id>
-    <published>2019-04-15T19:52:15.000Z</published>
-    <updated>2019-04-15T20:09:17.523Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-142-linked-list-cycle-ii"><a class="markdownIt-Anchor" href="#leetcode-q-142-linked-list-cycle-ii"></a> LeetCode Q 142 - Linked List Cycle II</h1><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p><p>To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.</p><p><strong>Note:</strong> Do not modify the linked list.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">ListNode slow = head, fast = head;</span><br><span class="line"><span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">slow = slow.next;</span><br><span class="line">fast = fast.next.next;</span><br><span class="line"><span class="keyword">if</span> (slow == fast)</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (head != slow) &#123;</span><br><span class="line">    head = head.next;</span><br><span class="line">    slow = slow.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-142-linked-list-cycle-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-142-linked-list-cycle-ii&quot;&gt;&lt;/a&gt; LeetCode Q 142 - Linked List Cycle II&lt;/h1&gt;
-&lt;p&gt;Given a linked list, return the node where the cycle begins. If there is no cycle, return null.&lt;/p&gt;
-&lt;p&gt;To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Do not modify the linked list.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
     
   </entry>
   

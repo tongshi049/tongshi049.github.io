@@ -5,20 +5,15 @@
   
 
   
-  <title>Ugly Number | Tong Shi&#39;s Blog</title>
+  <title>Tag: Trie | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LeetCode Q 263 - Ugly Number Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.">
-<meta name="keywords" content="LeetCode,Math">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ugly Number">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/leetcodeQ263/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Tong Shi&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/tags/Trie/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
-<meta property="og:description" content="LeetCode Q 263 - Ugly Number Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-10T16:28:38.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ugly Number">
-<meta name="twitter:description" content="LeetCode Q 263 - Ugly Number Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.">
+<meta name="twitter:title" content="Tong Shi&#39;s Blog">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -67,70 +62,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-leetcodeQ263" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/10/leetcodeQ263/" class="article-date">
-  <time datetime="2019-04-10T16:23:14.000Z" itemprop="datePublished">2019-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Ugly Number
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/04/18/leetcodeQ472/" class="archive-article-date">
+  <time datetime="2019-04-18T16:44:21.000Z" itemprop="datePublished">Apr 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/04/18/leetcodeQ472/">Concated Words</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-263-ugly-number"><a class="markdownIt-Anchor" href="#leetcode-q-263-ugly-number"></a> LeetCode Q 263 - Ugly Number</h1>
-<p>Write a program to check whether a given number is an ugly number.</p>
-<p>Ugly numbers are positive numbers whose prime factors only include 2, 3, 5.</p>
-<a id="more"></a>
-<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
-<p><strong>Code: Recursive approach</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span> || n == <span class="number">2</span> || n == <span class="number">3</span> || n == <span class="number">5</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> isUgly(n / <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n % <span class="number">3</span> == <span class="number">0</span>) <span class="keyword">return</span> isUgly(n / <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n % <span class="number">5</span> == <span class="number">0</span>) <span class="keyword">return</span> isUgly(n / <span class="number">5</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Code: Iterative approach</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (n &gt;= <span class="number">2</span> &amp;&amp; n % <span class="number">2</span> == <span class="number">0</span>) n /= <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span> (n &gt;= <span class="number">3</span> &amp;&amp; n % <span class="number">3</span> == <span class="number">0</span>) n /= <span class="number">3</span>; </span><br><span class="line">	<span class="keyword">while</span> (n &gt;= <span class="number">5</span> &amp;&amp; n % <span class="number">5</span> == <span class="number">0</span>) n /= <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> n == <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/10/leetcodeQ263/" data-id="cjumvk2hx001lzwve9r220k0e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/04/10/leetcodeQ264/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Ugly Number II
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/04/10/leetcodeQ268/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Missing Number</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
