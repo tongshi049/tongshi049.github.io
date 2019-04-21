@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-21T17:35:26.020Z</updated>
+  <updated>2019-04-21T22:08:56.812Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,118 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcodeQ451</title>
+    <link href="http://yoursite.com/2019/04/21/leetcodeQ451/"/>
+    <id>http://yoursite.com/2019/04/21/leetcodeQ451/</id>
+    <published>2019-04-21T22:04:39.000Z</published>
+    <updated>2019-04-21T22:08:56.812Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-451-sort-characters-by-frequency"><a class="markdownIt-Anchor" href="#leetcode-q-451-sort-characters-by-frequency"></a> LeetCode Q 451 - Sort Characters By Frequency</h1><p>Given a string, sort it in decreasing order based on the frequency of characters.</p><p>Example 1:<br><code>Input: &quot;tree&quot; ; Output: &quot;eert&quot; Explanation: 'e' appears twice while 'r' and 't' both appear once. So 'e' must appear before both 'r' and 't'. Therefore &quot;eetr&quot; is also a valid answer.</code><br>Example 2:<br><code>Input: &quot;cccaaa&quot; ; Output: &quot;cccaaa&quot; Explanation: Both 'c' and 'a' appear three times, so &quot;aaaccc&quot; is also a valid answer. Note that &quot;cacaca&quot; is incorrect, as the same characters must be together.</code><br>Example 3:<br><code>Input: &quot;Aabb&quot; ; Output: &quot;bbAa&quot; Explanation: &quot;bbaA&quot; is also a valid answer, but &quot;Aabb&quot; is incorrect. Note that 'A' and 'a' are treated as two different characters.</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">frequencySort</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s == <span class="string">""</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: s.toCharArray()) </span><br><span class="line">map.put(ch, map.getOrDefault(ch, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">List&lt;Character&gt;[] buckets = <span class="keyword">new</span> List[s.length() + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: map.keySet()) &#123;</span><br><span class="line"><span class="keyword">int</span> freq = map.get(ch);</span><br><span class="line"><span class="keyword">if</span> (buckets[freq] == <span class="keyword">null</span>) buckets[freq] = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">buckets[freq].add(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = buckets.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="keyword">if</span> (buckets[i] == <span class="keyword">null</span>) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: buckets[i])</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num = <span class="number">0</span>; num &lt; i; num++)</span><br><span class="line">res.append(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-451-sort-characters-by-frequency&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-451-sort-characters-by-frequency&quot;&gt;&lt;/a&gt; LeetCode Q 451 - Sort Characters By Frequency&lt;/h1&gt;
+&lt;p&gt;Given a string, sort it in decreasing order based on the frequency of characters.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;tree&amp;quot; ; Output: &amp;quot;eert&amp;quot; Explanation: &#39;e&#39; appears twice while &#39;r&#39; and &#39;t&#39; both appear once. So &#39;e&#39; must appear before both &#39;r&#39; and &#39;t&#39;. Therefore &amp;quot;eetr&amp;quot; is also a valid answer.&lt;/code&gt;&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;cccaaa&amp;quot; ; Output: &amp;quot;cccaaa&amp;quot; Explanation: Both &#39;c&#39; and &#39;a&#39; appear three times, so &amp;quot;aaaccc&amp;quot; is also a valid answer. Note that &amp;quot;cacaca&amp;quot; is incorrect, as the same characters must be together.&lt;/code&gt;&lt;br&gt;
+Example 3:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;Aabb&amp;quot; ; Output: &amp;quot;bbAa&amp;quot; Explanation: &amp;quot;bbaA&amp;quot; is also a valid answer, but &amp;quot;Aabb&amp;quot; is incorrect. Note that &#39;A&#39; and &#39;a&#39; are treated as two different characters.&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+      <category term="Bucket Sort" scheme="http://yoursite.com/tags/Bucket-Sort/"/>
+    
+      <category term="Counting Sort" scheme="http://yoursite.com/tags/Counting-Sort/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Longest Palindrome</title>
+    <link href="http://yoursite.com/2019/04/21/leetcodeQ409/"/>
+    <id>http://yoursite.com/2019/04/21/leetcodeQ409/</id>
+    <published>2019-04-21T22:01:23.000Z</published>
+    <updated>2019-04-21T22:05:08.961Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-409-longest-palindrome"><a class="markdownIt-Anchor" href="#leetcode-q-409-longest-palindrome"></a> LeetCode Q 409 - Longest Palindrome</h1><p>Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.<br>This is case sensitive, for example “Aa” is not considered a palindrome here.<br>Note:Assume the length of given string will not exceed 1,010.</p><p>Example:<br><code>Input: &quot;abccccdd&quot; ; Output: 7 Explanation: One longest palindrome that can be built is &quot;dccaccd&quot;, whose length is 7.</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: s.toCharArray())</span><br><span class="line">count[ch]++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maxLen = <span class="number">0</span>, hasOdd = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: count) &#123;</span><br><span class="line"><span class="keyword">if</span> (num == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (num % <span class="number">2</span> == <span class="number">0</span>) maxLen += num;</span><br><span class="line"><span class="keyword">if</span> (num % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">hasOdd = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (num == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">else</span> maxLen += (num - <span class="number">1</span>); <span class="comment">// "ccc" --&gt; 3</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> hasOdd == <span class="number">0</span> ? maxLen : maxLen + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-409-longest-palindrome&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-409-longest-palindrome&quot;&gt;&lt;/a&gt; LeetCode Q 409 - Longest Palindrome&lt;/h1&gt;
+&lt;p&gt;Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.&lt;br&gt;
+This is case sensitive, for example “Aa” is not considered a palindrome here.&lt;br&gt;
+Note:Assume the length of given string will not exceed 1,010.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;abccccdd&amp;quot; ; Output: 7 Explanation: One longest palindrome that can be built is &amp;quot;dccaccd&amp;quot;, whose length is 7.&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Find the Difference</title>
+    <link href="http://yoursite.com/2019/04/21/leetcodeQ389/"/>
+    <id>http://yoursite.com/2019/04/21/leetcodeQ389/</id>
+    <published>2019-04-21T21:54:34.000Z</published>
+    <updated>2019-04-21T21:56:26.642Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-389-find-the-difference"><a class="markdownIt-Anchor" href="#leetcode-q-389-find-the-difference"></a> LeetCode Q 389 - Find the Difference</h1><p>Given two strings s and t which consist of only lowercase letters.<br>String t is generated by random shuffling string s and then add one more letter at a random position.<br>Find the letter that was added in t.</p><p>Example:<br><code>Input: s = &quot;abcd&quot; t = &quot;abcde&quot; ; Output: e Explanation: 'e' is the letter that was added.</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">char</span> <span class="title">findTheDifference</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">char</span> ch:t.toCharArray()) sum += (<span class="keyword">int</span>)ch;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">char</span> ch:s.toCharArray()) sum -= (<span class="keyword">int</span>)ch;</span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">char</span>)sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-389-find-the-difference&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-389-find-the-difference&quot;&gt;&lt;/a&gt; LeetCode Q 389 - Find the Difference&lt;/h1&gt;
+&lt;p&gt;Given two strings s and t which consist of only lowercase letters.&lt;br&gt;
+String t is generated by random shuffling string s and then add one more letter at a random position.&lt;br&gt;
+Find the letter that was added in t.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: s = &amp;quot;abcd&amp;quot; t = &amp;quot;abcde&amp;quot; ; Output: e Explanation: &#39;e&#39; is the letter that was added.&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>First Unique Character in a String</title>
+    <link href="http://yoursite.com/2019/04/21/leetcodeQ387/"/>
+    <id>http://yoursite.com/2019/04/21/leetcodeQ387/</id>
+    <published>2019-04-21T21:51:57.000Z</published>
+    <updated>2019-04-21T21:53:55.971Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-387-first-unique-character-in-a-string"><a class="markdownIt-Anchor" href="#leetcode-q-387-first-unique-character-in-a-string"></a> LeetCode Q 387 - First Unique Character in a String</h1><p>Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1.</p><p>Examples:<br><code>s = &quot;leetcode&quot; return 0. s = &quot;loveleetcode&quot;, return 2.</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: s.toCharArray())</span><br><span class="line">count[ch]++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (count[s.charAt(i)] == <span class="number">1</span>)</span><br><span class="line"><span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-387-first-unique-character-in-a-string&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-387-first-unique-character-in-a-string&quot;&gt;&lt;/a&gt; LeetCode Q 387 - First Unique Character in a String&lt;/h1&gt;
+&lt;p&gt;Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1.&lt;/p&gt;
+&lt;p&gt;Examples:&lt;br&gt;
+&lt;code&gt;s = &amp;quot;leetcode&amp;quot; return 0. s = &amp;quot;loveleetcode&amp;quot;, return 2.&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
+    
+  </entry>
   
   <entry>
     <title>Design Twitter</title>
@@ -451,115 +563,6 @@ Find all strobogrammatic numbers that are of length = n.&lt;/p&gt;
       <category term="String" scheme="http://yoursite.com/tags/String/"/>
     
       <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Isomorphic Strings</title>
-    <link href="http://yoursite.com/2019/04/19/leetcodeQ205/"/>
-    <id>http://yoursite.com/2019/04/19/leetcodeQ205/</id>
-    <published>2019-04-19T21:09:39.000Z</published>
-    <updated>2019-04-19T21:57:19.956Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-205-isomorphic-strings"><a class="markdownIt-Anchor" href="#leetcode-q-205-isomorphic-strings"></a> LeetCode Q 205 -  Isomorphic Strings</h1><p>Given two strings s and t, determine if they are isomorphic.</p><p>Two strings are isomorphic if the characters in s can be replaced to get t.</p><p>All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.</p><p>Similar Questions: <a href="/2019/04/19/lintcodeQ856/" title="Sentence Similarity">Sentence Similarity</a></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="solution-1-hashmap"><a class="markdownIt-Anchor" href="#solution-1-hashmap"></a> Solution 1: HashMap</h3><p><code>key is the char, value is the corresponding char.</code><br><strong>One tricky is:</strong>  <code>if (map.containsValue(chs)) return false;</code><br>that is <strong>if we map ‘a’ to ‘b’, we cannot map ‘c’ to ‘b’ again.</strong><br>The mapping should be <strong>one-to-one</strong>.</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s.length() != t.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">Map&lt;Character, Character&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">char</span> chs = s.charAt(i)), cht = t.charAt(i);</span><br><span class="line"><span class="keyword">if</span> (map.containsKey(s.charAt(i))) &#123;</span><br><span class="line"><span class="keyword">if</span> (!map.get(chs) == cht) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (map.containsValue(chs)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">map.put(chs, cht);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-use-two-arrays"><a class="markdownIt-Anchor" href="#solution-2-use-two-arrays"></a> Solution 2: Use two arrays</h3><p>Instead of using a map, we can use two arrays. First, we traverse strings s and t. At index i, we check<code>if (S[chs - 'a']) != T[cht - 'a']</code>. There are 3 cases.</p><ol><li>we never encountered <code>chs</code> and <code>cht</code> before, then their values should both be 0, then we cannot go in the <code>if</code> condition;</li><li>we encountered <code>chs</code> and <code>cht</code> before, then if their values is the same, then the chars <strong>mapping</strong> remains same as before, then we then we cannot go in the <code>if</code> condition;</li><li>if their values is not same, meaning previously we don’t <strong>mapping chs</strong> to <code>cht</code>, that is the current <strong>mapping</strong> is different with previous <strong>mapping</strong>, then return false;</li></ol><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIsomorphic</span><span class="params">(String s, String t)</span> </span>&#123; </span><br><span class="line"><span class="keyword">if</span> (s.length() != t.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">int</span>[] S = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>], T = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">char</span> chs = s.charAt(i), cht = t.charAt(j);</span><br><span class="line"><span class="keyword">if</span> (S[chs - <span class="string">'a'</span>] != T[cht - <span class="string">'a'</span>]) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">S[chs - <span class="string">'a'</span>] = i + <span class="number">1</span>; T[cht - <span class="string">'a'</span>] = i + <span class="number">1</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-205-isomorphic-strings&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-205-isomorphic-strings&quot;&gt;&lt;/a&gt; LeetCode Q 205 -  Isomorphic Strings&lt;/h1&gt;
-&lt;p&gt;Given two strings s and t, determine if they are isomorphic.&lt;/p&gt;
-&lt;p&gt;Two strings are isomorphic if the characters in s can be replaced to get t.&lt;/p&gt;
-&lt;p&gt;All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.&lt;/p&gt;
-&lt;p&gt;Similar Questions: &lt;a href=&quot;/2019/04/19/lintcodeQ856/&quot; title=&quot;Sentence Similarity&quot;&gt;Sentence Similarity&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Generalized Abbreviation</title>
-    <link href="http://yoursite.com/2019/04/19/lintcodeQ779/"/>
-    <id>http://yoursite.com/2019/04/19/lintcodeQ779/</id>
-    <published>2019-04-19T20:51:08.000Z</published>
-    <updated>2019-04-19T21:54:01.260Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="lintcode-q-779-generalized-abbreviation"><a class="markdownIt-Anchor" href="#lintcode-q-779-generalized-abbreviation"></a> LintCode Q 779 -  Generalized Abbreviation</h1><p>Write a function to generate the generalized abbreviations of a word.(order does not matter)</p><p>Example 1:<br><code>Input word = &quot;word&quot;, Output: [&quot;word&quot;, &quot;1ord&quot;, &quot;w1rd&quot;, &quot;wo1d&quot;, &quot;wor1&quot;, &quot;2rd&quot;, &quot;w2d&quot;, &quot;wo2&quot;, &quot;1o1d&quot;, &quot;1or1&quot;, &quot;w1r1&quot;, &quot;1o2&quot;, &quot;2r1&quot;, &quot;3d&quot;, &quot;w3&quot;, &quot;4&quot;]</code><br>Example 2:<br><code>Input word = &quot;today&quot; Output: [&quot;1o1a1&quot;,&quot;1o1ay&quot;,&quot;1o2y&quot;,&quot;1o3&quot;,&quot;1od1y&quot;,&quot;1od2&quot;,&quot;1oda1&quot;,&quot;1oday&quot;,&quot;2d1y&quot;,&quot;2d2&quot;,&quot;2da1&quot;,&quot;2day&quot;,&quot;3a1&quot;,&quot;3ay&quot;,&quot;4y&quot;,&quot;5&quot;,&quot;t1d1y&quot;,&quot;t1d2&quot;,&quot;t1da1&quot;,&quot;t1day&quot;,&quot;t2a1&quot;,&quot;t2ay&quot;,&quot;t3y&quot;,&quot;t4&quot;,&quot;to1a1&quot;,&quot;to1ay&quot;,&quot;to2y&quot;,&quot;to3&quot;,&quot;tod1y&quot;,&quot;tod2&quot;,&quot;toda1&quot;,&quot;today&quot;]</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>Use backtracking:</p><p><strong>Our choice:</strong> use a digit or some chars to represent a word.<br><strong>Our constraints:</strong> abbreviation should be valid, what is a valid abbrivation we can check <a href="/2019/04/19/lintcodeQ637/" title="Valid Word Abbreviation">Valid Word Abbreviation</a>.<br><strong>Our goal:</strong> generate abbreviations.</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateAbbreviations</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">help(res, word, <span class="number">0</span>, <span class="string">""</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">help</span><span class="params">(List&lt;String&gt; res, String word, <span class="keyword">int</span> pos, String curr, <span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line"><span class="comment">// boundary case, our constraints</span></span><br><span class="line"><span class="keyword">if</span> (pos == word.length()) &#123;</span><br><span class="line"><span class="keyword">if</span> (count &gt; <span class="number">0</span>) curr = curr + count;</span><br><span class="line">res.add(curr);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// explore, out choice is using a number to represent a letter</span></span><br><span class="line"><span class="comment">// When calling it self, the pos should + 1 and count + 1 and curr string is unchanged.</span></span><br><span class="line">help(res, word, pos + <span class="number">1</span>, curr, count + <span class="number">1</span>); </span><br><span class="line"><span class="comment">// backtrack, we need to update the curr</span></span><br><span class="line"><span class="keyword">if</span> (count &gt; <span class="number">0</span>) curr = curr + count + word.charAt(pos);</span><br><span class="line"><span class="keyword">else</span> curr = curr + word.charAt(pos);</span><br><span class="line"><span class="comment">// explore, our choice is using the char at that position</span></span><br><span class="line"><span class="comment">// When calling it self, the pos should + 1, the count is now to be 0 and curr string is the updated one.</span></span><br><span class="line">help(res, word, pos + <span class="number">1</span>, curr, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;lintcode-q-779-generalized-abbreviation&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lintcode-q-779-generalized-abbreviation&quot;&gt;&lt;/a&gt; LintCode Q 779 -  Generalized Abbreviation&lt;/h1&gt;
-&lt;p&gt;Write a function to generate the generalized abbreviations of a word.(order does not matter)&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input word = &amp;quot;word&amp;quot;, Output: [&amp;quot;word&amp;quot;, &amp;quot;1ord&amp;quot;, &amp;quot;w1rd&amp;quot;, &amp;quot;wo1d&amp;quot;, &amp;quot;wor1&amp;quot;, &amp;quot;2rd&amp;quot;, &amp;quot;w2d&amp;quot;, &amp;quot;wo2&amp;quot;, &amp;quot;1o1d&amp;quot;, &amp;quot;1or1&amp;quot;, &amp;quot;w1r1&amp;quot;, &amp;quot;1o2&amp;quot;, &amp;quot;2r1&amp;quot;, &amp;quot;3d&amp;quot;, &amp;quot;w3&amp;quot;, &amp;quot;4&amp;quot;]&lt;/code&gt;&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input word = &amp;quot;today&amp;quot; Output: [&amp;quot;1o1a1&amp;quot;,&amp;quot;1o1ay&amp;quot;,&amp;quot;1o2y&amp;quot;,&amp;quot;1o3&amp;quot;,&amp;quot;1od1y&amp;quot;,&amp;quot;1od2&amp;quot;,&amp;quot;1oda1&amp;quot;,&amp;quot;1oday&amp;quot;,&amp;quot;2d1y&amp;quot;,&amp;quot;2d2&amp;quot;,&amp;quot;2da1&amp;quot;,&amp;quot;2day&amp;quot;,&amp;quot;3a1&amp;quot;,&amp;quot;3ay&amp;quot;,&amp;quot;4y&amp;quot;,&amp;quot;5&amp;quot;,&amp;quot;t1d1y&amp;quot;,&amp;quot;t1d2&amp;quot;,&amp;quot;t1da1&amp;quot;,&amp;quot;t1day&amp;quot;,&amp;quot;t2a1&amp;quot;,&amp;quot;t2ay&amp;quot;,&amp;quot;t3y&amp;quot;,&amp;quot;t4&amp;quot;,&amp;quot;to1a1&amp;quot;,&amp;quot;to1ay&amp;quot;,&amp;quot;to2y&amp;quot;,&amp;quot;to3&amp;quot;,&amp;quot;tod1y&amp;quot;,&amp;quot;tod2&amp;quot;,&amp;quot;toda1&amp;quot;,&amp;quot;today&amp;quot;]&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Valid Word Abbreviation</title>
-    <link href="http://yoursite.com/2019/04/19/lintcodeQ637/"/>
-    <id>http://yoursite.com/2019/04/19/lintcodeQ637/</id>
-    <published>2019-04-19T20:39:48.000Z</published>
-    <updated>2019-04-19T20:57:40.795Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="lintcode-q-637-valid-word-abbreviation"><a class="markdownIt-Anchor" href="#lintcode-q-637-valid-word-abbreviation"></a> LintCode Q 637 - Valid Word Abbreviation</h1><p>Given a non-empty string word and an abbreviation abbr, return whether the string matches with the given abbreviation.</p><p>A string such as “word” contains only the following valid abbreviations:</p><p><code>[&quot;word&quot;, &quot;1ord&quot;, &quot;w1rd&quot;, &quot;wo1d&quot;, &quot;wor1&quot;, &quot;2rd&quot;, &quot;w2d&quot;, &quot;wo2&quot;, &quot;1o1d&quot;, &quot;1or1&quot;, &quot;w1r1&quot;, &quot;1o2&quot;, &quot;2r1&quot;, &quot;3d&quot;, &quot;w3&quot;, &quot;4&quot;]</code></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p>This is a String matching question, we can use two pointers method.<br>Be careful about boundary cases. <strong>For example:</strong><br><code>the char is '0'</code>;</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validWordAbbreviation</span><span class="params">(String word, String abbr)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (word.length() != abbr.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i &lt; word.length() &amp;&amp; j &lt; abbr.length()) &#123;</span><br><span class="line"><span class="keyword">if</span> (Character.isLetter(abbr.charAt(j))) &#123;</span><br><span class="line"><span class="keyword">if</span> (word.charAt(i++) != abbr.charAt(j++)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (abbr.charAt(j) == <span class="string">'0'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (j &lt; abbr.length() &amp;&amp; abbr.charAt(j)) &#123;</span><br><span class="line">num = num * <span class="number">10</span> + abbr.charAt(i) - <span class="string">'0'</span>; j++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">i += num;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> i == word.length() &amp;&amp; j == abbr.length();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;lintcode-q-637-valid-word-abbreviation&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lintcode-q-637-valid-word-abbreviation&quot;&gt;&lt;/a&gt; LintCode Q 637 - Valid Word Abbreviation&lt;/h1&gt;
-&lt;p&gt;Given a non-empty string word and an abbreviation abbr, return whether the string matches with the given abbreviation.&lt;/p&gt;
-&lt;p&gt;A string such as “word” contains only the following valid abbreviations:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;[&amp;quot;word&amp;quot;, &amp;quot;1ord&amp;quot;, &amp;quot;w1rd&amp;quot;, &amp;quot;wo1d&amp;quot;, &amp;quot;wor1&amp;quot;, &amp;quot;2rd&amp;quot;, &amp;quot;w2d&amp;quot;, &amp;quot;wo2&amp;quot;, &amp;quot;1o1d&amp;quot;, &amp;quot;1or1&amp;quot;, &amp;quot;w1r1&amp;quot;, &amp;quot;1o2&amp;quot;, &amp;quot;2r1&amp;quot;, &amp;quot;3d&amp;quot;, &amp;quot;w3&amp;quot;, &amp;quot;4&amp;quot;]&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
-      <category term="String" scheme="http://yoursite.com/tags/String/"/>
-    
-      <category term="Two Pointers" scheme="http://yoursite.com/tags/Two-Pointers/"/>
-    
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Contains Duplicate II</title>
-    <link href="http://yoursite.com/2019/04/19/leetcodeQ219/"/>
-    <id>http://yoursite.com/2019/04/19/leetcodeQ219/</id>
-    <published>2019-04-19T17:25:35.000Z</published>
-    <updated>2019-04-19T17:38:13.615Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-217-contains-duplicate-ii"><a class="markdownIt-Anchor" href="#leetcode-q-217-contains-duplicate-ii"></a> LeetCode Q 217 - Contains Duplicate II</h1><p>Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that <code>nums[i] = nums[j]</code> and the absolute difference between i and j is <strong>at most k</strong>.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong><font color="#06bcf9">Note: Don’t forget the update the index of duplicated number.</font></strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(); </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length;; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!map.containsKey(nums[i])) map.put(nums[i], i);</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">Integer left = map.get(nums[i]);</span><br><span class="line"><span class="keyword">if</span> (i - left &lt;= k) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">else</span> map.put(nums[i], i); <span class="comment">// don't forget to update the position of nums[i]!!!</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-217-contains-duplicate-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-217-contains-duplicate-ii&quot;&gt;&lt;/a&gt; LeetCode Q 217 - Contains Duplicate II&lt;/h1&gt;
-&lt;p&gt;Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that &lt;code&gt;nums[i] = nums[j]&lt;/code&gt; and the absolute difference between i and j is &lt;strong&gt;at most k&lt;/strong&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
   </entry>
   
