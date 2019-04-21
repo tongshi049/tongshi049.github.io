@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 <meta property="og:description" content="LeetCode Q 355 - Design Twitter Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-21T17:35:26.020Z">
+<meta property="og:updated_time" content="2019-04-21T22:19:56.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Design Twitter">
 <meta name="twitter:description" content="LeetCode Q 355 - Design Twitter Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed.">
@@ -97,7 +97,23 @@
 <li><strong>follow(followerId, followeeId)</strong>: Follower follows a followee.</li>
 <li><strong>unfollow(followerId, followeeId)</strong>: Follower unfollows a followee.<br>
 Example:<br>
-<code>Twitter twitter = new Twitter(); // User 1 posts a new tweet (id = 5). twitter.postTweet(1, 5); // User 1's news feed should return a list with 1 tweet id -&gt; [5]. twitter.getNewsFeed(1); // User 1 follows user 2. twitter.follow(1, 2); // User 2 posts a new tweet (id = 6). twitter.postTweet(2, 6); // User 1's news feed should return a list with 2 tweet ids -&gt; [6, 5]. // Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5. twitter.getNewsFeed(1); // User 1 unfollows user 2. twitter.unfollow(1, 2); // User 1's news feed should return a list with 1 tweet id -&gt; [5], // since user 1 is no longer following user 2. twitter.getNewsFeed(1);</code></li>
+<code>Twitter twitter = new Twitter();</code><br>
+// User 1 posts a new tweet (id = 5).<br>
+<code>twitter.postTweet(1, 5);</code><br>
+// User 1’s news feed should return a list with 1 tweet id -&gt; [5].<br>
+<code>twitter.getNewsFeed(1);</code><br>
+// User 1 follows user 2.<br>
+<code>twitter.follow(1, 2);</code><br>
+// User 2 posts a new tweet (id = 6).<br>
+<code>twitter.postTweet(2, 6);</code><br>
+// User 1’s news feed should return a list with 2 tweet ids -&gt; [6, 5].<br>
+// Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.<br>
+<code>twitter.getNewsFeed(1);</code><br>
+// User 1 unfollows user 2.<br>
+<code>twitter.unfollow(1, 2);</code><br>
+// User 1’s news feed should return a list with 1 tweet id -&gt; [5],<br>
+// since user 1 is no longer following user 2.<br>
+<code>twitter.getNewsFeed(1);</code></li>
 </ol>
 <a id="more"></a>
 <h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
@@ -109,7 +125,7 @@ Example:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/leetcodeQ355/" data-id="cjurhhric003hywveoy49nnti" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/21/leetcodeQ355/" data-id="cjurho9eo003lhsvegt0hvavv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOD/">OOD</a></li></ul>
@@ -173,7 +189,7 @@ Example:<br>
       <ul>
         
           <li>
-            <a href="/2019/04/21/leetcodeQ451/">leetcodeQ451</a>
+            <a href="/2019/04/21/leetcodeQ451/">Sort Characters By Frequency</a>
           </li>
         
           <li>

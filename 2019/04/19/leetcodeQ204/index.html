@@ -5,16 +5,20 @@
   
 
   
-  <title>leetcodeQ204 | Tong Shi&#39;s Blog</title>
+  <title>Count Primes | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="leetcodeQ204">
+  <meta name="description" content="LeetCode Q 204 - Count Primes Count the number of prime numbers less than a non-negative number, n. Example: Input: 10 ; Output: 4 Explanation: There are 4 prime numbers less than 10, they are 2, 3,">
+<meta name="keywords" content="LeetCode,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Count Primes">
 <meta property="og:url" content="http://yoursite.com/2019/04/19/leetcodeQ204/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 204 - Count Primes Count the number of prime numbers less than a non-negative number, n. Example: Input: 10 ; Output: 4 Explanation: There are 4 prime numbers less than 10, they are 2, 3,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-19T22:15:51.146Z">
+<meta property="og:updated_time" content="2019-04-21T22:29:42.293Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcodeQ204">
+<meta name="twitter:title" content="Count Primes">
+<meta name="twitter:description" content="LeetCode Q 204 - Count Primes Count the number of prime numbers less than a non-negative number, n. Example: Input: 10 ; Output: 4 Explanation: There are 4 prime numbers less than 10, they are 2, 3,">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -77,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      leetcodeQ204
+      Count Primes
     </h1>
   
 
@@ -85,13 +89,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="leetcode-q-204-count-primes"><a class="markdownIt-Anchor" href="#leetcode-q-204-count-primes"></a> LeetCode Q 204 - Count Primes</h1>
+<p>Count the number of prime numbers less than a non-negative number, n.<br>
+<strong>Example:</strong><br>
+<code>Input: 10 ; Output: 4</code><br>
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">boolean</span>[] notPrimes = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!notPrimes[i]) &#123;</span><br><span class="line">			count++;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; i * j &lt; n; j++)</span><br><span class="line">				notPrimes[i * j] = <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ204/" data-id="cjurhhrh2001aywve0rlz1l08" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ204/" data-id="cjurho9cz001ahsvedntspv1z" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+
     </footer>
   </div>
   
@@ -102,7 +116,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          leetcodeQ202
+          Happy Number
         
       </div>
     </a>
@@ -151,7 +165,7 @@
       <ul>
         
           <li>
-            <a href="/2019/04/21/leetcodeQ451/">leetcodeQ451</a>
+            <a href="/2019/04/21/leetcodeQ451/">Sort Characters By Frequency</a>
           </li>
         
           <li>
