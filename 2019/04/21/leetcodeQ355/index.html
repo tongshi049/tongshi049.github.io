@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Design Twitter | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 355 - Design Twitter Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed.">
+<meta name="keywords" content="LeetCode,HashTable,OOD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design Twitter">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/leetcodeQ355/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 355 - Design Twitter Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-21T17:35:26.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Design Twitter">
+<meta name="twitter:description" content="LeetCode Q 355 - Design Twitter Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed.">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ355" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/21/leetcodeQ355/" class="article-date">
+  <time datetime="2019-04-21T17:11:41.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Design Twitter
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-355-design-twitter"><a class="markdownIt-Anchor" href="#leetcode-q-355-design-twitter"></a> LeetCode Q 355 - Design Twitter</h1>
+<p>Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should support the following methods:</p>
+<ol>
+<li><strong>postTweet(userId, tweetId)</strong>: Compose a new tweet.</li>
+<li><strong>getNewsFeed(userId)</strong>: Retrieve the 10 most recent tweet ids in the user’s news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.</li>
+<li><strong>follow(followerId, followeeId)</strong>: Follower follows a followee.</li>
+<li><strong>unfollow(followerId, followeeId)</strong>: Follower unfollows a followee.<br>
+Example:<br>
+<code>Twitter twitter = new Twitter(); // User 1 posts a new tweet (id = 5). twitter.postTweet(1, 5); // User 1's news feed should return a list with 1 tweet id -&gt; [5]. twitter.getNewsFeed(1); // User 1 follows user 2. twitter.follow(1, 2); // User 2 posts a new tweet (id = 6). twitter.postTweet(2, 6); // User 1's news feed should return a list with 2 tweet ids -&gt; [6, 5]. // Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5. twitter.getNewsFeed(1); // User 1 unfollows user 2. twitter.unfollow(1, 2); // User 1's news feed should return a list with 1 tweet id -&gt; [5], // since user 1 is no longer following user 2. twitter.getNewsFeed(1);</code></li>
+</ol>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="method-1-hashtable"><a class="markdownIt-Anchor" href="#method-1-hashtable"></a> Method 1: HashTable</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> timeStamp = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> Map&lt;Integer, Tweet&gt; tweetMap;</span><br><span class="line"><span class="keyword">private</span> Map&lt;Integer, Set&lt;Integer&gt;&gt; userMap;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tweet</span> </span>&#123;   <span class="comment">// increase an time field to the Tweet class</span></span><br><span class="line">	<span class="keyword">int</span> tweetId; <span class="comment">// enable the sorting by time function</span></span><br><span class="line">	<span class="keyword">int</span> time;</span><br><span class="line">	Tweet next;  <span class="comment">// in the tweetMap, we only store the most recent tweet and use next attribute to find its next recent tweet</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Tweet</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> time)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.tweetId = id; <span class="keyword">this</span>.time = time; <span class="keyword">this</span>.next = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialize your data structure here.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Twitter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.tweetMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="keyword">this</span>.userMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Compose a new tweet. </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTweet</span><span class="params">(<span class="keyword">int</span> userId, <span class="keyword">int</span> twitId)</span> </span>&#123;</span><br><span class="line">	Tweet curr = <span class="keyword">new</span> Tweet(twitId, ++timeStamp);</span><br><span class="line">	curr.next = tweetMap.getOrDefault(userId, <span class="keyword">null</span>);</span><br><span class="line">	tweetMap.put(userId, curr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getNewsFeed</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">	List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">	set.add(userId); <span class="comment">// add the user itself</span></span><br><span class="line">	<span class="keyword">if</span> (userMap.containsKey(userId)) set.addAll(userMap.get(userId));</span><br><span class="line"></span><br><span class="line">	Queue&lt;Tweet&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a,b) -&gt; (b.time - a.time));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> num: set) &#123;</span><br><span class="line">		<span class="keyword">if</span> (tweetMap.get(num) != <span class="keyword">null</span>) pq.offer(tweetMap.get(num));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!pq.isEmpty() &amp;&amp; count &lt; <span class="number">10</span>) &#123;</span><br><span class="line">		Tweet t = pq.poll();</span><br><span class="line">		<span class="keyword">if</span> (t.next != <span class="keyword">null</span>) pq.offer(t.next);</span><br><span class="line">		count++;</span><br><span class="line">		res.add(t.tweetId);</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Follower follows a followee. If the operation is invalid, it should be a no-op.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">follow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">	userMap.putIfAbsent(followerId, <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">	userMap.get(followerId).add(followeeId);	</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line"><span class="comment">// Follower unfollows a followee. If the operation is invalid, it should be a no-op. </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unfollow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (userMap.get(followerId) == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">	userMap.get(followerId).remove(followeeId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="method-2-ood-todo"><a class="markdownIt-Anchor" href="#method-2-ood-todo"></a> Method 2: OOD (TODO)</h3>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/21/leetcodeQ355/" data-id="cjur6v2d500d7t0vexjql2th1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOD/">OOD</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/21/leetcodeQ438/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Find All Anagrams in a String</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.56px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 12.22px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.67px;">Binary Search</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 13.33px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.11px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 14.44px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.11px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 14.44px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.44px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.22px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.44px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14.44px;">Thread</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 14.44px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/21/leetcodeQ355/">Design Twitter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/21/leetcodeQ438/">Find All Anagrams in a String</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/20/lintcodeQ386/">Longest Substring with At Most K Distinct Characters</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/20/leetcodeQ347/">Top K Frequent Elements</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/20/leetcodeQ336/">Palindrome Pairs</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

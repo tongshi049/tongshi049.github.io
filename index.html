@@ -64,6 +64,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcodeQ355" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/21/leetcodeQ355/" class="article-date">
+  <time datetime="2019-04-21T17:11:41.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/21/leetcodeQ355/">Design Twitter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-355-design-twitter"><a class="markdownIt-Anchor" href="#leetcode-q-355-design-twitter"></a> LeetCode Q 355 - Design Twitter</h1>
+<p>Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should support the following methods:</p>
+<ol>
+<li><strong>postTweet(userId, tweetId)</strong>: Compose a new tweet.</li>
+<li><strong>getNewsFeed(userId)</strong>: Retrieve the 10 most recent tweet ids in the user’s news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.</li>
+<li><strong>follow(followerId, followeeId)</strong>: Follower follows a followee.</li>
+<li><strong>unfollow(followerId, followeeId)</strong>: Follower unfollows a followee.<br>
+Example:<br>
+<code>Twitter twitter = new Twitter(); // User 1 posts a new tweet (id = 5). twitter.postTweet(1, 5); // User 1's news feed should return a list with 1 tweet id -&gt; [5]. twitter.getNewsFeed(1); // User 1 follows user 2. twitter.follow(1, 2); // User 2 posts a new tweet (id = 6). twitter.postTweet(2, 6); // User 1's news feed should return a list with 2 tweet ids -&gt; [6, 5]. // Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5. twitter.getNewsFeed(1); // User 1 unfollows user 2. twitter.unfollow(1, 2); // User 1's news feed should return a list with 1 tweet id -&gt; [5], // since user 1 is no longer following user 2. twitter.getNewsFeed(1);</code></li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/21/leetcodeQ355/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/21/leetcodeQ355/" data-id="cjur6v2d500d7t0vexjql2th1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOD/">OOD</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ438" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/21/leetcodeQ438/" class="article-date">
+  <time datetime="2019-04-21T16:51:16.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/21/leetcodeQ438/">Find All Anagrams in a String</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-438-find-all-anagrams-in-a-string"><a class="markdownIt-Anchor" href="#leetcode-q-438-find-all-anagrams-in-a-string"></a> LeetCode Q 438 - Find All Anagrams in a String</h1>
+<p>Given a string s and a non-empty string p, find all the start indices of p’s anagrams in s.<br>
+Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.<br>
+The order of output does not matter.</p>
+<p>Example 1:<br>
+<code>Input: s: &quot;cbaebabacd&quot; p: &quot;abc&quot; ; Output: [0, 6] Explanation: The substring with start index = 0 is &quot;cba&quot;, which is an anagram of &quot;abc&quot;. The substring with start index = 6 is &quot;bac&quot;, which is an anagram of &quot;abc&quot;.</code><br>
+Example 2:<br>
+<code>Input: s: &quot;abab&quot; p: &quot;ab&quot; ; Output: [0, 1, 2] Explanation: The substring with start index = 0 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;. The substring with start index = 1 is &quot;ba&quot;, which is an anagram of &quot;ab&quot;. The substring with start index = 2 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.</code></p>
+<p>Similar Question: <a href="/2019/04/17/leetcodeQ3/" title="Longest Substring Without Repeating Characters">Longest Substring Without Repeating Characters</a>, <a href="/2019/04/19/leetcodeQ76/" title="Minimum Window Substring">Minimum Window Substring</a>, <a href="/2019/04/20/lintcodeQ386/" title="Longest Substring with At Most K Distinct Characters">Longest Substring with At Most K Distinct Characters</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/21/leetcodeQ438/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/21/leetcodeQ438/" data-id="cjur64su500d3t0veji2jmata" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sliding-Window/">Sliding Window</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-lintcodeQ386" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/20/lintcodeQ386/" class="article-date">
@@ -93,7 +196,7 @@
 Example 2:<br>
 <code>Input: S = &quot;WORLD&quot; and k = 4 ; Output: 4 ; Explanation: T = &quot;WORL&quot; or &quot;ORLD&quot;</code><br>
 <strong>Challenge</strong> : O(n) time</p>
-<p>Similar Question: <a href="/2019/04/17/leetcodeQ3/" title="Longest Substring Without Repeating Characters">Longest Substring Without Repeating Characters</a>, <a href="/2019/04/19/leetcodeQ76/" title="Minimum Window Substring">Minimum Window Substring</a></p>
+<p>Similar Question: <a href="/2019/04/17/leetcodeQ3/" title="Longest Substring Without Repeating Characters">Longest Substring Without Repeating Characters</a>, <a href="/2019/04/19/leetcodeQ76/" title="Minimum Window Substring">Minimum Window Substring</a>, <a href="/2019/04/21/leetcodeQ438/" title="Find All Anagrams in a String">Find All Anagrams in a String</a></p>
         
           <p class="article-more-link">
             <a href="/2019/04/20/lintcodeQ386/#more">Read More</a>
@@ -102,7 +205,7 @@ Example 2:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/lintcodeQ386/" data-id="cjuq5rkhl00d2fgve026ujoe2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/lintcodeQ386/" data-id="cjur62rkf0056t0ve6xiuz2c5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sliding-Window/">Sliding Window</a></li></ul>
@@ -151,7 +254,7 @@ Example 2:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ347/" data-id="cjuq5r12b0039fgve3j26y10l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ347/" data-id="cjur62rhq002zt0vejyo59yp1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bucket-Sort/">Bucket Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Counting-Sort/">Counting Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -199,7 +302,7 @@ Example 2:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ336/" data-id="cjuq5r1280034fgvez89eiaao" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ336/" data-id="cjur62rhn002wt0veesgqpm65" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
@@ -245,7 +348,7 @@ Example 2:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ274-1/" data-id="cjuq5r11k002cfgvekf0bm0jo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/leetcodeQ274-1/" data-id="cjur62rgz0022t0vewkhgfxoe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bucket-Sort/">Bucket Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Counting-Sort/">Counting Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -291,7 +394,7 @@ Find all strobogrammatic numbers that are of length = n.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/lintcodtQ776/" data-id="cjuq5r149005sfgve9cdfom49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/lintcodtQ776/" data-id="cjur62rl0005qt0vevo8j89a2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recursion/">Recursion</a></li></ul>
@@ -337,7 +440,7 @@ Find all strobogrammatic numbers that are of length = n.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/20/lintcodeQ644/" data-id="cjuq5r144005lfgveda4l774r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/20/lintcodeQ644/" data-id="cjur62rkp005gt0veptwr5cmd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li></ul>
@@ -383,7 +486,7 @@ Find all strobogrammatic numbers that are of length = n.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ145/" data-id="cjuq5r103000tfgveaqzpqagm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ145/" data-id="cjur62rfz000xt0vezk1il0uy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
@@ -429,107 +532,10 @@ Find all strobogrammatic numbers that are of length = n.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ144/" data-id="cjuq5r100000rfgvel8m8xxsr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ144/" data-id="cjur62rfx000vt0vesnpp7vmv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ94" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/19/leetcodeQ94/" class="article-date">
-  <time datetime="2019-04-19T22:55:54.000Z" itemprop="datePublished">2019-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/19/leetcodeQ94/">Binary Tree Inorder Traversal</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-94-binary-tree-inorder-traversal"><a class="markdownIt-Anchor" href="#leetcode-q-94-binary-tree-inorder-traversal"></a> LeetCode Q 94 - Binary Tree Inorder Traversal</h1>
-<p>Given a binary tree, return the <em>inorder</em> traversal of its nodes’ values.</p>
-<p><strong>Follow up:</strong> Recursive solution is trivial, could you do it <strong>iteratively</strong>?</p>
-<p>Similar Questions: <a href="/2019/04/19/leetcodeQ144/" title="Preorder Traversal">Preorder Traversal</a>, <a href="/2019/04/19/leetcodeQ145/" title="Postorder Traversal">Postorder Traversal</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/19/leetcodeQ94/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ94/" data-id="cjuq5r140005gfgvesuylxv17" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ76" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/19/leetcodeQ76/" class="article-date">
-  <time datetime="2019-04-19T22:32:48.000Z" itemprop="datePublished">2019-04-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/19/leetcodeQ76/">Minimum Window Substring</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-76-minimum-window-substring"><a class="markdownIt-Anchor" href="#leetcode-q-76-minimum-window-substring"></a> LeetCode Q 76 - Minimum Window Substring</h1>
-<p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
-<p>Example:<br>
-<code>Input: S = &quot;ADOBECODEBANC&quot;, T = &quot;ABC&quot; Output: &quot;BANC&quot;</code><br>
-<strong>Note:</strong></p>
-<ul>
-<li>If there is no such window in S that covers all characters in T, return the empty string “”.</li>
-<li>If there is such window, you are guaranteed that there will always be only one unique minimum window in S.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/19/leetcodeQ76/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/19/leetcodeQ76/" data-id="cjuq5r13u0056fgve8fsox69u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sliding-Window/">Sliding Window</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
 
     </footer>
   </div>
@@ -542,7 +548,7 @@ Find all strobogrammatic numbers that are of length = n.</p>
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -556,7 +562,7 @@ Find all strobogrammatic numbers that are of length = n.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15.56px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 12.22px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.67px;">Binary Search</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 13.33px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.11px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 14.44px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.11px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 14.44px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.33px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.22px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.44px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14.44px;">Thread</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 14.44px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15.56px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 12.22px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.67px;">Binary Search</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 13.33px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 11.11px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 14.44px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.11px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 14.44px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 11.11px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 10px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.44px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 12.22px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.44px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 11.11px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 14.44px;">Thread</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 14.44px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -578,6 +584,14 @@ Find all strobogrammatic numbers that are of length = n.</p>
       <ul>
         
           <li>
+            <a href="/2019/04/21/leetcodeQ355/">Design Twitter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/21/leetcodeQ438/">Find All Anagrams in a String</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/20/lintcodeQ386/">Longest Substring with At Most K Distinct Characters</a>
           </li>
         
@@ -587,14 +601,6 @@ Find all strobogrammatic numbers that are of length = n.</p>
         
           <li>
             <a href="/2019/04/20/leetcodeQ336/">Palindrome Pairs</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/20/leetcodeQ274-1/">H-Index</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/20/lintcodtQ776/">Strobogrammatic Number II</a>
           </li>
         
       </ul>
