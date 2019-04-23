@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 <meta property="og:description" content="LeetCode Q 10 - Regular Expression Matching Given an input string (s) and a pattern §, implement regular expression matching with support for ‘.’ and ‘*’. ’.’ Matches any single character. ’*’ Matche">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-22T23:05:17.224Z">
+<meta property="og:updated_time" content="2019-04-23T00:29:21.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regular Expression Matching">
 <meta name="twitter:description" content="LeetCode Q 10 - Regular Expression Matching Given an input string (s) and a pattern §, implement regular expression matching with support for ‘.’ and ‘*’. ’.’ Matches any single character. ’*’ Matche">
@@ -118,14 +118,14 @@ Example 5:<br>
 <ol>
 <li><code>if (p.length() == 0) return s.length == 0</code>;</li>
 <li><code>s.length()</code> is also allowed to be <strong>0</strong>;</li>
-<li>Line 6: <code>if (p.length() &gt;= 2 &amp;&amp; p.charAt(1) == '\*')</code>, we can return</li>
+<li>Line 7: <code>if (p.length() &gt;= 2 &amp;&amp; p.charAt(1) == '\*')</code>, we can return</li>
 </ol>
 <ul>
 <li><code>isMatch(s, p.substring(2))</code>; we ignore the 1st char of <strong>p</strong>, and also the 2nd char of <strong>p</strong> (i.e. ‘*’) ;</li>
 <li>or <code>firstMatch &amp;&amp; isMatch(s.substring(1), p)</code>; when the 1st char in <strong>s</strong> and <strong>p</strong> are matched, whether the 1st char in <strong>p</strong> is the same as that in **s **or the 1st char in <strong>p</strong> is ‘.’, since the 2nd char in <strong>p</strong> is ‘*’, we can still use then <strong>entire p</strong> to match <strong>s</strong> from the 2nd char (i.e. <code>s.substring(1)</code>).</li>
 </ul>
 <ol start="4">
-<li>Line 8: <code>else</code>, we can return</li>
+<li>Line 9: <code>else</code>, we can return</li>
 </ol>
 <ul>
 <li><code>firstMatch &amp;&amp; isMatch(s.substring(1), p.substring(1))</code>, in this case, the 1st char in <strong>s</strong> and <strong>p</strong> must be matched, and we compare their substrings (i.e. <code>s.substring(1)</code> and <code>s.substring(1)</code>).</li>
@@ -155,7 +155,7 @@ Example 5:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/22/leetcodeQ10/" data-id="cjut1t1lz000k8wveovb0u884" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/22/leetcodeQ10/" data-id="cjut1y5al000lecvehjpd2q4x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recursion/">Recursion</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
