@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 <meta property="og:description" content="LintCode Q 515 - Paint House There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of painting each house with a certain color is different">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-23T22:04:40.583Z">
+<meta property="og:updated_time" content="2019-04-23T23:03:07.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Paint House">
 <meta name="twitter:description" content="LintCode Q 515 - Paint House There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of painting each house with a certain color is different">
@@ -106,7 +106,7 @@ Notice: All costs are positive integers.</p>
 <h3 id="solution-2-optimizing-the-space-complexity-using-sliding-arrays"><a class="markdownIt-Anchor" href="#solution-2-optimizing-the-space-complexity-using-sliding-arrays"></a> Solution 2: Optimizing the space complexity using sliding arrays</h3>
 <p><strong>Code:</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCost</span><span class="params">(<span class="keyword">int</span>[][] costs)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (costs.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">int</span> old = <span class="number">0</span>, now = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>] = costs[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">1</span>] = costs[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">2</span>] = costs[<span class="number">0</span>][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; costs.length; i++) &#123;</span><br><span class="line">		old = now;    <span class="comment">// old = 0 now = 1  or old = 1 now = 0</span></span><br><span class="line">		now = <span class="number">1</span> - old;</span><br><span class="line">		dp[now][<span class="number">0</span>] = Math.min(dp[old][<span class="number">1</span>], dp[old][<span class="number">2</span>]) + costs[i][<span class="number">0</span>];</span><br><span class="line">		dp[now][<span class="number">1</span>] = Math.min(dp[old][<span class="number">0</span>], dp[old][<span class="number">2</span>]) + costs[i][<span class="number">1</span>];</span><br><span class="line">		dp[now][<span class="number">2</span>] = Math.min(dp[old][<span class="number">0</span>], dp[old][<span class="number">1</span>]) + costs[i][<span class="number">2</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> Math.min(dp[now][<span class="number">0</span>], Math.min(dp[now][<span class="number">1</span>], dp[now][<span class="number">2</span>]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><font color="#06bcf9">Sliding arrays is always used to save the space complexity.</font>**<br>
+<p><font color="#06bcf9">Sliding arrays is always used to save the space complexity.</font><br>
 **For example: **<br>
 <strong>Tradition method for solving the Fibonacci problem</strong><br>
 <code>int f[100]; f[0] = 0; f[1] = 1; f[2] = 1; for(int i = 3; i &lt;= n; ++i) 	f[i] = f[i - 1] + f[i - 2]; return f[n];</code><br>
@@ -116,7 +116,7 @@ Notice: All costs are positive integers.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/lintcodeQ515/" data-id="cjuubta0j00ec70veiesmoffb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/23/lintcodeQ515/" data-id="cjuueh0pt007hksvewhl79iiv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -126,6 +126,15 @@ Notice: All costs are positive integers.</p>
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/04/23/lintcodeQ514/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          aint Fence
+        
+      </div>
+    </a>
   
   
     <a href="/2019/04/23/leetcodeQ213/" id="article-nav-older" class="article-nav-link-wrap">
@@ -171,6 +180,10 @@ Notice: All costs are positive integers.</p>
       <ul>
         
           <li>
+            <a href="/2019/04/23/lintcodeQ514/">aint Fence</a>
+          </li>
+        
+          <li>
             <a href="/2019/04/23/lintcodeQ515/">Paint House</a>
           </li>
         
@@ -184,10 +197,6 @@ Notice: All costs are positive integers.</p>
         
           <li>
             <a href="/2019/04/23/leetcodeQ309/">Best Time to Buy and Sell Stock with Cooldown</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/23/leetcodeQ123/">Best Time to Buy and Sell Stock III</a>
           </li>
         
       </ul>

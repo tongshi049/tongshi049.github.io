@@ -5,15 +5,20 @@
   
 
   
-  <title>Tag: HashTable | Tong Shi&#39;s Blog</title>
+  <title>aint Fence | Tong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Tong Shi&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/HashTable/page/2/index.html">
+  <meta name="description" content="LintCode Q 514 - Paint Fence There is a fence with n posts, each post can be painted with one of the k colors. You have to paint all the posts such that no more than two adjacent fence posts have the">
+<meta name="keywords" content="LeetCode,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aint Fence">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/lintcodeQ514/index.html">
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LintCode Q 514 - Paint Fence There is a fence with n posts, each post can be painted with one of the k colors. You have to paint all the posts such that no more than two adjacent fence posts have the">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-23T23:07:49.290Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tong Shi&#39;s Blog">
+<meta name="twitter:title" content="aint Fence">
+<meta name="twitter:description" content="LintCode Q 514 - Paint Fence There is a fence with n posts, each post can be painted with one of the k colors. You have to paint all the posts such that no more than two adjacent fence posts have the">
   
     <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -62,102 +67,94 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/15/leetcodeQ350/" class="archive-article-date">
-  <time datetime="2019-04-15T17:14:04.000Z" itemprop="datePublished">Apr 15</time>
+        <section id="main"><article id="post-lintcodeQ514" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/lintcodeQ514/" class="article-date">
+  <time datetime="2019-04-23T23:00:46.000Z" itemprop="datePublished">2019-04-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/15/leetcodeQ350/">Intersection of Two Arrays II</a>
+    <h1 class="article-title" itemprop="name">
+      aint Fence
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/15/leetcodeQ349/" class="archive-article-date">
-  <time datetime="2019-04-15T17:04:20.000Z" itemprop="datePublished">Apr 15</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/15/leetcodeQ349/">Intersection of Two Arrays</a>
-    </h1>
-  
+        <h1 id="lintcode-q-514-paint-fence"><a class="markdownIt-Anchor" href="#lintcode-q-514-paint-fence"></a> LintCode Q 514 - Paint Fence</h1>
+<p>There is a fence with n posts, each post can be painted with one of the k colors. You have to paint all the posts such that no more than two adjacent fence posts have the same color.<br>
+Return the total number of ways you can paint the fence.</p>
+<p>Example 1:<br>
+<code>Input: n=3, k=2 ; Output: 6</code><br>
+Explanation:<br>
+post 1,   post 2, post 3<br>
+way1    0         0       1<br>
+way2    0         1       0<br>
+way3    0         1       1<br>
+way4    1         0       0<br>
+way5    1         0       1<br>
+way6    1         1       0<br>
+Example 2:<br>
+<code>Input: n=2, k=2 ; Output: 4</code><br>
+Explanation:<br>
+post 1,   post 2<br>
+way1    0         0<br>
+way2    0         1<br>
+way3    1         0<br>
+way4    1         1<br>
+<strong>Notice:</strong> n and k are non-negative integers.</p>
+<a id="more"></a>
+<h2 id="solution-dp-sliding-array"><a class="markdownIt-Anchor" href="#solution-dp-sliding-array"></a> Solution : DP + Sliding Array</h2>
+<ol>
+<li>For post1: we have <em><strong>k</strong></em> choices;</li>
+<li>For post2: we have <em><strong>k * k</strong></em> choices;</li>
+<li>For post3:
+<ul>
+<li>if its color is same as post 2, then we have <em><strong>k * (k - 1)</strong></em> choices;</li>
+<li>if its color is diff with post 2, then we have <em><strong>k * k * (k - 1)</strong></em> choices;<br>
+<font color="#06bcf9"><br>
+Therefore the state transfer function is <br><br>
+<code>dp[i] = (k - 1) * (dp[i - 1] + dp[i - 2]);</code><br>
+</font></li>
+</ul>
+</li>
+</ol>
+<p>Then we can use the <strong>sliding array</strong> to optimze the space complexity.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numWays</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, k, k * k, <span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> dp[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">2</span>) <span class="keyword">return</span> dp[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		dp[<span class="number">3</span>] = (k - <span class="number">1</span>) * (dp[<span class="number">1</span>] + dp[<span class="number">2</span>]);</span><br><span class="line">		dp[<span class="number">1</span>] = dp[<span class="number">2</span>];</span><br><span class="line">		dp[<span class="number">2</span>] = dp[<span class="number">3</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">3</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/09/leetcode202/" class="archive-article-date">
-  <time datetime="2019-04-09T15:40:59.000Z" itemprop="datePublished">Apr 9</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/leetcode202/">Happy Number</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/09/leetcode204/" class="archive-article-date">
-  <time datetime="2019-04-09T15:38:37.000Z" itemprop="datePublished">Apr 9</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/lintcodeQ514/" data-id="cjuueh0q4007zksvezm4czawk" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/leetcode204/">Count Primes</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/tags/HashTable/">&laquo; Prev</a><a class="page-number" href="/tags/HashTable/">1</a><span class="page-number current">2</span>
-  </nav>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/23/lintcodeQ515/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Paint House</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
