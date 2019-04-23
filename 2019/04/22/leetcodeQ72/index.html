@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Tong Shi&#39;s Blog">
 <meta property="og:description" content="LeetCode Q 72 - Edit Distance Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2. You have the following 3 operations permitted on a word:  Inse">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-23T00:14:59.521Z">
+<meta property="og:updated_time" content="2019-04-23T00:22:50.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Edit Distance">
 <meta name="twitter:description" content="LeetCode Q 72 - Edit Distance Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2. You have the following 3 operations permitted on a word:  Inse">
@@ -92,19 +92,19 @@
         <h1 id="leetcode-q-72-edit-distance"><a class="markdownIt-Anchor" href="#leetcode-q-72-edit-distance"></a> LeetCode Q 72 - Edit Distance</h1>
 <p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.<br>
 You have the following 3 operations permitted on a word:</p>
-<ol>
-<li>Insert a character</li>
-<li>Delete a character</li>
-<li>Replace a character<br>
-Example 1:<br>
+<ul>
+<li><strong>Insert a character</strong></li>
+<li><strong>Delete a character</strong></li>
+<li><strong>Replace a character</strong></li>
+</ul>
+<p>Example 1:<br>
 <code>Input: word1 = &quot;horse&quot;, word2 = &quot;ros&quot; ; Output: 3</code><br>
 Explanation:<br>
 <code>horse -&gt; rorse (replace 'h' with 'r') rorse -&gt; rose (remove 'r') rose -&gt; ros (remove 'e')</code><br>
 Example 2:<br>
 <code>Input: word1 = &quot;intention&quot;, word2 = &quot;execution&quot; ; Output: 5</code><br>
 Explanation:<br>
-<code>intention -&gt; inention (remove 't') inention -&gt; enention (replace 'i' with 'e') enention -&gt; exention (replace 'n' with 'x') exention -&gt; exection (replace 'n' with 'c') exection -&gt; execution (insert 'u')</code></li>
-</ol>
+<code>intention -&gt; inention (remove 't') inention -&gt; enention (replace 'i' with 'e') enention -&gt; exention (replace 'n' with 'x') exention -&gt; exection (replace 'n' with 'c') exection -&gt; execution (insert 'u')</code></p>
 <a id="more"></a>
 <h2 id="solution-dp"><a class="markdownIt-Anchor" href="#solution-dp"></a> Solution : DP</h2>
 <p>dp[i][j]: the distance between ith char in word1 and jth char in word2</p>
@@ -123,7 +123,7 @@ Explanation:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/22/leetcodeQ72/" data-id="cjut19yob00eh5kvez9x3socx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/22/leetcodeQ72/" data-id="cjut1pzwq0065ggvew15riihy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>

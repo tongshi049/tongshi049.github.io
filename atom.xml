@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-23T00:14:59.521Z</updated>
+  <updated>2019-04-23T00:22:50.276Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,28 +21,28 @@
     <link href="http://yoursite.com/2019/04/22/leetcodeQ72/"/>
     <id>http://yoursite.com/2019/04/22/leetcodeQ72/</id>
     <published>2019-04-23T00:10:51.000Z</published>
-    <updated>2019-04-23T00:14:59.521Z</updated>
+    <updated>2019-04-23T00:22:50.276Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="leetcode-q-72-edit-distance"><a class="markdownIt-Anchor" href="#leetcode-q-72-edit-distance"></a> LeetCode Q 72 - Edit Distance</h1><p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.<br>You have the following 3 operations permitted on a word:</p><ol><li>Insert a character</li><li>Delete a character</li><li>Replace a character<br>Example 1:<br><code>Input: word1 = &quot;horse&quot;, word2 = &quot;ros&quot; ; Output: 3</code><br>Explanation:<br><code>horse -&gt; rorse (replace 'h' with 'r') rorse -&gt; rose (remove 'r') rose -&gt; ros (remove 'e')</code><br>Example 2:<br><code>Input: word1 = &quot;intention&quot;, word2 = &quot;execution&quot; ; Output: 5</code><br>Explanation:<br><code>intention -&gt; inention (remove 't') inention -&gt; enention (replace 'i' with 'e') enention -&gt; exention (replace 'n' with 'x') exention -&gt; exection (replace 'n' with 'c') exection -&gt; execution (insert 'u')</code></li></ol><a id="more"></a><h2 id="solution-dp"><a class="markdownIt-Anchor" href="#solution-dp"></a> Solution : DP</h2><p>dp[i][j]: the distance between ith char in word1 and jth char in word2</p><ul><li>if (word1.charAt(i) == word1.charAt(j)) dp[i][j] = dp[i - 1][j - 1];</li><li>else we can get to j from i though<ul><li>replace a char, dp[i][j] = dp[i - 1][j - 1]</li><li>delete a char, dp[i][j] = dp[i][j - 1];</li><li>insert a char, dp[i][j] = dp[i - 1][j];</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (word1.length() == <span class="number">0</span>) <span class="keyword">return</span> word2.length(); <span class="comment">// insert</span></span><br><span class="line"><span class="keyword">if</span> (word2.length() == <span class="number">0</span>) <span class="keyword">return</span> word1.length(); <span class="comment">// delete</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> len1 = word1.length(), len2 = word2.length();</span><br><span class="line"><span class="comment">// dp[i][j]: the distance between ith char in word1 and jth char in word2</span></span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len1 + <span class="number">1</span>][len2 + <span class="number">1</span>];</span><br><span class="line"><span class="comment">// word1 is ""</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len2; i++) </span><br><span class="line">dp[<span class="number">0</span>][i] = i; </span><br><span class="line"><span class="comment">// word2 is ""</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len1; i++) </span><br><span class="line">dp[i][<span class="number">0</span>] = i;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len1; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len2; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>))</span><br><span class="line">dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">dp[i][j] = Math.min(Math.min(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], dp[i][j - <span class="number">1</span>]), dp[i - <span class="number">1</span>][j]) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[len1][len2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="leetcode-q-72-edit-distance"><a class="markdownIt-Anchor" href="#leetcode-q-72-edit-distance"></a> LeetCode Q 72 - Edit Distance</h1><p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.<br>You have the following 3 operations permitted on a word:</p><ul><li><strong>Insert a character</strong></li><li><strong>Delete a character</strong></li><li><strong>Replace a character</strong></li></ul><p>Example 1:<br><code>Input: word1 = &quot;horse&quot;, word2 = &quot;ros&quot; ; Output: 3</code><br>Explanation:<br><code>horse -&gt; rorse (replace 'h' with 'r') rorse -&gt; rose (remove 'r') rose -&gt; ros (remove 'e')</code><br>Example 2:<br><code>Input: word1 = &quot;intention&quot;, word2 = &quot;execution&quot; ; Output: 5</code><br>Explanation:<br><code>intention -&gt; inention (remove 't') inention -&gt; enention (replace 'i' with 'e') enention -&gt; exention (replace 'n' with 'x') exention -&gt; exection (replace 'n' with 'c') exection -&gt; execution (insert 'u')</code></p><a id="more"></a><h2 id="solution-dp"><a class="markdownIt-Anchor" href="#solution-dp"></a> Solution : DP</h2><p>dp[i][j]: the distance between ith char in word1 and jth char in word2</p><ul><li>if (word1.charAt(i) == word1.charAt(j)) dp[i][j] = dp[i - 1][j - 1];</li><li>else we can get to j from i though<ul><li>replace a char, dp[i][j] = dp[i - 1][j - 1]</li><li>delete a char, dp[i][j] = dp[i][j - 1];</li><li>insert a char, dp[i][j] = dp[i - 1][j];</li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (word1.length() == <span class="number">0</span>) <span class="keyword">return</span> word2.length(); <span class="comment">// insert</span></span><br><span class="line"><span class="keyword">if</span> (word2.length() == <span class="number">0</span>) <span class="keyword">return</span> word1.length(); <span class="comment">// delete</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> len1 = word1.length(), len2 = word2.length();</span><br><span class="line"><span class="comment">// dp[i][j]: the distance between ith char in word1 and jth char in word2</span></span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len1 + <span class="number">1</span>][len2 + <span class="number">1</span>];</span><br><span class="line"><span class="comment">// word1 is ""</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len2; i++) </span><br><span class="line">dp[<span class="number">0</span>][i] = i; </span><br><span class="line"><span class="comment">// word2 is ""</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= len1; i++) </span><br><span class="line">dp[i][<span class="number">0</span>] = i;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len1; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len2; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>))</span><br><span class="line">dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">dp[i][j] = Math.min(Math.min(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], dp[i][j - <span class="number">1</span>]), dp[i - <span class="number">1</span>][j]) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[len1][len2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;leetcode-q-72-edit-distance&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-72-edit-distance&quot;&gt;&lt;/a&gt; LeetCode Q 72 - Edit Distance&lt;/h1&gt;
 &lt;p&gt;Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.&lt;br&gt;
 You have the following 3 operations permitted on a word:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Insert a character&lt;/li&gt;
-&lt;li&gt;Delete a character&lt;/li&gt;
-&lt;li&gt;Replace a character&lt;br&gt;
-Example 1:&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Insert a character&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Delete a character&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Replace a character&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
 &lt;code&gt;Input: word1 = &amp;quot;horse&amp;quot;, word2 = &amp;quot;ros&amp;quot; ; Output: 3&lt;/code&gt;&lt;br&gt;
 Explanation:&lt;br&gt;
 &lt;code&gt;horse -&amp;gt; rorse (replace &#39;h&#39; with &#39;r&#39;) rorse -&amp;gt; rose (remove &#39;r&#39;) rose -&amp;gt; ros (remove &#39;e&#39;)&lt;/code&gt;&lt;br&gt;
 Example 2:&lt;br&gt;
 &lt;code&gt;Input: word1 = &amp;quot;intention&amp;quot;, word2 = &amp;quot;execution&amp;quot; ; Output: 5&lt;/code&gt;&lt;br&gt;
 Explanation:&lt;br&gt;
-&lt;code&gt;intention -&amp;gt; inention (remove &#39;t&#39;) inention -&amp;gt; enention (replace &#39;i&#39; with &#39;e&#39;) enention -&amp;gt; exention (replace &#39;n&#39; with &#39;x&#39;) exention -&amp;gt; exection (replace &#39;n&#39; with &#39;c&#39;) exection -&amp;gt; execution (insert &#39;u&#39;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;code&gt;intention -&amp;gt; inention (remove &#39;t&#39;) inention -&amp;gt; enention (replace &#39;i&#39; with &#39;e&#39;) enention -&amp;gt; exention (replace &#39;n&#39; with &#39;x&#39;) exention -&amp;gt; exection (replace &#39;n&#39; with &#39;c&#39;) exection -&amp;gt; execution (insert &#39;u&#39;)&lt;/code&gt;&lt;/p&gt;
     
     </summary>
     
@@ -215,9 +215,9 @@ Explanation: [4,-1,2,1] has the largest sum = 6.&lt;br&gt;
     
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
-    
       <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
     
   </entry>
   
@@ -248,9 +248,9 @@ Explanation: The longest valid parentheses substring is “()()”&lt;/p&gt;
     
       <category term="String" scheme="http://yoursite.com/tags/String/"/>
     
-      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
-    
       <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
+    
+      <category term="Stack" scheme="http://yoursite.com/tags/Stack/"/>
     
   </entry>
   
@@ -675,9 +675,9 @@ Find all strobogrammatic numbers that are of length = n.&lt;/p&gt;
     
       <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
     
-      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
-    
       <category term="Recursion" scheme="http://yoursite.com/tags/Recursion/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
     
   </entry>
   
