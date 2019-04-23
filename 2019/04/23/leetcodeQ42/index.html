@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Trapping Rain Water | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 42 - Trapping Rain Water Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.  The above e">
+<meta name="keywords" content="LeetCode,DP,Stack,Two Pointers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trapping Rain Water">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/leetcodeQ42/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 42 - Trapping Rain Water Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.  The above e">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/04/23/leetcodeQ42/leetcodeQ42-1.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/23/leetcodeQ42/leetcodeQ42-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/23/leetcodeQ42/leetcodeQ42-3.png">
+<meta property="og:updated_time" content="2019-04-23T15:32:07.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Trapping Rain Water">
+<meta name="twitter:description" content="LeetCode Q 42 - Trapping Rain Water Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.  The above e">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/23/leetcodeQ42/leetcodeQ42-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ42" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/23/leetcodeQ42/" class="article-date">
+  <time datetime="2019-04-23T14:14:37.000Z" itemprop="datePublished">2019-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Trapping Rain Water
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-42-trapping-rain-water"><a class="markdownIt-Anchor" href="#leetcode-q-42-trapping-rain-water"></a> LeetCode Q 42 - Trapping Rain Water</h1>
+<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.<br>
+<img src="leetcodeQ42-1.png" width="30%" height="30%"><br>
+The above elevation map is represented by array [2,1,0,2,4]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!<br>
+Example:<br>
+<code>Input: [2,1,0,2,4] ; Output: 3</code></p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-dp"><a class="markdownIt-Anchor" href="#solution-1-dp"></a> Solution 1: DP</h3>
+<ol>
+<li>Build two arrays <code>left[] and right[]</code>, which stores the maximum height of the water considering only its left and its right, respectively.</li>
+<li>Traverse the arrays, calculate <code>Sum(min(left[i], right[i]) - height[i])</code>. This is because the maximum water it can trap depends both on its left and right.</li>
+</ol>
+<p>We can use the following graph to explain.<br>
+<img src="leetcodeQ42-2.png" width="50%" height="50%"></p>
+<ol>
+<li>the <strong>yellow shade</strong> shows the water trapped only considering its <strong>left</strong></li>
+<li>the <strong>green shade</strong> shows the water trapped only considering its <strong>right</strong></li>
+<li>the <strong>blue shade</strong> shows their intersection, the sum of which is the answer.</li>
+</ol>
+<p><strong>Tips:</strong> in this question we actually need to consider the influence of both left and right. We simply this type of question by only consider left or right at a time and find the intersection.<br>
+<strong>Similar Questions:</strong> {}, {}</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> len = height.length;</span><br><span class="line">	<span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">	<span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"></span><br><span class="line">	left[<span class="number">0</span>] = height[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)</span><br><span class="line">		left[i] = Math.max(left[i - <span class="number">1</span>], height[i]);</span><br><span class="line"></span><br><span class="line">	right[len - <span class="number">1</span>] = height[len - <span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">		right[i] = Math.max(right[i + <span class="number">1</span>], height[i]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) </span><br><span class="line">		res += Math.min(left[i], right[i]) - height[i];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-stack"><a class="markdownIt-Anchor" href="#solution-2-stack"></a> Solution 2: Stack</h3>
+<p>The <strong>Key point</strong> is We use the stack to store the positions, the corresponding heights of which are ordered <strong>decreasingly</strong>. So the <strong>top</strong> int stored in the stack is <strong>the pos of local minimum height</strong>. When we meet a height, which is higher than the height corresponding ot the top element in the stack, we find the vally, which can trap water.</p>
+<p>Using the stack, we fill the water layer by layer, shown as follows.<br>
+<img src="leetcodeQ42-3.png" width="30%" height="30%"></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>, curr = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (curr &lt; height.length) &#123;</span><br><span class="line">		<span class="keyword">while</span> (!stack.isEmpty() || height[curr] &gt; height[stack.peek()]) &#123;</span><br><span class="line">			<span class="keyword">int</span> top = stack.pop(); <span class="comment">// we pop the pos of local minimum height</span></span><br><span class="line">			<span class="keyword">if</span> (stack.isEmpty) <span class="keyword">break</span>; </span><br><span class="line">			<span class="keyword">int</span> dist = curr - stack.peek() - <span class="number">1</span>; </span><br><span class="line">			<span class="keyword">int</span> height = Math.min(height[curr], height[stack.peek()]) - height[top];</span><br><span class="line">			res += dist * height;</span><br><span class="line">		&#125;</span><br><span class="line">		stack.push(curr++);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ42/" data-id="cjutvf27a00d770ve3kh0hya5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Two-Pointers/">Two Pointers</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/23/leetcodeQ91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Decode Ways
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/22/leetcodeQ72/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Edit Distance</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.38px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 11.54px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.92px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.77px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.54px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.54px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 17.69px;">DP</a> <a href="/tags/HashTable/" style="font-size: 19.23px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.31px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.77px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.08px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.77px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.08px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.46px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.77px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 10.77px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.08px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.54px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.62px;">Stack</a> <a href="/tags/String/" style="font-size: 16.15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.77px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.08px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.54px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.85px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/23/lintcodeQ515/">Paint House</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/leetcodeQ213/">House Robber II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/leetcodeQ198/">House Robber</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/leetcodeQ309/">Best Time to Buy and Sell Stock with Cooldown</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/23/leetcodeQ123/">Best Time to Buy and Sell Stock III</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

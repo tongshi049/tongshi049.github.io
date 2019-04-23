@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-leetcodeQ350" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-synchronized-keyword-java" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/15/leetcodeQ350/" class="article-date">
-  <time datetime="2019-04-15T17:14:04.000Z" itemprop="datePublished">2019-04-15</time>
+    <a href="/2019/04/16/synchronized-keyword-java/" class="article-date">
+  <time datetime="2019-04-17T01:31:26.000Z" itemprop="datePublished">2019-04-16</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/leetcodeQ350/">Intersection of Two Arrays II</a>
+      <a class="article-title" href="/2019/04/16/synchronized-keyword-java/">synchronized Keyword in Java</a>
     </h1>
   
 
@@ -86,32 +86,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-350-intersection-of-two-arrays-ii"><a class="markdownIt-Anchor" href="#leetcode-q-350-intersection-of-two-arrays-ii"></a> LeetCode Q 350 - Intersection of Two Arrays II</h1>
-<p>Given two arrays, write a function to compute their intersection.<br>
-<strong>Note:</strong></p>
-<ul>
-<li>Each element in the result should appear as many times as it shows in both arrays.</li>
-<li>The result can be in any order.</li>
-</ul>
-<p><strong>Follow up:</strong></p>
-<ul>
-<li>What if the given array is already sorted? How would you optimize your algorithm?</li>
-<li>What if nums1’s size is small compared to nums2’s size? Which algorithm is better?</li>
-<li>What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?</li>
-</ul>
-<p>Similar Question: <a href="/2019/04/15/leetcodeQ349/" title="Intersection of Two Arrays">Intersection of Two Arrays</a></p>
+        <h2 id="1-introduction"><a class="markdownIt-Anchor" href="#1-introduction"></a> 1. Introduction</h2>
+<p> The synchronized keyword is all about different threads reading and writing to the same variables, objects and resources. This is not a trivial topic in Java, but here is a quote from Sun:</p>
+<blockquote style="text-align:justify;background-color: #ccfff5">
+&emsp;synchronized methods enable a simple strategy for preventing thread interference and memory consistency errors: if an object is visible to more than one thread, all reads or writes to that object's variables are done through synchronized methods.
+</blockquote>
+<p> In a very, very small nutshell: When you have two threads that are reading and writing to the same ‘resource’.</p>
         
           <p class="article-more-link">
-            <a href="/2019/04/15/leetcodeQ350/#more">Read More</a>
+            <a href="/2019/04/16/synchronized-keyword-java/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ350/" data-id="cjut1y5cj003qecve0gq4zrjh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/16/synchronized-keyword-java/" data-id="cjutvdxid00c170veyi64aevy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sort/">Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Two-Pointers/">Two Pointers</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
 
     </footer>
   </div>
@@ -120,10 +112,10 @@
 
 
   
-    <article id="post-leetcodeQ349" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-java-lang-object-method" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/15/leetcodeQ349/" class="article-date">
-  <time datetime="2019-04-15T17:04:20.000Z" itemprop="datePublished">2019-04-15</time>
+    <a href="/2019/04/16/java-lang-object-method/" class="article-date">
+  <time datetime="2019-04-17T00:21:17.000Z" itemprop="datePublished">2019-04-16</time>
 </a>
     
   </div>
@@ -134,7 +126,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/leetcodeQ349/">Intersection of Two Arrays</a>
+      <a class="article-title" href="/2019/04/16/java-lang-object-method/">Java Thread - Commonly Used Methods - java.lang.Object Class</a>
     </h1>
   
 
@@ -142,26 +134,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-349-intersection-of-two-arrays"><a class="markdownIt-Anchor" href="#leetcode-q-349-intersection-of-two-arrays"></a> LeetCode Q 349 - Intersection of Two Arrays</h1>
-<p>Given two arrays, write a function to compute their intersection.<br>
-<strong>Note:</strong></p>
-<ul>
-<li>Each element in the result must be unique.</li>
-<li>The result can be in any order.</li>
-</ul>
-<p>Similar Question: <a href="/2019/04/15/leetcodeQ350/" title="Intersection of Two Arrays II">Intersection of Two Arrays II</a></p>
+        <p><font size="+1"><code>wait()</code> and <code>notify()</code> method is in java.lang.Object Class</font><br>
+<strong><font color="#06bcf9">Why they are in java.lang.Object Class rather than in java.lang.Thread Class?</font></strong></p>
+<table bgcolor="#ccf2ff" ">
+	<td>
+	&emsp;The threads are the things accessing the data structure. The locks are on the data structure object in order to keep the threads from accessing the data structure in an unsafe way.<br>
+	&emsp;In Java, we use lock objects as synchronization, mutex, and communication points between threads. We <span style="font-weight: bold;">synchronize on a lock object</span> to get mutex access to an important code block and to synchronize memory. We <span style="font-weight: bold;">wait on an object</span> if we are waiting for some condition to change – some resource to become available. We <span style="font-weight: bold;">notify on an object</span> if we want to awaken sleeping threads.
+	</td>
+</table>
         
           <p class="article-more-link">
-            <a href="/2019/04/15/leetcodeQ349/#more">Read More</a>
+            <a href="/2019/04/16/java-lang-object-method/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ349/" data-id="cjut1y5cf003lecvep1ubevx9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/16/java-lang-object-method/" data-id="cjutvdxay000470vepsulmrez" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sort/">Sort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Two-Pointers/">Two Pointers</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Basic/">Java Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
 
     </footer>
   </div>
@@ -170,10 +162,10 @@
 
 
   
-    <article id="post-leetcodeQ300" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcodeQ436" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/15/leetcodeQ300/" class="article-date">
-  <time datetime="2019-04-15T16:23:23.000Z" itemprop="datePublished">2019-04-15</time>
+    <a href="/2019/04/16/leetcodeQ436/" class="article-date">
+  <time datetime="2019-04-16T18:03:52.000Z" itemprop="datePublished">2019-04-16</time>
 </a>
     
   </div>
@@ -184,7 +176,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/leetcodeQ300/">Longest Increasing Subsequence</a>
+      <a class="article-title" href="/2019/04/16/leetcodeQ436/">Find Right Interval</a>
     </h1>
   
 
@@ -192,20 +184,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-300-longest-increasing-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-300-longest-increasing-subsequence"></a> LeetCode Q 300 - Longest Increasing Subsequence</h1>
-<p>Given an unsorted array of integers, find the length of longest increasing subsequence.</p>
+        <h1 id="leetcode-q-436-find-right-interval"><a class="markdownIt-Anchor" href="#leetcode-q-436-find-right-interval"></a> LeetCode Q 436 - Find Right Interval</h1>
+<p>Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the “right” of i.<br>
+For any interval i, you need to store the minimum interval j’s index, which means that the interval j has the minimum start point to build the “right” relationship for interval i. If the interval j doesn’t exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.</p>
         
           <p class="article-more-link">
-            <a href="/2019/04/15/leetcodeQ300/#more">Read More</a>
+            <a href="/2019/04/16/leetcodeQ436/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ300/" data-id="cjut1y5c0002zecvehgtq7ezd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ436/" data-id="cjutvdxfh006k70vemce9v376" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Heap/">Heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sweep-Line/">Sweep Line</a></li></ul>
 
     </footer>
   </div>
@@ -214,10 +207,10 @@
 
 
   
-    <article id="post-leetcodeQ209" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcodeQ218" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/leetcodeQ209/" class="article-date">
-  <time datetime="2019-04-14T17:36:58.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2019/04/16/leetcodeQ218/" class="article-date">
+  <time datetime="2019-04-16T17:31:46.000Z" itemprop="datePublished">2019-04-16</time>
 </a>
     
   </div>
@@ -228,7 +221,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/leetcodeQ209/">Minimum Size Subarray Sum</a>
+      <a class="article-title" href="/2019/04/16/leetcodeQ218/">The Skyline Problem</a>
     </h1>
   
 
@@ -236,20 +229,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-209-minimum-size-subarray-sum"><a class="markdownIt-Anchor" href="#leetcode-q-209-minimum-size-subarray-sum"></a> LeetCode Q 209 - Minimum Size Subarray Sum</h1>
-<p>Given an array of <strong>n</strong> positive integers and a positive integer <strong>s</strong>, find the minimal length of a <strong>contiguous</strong> subarray of which the sum ≥ s. If there isn’t one, return 0 instead.</p>
+        <h1 id="leetcode-q-218-the-skyline-problem"><a class="markdownIt-Anchor" href="#leetcode-q-218-the-skyline-problem"></a> LeetCode Q 218 - The Skyline Problem</h1>
+<p>A city’s skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).</p>
         
           <p class="article-more-link">
-            <a href="/2019/04/14/leetcodeQ209/#more">Read More</a>
+            <a href="/2019/04/16/leetcodeQ218/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/leetcodeQ209/" data-id="cjut1y5b5001gecve4yqygj1q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ218/" data-id="cjutvdxdm003p70veob8ta862" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sliding-Window/">Sliding Window</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Heap/">Heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sweep-Line/">Sweep Line</a></li></ul>
 
     </footer>
   </div>
@@ -258,10 +251,10 @@
 
 
   
-    <article id="post-leetcodeQ167-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcodeQ392" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/leetcodeQ167-1/" class="article-date">
-  <time datetime="2019-04-14T17:35:27.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2019/04/16/leetcodeQ392/" class="article-date">
+  <time datetime="2019-04-16T17:10:15.000Z" itemprop="datePublished">2019-04-16</time>
 </a>
     
   </div>
@@ -272,7 +265,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/leetcodeQ167-1/">Two Sum II - Input array is sorted</a>
+      <a class="article-title" href="/2019/04/16/leetcodeQ392/">Is Subsequence</a>
     </h1>
   
 
@@ -280,18 +273,113 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-167-two-sum-ii-input-array-is-sorted"><a class="markdownIt-Anchor" href="#leetcode-q-167-two-sum-ii-input-array-is-sorted"></a> LeetCode Q 167 - Two Sum II - Input array is sorted</h1>
-<p>Given an array of integers that is already <em><strong>sorted in ascending order</strong></em>, find two numbers such that they add up to a specific target number.</p>
-<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.</p>
+        <h1 id="leetcode-q-392-is-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-392-is-subsequence"></a> LeetCode Q 392 - Is Subsequence</h1>
+<p>Given a string s and a string t, check if s is subsequence of t.<br>
+You may assume that there is only lower case English letters in both s and t. t is potentially a very long (length is about  500,000) string, and s is a short string (&lt;=100).<br>
+<strong>Follow up:</strong><br>
+If there are lots of incoming S, say S1, S2, … , Sk where k &gt;= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?</p>
         
           <p class="article-more-link">
-            <a href="/2019/04/14/leetcodeQ167-1/#more">Read More</a>
+            <a href="/2019/04/16/leetcodeQ392/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/leetcodeQ167-1/" data-id="cjut1y5ax0013ecvey4696i7j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ392/" data-id="cjutvdxfb006a70vefn73pfnr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/String/">String</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ378" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/16/leetcodeQ378/" class="article-date">
+  <time datetime="2019-04-16T16:13:03.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/16/leetcodeQ378/">Kth Smallest Element in a Sorted Matrix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-378-kth-smallest-element-in-a-sorted-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-378-kth-smallest-element-in-a-sorted-matrix"></a> LeetCode Q 378 - Kth Smallest Element in a Sorted Matrix</h1>
+<p>Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.<br>
+<strong>Note</strong> that it is the kth smallest element in the sorted order, not the kth distinct element.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/16/leetcodeQ378/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ378/" data-id="cjutvdxf8006370vee10pwaku" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Heap/">Heap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ374" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/16/leetcodeQ374/" class="article-date">
+  <time datetime="2019-04-16T16:01:31.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/16/leetcodeQ374/">Guess Number Higher or Lower</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-374-guess-number-higher-or-lower"><a class="markdownIt-Anchor" href="#leetcode-q-374-guess-number-higher-or-lower"></a> LeetCode Q 374 - Guess Number Higher or Lower</h1>
+<p>We are playing the Guess Game. The game is as follows:<br>
+I pick a number from 1 to n. You have to guess which number I picked.<br>
+Every time you guess wrong, I’ll tell you whether the number is higher or lower.<br>
+You call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):<br>
+<code>-1 : My number is lower 1 : My number is higher 0 : Congrats! You got it!</code></p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/16/leetcodeQ374/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/16/leetcodeQ374/" data-id="cjutvdxfd006c70ve8hd3nh0f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -303,10 +391,10 @@
 
 
   
-    <article id="post-leetcodeQ162" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcodeQ718" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/leetcodeQ162/" class="article-date">
-  <time datetime="2019-04-14T17:09:42.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2019/04/15/leetcodeQ718/" class="article-date">
+  <time datetime="2019-04-15T20:40:57.000Z" itemprop="datePublished">2019-04-15</time>
 </a>
     
   </div>
@@ -317,7 +405,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/leetcodeQ162/">Find Peak Element</a>
+      <a class="article-title" href="/2019/04/15/leetcodeQ718/">Maximum Length of Repeated Subarray</a>
     </h1>
   
 
@@ -325,23 +413,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-162-find-peak-element"><a class="markdownIt-Anchor" href="#leetcode-q-162-find-peak-element"></a> LeetCode Q 162 - Find Peak Element</h1>
-<p>A peak element is an element that is greater than its neighbors.<br>
-Given an input array nums, where nums[i] ≠ nums[i+1], find a peak element and return its index.<br>
-The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.<br>
-You may imagine that nums[-1] = nums[n] = -∞.</p>
+        <h1 id="leetcode-q-718-maximum-length-of-repeated-subarray"><a class="markdownIt-Anchor" href="#leetcode-q-718-maximum-length-of-repeated-subarray"></a> LeetCode Q 718 - Maximum Length of Repeated Subarray</h1>
+<p>Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.<br>
+<strong>Note:</strong></p>
+<ol>
+<li>&lt;= len(A), len(B) &lt;= 1000</li>
+<li>&lt;= A[i], B[i] &lt; 100</li>
+</ol>
         
           <p class="article-more-link">
-            <a href="/2019/04/14/leetcodeQ162/#more">Read More</a>
+            <a href="/2019/04/15/leetcodeQ718/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/leetcodeQ162/" data-id="cjut1y5av0011ecvebfe2hbpl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ718/" data-id="cjutvdxhn00b070vex69t6z0d" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
     </footer>
   </div>
@@ -350,10 +440,10 @@ You may imagine that nums[-1] = nums[n] = -∞.</p>
 
 
   
-    <article id="post-leetcodeQ222" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-leetcodeQ142" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/leetcodeQ222/" class="article-date">
-  <time datetime="2019-04-14T16:08:19.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2019/04/15/leetcodeQ142/" class="article-date">
+  <time datetime="2019-04-15T19:52:15.000Z" itemprop="datePublished">2019-04-15</time>
 </a>
     
   </div>
@@ -364,7 +454,7 @@ You may imagine that nums[-1] = nums[n] = -∞.</p>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/leetcodeQ222/">Count Complete Tree Nodes</a>
+      <a class="article-title" href="/2019/04/15/leetcodeQ142/">Linked List Cycle II</a>
     </h1>
   
 
@@ -372,162 +462,68 @@ You may imagine that nums[-1] = nums[n] = -∞.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="leetcode-q-222-count-complete-tree-nodes"><a class="markdownIt-Anchor" href="#leetcode-q-222-count-complete-tree-nodes"></a> LeetCode Q 222 - Count Complete Tree Nodes</h1>
-<p>Given a complete binary tree, count the number of nodes.</p>
+        <h1 id="leetcode-q-142-linked-list-cycle-ii"><a class="markdownIt-Anchor" href="#leetcode-q-142-linked-list-cycle-ii"></a> LeetCode Q 142 - Linked List Cycle II</h1>
+<p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+<p>To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.</p>
+<p><strong>Note:</strong> Do not modify the linked list.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/15/leetcodeQ142/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ142/" data-id="cjutvdxbn000s70veg5mz2f2w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linked-List/">Linked List</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Two-Pointers/">Two Pointers</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ287" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/15/leetcodeQ287/" class="article-date">
+  <time datetime="2019-04-15T19:34:50.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/leetcodeQ287/">Find the Duplicate Number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-287-find-the-duplicate-number"><a class="markdownIt-Anchor" href="#leetcode-q-287-find-the-duplicate-number"></a> LeetCode Q 287 - Find the Duplicate Number</h1>
+<p>Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.</p>
 <p><strong>Note</strong>:<br>
-Definition of a complete binary tree from Wikipedia:<br>
-In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p>
+You <strong>must not</strong> modify the array (assume the array is read only).<br>
+You must use only constant, <strong>O(1) extra space</strong>.<br>
+Your runtime complexity should be less than O(n^2).<br>
+There is only one duplicate number in the array, but it could be repeated more than once.</p>
         
           <p class="article-more-link">
-            <a href="/2019/04/14/leetcodeQ222/#more">Read More</a>
+            <a href="/2019/04/15/leetcodeQ287/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/leetcodeQ222/" data-id="cjut1y5bc001qecvelcu876e1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ240" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/leetcodeQ240/" class="article-date">
-  <time datetime="2019-04-14T16:03:51.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/leetcodeQ240/">Search a 2D Matrix II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-240-search-a-2d-matrix-ii"><a class="markdownIt-Anchor" href="#leetcode-q-240-search-a-2d-matrix-ii"></a> LeetCode Q 240 - Search a 2D Matrix II</h1>
-<p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<ul>
-<li>Integers in each row are sorted in ascending from left to right.</li>
-<li>Integers in each column are sorted in ascending from top to bottom.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/14/leetcodeQ240/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/leetcodeQ240/" data-id="cjut1y5bj0023ecveda2zolgm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ74" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/12/leetcodeQ74/" class="article-date">
-  <time datetime="2019-04-12T21:35:15.000Z" itemprop="datePublished">2019-04-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/leetcodeQ74/">Search a 2D Matrix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-74-search-a-2d-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-74-search-a-2d-matrix"></a> LeetCode Q 74 - Search a 2D Matrix</h1>
-<p>Write an efficient algorithm that searches for a value in an <em>m</em> x <em>n</em> matrix. This matrix has the following properties:</p>
-<ul>
-<li>Integers in each row are sorted from left to right.</li>
-<li>The first integer of each row is greater than the last integer of the previous row.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/12/leetcodeQ74/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/leetcodeQ74/" data-id="cjut1y5e00068ecve0k582gib" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ34" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/12/leetcodeQ34/" class="article-date">
-  <time datetime="2019-04-12T21:26:54.000Z" itemprop="datePublished">2019-04-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/leetcodeQ34/">Find First and Last Position of Element in Sorted Array</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-34-find-first-and-last-position-of-element-in-sorted-array"><a class="markdownIt-Anchor" href="#leetcode-q-34-find-first-and-last-position-of-element-in-sorted-array"></a> LeetCode Q 34 - Find First and Last Position of Element in Sorted Array</h1>
-<p>Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.</p>
-<p>Your algorithm’s runtime complexity must be in the order of <strong>O(log n)</strong>.</p>
-<p>If the target is not found in the array, return [-1, -1].</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/12/leetcodeQ34/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/leetcodeQ34/" data-id="cjut1y5ca003eecvet40jh27m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/leetcodeQ287/" data-id="cjutvdxeh004v70vet52oihna" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -543,7 +539,7 @@ In a complete binary tree every level, except possibly the last, is completely f
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -557,7 +553,7 @@ In a complete binary tree every level, except possibly the last, is completely f
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15.45px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 11.82px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.27px;">Binary Search</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.82px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.82px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 15.45px;">DP</a> <a href="/tags/HashTable/" style="font-size: 19.09px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.91px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.64px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.91px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.64px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.18px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.91px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 10.91px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.82px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.55px;">Stack</a> <a href="/tags/String/" style="font-size: 16.36px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.91px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.64px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.82px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.64px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15.38px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 11.54px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.92px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.77px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.54px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.54px;">Counting Sort</a> <a href="/tags/DP/" style="font-size: 17.69px;">DP</a> <a href="/tags/HashTable/" style="font-size: 19.23px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.31px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.77px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.08px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.77px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.08px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.46px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.77px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 10.77px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.08px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.54px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.62px;">Stack</a> <a href="/tags/String/" style="font-size: 16.15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.77px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.08px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.54px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.85px;">Two Pointers</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -579,23 +575,23 @@ In a complete binary tree every level, except possibly the last, is completely f
       <ul>
         
           <li>
-            <a href="/2019/04/22/leetcodeQ72/">Edit Distance</a>
+            <a href="/2019/04/23/lintcodeQ515/">Paint House</a>
           </li>
         
           <li>
-            <a href="/2019/04/22/leetcodeQ70/">Climbing Stairs</a>
+            <a href="/2019/04/23/leetcodeQ213/">House Robber II</a>
           </li>
         
           <li>
-            <a href="/2019/04/22/leetcodeQ64/">Minimum Path Sum</a>
+            <a href="/2019/04/23/leetcodeQ198/">House Robber</a>
           </li>
         
           <li>
-            <a href="/2019/04/22/leetcodeQ63/">Unique Paths II</a>
+            <a href="/2019/04/23/leetcodeQ309/">Best Time to Buy and Sell Stock with Cooldown</a>
           </li>
         
           <li>
-            <a href="/2019/04/22/leetcodeQ62/">Unique Paths</a>
+            <a href="/2019/04/23/leetcodeQ123/">Best Time to Buy and Sell Stock III</a>
           </li>
         
       </ul>
