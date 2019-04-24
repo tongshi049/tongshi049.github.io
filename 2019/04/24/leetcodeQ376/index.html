@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>leetcodeQ376 | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LintCode Q 376 - Wiggle Subsequence A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first differe">
+<meta name="keywords" content="LeetCode,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcodeQ376">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/leetcodeQ376/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LintCode Q 376 - Wiggle Subsequence A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first differe">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-24T22:59:02.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="leetcodeQ376">
+<meta name="twitter:description" content="LintCode Q 376 - Wiggle Subsequence A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first differe">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ376" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ376/" class="article-date">
+  <time datetime="2019-04-24T22:38:24.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      leetcodeQ376
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="lintcode-q-376-wiggle-subsequence"><a class="markdownIt-Anchor" href="#lintcode-q-376-wiggle-subsequence"></a> LintCode Q 376 - Wiggle Subsequence</h1>
+<p>A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.<br>
+For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.<br>
+Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</p>
+<p>Example 1:<br>
+<code>Input: [1,7,4,9,2,5] ; Output: 6</code><br>
+Explanation: The entire sequence is a wiggle sequence.<br>
+Example 2:<br>
+<code>Input: [1,17,5,10,13,15,10,5,16,8] ; Output: 7</code><br>
+Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].<br>
+Example 3:<br>
+<code>Input: [1,2,3,4,5,6,7,8,9] ; Output: 2</code></p>
+<p><strong>Follow up:</strong> Can you do it in <strong>O(n)</strong> time?</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2>
+<h3 id="solution-1-traditional-dp"><a class="markdownIt-Anchor" href="#solution-1-traditional-dp"></a> Solution 1 : traditional DP</h3>
+<p>We use two arrays to store the states.</p>
+<ol>
+<li><code>up[i]</code>: the <em><strong>ith</strong></em> number is the <strong>peak</strong>.</li>
+<li><code>sell[i]</code>: the <em><strong>ith</strong></em> number is the <strong>vally</strong>.</li>
+</ol>
+<p>We update these two arrays depends on the following case:</p>
+<ol>
+<li><code>if (nums[i] &gt; nums[i - 1])</code>, which means the curr number is larger than its left, then we update <code>up[i] = Math.max(up[i - 1], down[i - 1] + 1)</code> and <code>down[i] keeps the same</code> (i.e. <code>down[i] = down[i - 1]</code>);</li>
+<li><code>if (nums[i] &lt; nums[i - 1])</code>, which means the curr number is smaller than its left, then we update <code>down[i] = Math.max(down[i - 1], up[i - 1] + 1)</code> and <code>up[i] keeps the same</code> (i.e. <code>up[i] = up[i - 1]</code>);</li>
+<li><code>if (nums[i] == nums[i - 1])</code>, we will neither update <code>up[i]</code> nor <code>sell[i]</code>, that is <code>up[i] = up[i - 1]</code> and <code>down[i] = down[i - 1]</code>.</li>
+</ol>
+<p><strong>Time Complexity: O(n)</strong><br>
+<strong>Space Complexity: O(n)</strong></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span>[] up = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="keyword">int</span>[] down = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">	up[<span class="number">0</span>] = <span class="number">1</span>; down[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">			up[i] = Math.max(up[i - <span class="number">1</span>], down[i - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">			down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">			down[i] = Math.max(down[i - <span class="number">1</span>], up[i - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">			up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">			down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> Math.max(up[nums.length - <span class="number">1</span>], down[nums.length - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-dp-optimized-space"><a class="markdownIt-Anchor" href="#solution-2-dp-optimized-space"></a> Solution 2 : DP Optimized Space</h3>
+<p>Using <em><strong>up</strong></em> and <em><strong>down</strong></em> instead of <code>up[i]</code> and <code>down[i]</code>, optimizing the <strong>space complecity</strong> to be <strong>O(1)</strong>.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> up = <span class="number">1</span>, down = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>])</span><br><span class="line">			up = Math.max(up, down + <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>])</span><br><span class="line">			down = Math.max(down, up + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> Math.max(up, down);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ376/" data-id="cjuvsury700gil4ve0a7sgxj5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/24/leetcodeQ377/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          leetcodeQ377
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/24/leetcodeQ416/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Partition Equal Subset Sum</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.38px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 11.54px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.92px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.77px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.54px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.54px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.23px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.46px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.31px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.77px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.08px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.77px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.85px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.69px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.77px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 11.54px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.08px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.54px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.62px;">Stack</a> <a href="/tags/String/" style="font-size: 16.15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.77px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.08px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.54px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.85px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.77px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ377/">leetcodeQ377</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ376/">leetcodeQ376</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ416/">Partition Equal Subset Sum</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ494/">Target Sum</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ647/">Palindromic Substrings</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

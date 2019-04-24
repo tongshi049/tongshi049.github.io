@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Target Sum | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LintCode Q 494 - Target Sum You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its">
+<meta name="keywords" content="LeetCode,DP,backtracking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Target Sum">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/leetcodeQ494/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LintCode Q 494 - Target Sum You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-24T22:20:37.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Target Sum">
+<meta name="twitter:description" content="LintCode Q 494 - Target Sum You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ494" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ494/" class="article-date">
+  <time datetime="2019-04-24T22:03:16.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Target Sum
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="lintcode-q-494-target-sum"><a class="markdownIt-Anchor" href="#lintcode-q-494-target-sum"></a> LintCode Q 494 - Target Sum</h1>
+<p>You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.<br>
+Find out how many ways to assign symbols to make sum of integers equal to target S.</p>
+<p>Example 1:<br>
+<code>Input: nums is [1, 1, 1, 1, 1], S is 3. ; Output: 5</code><br>
+Explanation:<br>
+<code>-1+1+1+1+1 = 3 +1-1+1+1+1 = 3 +1+1-1+1+1 = 3 +1+1+1-1+1 = 3 +1+1+1+1-1 = 3</code><br>
+There are 5 ways to assign symbols to make the sum of nums be target 3.<br>
+<strong>Note:</strong></p>
+<ul>
+<li>The length of the given array is positive and will not exceed 20.</li>
+<li>The sum of elements in the given array will not exceed 1000.<br>
+Your output answer is guaranteed to be fitted in a 32-bit integer.</li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2>
+<h3 id="solution-1-dfs-backtracking"><a class="markdownIt-Anchor" href="#solution-1-dfs-backtracking"></a> Solution 1 : DFS / backtracking</h3>
+<p><strong>Time Complexity: O(2^n)</strong></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> res;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	backtrack(nums, S, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S, <span class="keyword">int</span> index, <span class="keyword">int</span> currSum)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (index == nums.length) &#123;</span><br><span class="line">		<span class="keyword">if</span> (currSum == S) res++;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//explore</span></span><br><span class="line">	backtrack(nums, S, index + <span class="number">1</span>, currSum + nums[index]);</span><br><span class="line">	backtrack(nums, S, index + <span class="number">1</span>, currSum - nums[index]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-dp"><a class="markdownIt-Anchor" href="#solution-2-dp"></a> Solution 2 : DP</h3>
+<p><code>dp[i][j]</code> refers to the number of assignments which can lead to a sum of j upto the ith index.</p>
+<p><strong>State Transfer Function</strong><br>
+<code>dp[i][sum+nums[i]] = dp[i][sum+nums[i]]+dp[i-1][sum] dp[i][sum-nums[i]] = dp[i][sum-nums[i]]+dp[i-1][sum]</code></p>
+<p><strong>Note:</strong> we add an offset sum to the second index to avoid negative index value.</p>
+<p><strong>Time Complexity: O(kn)</strong><br>
+<strong>Time Complexity: O(kn)</strong></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> num: nums) sum += num;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length][<span class="number">2</span> * sum + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	dp[<span class="number">0</span>][sum + nums[i]] = <span class="number">1</span>;</span><br><span class="line">	dp[<span class="number">0</span>][sum - nums[i]] += <span class="number">1</span>; <span class="comment">// += not = !</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span> * sum + <span class="number">1</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (dp[i - <span class="number">1</span>][j] != <span class="number">0</span>) &#123;</span><br><span class="line">			    <span class="keyword">int</span> n = nums[i];</span><br><span class="line">				dp[i][j + n] += dp[i - <span class="number">1</span>][j];</span><br><span class="line">				dp[i][j - n] += dp[i - <span class="number">1</span>][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp[nums.length - <span class="number">1</span>][sum + S];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ494/" data-id="cjuvrlltm00gbl4vehuqgl0lq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/backtracking/">backtracking</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/24/leetcodeQ416/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Partition Equal Subset Sum
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/24/leetcodeQ647/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Palindromic Substrings</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.38px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 11.54px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.92px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.77px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.54px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.54px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.23px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.46px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.31px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.77px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.08px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.77px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.85px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.69px;">Math</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.77px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 11.54px;">Recursion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.08px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.54px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.62px;">Stack</a> <a href="/tags/String/" style="font-size: 16.15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.77px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.08px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.54px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.85px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.77px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ377/">leetcodeQ377</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ376/">leetcodeQ376</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ416/">Partition Equal Subset Sum</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ494/">Target Sum</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/24/leetcodeQ647/">Palindromic Substrings</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
