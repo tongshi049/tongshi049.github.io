@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Domino and Tromino Tiling | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 790 -  Domino and Tromino Tiling We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated. XX &amp;lt;- domino XX &amp;lt;- &amp;quot;L&amp;quot; tromino X Giv">
+<meta name="keywords" content="LeetCode,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Domino and Tromino Tiling">
+<meta property="og:url" content="http://yoursite.com/2019/04/25/leetcodeQ790/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 790 -  Domino and Tromino Tiling We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated. XX &amp;lt;- domino XX &amp;lt;- &amp;quot;L&amp;quot; tromino X Giv">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-25T22:25:29.322Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Domino and Tromino Tiling">
+<meta name="twitter:description" content="LeetCode Q 790 -  Domino and Tromino Tiling We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated. XX &amp;lt;- domino XX &amp;lt;- &amp;quot;L&amp;quot; tromino X Giv">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ790" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/25/leetcodeQ790/" class="article-date">
+  <time datetime="2019-04-25T20:46:51.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Domino and Tromino Tiling
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-790-domino-and-tromino-tiling"><a class="markdownIt-Anchor" href="#leetcode-q-790-domino-and-tromino-tiling"></a> LeetCode Q 790 -  Domino and Tromino Tiling</h1>
+<p>We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated.<br>
+<code>XX &lt;- domino XX &lt;- &quot;L&quot; tromino X</code><br>
+Given N, how many ways are there to tile a 2 x N board? <strong>Return your answer modulo 10^9 + 7.</strong></p>
+<p>(In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile.)</p>
+<p>Example:<br>
+<code>Input: 3 ; Output: 5</code><br>
+Explanation:<br>
+The five different ways are listed below, different letters indicates different tiles:<br>
+<code>XYZ XXZ XYY XXY XYY XYZ YYZ XZZ XYY XXY</code><br>
+<strong>Note:</strong> N  will be in range [1, 1000].</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2>
+<h3 id="solution-1-dp"><a class="markdownIt-Anchor" href="#solution-1-dp"></a> Solution 1: DP</h3>
+<ol>
+<li>
+<p><strong>State:</strong> <code>f[i][j]</code>, i: until which col the floor is all covered; j: the tail states.</p>
+<ul>
+<li><code>f[i][0]</code>: there is no redundant tail at ith col. (1st row: i, 2nd row: i)</li>
+<li><code>f[i][1]</code>: there is one more tail at 1st row. (1st row: i + 1, 2nd row: i)</li>
+<li><code>f[i][2]</code>: there is one more tail at 1st row. (1st row: i, 2nd row: i + 1)</li>
+</ul>
+</li>
+<li>
+<p><strong>state transfer fuction:</strong></p>
+<ul>
+<li><code>f[i][0] = f[i-1][0] + f[i - 2][0] + f[i-2][1] + f[i-2][2];</code><br>
+Put one type I vertically, or put two I types horizontally, or put L type (two directions)</li>
+<li><code>f[i][1] = f[i-1][0] + f[i-1][2];</code><br>
+Put a type I across the top row, or put an L-shape</li>
+<li><code>f[i][2] = f[i-1][0] + f[i-1][1];</code><br>
+Place a type I across the next line, or put an L type</li>
+</ul>
+</li>
+<li>
+<p><strong>boundary cases:</strong><br>
+<code>f[0][0] = f[1][0] = f[1][1] = f[1][2] = 1</code></p>
+</li>
+</ol>
+<p><strong>Caution:</strong> use <em><strong>long</strong></em> to avoid <strong>integer overflow</strong></p>
+<ol start="4">
+<li><strong>Optimization:</strong><br>
+Since <code>f[i]</code> is only depends on <code>f[i-1]</code> and <code>f[i-2]</code>, we can use sliding array to optimize space complexity to O(1).</li>
+</ol>
+<p><strong>Time Complexity: O(n)</strong><br>
+<strong>Space Complexity: O(3n)</strong></p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MOD = <span class="number">1000000007</span>; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTilings</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (N &lt;= <span class="number">2</span>) <span class="keyword">return</span> N;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span>[][] f = <span class="keyword">new</span> <span class="keyword">long</span>[N+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">	</span><br><span class="line">	f[<span class="number">0</span>][<span class="number">0</span>] = f[<span class="number">1</span>][<span class="number">0</span>] = f[<span class="number">1</span>][<span class="number">1</span>] = f[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">		f[i][<span class="number">0</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">2</span>][<span class="number">0</span>] + f[i-<span class="number">2</span>][<span class="number">1</span>] + f[i-<span class="number">2</span>][<span class="number">2</span>]) % MOD;</span><br><span class="line">		f[i][<span class="number">1</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">1</span>][<span class="number">2</span>]) % MOD;</span><br><span class="line">		f[i][<span class="number">2</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">1</span>][<span class="number">1</span>]) % MOD;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)f[N][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/25/leetcodeQ790/" data-id="cjuxa3ktn007z14ve6pq4onbu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/25/leetcodeQ801/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Minimum Swaps To Make Sequences Increasing
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/25/leetcodeQ740/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Delete and Earn</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.38px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 13.08px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.92px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.77px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.54px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Counting-Sort/" style="font-size: 11.54px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.23px;">DP</a> <a href="/tags/HashTable/" style="font-size: 18.46px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.31px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.77px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 13.08px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.77px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.85px;">LintCode</a> <a href="/tags/Math/" style="font-size: 17.69px;">Math</a> <a href="/tags/Memorization/" style="font-size: 10px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.77px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Recursion/" style="font-size: 11.54px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.08px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.54px;">Sort</a> <a href="/tags/Stack/" style="font-size: 14.62px;">Stack</a> <a href="/tags/String/" style="font-size: 16.15px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.77px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 13.08px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.54px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.85px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.77px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/25/leetcodeQ221/">Maximal Square</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/leetcodeQ712/">Minimum ASCII Delete Sum for Two Strings</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/leetcodeQ583/">Delete Operation for Two Strings</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/leetcodeQ673/">Number of Longest Increasing Subsequence</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/25/leetcodeQ140/">Word Break II</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
