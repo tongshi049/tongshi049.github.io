@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Expression Add Operators | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 282 - Expression Add Operators Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits s">
+<meta name="keywords" content="LeetCode,Backtracking,DFS,Partition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expression Add Operators">
+<meta property="og:url" content="http://yoursite.com/2019/04/28/leetcodeQ282/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 282 - Expression Add Operators Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits s">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-28T21:02:16.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Expression Add Operators">
+<meta name="twitter:description" content="LeetCode Q 282 - Expression Add Operators Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits s">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ282" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/28/leetcodeQ282/" class="article-date">
+  <time datetime="2019-04-28T16:58:59.000Z" itemprop="datePublished">2019-04-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Expression Add Operators
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-282-expression-add-operators"><a class="markdownIt-Anchor" href="#leetcode-q-282-expression-add-operators"></a> LeetCode Q 282 - Expression Add Operators</h1>
+<p>Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.</p>
+<p>Example 1:<br>
+<code>Input: num = &quot;123&quot;, target = 6 ; Output: [&quot;1+2+3&quot;, &quot;1*2*3&quot;]</code><br>
+Example 2:<br>
+<code>Input: num = &quot;232&quot;, target = 8 ; Output: [&quot;2*3+2&quot;, &quot;2+3*2&quot;]</code><br>
+Example 3:<br>
+<code>Input: num = &quot;105&quot;, target = 5 ; Output: [&quot;1*0+5&quot;,&quot;10-5&quot;]</code><br>
+Example 4:<br>
+<code>Input: num = &quot;00&quot;, target = 0 ; Output: [&quot;0+0&quot;, &quot;0-0&quot;, &quot;0*0&quot;]</code><br>
+Example 5:<br>
+<code>Input: num = &quot;3456237490&quot;, target = 9191 ; Output: []</code></p>
+<a id="more"></a>
+<h2 id="solution-dfs"><a class="markdownIt-Anchor" href="#solution-dfs"></a> Solution : DFS</h2>
+<ol>
+<li><strong>Corner Cases:</strong></li>
+</ol>
+<ul>
+<li>if current position is 0, we can only use it as a single digit number, should be 0</li>
+<li>if it is not a single digit number with leading 0, it should be considered as an invalid number</li>
+</ul>
+<ol start="2">
+<li><strong>How to do multiplication?</strong><br>
+we should subtract previous number, and then add current multiplication result to the subtraction result</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">addOperators</span><span class="params">(String num, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	<span class="keyword">if</span> (num == <span class="keyword">null</span> || num.length() == <span class="number">0</span>)</span><br><span class="line">	    <span class="keyword">return</span> res;</span><br><span class="line">	dfs(num, target, <span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String num, <span class="keyword">int</span> target, String exp, <span class="keyword">int</span> index, <span class="keyword">long</span> prev, <span class="keyword">long</span> calVal)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (index == num.length() &amp;&amp; calVal == target) &#123;</span><br><span class="line">		res.add(exp); <span class="keyword">return</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; num.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (i != index &amp;&amp; num.charAt(index) == <span class="string">'0'</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">long</span> num = Long.parseLong(s.substring(index, i));</span><br><span class="line">		<span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">			dfs(num, target, exp + num, i, num, num);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			dfs(num, target, exp + <span class="string">"+"</span> + num, i, num, calVal + num);</span><br><span class="line">			dfs(num, target, exp + <span class="string">"-"</span> + num, i, -num, calVal - num);</span><br><span class="line">			dfs(num, target, exp + <span class="string">"*"</span> + num, i, prev * num, calVal - prev + prev * num);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/28/leetcodeQ282/" data-id="cjv16horz000h9gveaj7c851j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Partition/">Partition</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/28/leetcodeQ842/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Split Array into Fibonacci Sequence
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/28/leetcodeQ241/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Different Ways to Add Parentheses</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.63px;">Array</a> <a href="/tags/Backtracking/" style="font-size: 16.88px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.5px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 15px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 11.25px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.13px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.38px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.25px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/28/leetcodeQQ47/">Permutations II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/28/leetcodeQ46/">Permutations</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/28/leetcodeQ90/">Subsets II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/28/leetcodeQ78/">Subsets</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/28/leetcodeQ216/">Combination Sum III</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

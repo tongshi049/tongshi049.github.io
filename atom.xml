@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-26T22:41:20.045Z</updated>
+  <updated>2019-04-28T21:32:26.256Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,520 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Permutations II</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQQ47/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQQ47/</id>
+    <published>2019-04-28T21:28:10.000Z</published>
+    <updated>2019-04-28T21:32:26.256Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-47-permutations-ii"><a class="markdownIt-Anchor" href="#leetcode-q-47-permutations-ii"></a> LeetCode Q 47 - Permutations II</h1><p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p><p>Example:<br><code>Input: [1,1,2]</code><br>Output:<br>[<br>[1,1,2],<br>[1,2,1],<br>[2,1,1]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Tips:</strong></p><ul><li>Use an extra boolean array <code>boolean[] used</code> to indicate whether the value is added to list.</li><li>Sort the array <code>int[] nums</code> to make sure we can skip the same value.</li><li><strong>When a number has the same value with its previous, we can use this number only if his previous is used.</strong></li></ul><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line"><span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">backtrack(nums, <span class="keyword">new</span> ArrayList&lt;&gt;(), visited);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; temp, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == nums.length) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (visited[i] || i &gt; <span class="number">0</span> &amp;&amp; nums[i] = nums[i - <span class="number">1</span>] &amp;&amp; !visited[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">visited[i] = <span class="keyword">true</span>;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, temp, visited);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">visited[i] = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-47-permutations-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-47-permutations-ii&quot;&gt;&lt;/a&gt; LeetCode Q 47 - Permutations II&lt;/h1&gt;
+&lt;p&gt;Given a collection of numbers that might contain duplicates, return all possible unique permutations.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: [1,1,2]&lt;/code&gt;&lt;br&gt;
+Output:&lt;br&gt;
+[&lt;br&gt;
+[1,1,2],&lt;br&gt;
+[1,2,1],&lt;br&gt;
+[2,1,1]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Permutations</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ46/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ46/</id>
+    <published>2019-04-28T21:25:40.000Z</published>
+    <updated>2019-04-28T21:27:47.322Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-46-permutations"><a class="markdownIt-Anchor" href="#leetcode-q-46-permutations"></a> LeetCode Q 46 - Permutations</h1><p>Given a collection of <strong>distinct</strong> integers, return all possible permutations.</p><p>Example:<br><code>Input: [1,2,3]</code><br>Output:<br>[<br>[1,2,3],<br>[1,3,2],<br>[2,1,3],<br>[2,3,1],<br>[3,1,2],<br>[3,2,1]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(nums, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == nums.length) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!temp.contains(nums[i])) &#123;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-46-permutations&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-46-permutations&quot;&gt;&lt;/a&gt; LeetCode Q 46 - Permutations&lt;/h1&gt;
+&lt;p&gt;Given a collection of &lt;strong&gt;distinct&lt;/strong&gt; integers, return all possible permutations.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: [1,2,3]&lt;/code&gt;&lt;br&gt;
+Output:&lt;br&gt;
+[&lt;br&gt;
+[1,2,3],&lt;br&gt;
+[1,3,2],&lt;br&gt;
+[2,1,3],&lt;br&gt;
+[2,3,1],&lt;br&gt;
+[3,1,2],&lt;br&gt;
+[3,2,1]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Subsets II</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ90/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ90/</id>
+    <published>2019-04-28T21:22:53.000Z</published>
+    <updated>2019-04-28T21:25:00.903Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-78-subsets-ii"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets-ii"></a> LeetCode Q 78 - Subsets II</h1><p>Given a collection of integers that might contain duplicates, <em><strong>nums</strong></em>, return all possible subsets (the power set).</p><p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p><p>Example:<br><code>Input: [1,2,2]</code><br>Output:<br>[<br>[2],<br>[1],<br>[1,2,2],<br>[2,2],<br>[1,2],<br>[]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line">backtrack(nums, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (i != pos &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-78-subsets-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-78-subsets-ii&quot;&gt;&lt;/a&gt; LeetCode Q 78 - Subsets II&lt;/h1&gt;
+&lt;p&gt;Given a collection of integers that might contain duplicates, &lt;em&gt;&lt;strong&gt;nums&lt;/strong&gt;&lt;/em&gt;, return all possible subsets (the power set).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The solution set must not contain duplicate subsets.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: [1,2,2]&lt;/code&gt;&lt;br&gt;
+Output:&lt;br&gt;
+[&lt;br&gt;
+[2],&lt;br&gt;
+[1],&lt;br&gt;
+[1,2,2],&lt;br&gt;
+[2,2],&lt;br&gt;
+[1,2],&lt;br&gt;
+[]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Subsets</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ78/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ78/</id>
+    <published>2019-04-28T21:21:07.000Z</published>
+    <updated>2019-04-28T21:22:28.942Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-78-subsets"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets"></a> LeetCode Q 78 - Subsets</h1><p>Given a set of distinct integers, nums, return all possible subsets (the power set).<br><strong>Note:</strong> The solution set must not contain duplicate subsets.</p><p>Example:<br><code>Input: nums = [1,2,3]</code><br>Output:<br>[<br>[3],<br>[1],<br>[2],<br>[1,2,3],<br>[1,3],<br>[2,3],<br>[1,2],<br>[]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(nums, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; nums.length; i++) &#123;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-78-subsets&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-78-subsets&quot;&gt;&lt;/a&gt; LeetCode Q 78 - Subsets&lt;/h1&gt;
+&lt;p&gt;Given a set of distinct integers, nums, return all possible subsets (the power set).&lt;br&gt;
+&lt;strong&gt;Note:&lt;/strong&gt; The solution set must not contain duplicate subsets.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: nums = [1,2,3]&lt;/code&gt;&lt;br&gt;
+Output:&lt;br&gt;
+[&lt;br&gt;
+[3],&lt;br&gt;
+[1],&lt;br&gt;
+[2],&lt;br&gt;
+[1,2,3],&lt;br&gt;
+[1,3],&lt;br&gt;
+[2,3],&lt;br&gt;
+[1,2],&lt;br&gt;
+[]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Combination Sum III</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ216/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ216/</id>
+    <published>2019-04-28T21:17:33.000Z</published>
+    <updated>2019-04-28T21:20:41.408Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-216-combination-sum-iii"><a class="markdownIt-Anchor" href="#leetcode-q-216-combination-sum-iii"></a> LeetCode Q 216 - Combination Sum III</h1><p>Find all possible combinations of <em><strong>k</strong></em> numbers that add up to a number <em><strong>n</strong></em>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p><p><strong>Note:</strong></p><ul><li>All numbers will be positive integers.</li><li>The solution set must not contain duplicate combinations.</li></ul><p>Example 1:<br><code>Input: k = 3, n = 7 ; Output: [[1,2,4]]</code><br>Example 2:<br><code>Input: k = 3, n = 9 ; Output: [[1,2,6], [1,3,5], [2,3,4]]</code></p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> target) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (target == <span class="number">0</span> || k == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(k, target, <span class="number">1</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> target, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == k &amp;&amp; target == <span class="number">0</span>) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == k || target &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!temp.contains(i)) &#123;</span><br><span class="line">temp.add(i);</span><br><span class="line">backtrack(n, target - i, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-216-combination-sum-iii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-216-combination-sum-iii&quot;&gt;&lt;/a&gt; LeetCode Q 216 - Combination Sum III&lt;/h1&gt;
+&lt;p&gt;Find all possible combinations of &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt; numbers that add up to a number &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt;, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All numbers will be positive integers.&lt;/li&gt;
+&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: k = 3, n = 7 ; Output: [[1,2,4]]&lt;/code&gt;&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: k = 3, n = 9 ; Output: [[1,2,6], [1,3,5], [2,3,4]]&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Combinations</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ77/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ77/</id>
+    <published>2019-04-28T21:13:16.000Z</published>
+    <updated>2019-04-28T21:19:38.334Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-77-combinations"><a class="markdownIt-Anchor" href="#leetcode-q-77-combinations"></a> LeetCode Q 77 - Combinations</h1><p>Given two integers n and k, return all possible combinations of k numbers out of 1 … n.</p><p>Example:<br><code>Input: n = 4, k = 2</code><br>Output:<br>[<br>[2,4],<br>[3,4],<br>[2,3],<br>[1,2],<br>[1,3],<br>[1,4],<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combine(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span> || k.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(cand);</span><br><span class="line">backtrack(n, k, <span class="number">1</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span> <span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == k) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (temp.size() &gt; k) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!temp.contains(i)) &#123;</span><br><span class="line">temp.add(i);</span><br><span class="line">backtrack(n, k, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-77-combinations&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-77-combinations&quot;&gt;&lt;/a&gt; LeetCode Q 77 - Combinations&lt;/h1&gt;
+&lt;p&gt;Given two integers n and k, return all possible combinations of k numbers out of 1 … n.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: n = 4, k = 2&lt;/code&gt;&lt;br&gt;
+Output:&lt;br&gt;
+[&lt;br&gt;
+[2,4],&lt;br&gt;
+[3,4],&lt;br&gt;
+[2,3],&lt;br&gt;
+[1,2],&lt;br&gt;
+[1,3],&lt;br&gt;
+[1,4],&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Combination Sum II</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ40/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ40/</id>
+    <published>2019-04-28T21:09:18.000Z</published>
+    <updated>2019-04-28T21:14:42.900Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-39-combination-sum-ii"><a class="markdownIt-Anchor" href="#leetcode-q-39-combination-sum-ii"></a> LeetCode Q 39 - Combination Sum II</h1><p>Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.<br>Each number in candidates may <strong>only be used once</strong> in the combination.</p><p><strong>Note:</strong></p><ul><li>All numbers (including target) will be positive integers.</li><li>The solution set must not contain duplicate combinations.</li></ul><p>Example 1:<br><code>Input: candidates = [10,1,2,7,6,1,5], target = 8,</code><br>A solution set is:<br>[<br>[1, 7],<br>[1, 2, 5],<br>[2, 6],<br>[1, 1, 6]<br>]<br>Example 2:<br><code>Input: candidates = [2,5,2,1,2], target = 5,</code><br>A solution set is:<br>[<br>[1,2,2],<br>[5]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum2(<span class="keyword">int</span>[] cand, <span class="keyword">int</span> target) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (cand == <span class="keyword">null</span> || cand.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(cand);</span><br><span class="line">backtrack(cand, target, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] cand, <span class="keyword">int</span> target, <span class="keyword">int</span> index, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; <span class="number">0</span>) &#123;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; cand.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (i != index &amp;&amp; cand[i] = cand[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">temp.add(can[i]);</span><br><span class="line">backtrack(can, target, i, currSum + can[i], temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-39-combination-sum-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-39-combination-sum-ii&quot;&gt;&lt;/a&gt; LeetCode Q 39 - Combination Sum II&lt;/h1&gt;
+&lt;p&gt;Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.&lt;br&gt;
+Each number in candidates may &lt;strong&gt;only be used once&lt;/strong&gt; in the combination.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All numbers (including target) will be positive integers.&lt;/li&gt;
+&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: candidates = [10,1,2,7,6,1,5], target = 8,&lt;/code&gt;&lt;br&gt;
+A solution set is:&lt;br&gt;
+[&lt;br&gt;
+[1, 7],&lt;br&gt;
+[1, 2, 5],&lt;br&gt;
+[2, 6],&lt;br&gt;
+[1, 1, 6]&lt;br&gt;
+]&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: candidates = [2,5,2,1,2], target = 5,&lt;/code&gt;&lt;br&gt;
+A solution set is:&lt;br&gt;
+[&lt;br&gt;
+[1,2,2],&lt;br&gt;
+[5]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Combination Sum</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ39/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ39/</id>
+    <published>2019-04-28T21:05:38.000Z</published>
+    <updated>2019-04-28T21:09:00.875Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-39-combination-sum"><a class="markdownIt-Anchor" href="#leetcode-q-39-combination-sum"></a> LeetCode Q 39 - Combination Sum</h1><p>Given a <strong>set</strong> of candidate numbers (candidates) <strong>(without duplicates)</strong> and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.<br>The <strong>same</strong> repeated number may be chosen from candidates unlimited number of times.</p><p><strong>Note:</strong></p><ul><li>All numbers (including target) will be positive integers.</li><li>The solution set must not contain duplicate combinations.</li></ul><p>Example 1:<br><code>Input: candidates = [2,3,6,7], target = 7,</code><br>A solution set is:<br>[<br>[7],<br>[2,2,3]<br>]<br>Example 2:<br><code>Input: candidates = [2,3,5], target = 8,</code><br>A solution set is:<br>[<br>[2,2,2,2],<br>[2,3,3],<br>[3,5]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum(<span class="keyword">int</span>[] can, <span class="keyword">int</span> target) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (can == <span class="keyword">null</span> || can.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(can, target, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] can, <span class="keyword">int</span> target, <span class="keyword">int</span> index, <span class="keyword">int</span> currSum, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (currSum == target) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (currSum &gt; target) &#123;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; can.length; i++) &#123;</span><br><span class="line">temp.add(can[i]);</span><br><span class="line">backtrack(can, target, i, currSum + can[i], temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-39-combination-sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-39-combination-sum&quot;&gt;&lt;/a&gt; LeetCode Q 39 - Combination Sum&lt;/h1&gt;
+&lt;p&gt;Given a &lt;strong&gt;set&lt;/strong&gt; of candidate numbers (candidates) &lt;strong&gt;(without duplicates)&lt;/strong&gt; and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.&lt;br&gt;
+The &lt;strong&gt;same&lt;/strong&gt; repeated number may be chosen from candidates unlimited number of times.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All numbers (including target) will be positive integers.&lt;/li&gt;
+&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: candidates = [2,3,6,7], target = 7,&lt;/code&gt;&lt;br&gt;
+A solution set is:&lt;br&gt;
+[&lt;br&gt;
+[7],&lt;br&gt;
+[2,2,3]&lt;br&gt;
+]&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: candidates = [2,3,5], target = 8,&lt;/code&gt;&lt;br&gt;
+A solution set is:&lt;br&gt;
+[&lt;br&gt;
+[2,2,2,2],&lt;br&gt;
+[2,3,3],&lt;br&gt;
+[3,5]&lt;br&gt;
+]&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Letter Combinations of a Phone Number</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ17/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ17/</id>
+    <published>2019-04-28T21:01:18.000Z</published>
+    <updated>2019-04-28T21:08:14.305Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-17-letter-combinations-of-a-phone-number"><a class="markdownIt-Anchor" href="#leetcode-q-17-letter-combinations-of-a-phone-number"></a> LeetCode Q 17 - Letter Combinations of a Phone Number</h1><p>Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.</p><p>Example:<br><code>Input: &quot;23&quot; ;Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</code></p><p><strong>Note:</strong> Although the above answer is in lexicographical order, your answer could be in any order you want.</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] KEYS = &#123; <span class="string">""</span>, <span class="string">""</span>, <span class="string">"abc"</span>, <span class="string">"def"</span>, <span class="string">"ghi"</span>, <span class="string">"jkl"</span>, <span class="string">"mno"</span>, <span class="string">"pqrs"</span>, <span class="string">"tuv"</span>, <span class="string">"wxyz"</span> &#125;;</span><br><span class="line"><span class="keyword">private</span> List&lt;String&gt; res;</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span><span class="params">(String digits)</span> </span>&#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (digits == <span class="keyword">null</span> || digits.length() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(digits, <span class="number">0</span>, <span class="string">""</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(String digits, <span class="keyword">int</span> pos, String curr)</span> </span>&#123;</span><br><span class="line"><span class="comment">// corner cases</span></span><br><span class="line"><span class="keyword">if</span> (pos == digits.length()) &#123;</span><br><span class="line">res.add(curr); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String letters = KEYS[digits.charAt(pos) - <span class="string">'0'</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> letter: letters.toCharArray())</span><br><span class="line">backtrack(digits, pos + <span class="number">1</span>, curr + letter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-17-letter-combinations-of-a-phone-number&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-17-letter-combinations-of-a-phone-number&quot;&gt;&lt;/a&gt; LeetCode Q 17 - Letter Combinations of a Phone Number&lt;/h1&gt;
+&lt;p&gt;Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;23&amp;quot; ;Output: [&amp;quot;ad&amp;quot;, &amp;quot;ae&amp;quot;, &amp;quot;af&amp;quot;, &amp;quot;bd&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;bf&amp;quot;, &amp;quot;cd&amp;quot;, &amp;quot;ce&amp;quot;, &amp;quot;cf&amp;quot;].&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Although the above answer is in lexicographical order, your answer could be in any order you want.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Split Array into Fibonacci Sequence</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ842/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ842/</id>
+    <published>2019-04-28T17:21:58.000Z</published>
+    <updated>2019-04-28T21:04:38.308Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-842-split-array-into-fibonacci-sequence"><a class="markdownIt-Anchor" href="#leetcode-q-842-split-array-into-fibonacci-sequence"></a> LeetCode Q 842 - Split Array into Fibonacci Sequence</h1><p>Given a string <code>S</code> of digits, such as <code>S = &quot;123456579&quot;</code>, we can split it into a <em>Fibonacci-like</em> sequence <code>[123, 456, 579]</code>.<br>Formally, a Fibonacci-like sequence is a list F of non-negative integers such that:</p><ul><li><code>0 &lt;= F[i] &lt;= 2^31 - 1</code>, (that is, each integer fits a 32-bit signed integer type);</li><li><code>F.length &gt;= 3</code>;</li><li>and <code>F[i] + F[i+1] = F[i+2]</code> for all <code>0 &lt;= i &lt; F.length - 2</code>.<br>Also, note that when splitting the string into pieces, each piece must not have extra leading zeroes, except if the piece is the number 0 itself.</li></ul><p>Return any Fibonacci-like sequence split from S, or return <code>[]</code> if it cannot be done.</p><p>Example 1:<br><code>Input: &quot;123456579&quot; ; Output: [123,456,579]</code><br>Example 2:<br><code>Input: &quot;11235813&quot; ; Output: [1,1,2,3,5,8,13]</code><br>Example 3:<br><code>Input: &quot;112358130&quot; ; Output: []</code><br>Explanation: The task is impossible.<br>Example 4:<br><code>Input: &quot;0123&quot; ; Output: []</code><br>Explanation: Leading zeroes are not allowed, so “01”, “2”, “3” is not valid.<br>Example 5:<br><code>Input: &quot;1101111&quot; ; Output: [110, 1, 111]</code><br>Explanation: The output [11, 0, 11, 11] would also be accepted.</p><p><strong>Note:</strong></p><ul><li>1 &lt;= S.length &lt;= 200</li><li>S contains only digits.</li></ul><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p>The <strong>key</strong> is <strong>handling corner cases</strong>:</p><ul><li>Remove elements with leading zero</li><li>The element in the sequence should be at most Integer.MAX_VALUE</li><li>The sequence should has at least 3 elements</li><li>If current number is larger than the sum of previous two elements, stop backtracking</li><li>If we find a valid sequence, stop backtracking</li></ul><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">splitIntoFibonacci</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">backtrack(S, res, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">backtrack</span><span class="params">(String s, List&lt;Integer&gt; res, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (index == s.length() &amp;&amp; res.size() &gt;= <span class="number">3</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="comment">// a number with leading 0s but not '0' is invalid</span></span><br><span class="line"><span class="keyword">if</span> (i != index &amp;&amp; s.charAt(index) == <span class="string">'0'</span>) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> num = Long.parseLong(s.substring(index, i + <span class="number">1</span>));</span><br><span class="line"><span class="keyword">if</span> (num &gt; Integer.MAX_VALUE) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> size = res.size();</span><br><span class="line"><span class="keyword">if</span> (size &gt;= <span class="number">2</span> &amp;&amp; num &gt; res.get(size-<span class="number">1</span>) + res.get(size-<span class="number">2</span>)) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (size &lt; <span class="number">2</span> || num == res.get(size-<span class="number">1</span>) + res.get(size-<span class="number">2</span>)) &#123;</span><br><span class="line">    res.add((<span class="keyword">int</span>)num);</span><br><span class="line">    <span class="comment">// If we find a valid sequence, stop backtracking</span></span><br><span class="line">    <span class="keyword">if</span> (backtrack(s, res, i + <span class="number">1</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    res.remove(res.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-842-split-array-into-fibonacci-sequence&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-842-split-array-into-fibonacci-sequence&quot;&gt;&lt;/a&gt; LeetCode Q 842 - Split Array into Fibonacci Sequence&lt;/h1&gt;
+&lt;p&gt;Given a string &lt;code&gt;S&lt;/code&gt; of digits, such as &lt;code&gt;S = &amp;quot;123456579&amp;quot;&lt;/code&gt;, we can split it into a &lt;em&gt;Fibonacci-like&lt;/em&gt; sequence &lt;code&gt;[123, 456, 579]&lt;/code&gt;.&lt;br&gt;
+Formally, a Fibonacci-like sequence is a list F of non-negative integers such that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;0 &amp;lt;= F[i] &amp;lt;= 2^31 - 1&lt;/code&gt;, (that is, each integer fits a 32-bit signed integer type);&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;F.length &amp;gt;= 3&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;and &lt;code&gt;F[i] + F[i+1] = F[i+2]&lt;/code&gt; for all &lt;code&gt;0 &amp;lt;= i &amp;lt; F.length - 2&lt;/code&gt;.&lt;br&gt;
+Also, note that when splitting the string into pieces, each piece must not have extra leading zeroes, except if the piece is the number 0 itself.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Return any Fibonacci-like sequence split from S, or return &lt;code&gt;[]&lt;/code&gt; if it cannot be done.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;123456579&amp;quot; ; Output: [123,456,579]&lt;/code&gt;&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;11235813&amp;quot; ; Output: [1,1,2,3,5,8,13]&lt;/code&gt;&lt;br&gt;
+Example 3:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;112358130&amp;quot; ; Output: []&lt;/code&gt;&lt;br&gt;
+Explanation: The task is impossible.&lt;br&gt;
+Example 4:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;0123&amp;quot; ; Output: []&lt;/code&gt;&lt;br&gt;
+Explanation: Leading zeroes are not allowed, so “01”, “2”, “3” is not valid.&lt;br&gt;
+Example 5:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;1101111&amp;quot; ; Output: [110, 1, 111]&lt;/code&gt;&lt;br&gt;
+Explanation: The output [11, 0, 11, 11] would also be accepted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1 &amp;lt;= S.length &amp;lt;= 200&lt;/li&gt;
+&lt;li&gt;S contains only digits.&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="Partition" scheme="http://yoursite.com/tags/Partition/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Expression Add Operators</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ282/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ282/</id>
+    <published>2019-04-28T16:58:59.000Z</published>
+    <updated>2019-04-28T21:02:16.617Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-282-expression-add-operators"><a class="markdownIt-Anchor" href="#leetcode-q-282-expression-add-operators"></a> LeetCode Q 282 - Expression Add Operators</h1><p>Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.</p><p>Example 1:<br><code>Input: num = &quot;123&quot;, target = 6 ; Output: [&quot;1+2+3&quot;, &quot;1*2*3&quot;]</code><br>Example 2:<br><code>Input: num = &quot;232&quot;, target = 8 ; Output: [&quot;2*3+2&quot;, &quot;2+3*2&quot;]</code><br>Example 3:<br><code>Input: num = &quot;105&quot;, target = 5 ; Output: [&quot;1*0+5&quot;,&quot;10-5&quot;]</code><br>Example 4:<br><code>Input: num = &quot;00&quot;, target = 0 ; Output: [&quot;0+0&quot;, &quot;0-0&quot;, &quot;0*0&quot;]</code><br>Example 5:<br><code>Input: num = &quot;3456237490&quot;, target = 9191 ; Output: []</code></p><a id="more"></a><h2 id="solution-dfs"><a class="markdownIt-Anchor" href="#solution-dfs"></a> Solution : DFS</h2><ol><li><strong>Corner Cases:</strong></li></ol><ul><li>if current position is 0, we can only use it as a single digit number, should be 0</li><li>if it is not a single digit number with leading 0, it should be considered as an invalid number</li></ul><ol start="2"><li><strong>How to do multiplication?</strong><br>we should subtract previous number, and then add current multiplication result to the subtraction result</li></ol><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">addOperators</span><span class="params">(String num, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (num == <span class="keyword">null</span> || num.length() == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">dfs(num, target, <span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String num, <span class="keyword">int</span> target, String exp, <span class="keyword">int</span> index, <span class="keyword">long</span> prev, <span class="keyword">long</span> calVal)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (index == num.length() &amp;&amp; calVal == target) &#123;</span><br><span class="line">res.add(exp); <span class="keyword">return</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index + <span class="number">1</span>; i &lt; num.length(); i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (i != index &amp;&amp; num.charAt(index) == <span class="string">'0'</span>) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">long</span> num = Long.parseLong(s.substring(index, i));</span><br><span class="line"><span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">dfs(num, target, exp + num, i, num, num);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">dfs(num, target, exp + <span class="string">"+"</span> + num, i, num, calVal + num);</span><br><span class="line">dfs(num, target, exp + <span class="string">"-"</span> + num, i, -num, calVal - num);</span><br><span class="line">dfs(num, target, exp + <span class="string">"*"</span> + num, i, prev * num, calVal - prev + prev * num);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-282-expression-add-operators&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-282-expression-add-operators&quot;&gt;&lt;/a&gt; LeetCode Q 282 - Expression Add Operators&lt;/h1&gt;
+&lt;p&gt;Given a string that contains only digits 0-9 and a target value, return all possibilities to add binary operators (not unary) +, -, or * between the digits so they evaluate to the target value.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: num = &amp;quot;123&amp;quot;, target = 6 ; Output: [&amp;quot;1+2+3&amp;quot;, &amp;quot;1*2*3&amp;quot;]&lt;/code&gt;&lt;br&gt;
+Example 2:&lt;br&gt;
+&lt;code&gt;Input: num = &amp;quot;232&amp;quot;, target = 8 ; Output: [&amp;quot;2*3+2&amp;quot;, &amp;quot;2+3*2&amp;quot;]&lt;/code&gt;&lt;br&gt;
+Example 3:&lt;br&gt;
+&lt;code&gt;Input: num = &amp;quot;105&amp;quot;, target = 5 ; Output: [&amp;quot;1*0+5&amp;quot;,&amp;quot;10-5&amp;quot;]&lt;/code&gt;&lt;br&gt;
+Example 4:&lt;br&gt;
+&lt;code&gt;Input: num = &amp;quot;00&amp;quot;, target = 0 ; Output: [&amp;quot;0+0&amp;quot;, &amp;quot;0-0&amp;quot;, &amp;quot;0*0&amp;quot;]&lt;/code&gt;&lt;br&gt;
+Example 5:&lt;br&gt;
+&lt;code&gt;Input: num = &amp;quot;3456237490&amp;quot;, target = 9191 ; Output: []&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="Partition" scheme="http://yoursite.com/tags/Partition/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Different Ways to Add Parentheses</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ241/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ241/</id>
+    <published>2019-04-28T16:48:52.000Z</published>
+    <updated>2019-04-28T21:02:06.542Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-241-different-ways-to-add-parentheses"><a class="markdownIt-Anchor" href="#leetcode-q-241-different-ways-to-add-parentheses"></a> LeetCode Q 241 - Different Ways to Add Parentheses</h1><p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.</p><p>Example 1:<br><code>Input: &quot;2-1-1&quot; ; Output: [0, 2]</code><br>Explanation:<br><code>((2-1)-1) = 0 , (2-(1-1)) = 2</code></p><p>Example 2:<br><code>Input: &quot;2*3-4*5&quot; ; Output: [-34, -14, -10, -10, 10]</code><br>Explanation:<br><code>(2*(3-(4*5))) = -34 , ((2*3)-(4*5)) = -14 , ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 , (((2*3)-4)*5) = 10</code></p><a id="more"></a><h2 id="solution-divide-and-conquer"><a class="markdownIt-Anchor" href="#solution-divide-and-conquer"></a> Solution : Divide and Conquer</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">diffWaysToCompute</span><span class="params">(String input)</span> </span>&#123;</span><br><span class="line">List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (input == <span class="keyword">null</span> || input.length() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length(); i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (input.charAt(i) == <span class="string">'+'</span> || input.charAt(i) == <span class="string">'-'</span> || input.charAt(i) == <span class="string">'*'</span>) &#123;</span><br><span class="line">List&lt;Integer&gt; left = diffWaysToCompute(input.substring(<span class="number">0</span>, i));</span><br><span class="line">List&lt;Integer&gt; right = diffWaysToCompute(input.substring(i + <span class="number">1</span>));</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num1: left) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num2: right) &#123;</span><br><span class="line"><span class="keyword">if</span> (s.charAt(i) == <span class="string">'+'</span>) res.add(num1 + num2);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string">'-'</span>) res.add(num1 - num2);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string">'+'</span>) res.add(num1 * num2); </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (res.size() == <span class="number">0</span>) </span><br><span class="line">res.add(Integer.parseInt(input));</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-241-different-ways-to-add-parentheses&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-241-different-ways-to-add-parentheses&quot;&gt;&lt;/a&gt; LeetCode Q 241 - Different Ways to Add Parentheses&lt;/h1&gt;
+&lt;p&gt;Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;2-1-1&amp;quot; ; Output: [0, 2]&lt;/code&gt;&lt;br&gt;
+Explanation:&lt;br&gt;
+&lt;code&gt;((2-1)-1) = 0 , (2-(1-1)) = 2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Example 2:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;2*3-4*5&amp;quot; ; Output: [-34, -14, -10, -10, 10]&lt;/code&gt;&lt;br&gt;
+Explanation:&lt;br&gt;
+&lt;code&gt;(2*(3-(4*5))) = -34 , ((2*3)-(4*5)) = -14 , ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 , (((2*3)-4)*5) = 10&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Partition" scheme="http://yoursite.com/tags/Partition/"/>
+    
+      <category term="Divide and Conquer" scheme="http://yoursite.com/tags/Divide-and-Conquer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Palindrome Partitioning</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ131/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ131/</id>
+    <published>2019-04-28T16:36:58.000Z</published>
+    <updated>2019-04-28T16:51:15.260Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-131-palindrome-partitioning"><a class="markdownIt-Anchor" href="#leetcode-q-131-palindrome-partitioning"></a> LeetCode Q 131 - Palindrome Partitioning</h1><p>Given a string s, partition s such that every substring of the partition is a palindrome.<br>Return all possible palindrome partitioning of s.</p><p>Example:<br><code>Input: &quot;aab&quot; Output: [ [&quot;aa&quot;,&quot;b&quot;], [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;] ]</code></p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;String&gt;&gt; res;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; partition(String s) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(s, <span class="keyword">new</span> ArrayList&lt;&gt;(), <span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(String s, List&lt;String&gt; temp, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (index == s.length()) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = index; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (isPalindromic(s, index, i)) &#123;</span><br><span class="line">temp.add(s.substring(index, i + <span class="number">1</span>));</span><br><span class="line">backtrack(s, temp, i + <span class="number">1</span>);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isPalindromic</span> <span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line"><span class="keyword">if</span> (s.charAt(left) != s.charAt(right)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">left++; right--;</span><br><span class="line">&#125;</span><br><span class="line">retur <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-131-palindrome-partitioning&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-131-palindrome-partitioning&quot;&gt;&lt;/a&gt; LeetCode Q 131 - Palindrome Partitioning&lt;/h1&gt;
+&lt;p&gt;Given a string s, partition s such that every substring of the partition is a palindrome.&lt;br&gt;
+Return all possible palindrome partitioning of s.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;aab&amp;quot; Output: [ [&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;], [&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;] ]&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Restore IP Addresses</title>
+    <link href="http://yoursite.com/2019/04/28/leetcodeQ93/"/>
+    <id>http://yoursite.com/2019/04/28/leetcodeQ93/</id>
+    <published>2019-04-28T16:18:59.000Z</published>
+    <updated>2019-04-28T16:36:39.082Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-93-restore-ip-addresses"><a class="markdownIt-Anchor" href="#leetcode-q-93-restore-ip-addresses"></a> LeetCode Q 93 - Restore IP Addresses</h1><p>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p><p>Example:<br><code>Input: &quot;25525511135&quot; ; Output: [&quot;255.255.11.135&quot;, &quot;255.255.111.35&quot;]</code></p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p>The key point is how to identify a valid IP address.</p><ul><li>Strings whose length greater than 3 or equals to 0 is not valid;</li><li>If the string’s length is longer than 1 and the first letter is ‘0’ then it’s invalid;</li><li>String whose integer representation greater than 255 is invalid.</li></ul><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;String&gt; res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() &lt; <span class="number">4</span> || s.length() &gt; <span class="number">12</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(s, <span class="number">0</span>, <span class="number">0</span>, <span class="string">""</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span> <span class="params">(String s, <span class="keyword">int</span> index, <span class="keyword">int</span> segments, String curr)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (index == s.length() &amp;&amp; segments == <span class="number">4</span>) &#123;</span><br><span class="line">res.add(curr.substring(<span class="number">1</span>)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (index == s.length() || segments == <span class="number">4</span>) </span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span> &amp;&amp; index + i &lt;= s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">int</span> num = Integer.parseInt(index, index + i);</span><br><span class="line"><span class="keyword">if</span> (num == <span class="number">0</span> || num &gt; <span class="number">255</span> || (num &gt; <span class="number">10</span> &amp;&amp; s.charAt(index) == <span class="string">'0'</span>)) <span class="keyword">continue</span>;</span><br><span class="line">backtrack(s, index + i, segments + <span class="number">1</span>, curr + <span class="string">'.'</span> + s.substring(index, index + i));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-93-restore-ip-addresses&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-93-restore-ip-addresses&quot;&gt;&lt;/a&gt; LeetCode Q 93 - Restore IP Addresses&lt;/h1&gt;
+&lt;p&gt;Given a string containing only digits, restore it by returning all possible valid IP address combinations.&lt;/p&gt;
+&lt;p&gt;Example:&lt;br&gt;
+&lt;code&gt;Input: &amp;quot;25525511135&amp;quot; ; Output: [&amp;quot;255.255.11.135&amp;quot;, &amp;quot;255.255.111.35&amp;quot;]&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
+    
+      <category term="Partition" scheme="http://yoursite.com/tags/Partition/"/>
+    
+  </entry>
   
   <entry>
     <title>Permutation in String</title>
@@ -218,487 +732,6 @@ Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is n
       <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
       <category term="Memorization" scheme="http://yoursite.com/tags/Memorization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Maximal Square</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ221/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ221/</id>
-    <published>2019-04-25T23:14:44.000Z</published>
-    <updated>2019-04-25T23:28:07.182Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-221-maximal-square"><a class="markdownIt-Anchor" href="#leetcode-q-221-maximal-square"></a> LeetCode Q 221 -  Maximal Square</h1><p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p><p>Example:<br>Input:<br>1 0 1 0 0<br>1 0 1 1 1<br>1 1 1 1 1<br>1 0 0 1 0<br>Output: 4</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><ol><li><p><strong>State:</strong> <code>dp(i,j)</code> represents the side length of the maximum square whose bottom right corner is the cell with index <code>(i,j)</code> in the original matrix.</p></li><li><p><strong>state transfer fuction:</strong><br>Starting from index (0,0), for every <em><strong>1</strong></em> found in the original matrix, we update the value of the current element as<br><code>dp(i, j)=min(dp(i−1, j), dp(i−1, j−1), dp(i, j−1)) + 1</code>.</p></li></ol><p><strong>Time Complexity: O(n * m)</strong><br><strong>Space Complexity: O(n * m)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> row = matrix.length, col = matrix[<span class="number">0</span>].length;</span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[row + <span class="number">1</span>][col + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span>) &#123;</span><br><span class="line">dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = Math.min(Math.min(dp[i][j], dp[i+<span class="number">1</span>][j]), dp[i][j+<span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">maxLen = Math.max(maxLen, dp[i+<span class="number">1</span>][j+<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> maxLen * maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-221-maximal-square&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-221-maximal-square&quot;&gt;&lt;/a&gt; LeetCode Q 221 -  Maximal Square&lt;/h1&gt;
-&lt;p&gt;Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-Input:&lt;br&gt;
-1 0 1 0 0&lt;br&gt;
-1 0 1 1 1&lt;br&gt;
-1 1 1 1 1&lt;br&gt;
-1 0 0 1 0&lt;br&gt;
-Output: 4&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Minimum ASCII Delete Sum for Two Strings</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ712/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ712/</id>
-    <published>2019-04-25T22:58:26.000Z</published>
-    <updated>2019-04-25T23:14:29.438Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-712-minimum-ascii-delete-sum-for-two-strings"><a class="markdownIt-Anchor" href="#leetcode-q-712-minimum-ascii-delete-sum-for-two-strings"></a> LeetCode Q 712 -  Minimum ASCII Delete Sum for Two Strings</h1><p>Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.</p><p>Example 1:<br><code>Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot; ; Output: 231</code><br>Explanation: Deleting “s” from “sea” adds the ASCII value of “s” (115) to the sum. Deleting “t” from “eat” adds 116 to the sum. At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.<br>Example 2:<br><code>Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot; ; Output: 403</code><br>Explanation: Deleting “dee” from “delete” to turn the string into “let”, adds 100[d]+101[e]+101[e] to the sum.  Deleting “e” from “leet” adds 101[e] to the sum. At the end, both strings are equal to “let”, and the answer is 100+101+101+101 = 403. If instead we turned both strings into “lee” or “eet”, we would get answers of 433 or 417, which are higher.</p><p><strong>Note:</strong></p><ul><li>0 &lt; s1.length, s2.length &lt;= 1000.</li><li>All elements of each string will have an ASCII value in [97, 122].</li></ul><p>Similar Question: <a href="/2019/04/25/leetcodeQ712/" title="Minimum ASCII Delete Sum for Two Strings">Minimum ASCII Delete Sum for Two Strings</a></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><p>Different with <a href="/2019/04/25/leetcodeQ712/" title="Minimum ASCII Delete Sum for Two Strings">Minimum ASCII Delete Sum for Two Strings</a>, to solve this question we find the <strong>maximum ASCII for common substrings</strong>, and <strong>delete it from the sum of ASCII value of two strings.</strong></p><p><strong>Time Complexity: O(n * m)</strong><br><strong>Space Complexity: O(n * m)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> len1 = s1.length(), len2 = s2.length();</span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len1 + <span class="number">1</span>][len2 + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len1; i++) </span><br><span class="line">sum += (<span class="keyword">int</span>)s1.charAt(i - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= len2; j++) </span><br><span class="line">sum += (<span class="keyword">int</span>)s2.charAt(j - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (s1.charAt(i) == s2.charAt(j))</span><br><span class="line">dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = Math.max(dp[i][j] + (<span class="keyword">int</span>)s1.charAt(i), Math.max(dp[i+<span class="number">1</span>][j], dp[i][j+<span class="number">1</span>]));</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = Math.max(dp[i+<span class="number">1</span>][j], dp[i][j+<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> sum - <span class="number">2</span> * dp[len1][len2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-712-minimum-ascii-delete-sum-for-two-strings&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-712-minimum-ascii-delete-sum-for-two-strings&quot;&gt;&lt;/a&gt; LeetCode Q 712 -  Minimum ASCII Delete Sum for Two Strings&lt;/h1&gt;
-&lt;p&gt;Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: s1 = &amp;quot;sea&amp;quot;, s2 = &amp;quot;eat&amp;quot; ; Output: 231&lt;/code&gt;&lt;br&gt;
-Explanation: Deleting “s” from “sea” adds the ASCII value of “s” (115) to the sum. Deleting “t” from “eat” adds 116 to the sum. At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: s1 = &amp;quot;delete&amp;quot;, s2 = &amp;quot;leet&amp;quot; ; Output: 403&lt;/code&gt;&lt;br&gt;
-Explanation: Deleting “dee” from “delete” to turn the string into “let”, adds 100[d]+101[e]+101[e] to the sum.  Deleting “e” from “leet” adds 101[e] to the sum. At the end, both strings are equal to “let”, and the answer is 100+101+101+101 = 403. If instead we turned both strings into “lee” or “eet”, we would get answers of 433 or 417, which are higher.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;0 &amp;lt; s1.length, s2.length &amp;lt;= 1000.&lt;/li&gt;
-&lt;li&gt;All elements of each string will have an ASCII value in [97, 122].&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Similar Question: &lt;a href=&quot;/2019/04/25/leetcodeQ712/&quot; title=&quot;Minimum ASCII Delete Sum for Two Strings&quot;&gt;Minimum ASCII Delete Sum for Two Strings&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Delete Operation for Two Strings</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ583/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ583/</id>
-    <published>2019-04-25T22:46:55.000Z</published>
-    <updated>2019-04-25T22:57:42.873Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-583-delete-operation-for-two-strings"><a class="markdownIt-Anchor" href="#leetcode-q-583-delete-operation-for-two-strings"></a> LeetCode Q 583 -  Delete Operation for Two Strings</h1><p>Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, where in each step you can delete one character in either string.</p><p>Example 1: <code>Input: &quot;sea&quot;, &quot;eat&quot; ; Output: 2</code><br>Explanation: You need one step to make “sea” to “ea” and another step to make “eat” to “ea”.<br><strong>Note:</strong></p><ul><li>The length of given words won’t exceed 500.</li><li>Characters in given words can only be lower-case letters.</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><ol><li><strong>State:</strong> <code>dp[i][j]</code> denotes the minimum number of steps to make <code>word1.substring(0, i+1)</code> and <code>word2.substring(0, j+1)</code> the same;</li><li><strong>state transfer function:</strong><ul><li><code>if (word1.charAt(i) == word2.charAt(j))</code>, we don’t need to do anying therefore<br><code>dp[i][j] = dp[i-1][j-1]</code></li><li>else <code>dp[i][j] = Math.min(dp[i][j-1], dp[i-1][j]) + 1</code>, that is we can either delete char <em><strong>i</strong></em> from <strong>word1</strong> or char <em><strong>j</strong></em> from <strong>word2</strong>.</li></ul></li><li><strong>boundary case:</strong><br><code>dp[0][j] = j, j = 0, 1, 2,... dp[i][0] = i, i = 0, 1, 2,...</code><br>Previously, I only set dp[0][1] = dp[1][0] = 1, so I made mistake!</li></ol><p><strong>Time Complexity: O(n * m)</strong><br><strong>Space Complexity: O(n * m)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (word1.length() == <span class="number">0</span>) <span class="keyword">return</span> word2.length();</span><br><span class="line"><span class="keyword">if</span> (word2.length() == <span class="number">0</span>) <span class="keyword">return</span> word1.length();</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[word1.length() + <span class="number">1</span>][word2.length() + <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= word1.length(); i++) </span><br><span class="line">dp[i][<span class="number">0</span>] = i;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= word2.length(); j++) </span><br><span class="line">dp[<span class="number">0</span>][j] = j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word1.length(); i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; word2.length(); j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (word1.charAt(i) == word2.charAt(j)) </span><br><span class="line">dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp[i][j];</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = Math.min(dp[i + <span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[word1.length()][word2.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-583-delete-operation-for-two-strings&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-583-delete-operation-for-two-strings&quot;&gt;&lt;/a&gt; LeetCode Q 583 -  Delete Operation for Two Strings&lt;/h1&gt;
-&lt;p&gt;Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, where in each step you can delete one character in either string.&lt;/p&gt;
-&lt;p&gt;Example 1: &lt;code&gt;Input: &amp;quot;sea&amp;quot;, &amp;quot;eat&amp;quot; ; Output: 2&lt;/code&gt;&lt;br&gt;
-Explanation: You need one step to make “sea” to “ea” and another step to make “eat” to “ea”.&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The length of given words won’t exceed 500.&lt;/li&gt;
-&lt;li&gt;Characters in given words can only be lower-case letters.&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Number of Longest Increasing Subsequence</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ673/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ673/</id>
-    <published>2019-04-25T22:23:11.000Z</published>
-    <updated>2019-04-25T22:48:08.596Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-673-number-of-longest-increasing-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-673-number-of-longest-increasing-subsequence"></a> LeetCode Q 673 -  Number of Longest Increasing Subsequence</h1><p>Given an unsorted array of integers, find the number of longest increasing subsequence.</p><p>Example 1:<br><code>Input: [1,3,5,4,7] ; Output: 2</code><br>Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1, 3, 5, 7].<br>Example 2:<br><code>Input: [2,2,2,2,2] ; Output: 5</code><br>Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences’ length is 1, so output 5.<br><strong>Note:</strong> Length of the given array will be not exceed 2000 and the answer is guaranteed to be fit in 32-bit signed int.</p><p>Similar Question: <a href="/2019/04/15/leetcodeQ300/" title="Longest Increasing Subsequence">Longest Increasing Subsequence</a></p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><ol><li><p><strong>State:</strong></p><ul><li><code>len[i]</code>, record the longest increasing subsequence till <em><strong>ith</strong></em> num in <strong>nums</strong>. The length of <strong>len</strong> should be the <em><strong>nums.length</strong></em>.</li><li><code>count[i]</code>, the number of the string whose length is i. The length of <strong>len</strong> should be the <em><strong>nums.length</strong></em>.</li></ul></li><li><p><strong>state transfer fuction:</strong><br><code>len[i] = Math.max(len[j] + 1, len[i])</code>, where j = 1,…,i-1 and nums[i] &gt; nums[j].<br><strong>Note then when building array len, we should also update the array count.</strong></p><ul><li><code>if (len[i] &lt; len[j] + 1)</code> then <code>count[i] = count[j];</code></li><li><code>if (len[i] == len[j] + 1)</code> then <code>count[i] += count[j];</code></li></ul></li><li><p><strong>boundary cases:</strong> <code>dp[i] = count[i] = 1</code></p></li></ol><p><strong>Time Complexity: O(n^2)</strong><br><strong>Space Complexity: O(n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findNumberOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] len = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"><span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>, maxLen = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">len[i] = count[i] = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// update len[i] and count[i] </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i ; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] &gt; nums[j]) &#123;</span><br><span class="line"><span class="keyword">if</span> (len[i] == len[j] + <span class="number">1</span>) &#123;</span><br><span class="line">count[i] += count[j];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (len[i] &lt; len[j] + <span class="number">1</span>) &#123;</span><br><span class="line">len[i] = len[j] + <span class="number">1</span>;</span><br><span class="line">count[i] = count[j];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// update maxLen</span></span><br><span class="line"><span class="keyword">if</span> (maxLen == len[i]) &#123;</span><br><span class="line">res += count[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (maxLen &lt; len[i]) &#123;</span><br><span class="line">maxLen = len[i];</span><br><span class="line">res = count[i];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-673-number-of-longest-increasing-subsequence&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-673-number-of-longest-increasing-subsequence&quot;&gt;&lt;/a&gt; LeetCode Q 673 -  Number of Longest Increasing Subsequence&lt;/h1&gt;
-&lt;p&gt;Given an unsorted array of integers, find the number of longest increasing subsequence.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: [1,3,5,4,7] ; Output: 2&lt;/code&gt;&lt;br&gt;
-Explanation: The two longest increasing subsequence are [1, 3, 4, 7] and [1, 3, 5, 7].&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: [2,2,2,2,2] ; Output: 5&lt;/code&gt;&lt;br&gt;
-Explanation: The length of longest continuous increasing subsequence is 1, and there are 5 subsequences’ length is 1, so output 5.&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt; Length of the given array will be not exceed 2000 and the answer is guaranteed to be fit in 32-bit signed int.&lt;/p&gt;
-&lt;p&gt;Similar Question: &lt;a href=&quot;/2019/04/15/leetcodeQ300/&quot; title=&quot;Longest Increasing Subsequence&quot;&gt;Longest Increasing Subsequence&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Word Break II</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ140/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ140/</id>
-    <published>2019-04-25T22:08:57.000Z</published>
-    <updated>2019-04-25T22:26:28.314Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-140-word-break-ii"><a class="markdownIt-Anchor" href="#leetcode-q-140-word-break-ii"></a> LeetCode Q 140 - Word Break II</h1><p>Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.</p><p><strong>Note:</strong></p><ul><li>The same word in the dictionary may be reused multiple times in the segmentation.</li><li>You may assume the dictionary does not contain duplicate words.</li></ul><p>Example 1:<br><code>Input: s = &quot;catsanddog&quot;, wordDict = [&quot;cat&quot;, &quot;cats&quot;, &quot;and&quot;, &quot;sand&quot;, &quot;dog&quot;] Output: [ &quot;cats and dog&quot;, &quot;cat sand dog&quot; ]</code><br>Example 2:<br><code>Input: s = &quot;pineapplepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;, &quot;applepen&quot;, &quot;pine&quot;, &quot;pineapple&quot;] Output: [ &quot;pine apple pen apple&quot;, &quot;pineapple pen apple&quot;, &quot;pine applepen apple&quot; ]</code><br>Explanation: Note that you are allowed to reuse a dictionary word.<br>Example 3:<br><code>Input: s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;] Output: []</code></p><a id="more"></a><h2 id="solution-backtracking-with-memorization"><a class="markdownIt-Anchor" href="#solution-backtracking-with-memorization"></a> Solution : Backtracking with memorization</h2><p><strong><font color="#ff0066">Using DFS directly will lead to TLE, so just use HashMap to save the previous results to prune duplicated branches.</font></strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, ArrayList&lt;String&gt;&gt; memo;</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">wordBreak</span><span class="params">(String s, List&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line">memo = <span class="keyword">new</span> HashMap&lt;String, ArrayList&lt;String&gt;&gt;();</span><br><span class="line"><span class="keyword">return</span> wordBreakHelper(s, wordDict);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> List&lt;Strig&gt; <span class="title">wordBreakHelper</span><span class="params">(String s, List&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (memo.containsKey(s)) <span class="keyword">return</span> memo.get(s);</span><br><span class="line"></span><br><span class="line">List&lt;Strig&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"><span class="keyword">if</span> (wordDict.contains(s)) res.add(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt; s.length; i++) &#123;</span><br><span class="line">String word = s.substring(<span class="number">0</span>, len);</span><br><span class="line"><span class="keyword">if</span> (!wordDict.contains(word)) <span class="keyword">continue</span>;</span><br><span class="line">List&lt;String&gt; strs = wordBreak(s.substring(len), wordDict);</span><br><span class="line"><span class="keyword">for</span> (String str: strs) &#123;</span><br><span class="line">res.add(word + <span class="string">" "</span> + str);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">memo.put(s, res);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-140-word-break-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-140-word-break-ii&quot;&gt;&lt;/a&gt; LeetCode Q 140 - Word Break II&lt;/h1&gt;
-&lt;p&gt;Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The same word in the dictionary may be reused multiple times in the segmentation.&lt;/li&gt;
-&lt;li&gt;You may assume the dictionary does not contain duplicate words.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;catsanddog&amp;quot;, wordDict = [&amp;quot;cat&amp;quot;, &amp;quot;cats&amp;quot;, &amp;quot;and&amp;quot;, &amp;quot;sand&amp;quot;, &amp;quot;dog&amp;quot;] Output: [ &amp;quot;cats and dog&amp;quot;, &amp;quot;cat sand dog&amp;quot; ]&lt;/code&gt;&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;pineapplepenapple&amp;quot;, wordDict = [&amp;quot;apple&amp;quot;, &amp;quot;pen&amp;quot;, &amp;quot;applepen&amp;quot;, &amp;quot;pine&amp;quot;, &amp;quot;pineapple&amp;quot;] Output: [ &amp;quot;pine apple pen apple&amp;quot;, &amp;quot;pineapple pen apple&amp;quot;, &amp;quot;pine applepen apple&amp;quot; ]&lt;/code&gt;&lt;br&gt;
-Explanation: Note that you are allowed to reuse a dictionary word.&lt;br&gt;
-Example 3:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;catsandog&amp;quot;, wordDict = [&amp;quot;cats&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;sand&amp;quot;, &amp;quot;and&amp;quot;, &amp;quot;cat&amp;quot;] Output: []&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Memorization" scheme="http://yoursite.com/tags/Memorization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Word Break</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ139/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ139/</id>
-    <published>2019-04-25T21:49:53.000Z</published>
-    <updated>2019-04-25T22:25:46.267Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-139-word-break"><a class="markdownIt-Anchor" href="#leetcode-q-139-word-break"></a> LeetCode Q 139 - Word Break</h1><p>Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p><p><strong>Note:</strong></p><ul><li>The same word in the dictionary may be reused multiple times in the segmentation.</li><li>You may assume the dictionary does not contain duplicate words.</li></ul><p>Example 1:<br><code>Input: s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;] ; Output: true</code><br>Explanation: Return true because “leetcode” can be segmented as “leet code”.<br>Example 2:<br><code>Input: s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]; Output: true</code><br>Explanation: Return true because “applepenapple” can be segmented as “apple pen apple”. <strong>Note that you are allowed to reuse a dictionary word.</strong><br>Example 3:<br><code>Input: s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;] ; Output: false</code></p><a id="more"></a><h2 id="solution-dp-bottom-up"><a class="markdownIt-Anchor" href="#solution-dp-bottom-up"></a> Solution : DP bottom-up</h2><ol><li><p><strong>State:</strong> <code>boolean dp[i]</code> represents if <code>s.substring(0, i+1)</code> is valid.</p></li><li><p><strong>state transfer fuction:</strong><br>For String  <code>s.substring(0, i+1)</code>, we divide it into two parts, one is <code>s.substring(0, j)</code> and another is <code>s.substring(j, i+1)</code> if they are all valid then <code>s.substring(0, i+1)</code> is valid.<br>Therefore,<br><code>dp[i] = dp[j] &amp;&amp; wordDict.contains(s.substring(j, i+1));</code></p></li></ol><p><strong>Caution:</strong> when we find one valid partition of <code>s.substring(0, i+1)</code>, we need to <strong>break</strong> the <em><strong>for</strong></em> loop.</p><ol start="3"><li><strong>boundary cases:</strong> <code>dp[0] = true</code>.</li></ol><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, List&lt;String&gt; wordDict)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">if</span> (wordDict == <span class="keyword">null</span> || wordDict.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (dp[j] &amp;&amp; wordDict.contains(s.substring(j, i+<span class="number">1</span>))) &#123;</span><br><span class="line">dp[i + <span class="number">1</span>] = <span class="keyword">true</span>; <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-139-word-break&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-139-word-break&quot;&gt;&lt;/a&gt; LeetCode Q 139 - Word Break&lt;/h1&gt;
-&lt;p&gt;Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The same word in the dictionary may be reused multiple times in the segmentation.&lt;/li&gt;
-&lt;li&gt;You may assume the dictionary does not contain duplicate words.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;leetcode&amp;quot;, wordDict = [&amp;quot;leet&amp;quot;, &amp;quot;code&amp;quot;] ; Output: true&lt;/code&gt;&lt;br&gt;
-Explanation: Return true because “leetcode” can be segmented as “leet code”.&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;applepenapple&amp;quot;, wordDict = [&amp;quot;apple&amp;quot;, &amp;quot;pen&amp;quot;]; Output: true&lt;/code&gt;&lt;br&gt;
-Explanation: Return true because “applepenapple” can be segmented as “apple pen apple”. &lt;strong&gt;Note that you are allowed to reuse a dictionary word.&lt;/strong&gt;&lt;br&gt;
-Example 3:&lt;br&gt;
-&lt;code&gt;Input: s = &amp;quot;catsandog&amp;quot;, wordDict = [&amp;quot;cats&amp;quot;, &amp;quot;dog&amp;quot;, &amp;quot;sand&amp;quot;, &amp;quot;and&amp;quot;, &amp;quot;cat&amp;quot;] ; Output: false&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Minimum Swaps To Make Sequences Increasing</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ801/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ801/</id>
-    <published>2019-04-25T21:07:17.000Z</published>
-    <updated>2019-04-25T22:30:20.045Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-801-minimum-swaps-to-make-sequences-increasing"><a class="markdownIt-Anchor" href="#leetcode-q-801-minimum-swaps-to-make-sequences-increasing"></a> LeetCode Q 801 -  Minimum Swaps To Make Sequences Increasing</h1><p>We have two integer sequences A and B of the same non-zero length.<br>We are allowed to swap elements A[i] and B[i].  Note that both elements are in the same index position in their respective sequences.<br>At the end of some number of swaps, A and B are both strictly increasing.  (A sequence is strictly increasing if and only if A[0] &lt; A[1] &lt; A[2] &lt; … &lt; A[A.length - 1].)<br>Given A and B, return the minimum number of swaps to make both sequences strictly increasing.  It is guaranteed that the given input always makes it possible.</p><p>Example:<br><code>Input: A = [1,3,5,4], B = [1,2,3,7] ; Output: 1</code><br>Explanation: Swap A[3] and B[3].  Then the sequences are: A = [1, 3, 5, 7] and B = [1, 2, 3, 4] which are both strictly increasing.</p><p><strong>Note:</strong></p><ul><li>A, B are arrays with the same length, and that length will be in the range [1, 1000].</li><li>A[i], B[i] are integer values in the range [0, 2000].</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><ol><li><p><strong>State:</strong> <code>dp[i][j]</code> denotes the minimum steps we need to make <code>A.substring(i - 1)</code> is the same as <code>B.substring(i - 1)</code> and j represents the operation type. To let those two strings equal, we have two choices, one is swap <em><strong>ith</strong></em> char in <em><strong>A</strong></em> and <em><strong>B</strong></em>, or do nothing.</p><ul><li><code>dp[i][0]</code>: we don’t swap <em><strong>ith</strong></em> char in <em><strong>A</strong></em> and <em><strong>B</strong></em>.</li><li><code>dp[i][1]</code>: we swap them.</li></ul></li><li><p><strong>state transfer fuction:</strong><br>Since this question is guaranteed to have the answer, therefore at least one of the following two conditions exists:</p><ol><li>A[i] &gt; A[i - 1] &amp;&amp; B[i] &gt; B[i - 1]</li><li>A[i] &gt; B[i - 1] &amp;&amp; B[i] &gt; A[i - 1]</li></ol></li></ol><ul><li>if <strong>condition 1</strong> exists,<ul><li>if we don’t need to swap chars, then<br><code>dp[i][0] = min(dp[i-1][0], dp[i][0])</code></li><li>if we still swap chars, we also need to swap <em><strong>(i-1)th</strong></em> char in A and B, then<br><code>dp[i][1] = min(dp[i-1][1] + 1, dp[i][1])</code></li></ul></li><li>if <strong>condition 2</strong> exists,<ul><li>if we don’t need to swap chars, then we need to swap <em><strong>(i-1)th</strong></em> char in A and B, which means we can only get to <code>dp[i][0]</code> from <code>dp[i-1][1]</code>, therefore<br><code>dp[i][0] = min(dp[i-1][1], dp[i][0]))</code></li><li>if we still swap chars, we don’t need to swap <em><strong>(i-1)th</strong></em> char in A and B, then<br><code>dp[i][1] = min(dp[i-1][0] + 1, dp[i][1])</code></li></ul></li></ul><ol start="3"><li><p><strong>boundary cases:</strong><br><code>dp[0][0] = 0, dp[0][1] = 1</code>, other numbers in <em><strong>dp</strong></em> are all initialized as <strong>INF</strong>.</p></li><li><p><strong>Optimization:</strong><br>Since <code>dp[i]</code> is only depends on <code>dp[i-1]</code>, we can use sliding array to optimize space complexity to O(1).</p></li></ol><p><strong>Time Complexity: O(n)</strong><br><strong>Space Complexity: O(2n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSwap</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span> || B == <span class="keyword">null</span> || B.length != A.length) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> len = A.length;</span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[len][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>; dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">dp[i][<span class="number">0</span>] = dp[i][<span class="number">1</span>] = Integer.MAX_VALUE;</span><br><span class="line"><span class="keyword">if</span> (A[i] &gt; A[i-<span class="number">1</span>] &amp;&amp; B[i] &gt; B[i-<span class="number">1</span>]) &#123;</span><br><span class="line">dp[i][<span class="number">0</span>] = Math.min(dp[i-<span class="number">1</span>][<span class="number">0</span>], dp[i][<span class="number">0</span>]);</span><br><span class="line">dp[i][<span class="number">1</span>] = Math.min(dp[i-<span class="number">1</span>][<span class="number">1</span>] + <span class="number">1</span>, dp[i][<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (A[i] &gt; B[i-<span class="number">1</span>] &amp;&amp; B[i] &gt; A[i-<span class="number">1</span>]) &#123;</span><br><span class="line">dp[i][<span class="number">0</span>] = Math.min(dp[i-<span class="number">1</span>][<span class="number">1</span>], dp[i][<span class="number">0</span>]);</span><br><span class="line">dp[i][<span class="number">1</span>] = Math.min(dp[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span>, dp[i][<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Math.min(dp[len-<span class="number">1</span>][<span class="number">0</span>], dp[len-<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-801-minimum-swaps-to-make-sequences-increasing&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-801-minimum-swaps-to-make-sequences-increasing&quot;&gt;&lt;/a&gt; LeetCode Q 801 -  Minimum Swaps To Make Sequences Increasing&lt;/h1&gt;
-&lt;p&gt;We have two integer sequences A and B of the same non-zero length.&lt;br&gt;
-We are allowed to swap elements A[i] and B[i].  Note that both elements are in the same index position in their respective sequences.&lt;br&gt;
-At the end of some number of swaps, A and B are both strictly increasing.  (A sequence is strictly increasing if and only if A[0] &amp;lt; A[1] &amp;lt; A[2] &amp;lt; … &amp;lt; A[A.length - 1].)&lt;br&gt;
-Given A and B, return the minimum number of swaps to make both sequences strictly increasing.  It is guaranteed that the given input always makes it possible.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: A = [1,3,5,4], B = [1,2,3,7] ; Output: 1&lt;/code&gt;&lt;br&gt;
-Explanation: Swap A[3] and B[3].  Then the sequences are: A = [1, 3, 5, 7] and B = [1, 2, 3, 4] which are both strictly increasing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A, B are arrays with the same length, and that length will be in the range [1, 1000].&lt;/li&gt;
-&lt;li&gt;A[i], B[i] are integer values in the range [0, 2000].&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Domino and Tromino Tiling</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ790/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ790/</id>
-    <published>2019-04-25T20:46:51.000Z</published>
-    <updated>2019-04-25T22:25:29.322Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-790-domino-and-tromino-tiling"><a class="markdownIt-Anchor" href="#leetcode-q-790-domino-and-tromino-tiling"></a> LeetCode Q 790 -  Domino and Tromino Tiling</h1><p>We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated.<br><code>XX &lt;- domino XX &lt;- &quot;L&quot; tromino X</code><br>Given N, how many ways are there to tile a 2 x N board? <strong>Return your answer modulo 10^9 + 7.</strong></p><p>(In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile.)</p><p>Example:<br><code>Input: 3 ; Output: 5</code><br>Explanation:<br>The five different ways are listed below, different letters indicates different tiles:<br><code>XYZ XXZ XYY XXY XYY XYZ YYZ XZZ XYY XXY</code><br><strong>Note:</strong> N  will be in range [1, 1000].</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><h3 id="solution-1-dp"><a class="markdownIt-Anchor" href="#solution-1-dp"></a> Solution 1: DP</h3><ol><li><p><strong>State:</strong> <code>f[i][j]</code>, i: until which col the floor is all covered; j: the tail states.</p><ul><li><code>f[i][0]</code>: there is no redundant tail at ith col. (1st row: i, 2nd row: i)</li><li><code>f[i][1]</code>: there is one more tail at 1st row. (1st row: i + 1, 2nd row: i)</li><li><code>f[i][2]</code>: there is one more tail at 1st row. (1st row: i, 2nd row: i + 1)</li></ul></li><li><p><strong>state transfer fuction:</strong></p><ul><li><code>f[i][0] = f[i-1][0] + f[i - 2][0] + f[i-2][1] + f[i-2][2];</code><br>Put one type I vertically, or put two I types horizontally, or put L type (two directions)</li><li><code>f[i][1] = f[i-1][0] + f[i-1][2];</code><br>Put a type I across the top row, or put an L-shape</li><li><code>f[i][2] = f[i-1][0] + f[i-1][1];</code><br>Place a type I across the next line, or put an L type</li></ul></li><li><p><strong>boundary cases:</strong><br><code>f[0][0] = f[1][0] = f[1][1] = f[1][2] = 1</code></p></li></ol><p><strong>Caution:</strong> use <em><strong>long</strong></em> to avoid <strong>integer overflow</strong></p><ol start="4"><li><strong>Optimization:</strong><br>Since <code>f[i]</code> is only depends on <code>f[i-1]</code> and <code>f[i-2]</code>, we can use sliding array to optimize space complexity to O(1).</li></ol><p><strong>Time Complexity: O(n)</strong><br><strong>Space Complexity: O(3n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> MOD = <span class="number">1000000007</span>; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numTilings</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (N &lt;= <span class="number">2</span>) <span class="keyword">return</span> N;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span>[][] f = <span class="keyword">new</span> <span class="keyword">long</span>[N+<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">f[<span class="number">0</span>][<span class="number">0</span>] = f[<span class="number">1</span>][<span class="number">0</span>] = f[<span class="number">1</span>][<span class="number">1</span>] = f[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">f[i][<span class="number">0</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">2</span>][<span class="number">0</span>] + f[i-<span class="number">2</span>][<span class="number">1</span>] + f[i-<span class="number">2</span>][<span class="number">2</span>]) % MOD;</span><br><span class="line">f[i][<span class="number">1</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">1</span>][<span class="number">2</span>]) % MOD;</span><br><span class="line">f[i][<span class="number">2</span>] = (f[i-<span class="number">1</span>][<span class="number">0</span>] + f[i-<span class="number">1</span>][<span class="number">1</span>]) % MOD;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)f[N][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-790-domino-and-tromino-tiling&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-790-domino-and-tromino-tiling&quot;&gt;&lt;/a&gt; LeetCode Q 790 -  Domino and Tromino Tiling&lt;/h1&gt;
-&lt;p&gt;We have two types of tiles: a 2x1 domino shape, and an “L” tromino shape. These shapes may be rotated.&lt;br&gt;
-&lt;code&gt;XX &amp;lt;- domino XX &amp;lt;- &amp;quot;L&amp;quot; tromino X&lt;/code&gt;&lt;br&gt;
-Given N, how many ways are there to tile a 2 x N board? &lt;strong&gt;Return your answer modulo 10^9 + 7.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;(In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile.)&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: 3 ; Output: 5&lt;/code&gt;&lt;br&gt;
-Explanation:&lt;br&gt;
-The five different ways are listed below, different letters indicates different tiles:&lt;br&gt;
-&lt;code&gt;XYZ XXZ XYY XXY XYY XYZ YYZ XZZ XYY XXY&lt;/code&gt;&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt; N  will be in range [1, 1000].&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Delete and Earn</title>
-    <link href="http://yoursite.com/2019/04/25/leetcodeQ740/"/>
-    <id>http://yoursite.com/2019/04/25/leetcodeQ740/</id>
-    <published>2019-04-25T19:15:34.000Z</published>
-    <updated>2019-04-25T22:26:58.560Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-740-delete-and-earn"><a class="markdownIt-Anchor" href="#leetcode-q-740-delete-and-earn"></a> LeetCode Q 740 -  Delete and Earn</h1><p>Given an array nums of integers, you can perform operations on the array.<br>In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete every element equal to nums[i] - 1 or nums[i] + 1.<br>You start with 0 points. Return the maximum number of points you can earn by applying such operations.</p><p>Example 1:<br><code>Input: nums = [3, 4, 2] ; Output: 6</code><br>Explanation: Delete 4 to earn 4 points, consequently 3 is also deleted. Then, delete 2 to earn 2 points. 6 total points are earned.</p><p>Example 2:<br><code>Input: nums = [2, 2, 3, 3, 3, 4] ; Output: 9</code><br>Explanation: Delete 3 to earn 3 points, deleting both 2’s and the 4.<br>Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.<br>9 total points are earned.</p><p><strong>Note:</strong></p><ul><li>The length of nums is at most 20000.</li><li>Each element nums[i] is an integer in the range [1, 10000].</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><h3 id="solution-1-dp"><a class="markdownIt-Anchor" href="#solution-1-dp"></a> Solution 1: DP</h3><p>First, We use an array <code>int[] count</code> store the times of each element appeared in <em><strong>nums</strong></em>. Since <em><strong>nums[i]</strong></em> is in the range [1, 10000]. We can initialize <code>int[] count = new int[10001]</code>.</p><p>Then, traverse <em><strong>nums</strong></em> and build <em><strong>count</strong></em>.</p><p>Next, use DP algorithm to find the answer.</p><ol><li><strong>State:</strong> <code>dp[i]</code>, the best score we can get till <em><strong>i</strong></em>.</li><li><strong>State Transfer Function:</strong><br><code>dp[i] = Math.max(dp[i - 1], dp[i - 2] + i * counter[i]);</code><br>We have two options:</li></ol><ul><li>We pick <em><strong>i</strong></em>. Since we must <strong>delete</strong> <em><strong>i-1</strong></em> and <em><strong>i+1</strong></em>, that is we can only reach <em><strong>i</strong></em> from <em><strong>i-2</strong></em>.</li><li>We don’t pick <em><strong>i</strong></em>. We pick <em><strong>i - 1</strong></em>.</li></ul><p>We choose one from these two options, which has higher value.</p><p><strong>Time Complexity: O(n)</strong><br><strong>Space Complexity: O(n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteAndEarn</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10001</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) count[num]++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10001</span>];</span><br><span class="line">dp[<span class="number">1</span>] = count[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; <span class="number">10001</span>; i++) &#123;</span><br><span class="line">dp[i] = Math.max(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + i * counter[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">10000</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-740-delete-and-earn&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-740-delete-and-earn&quot;&gt;&lt;/a&gt; LeetCode Q 740 -  Delete and Earn&lt;/h1&gt;
-&lt;p&gt;Given an array nums of integers, you can perform operations on the array.&lt;br&gt;
-In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete every element equal to nums[i] - 1 or nums[i] + 1.&lt;br&gt;
-You start with 0 points. Return the maximum number of points you can earn by applying such operations.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: nums = [3, 4, 2] ; Output: 6&lt;/code&gt;&lt;br&gt;
-Explanation: Delete 4 to earn 4 points, consequently 3 is also deleted. Then, delete 2 to earn 2 points. 6 total points are earned.&lt;/p&gt;
-&lt;p&gt;Example 2:&lt;br&gt;
-&lt;code&gt;Input: nums = [2, 2, 3, 3, 3, 4] ; Output: 9&lt;/code&gt;&lt;br&gt;
-Explanation: Delete 3 to earn 3 points, deleting both 2’s and the 4.&lt;br&gt;
-Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.&lt;br&gt;
-9 total points are earned.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The length of nums is at most 20000.&lt;/li&gt;
-&lt;li&gt;Each element nums[i] is an integer in the range [1, 10000].&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Combination Sum IV</title>
-    <link href="http://yoursite.com/2019/04/24/leetcodeQ377/"/>
-    <id>http://yoursite.com/2019/04/24/leetcodeQ377/</id>
-    <published>2019-04-24T22:58:09.000Z</published>
-    <updated>2019-04-26T21:59:59.414Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-377-combination-sum-iv"><a class="markdownIt-Anchor" href="#leetcode-q-377-combination-sum-iv"></a> LeetCode Q 377 - Combination Sum IV</h1><p>Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.</p><p>Example:<br><code>nums = [1, 2, 3] ; target = 4</code><br>The possible combination ways are:<br>(1, 1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 3), (2, 1, 1), (2, 2), (3, 1)<br><strong>Note</strong> that different sequences are counted as different combinations.<br>Therefore the output is 7.</p><p><strong>Follow up:</strong></p><ul><li>What if negative numbers are allowed in the given array?</li><li>How does it change the problem?</li><li>What limitation we need to add to the question to allow negative numbers?</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><h3 id="solution-1-dp"><a class="markdownIt-Anchor" href="#solution-1-dp"></a> Solution 1: DP</h3><p><strong>State Transfer Function:</strong><br><code>dp[i] += dp[i - num], where num belongs to nums.</code></p><p><strong>Time Complexity: O(n * t)</strong><br><strong>Space Complexity: O(t)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[target + <span class="number">1</span>];</span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line"><span class="keyword">if</span> (i &gt;= num) dp[i] += dp[i - num];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-recursion-hashmap"><a class="markdownIt-Anchor" href="#solution-2-recursion-hashmap"></a> Solution 2: Recursion + HashMap</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length ==<span class="number">0</span> || target &lt; <span class="number">0</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> ( target == <span class="number">0</span> ) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (map.containsKey(target)) <span class="keyword">return</span> map.get(target);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums)</span><br><span class="line">    count += combinationSum4(nums, target - num);</span><br><span class="line">map.put(target, count);</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="follow-up"><a class="markdownIt-Anchor" href="#follow-up"></a> Follow up:</h3><p><strong>In order to allow negative integers, the length of the combination sum needs to be restricted, or the search will not stop. We need to use memory to avoid repeated calculations.</strong></p><p>In order to solve this question, we use backtrack with memory. In <a href="/2019/04/25/leetcodeQ140/" title="Word Breaker II">Word Breaker II</a>, we also use backtrack + memory method.</p><p><strong>Code: Backtrack with memorizing</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">combinationSum42</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target, <span class="keyword">int</span> MaxLen)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length ==<span class="number">0</span> || MaxLen &lt;= <span class="number">0</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">return</span> helper2(nums, <span class="number">0</span>, target, MaxLen);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Map&lt;Integer, Map&lt;Integer,Integer&gt;&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper2</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> len, <span class="keyword">int</span> target, <span class="keyword">int</span> MaxLen)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (len &gt; MaxLen) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (map2.containsKey(target) &amp;&amp; map2.get(target).containsKey(len))</span><br><span class="line"><span class="keyword">return</span> map2.get(target).get(len);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( target == <span class="number">0</span> )   count++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) </span><br><span class="line">count+= helper2(nums, len+<span class="number">1</span>, target-num, MaxLen);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!map2.containsKey(target)) </span><br><span class="line">map2.put(target, <span class="keyword">new</span> HashMap&lt;Integer,Integer&gt;());</span><br><span class="line">Map&lt;Integer,Integer&gt; memo = map2.get(target);</span><br><span class="line"></span><br><span class="line">memo.put(len, count);</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-377-combination-sum-iv&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-377-combination-sum-iv&quot;&gt;&lt;/a&gt; LeetCode Q 377 - Combination Sum IV&lt;/h1&gt;
-&lt;p&gt;Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;nums = [1, 2, 3] ; target = 4&lt;/code&gt;&lt;br&gt;
-The possible combination ways are:&lt;br&gt;
-(1, 1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 3), (2, 1, 1), (2, 2), (3, 1)&lt;br&gt;
-&lt;strong&gt;Note&lt;/strong&gt; that different sequences are counted as different combinations.&lt;br&gt;
-Therefore the output is 7.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Follow up:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What if negative numbers are allowed in the given array?&lt;/li&gt;
-&lt;li&gt;How does it change the problem?&lt;/li&gt;
-&lt;li&gt;What limitation we need to add to the question to allow negative numbers?&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="HashTable" scheme="http://yoursite.com/tags/HashTable/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-      <category term="Memorization" scheme="http://yoursite.com/tags/Memorization/"/>
-    
-      <category term="Recurtion" scheme="http://yoursite.com/tags/Recurtion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Wiggle Subsequence</title>
-    <link href="http://yoursite.com/2019/04/24/leetcodeQ376/"/>
-    <id>http://yoursite.com/2019/04/24/leetcodeQ376/</id>
-    <published>2019-04-24T22:38:24.000Z</published>
-    <updated>2019-04-25T22:27:23.114Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-376-wiggle-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-376-wiggle-subsequence"></a> LeetCode Q 376 - Wiggle Subsequence</h1><p>A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.<br>For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.<br>Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</p><p>Example 1:<br><code>Input: [1,7,4,9,2,5] ; Output: 6</code><br>Explanation: The entire sequence is a wiggle sequence.<br>Example 2:<br><code>Input: [1,17,5,10,13,15,10,5,16,8] ; Output: 7</code><br>Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].<br>Example 3:<br><code>Input: [1,2,3,4,5,6,7,8,9] ; Output: 2</code></p><p><strong>Follow up:</strong> Can you do it in <strong>O(n)</strong> time?</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><h3 id="solution-1-traditional-dp"><a class="markdownIt-Anchor" href="#solution-1-traditional-dp"></a> Solution 1 : traditional DP</h3><p>We use two arrays to store the states.</p><ol><li><code>up[i]</code>: the <em><strong>ith</strong></em> number is the <strong>peak</strong>.</li><li><code>sell[i]</code>: the <em><strong>ith</strong></em> number is the <strong>vally</strong>.</li></ol><p>We update these two arrays depends on the following case:</p><ol><li><code>if (nums[i] &gt; nums[i - 1])</code>, which means the curr number is larger than its left, then we update <code>up[i] = Math.max(up[i - 1], down[i - 1] + 1)</code> and <code>down[i] keeps the same</code> (i.e. <code>down[i] = down[i - 1]</code>);</li><li><code>if (nums[i] &lt; nums[i - 1])</code>, which means the curr number is smaller than its left, then we update <code>down[i] = Math.max(down[i - 1], up[i - 1] + 1)</code> and <code>up[i] keeps the same</code> (i.e. <code>up[i] = up[i - 1]</code>);</li><li><code>if (nums[i] == nums[i - 1])</code>, we will neither update <code>up[i]</code> nor <code>sell[i]</code>, that is <code>up[i] = up[i - 1]</code> and <code>down[i] = down[i - 1]</code>.</li></ol><p><strong>Time Complexity: O(n)</strong><br><strong>Space Complexity: O(n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] up = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="keyword">int</span>[] down = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">up[<span class="number">0</span>] = <span class="number">1</span>; down[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">up[i] = Math.max(up[i - <span class="number">1</span>], down[i - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">down[i] = Math.max(down[i - <span class="number">1</span>], up[i - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">up[i] = up[i - <span class="number">1</span>];</span><br><span class="line">down[i] = down[i - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Math.max(up[nums.length - <span class="number">1</span>], down[nums.length - <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-dp-optimized-space"><a class="markdownIt-Anchor" href="#solution-2-dp-optimized-space"></a> Solution 2 : DP Optimized Space</h3><p>Using <em><strong>up</strong></em> and <em><strong>down</strong></em> instead of <code>up[i]</code> and <code>down[i]</code>, optimizing the <strong>space complecity</strong> to be <strong>O(1)</strong>.</p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">wiggleMaxLength</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> up = <span class="number">1</span>, down = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>])</span><br><span class="line">up = Math.max(up, down + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>])</span><br><span class="line">down = Math.max(down, up + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Math.max(up, down);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-376-wiggle-subsequence&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-376-wiggle-subsequence&quot;&gt;&lt;/a&gt; LeetCode Q 376 - Wiggle Subsequence&lt;/h1&gt;
-&lt;p&gt;A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.&lt;br&gt;
-For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.&lt;br&gt;
-Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: [1,7,4,9,2,5] ; Output: 6&lt;/code&gt;&lt;br&gt;
-Explanation: The entire sequence is a wiggle sequence.&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: [1,17,5,10,13,15,10,5,16,8] ; Output: 7&lt;/code&gt;&lt;br&gt;
-Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].&lt;br&gt;
-Example 3:&lt;br&gt;
-&lt;code&gt;Input: [1,2,3,4,5,6,7,8,9] ; Output: 2&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Follow up:&lt;/strong&gt; Can you do it in &lt;strong&gt;O(n)&lt;/strong&gt; time?&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Partition Equal Subset Sum</title>
-    <link href="http://yoursite.com/2019/04/24/leetcodeQ416/"/>
-    <id>http://yoursite.com/2019/04/24/leetcodeQ416/</id>
-    <published>2019-04-24T22:19:44.000Z</published>
-    <updated>2019-04-25T22:27:30.396Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-416-partition-equal-subset-sum"><a class="markdownIt-Anchor" href="#leetcode-q-416-partition-equal-subset-sum"></a> LeetCode Q 416 - Partition Equal Subset Sum</h1><p>Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.<br><strong>Note:</strong></p><ul><li>Each of the array element will not exceed 100.</li><li>The array size will not exceed 200.</li></ul><p>Example 1:<br><code>Input: [1, 5, 11, 5] ; Output: true</code><br>Explanation: The array can be partitioned as [1, 5, 5] and [11].<br>Example 2:<br><code>Input: [1, 2, 3, 5] ; Output: false</code><br>Explanation: The array cannot be partitioned into equal sum subsets.</p><a id="more"></a><h2 id="solution-dp"><a class="markdownIt-Anchor" href="#solution-dp"></a> Solution : DP</h2><ol><li><p>We calculate the <strong>sum</strong> of the array, if the <strong>sum</strong> cannot divided by two, then directly returning <strong>false</strong>.</p></li><li><p>boolean array <code>dp[]</code> is used to store the sum values of the array. If <code>dp[sum / 2]</code> can be achieved, then we can return <strong>true</strong>.</p></li></ol><p><strong>State Transfer Function</strong><br><code>dp[i] = dp[i] || dp[i - nums[j]];</code> i: sum value;</p><p><strong>Time Complexity: O(kn)</strong><br><strong>Time Complexity: O(kn)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canPartition</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) sum += num;</span><br><span class="line"><span class="keyword">if</span> (sum % <span class="number">2</span> == <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[sum / <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line">dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = sum / <span class="number">2</span>; j &gt;= nums[i - <span class="number">1</span>]; j--)</span><br><span class="line">dp[j] = dp[j] || dp[j - nums[i - <span class="number">1</span>]];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[sum / <span class="number">2</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong><font color="#ff0066">Wrong Code:</font></strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= sum / <span class="number">2</span>; i++) &#123; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line"><span class="keyword">if</span> (i &gt;= num) dp[i] = dp[i] || dp[i - num];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>Since each num can only be used once, this code is <font color="#ff0066">wrong!!!</font></strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-416-partition-equal-subset-sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-416-partition-equal-subset-sum&quot;&gt;&lt;/a&gt; LeetCode Q 416 - Partition Equal Subset Sum&lt;/h1&gt;
-&lt;p&gt;Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Each of the array element will not exceed 100.&lt;/li&gt;
-&lt;li&gt;The array size will not exceed 200.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: [1, 5, 11, 5] ; Output: true&lt;/code&gt;&lt;br&gt;
-Explanation: The array can be partitioned as [1, 5, 5] and [11].&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: [1, 2, 3, 5] ; Output: false&lt;/code&gt;&lt;br&gt;
-Explanation: The array cannot be partitioned into equal sum subsets.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Target Sum</title>
-    <link href="http://yoursite.com/2019/04/24/leetcodeQ494/"/>
-    <id>http://yoursite.com/2019/04/24/leetcodeQ494/</id>
-    <published>2019-04-24T22:03:16.000Z</published>
-    <updated>2019-04-25T22:27:36.882Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-494-target-sum"><a class="markdownIt-Anchor" href="#leetcode-q-494-target-sum"></a> LeetCode Q 494 - Target Sum</h1><p>You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.<br>Find out how many ways to assign symbols to make sum of integers equal to target S.</p><p>Example 1:<br><code>Input: nums is [1, 1, 1, 1, 1], S is 3. ; Output: 5</code><br>Explanation:<br><code>-1+1+1+1+1 = 3 +1-1+1+1+1 = 3 +1+1-1+1+1 = 3 +1+1+1-1+1 = 3 +1+1+1+1-1 = 3</code><br>There are 5 ways to assign symbols to make the sum of nums be target 3.<br><strong>Note:</strong></p><ul><li>The length of the given array is positive and will not exceed 20.</li><li>The sum of elements in the given array will not exceed 1000.<br>Your output answer is guaranteed to be fitted in a 32-bit integer.</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution :</h2><h3 id="solution-1-dfs-backtracking"><a class="markdownIt-Anchor" href="#solution-1-dfs-backtracking"></a> Solution 1 : DFS / backtracking</h3><p><strong>Time Complexity: O(2^n)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> res;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">backtrack(nums, S, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S, <span class="keyword">int</span> index, <span class="keyword">int</span> currSum)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (index == nums.length) &#123;</span><br><span class="line"><span class="keyword">if</span> (currSum == S) res++;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//explore</span></span><br><span class="line">backtrack(nums, S, index + <span class="number">1</span>, currSum + nums[index]);</span><br><span class="line">backtrack(nums, S, index + <span class="number">1</span>, currSum - nums[index]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-dp"><a class="markdownIt-Anchor" href="#solution-2-dp"></a> Solution 2 : DP</h3><p><code>dp[i][j]</code> refers to the number of assignments which can lead to a sum of j upto the ith index.</p><p><strong>State Transfer Function</strong><br><code>dp[i][sum+nums[i]] = dp[i][sum+nums[i]]+dp[i-1][sum] dp[i][sum-nums[i]] = dp[i][sum-nums[i]]+dp[i-1][sum]</code></p><p><strong>Note:</strong> we add an offset sum to the second index to avoid negative index value.</p><p><strong>Time Complexity: O(kn)</strong><br><strong>Time Complexity: O(kn)</strong></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> num: nums) sum += num;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length][<span class="number">2</span> * sum + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">dp[<span class="number">0</span>][sum + nums[i]] = <span class="number">1</span>;</span><br><span class="line">dp[<span class="number">0</span>][sum - nums[i]] += <span class="number">1</span>; <span class="comment">// += not = !</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span> * sum + <span class="number">1</span>; j++) &#123;</span><br><span class="line"><span class="keyword">if</span> (dp[i - <span class="number">1</span>][j] != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums[i];</span><br><span class="line">dp[i][j + n] += dp[i - <span class="number">1</span>][j];</span><br><span class="line">dp[i][j - n] += dp[i - <span class="number">1</span>][j];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[nums.length - <span class="number">1</span>][sum + S];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-494-target-sum&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-494-target-sum&quot;&gt;&lt;/a&gt; LeetCode Q 494 - Target Sum&lt;/h1&gt;
-&lt;p&gt;You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.&lt;br&gt;
-Find out how many ways to assign symbols to make sum of integers equal to target S.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: nums is [1, 1, 1, 1, 1], S is 3. ; Output: 5&lt;/code&gt;&lt;br&gt;
-Explanation:&lt;br&gt;
-&lt;code&gt;-1+1+1+1+1 = 3 +1-1+1+1+1 = 3 +1+1-1+1+1 = 3 +1+1+1-1+1 = 3 +1+1+1+1-1 = 3&lt;/code&gt;&lt;br&gt;
-There are 5 ways to assign symbols to make the sum of nums be target 3.&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The length of the given array is positive and will not exceed 20.&lt;/li&gt;
-&lt;li&gt;The sum of elements in the given array will not exceed 1000.&lt;br&gt;
-Your output answer is guaranteed to be fitted in a 32-bit integer.&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
-    
-      <category term="backtracking" scheme="http://yoursite.com/tags/backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Palindromic Substrings</title>
-    <link href="http://yoursite.com/2019/04/24/leetcodeQ647/"/>
-    <id>http://yoursite.com/2019/04/24/leetcodeQ647/</id>
-    <published>2019-04-24T21:54:37.000Z</published>
-    <updated>2019-04-25T22:27:52.170Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-647-palindromic-substrings"><a class="markdownIt-Anchor" href="#leetcode-q-647-palindromic-substrings"></a> LeetCode Q 647 - Palindromic Substrings</h1><p>Given a string, your task is to count how many palindromic substrings in this string. The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.</p><p>Example 1:<br><code>Input: &quot;abc&quot; ; Output: 3</code><br>Explanation: Three palindromic strings: “a”, “b”, “c”.<br>Example 2:<br><code>Input: &quot;aaa&quot; ; Output: 6</code><br>Explanation: Six palindromic strings: “a”, “a”, “a”, “aa”, “aa”, “aaa”.</p><p><strong>Note:</strong> The input string length won’t exceed 1000.</p><a id="more"></a><h2 id="solution-expand-around-center"><a class="markdownIt-Anchor" href="#solution-expand-around-center"></a> Solution : Expand Around Center</h2><p>Similar Question: <a href="/2019/04/22/leetcodeQ5/" title="Longest Palindromic Substring">Longest Palindromic Substring</a></p><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> num; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + <span class="number">1</span>&lt; s.length(); i++) &#123;</span><br><span class="line">expandAroundCerter(s, i, i);</span><br><span class="line">expandAroundCerter(s, i, i + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> num + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">expandAroundCerter</span><span class="params">(String s, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (start &gt;= <span class="number">0</span> &amp;&amp; end &lt; s.length() </span><br><span class="line">&amp;&amp; s.charAt(start) == s.charAt(end)) &#123;</span><br><span class="line">  start--; end++; num++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-647-palindromic-substrings&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-647-palindromic-substrings&quot;&gt;&lt;/a&gt; LeetCode Q 647 - Palindromic Substrings&lt;/h1&gt;
-&lt;p&gt;Given a string, your task is to count how many palindromic substrings in this string. The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.&lt;/p&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: &amp;quot;abc&amp;quot; ; Output: 3&lt;/code&gt;&lt;br&gt;
-Explanation: Three palindromic strings: “a”, “b”, “c”.&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: &amp;quot;aaa&amp;quot; ; Output: 6&lt;/code&gt;&lt;br&gt;
-Explanation: Six palindromic strings: “a”, “a”, “a”, “aa”, “aa”, “aaa”.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The input string length won’t exceed 1000.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="DP" scheme="http://yoursite.com/tags/DP/"/>
     
   </entry>
   
