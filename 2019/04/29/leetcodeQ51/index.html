@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>N-Queens | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 51 - N-Queens The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other. Given an integer n, return all distinct solutions to th">
+<meta name="keywords" content="LeetCode,Backtracking,DFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N-Queens">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/leetcodeQ51/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 51 - N-Queens The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other. Given an integer n, return all distinct solutions to th">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-29T17:22:54.441Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="N-Queens">
+<meta name="twitter:description" content="LeetCode Q 51 - N-Queens The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other. Given an integer n, return all distinct solutions to th">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ51" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/leetcodeQ51/" class="article-date">
+  <time datetime="2019-04-29T16:57:30.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      N-Queens
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-51-n-queens"><a class="markdownIt-Anchor" href="#leetcode-q-51-n-queens"></a> LeetCode Q 51 - N-Queens</h1>
+<p>The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.<br>
+Given an integer n, return all distinct solutions to the n-queens puzzle.<br>
+Each solution contains a distinct board configuration of the n-queens’ placement, where ‘Q’ and ‘.’ both indicate a queen and an empty space respectively.</p>
+<p>Example:<br>
+<code>Input: 4 Output: [ [&quot;.Q..&quot;, // Solution 1 &quot;...Q&quot;, &quot;Q...&quot;, &quot;..Q.&quot;], [&quot;..Q.&quot;, // Solution 2 &quot;Q...&quot;, &quot;...Q&quot;, &quot;.Q..&quot;] ]</code><br>
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above.</p>
+<a id="more"></a>
+<h2 id="solution-dfs"><a class="markdownIt-Anchor" href="#solution-dfs"></a> Solution : DFS</h2>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;String&gt;&gt; res;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; solveNQueens(<span class="keyword">int</span> N) &#123;</span><br><span class="line">	res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	<span class="keyword">if</span> (N &lt;= <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// build graph</span></span><br><span class="line">	<span class="keyword">char</span>[][] board = <span class="keyword">new</span> <span class="keyword">char</span>[N][N];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span>[] row: board) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j  = <span class="number">0</span>; j &lt; N; j++)</span><br><span class="line">	 		row[j] = <span class="string">'.'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	solve(board, N, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> N, <span class="keyword">int</span> row)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (row == N) &#123;</span><br><span class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length)</span><br><span class="line">			list.add(String.valueOf(board[i]));</span><br><span class="line">		res.add(list);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; N; col++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[row][col] == <span class="string">'.'</span> &amp;&amp; isValid(board, N, row, col)) &#123;</span><br><span class="line">			board[row][col] = <span class="string">'Q'</span>;</span><br><span class="line">			solve(board, N, row + <span class="number">1</span>);</span><br><span class="line">			board[row][col] = <span class="string">'.'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> N, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// check row</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[row][j] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// check col</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[i][col] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// check diagonal</span></span><br><span class="line">	<span class="keyword">int</span> r = row, c = col;</span><br><span class="line">	<span class="keyword">while</span> (r &gt;= <span class="number">0</span> &amp;&amp; c &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[r--][c--] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	r = row; c = col;</span><br><span class="line">	<span class="keyword">while</span> (r &lt; N &amp;&amp; c &lt; N) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[r++][c++] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// check another diagonal</span></span><br><span class="line">	r = row; c = col;</span><br><span class="line">	<span class="keyword">while</span> (r &lt; N &amp;&amp; c &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[r++][c--] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	r = row; c = col;</span><br><span class="line">	<span class="keyword">while</span> (r &gt;= <span class="number">0</span> &amp;&amp; c &lt; N) &#123;</span><br><span class="line">		<span class="keyword">if</span> (board[r--][c++] == <span class="string">'Q'</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ51/" data-id="cjv2lvn5r00klpovefgk0x0dj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/29/leetcodeQ52/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          N-Queens II
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/29/leetcodeQ301/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Remove Invalid Parentheses</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.88px;">Array</a> <a href="/tags/BFS/" style="font-size: 10px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.65px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.06px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.59px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.18px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.12px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.18px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 15.29px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.41px;">DP</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.82px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.76px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.59px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.35px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.59px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 12.94px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.24px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.18px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.59px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.76px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.18px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.18px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.71px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.18px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.53px;">Stack</a> <a href="/tags/String/" style="font-size: 16.47px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.59px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.35px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.18px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.59px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.94px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.59px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ212/">Word Search II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ79/">Word Search</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ52/">N-Queens II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ51/">N-Queens</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ301/">Remove Invalid Parentheses</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
