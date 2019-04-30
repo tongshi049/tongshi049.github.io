@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>01 Matrix | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 542 - 01 Matrix Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell. The distance between two adjacent cells is 1. Example 1: Input: [[0,0,0], [0,1,0], [0,">
+<meta name="keywords" content="LeetCode,DP,BFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01 Matrix">
+<meta property="og:url" content="http://yoursite.com/2019/04/30/leetcodeQ542/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 542 - 01 Matrix Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell. The distance between two adjacent cells is 1. Example 1: Input: [[0,0,0], [0,1,0], [0,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-30T20:30:47.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01 Matrix">
+<meta name="twitter:description" content="LeetCode Q 542 - 01 Matrix Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell. The distance between two adjacent cells is 1. Example 1: Input: [[0,0,0], [0,1,0], [0,">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ542" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/leetcodeQ542/" class="article-date">
+  <time datetime="2019-04-30T20:16:16.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      01 Matrix
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-542-01-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-542-01-matrix"></a> LeetCode Q 542 - 01 Matrix</h1>
+<p>Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.<br>
+The distance between two adjacent cells is 1.</p>
+<p>Example 1:<br>
+Input:<br>
+[[0,0,0],<br>
+[0,1,0],<br>
+[0,0,0]]<br>
+Output:<br>
+[[0,0,0],<br>
+[0,1,0],<br>
+[0,0,0]]</p>
+<p>Example 2:<br>
+Input:<br>
+[[0,0,0],<br>
+[0,1,0],<br>
+[1,1,1]]<br>
+Output:<br>
+[[0,0,0],<br>
+[0,1,0],<br>
+[1,2,1]]</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of elements of the given matrix will not exceed 10,000.</li>
+<li>There are at least one 0 in the given matrix.</li>
+<li>The cells are adjacent in only four directions: up, down, left and right.</li>
+</ul>
+<a id="more"></a>
+<h2 id="solution-bfs-dp"><a class="markdownIt-Anchor" href="#solution-bfs-dp"></a> Solution : BFS / DP</h2>
+<h3 id="solution-1-bfs"><a class="markdownIt-Anchor" href="#solution-1-bfs"></a> Solution 1: BFS</h3>
+<p><strong>Steps:</strong><br>
+We regard the 2D matrix as a string. For an element in the matrix, we use <code>rowNum * colLength + colNum</code> to denote its index.</p>
+<ol>
+<li>push the <code>0s</code> in the matrix to the <code>queue</code>.</li>
+<li>do the bfs, at each level
+<ul>
+<li>pull the <code>index</code> from the <code>queue</code>. According to that <code>index</code>, we can determine the <code>rowNumber</code> and <code>colNumber</code>.</li>
+<li>we traverse its left, right, up and down, if they haven’t been visited, then we offer them in the queue and visited set.</li>
+<li>when we have finished traversing one layer, we increase the level.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">openLock</span><span class="params">(String[] deadends, String target)</span> </span>&#123;</span><br><span class="line">	    </span><br><span class="line">	Set&lt;String&gt; deadSet = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">	<span class="keyword">for</span> (String str : deadends) deadSet.add(str);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (deadSet.contains(target) || deadSet.contains(<span class="string">"0000"</span>)) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	Queue&lt;String&gt; queA = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">	Set&lt;String&gt; visitedA = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">	queA.offer(<span class="string">"0000"</span>);</span><br><span class="line">	visitedA.add(<span class="string">"0000"</span>);</span><br><span class="line">	</span><br><span class="line">	Queue&lt;String&gt; queB = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">	Set&lt;String&gt; visitedB = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">	queB.offer(target);</span><br><span class="line">	visitedB.add(target);</span><br><span class="line">	</span><br><span class="line">	Queue&lt;String&gt; que = <span class="keyword">null</span>; </span><br><span class="line">	Set&lt;String&gt; setCurr = <span class="keyword">null</span>; </span><br><span class="line">	Set&lt;String&gt; setOp = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!queA.isEmpty() &amp;&amp; !queB.isEmpty()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (queA.size() &lt;= queB.size()) &#123;</span><br><span class="line">			que = queA; setCurr = visitedA; setOp = visitedB;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			que = queB; setCurr = visitedB; setOp = visitedA;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		result++;</span><br><span class="line">		<span class="keyword">int</span> size = que.size();</span><br><span class="line">		<span class="keyword">while</span> (size-- != <span class="number">0</span>) &#123;</span><br><span class="line">			</span><br><span class="line">			String cur = que.poll();</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) &#123;</span><br><span class="line">				<span class="keyword">char</span>[] chs = cur.toCharArray();</span><br><span class="line">				</span><br><span class="line">				chs[i] = (<span class="keyword">char</span>)((cur.charAt(i) - <span class="string">'0'</span> + <span class="number">9</span>) % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">				String next = String.valueOf(chs);</span><br><span class="line">				<span class="keyword">if</span> (setOp.contains(next)) <span class="keyword">return</span> result;</span><br><span class="line">				<span class="keyword">if</span> (!setCurr.contains(next) &amp;&amp; !deadSet.contains(next)) &#123;</span><br><span class="line">					que.offer(next); setCurr.add(next);</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				chs[i] = (<span class="keyword">char</span>)((cur.charAt(i) - <span class="string">'0'</span> + <span class="number">1</span>) % <span class="number">10</span> + <span class="string">'0'</span>);</span><br><span class="line">				next = String.valueOf(chs);</span><br><span class="line">				<span class="keyword">if</span> (setOp.contains(next)) <span class="keyword">return</span> result;</span><br><span class="line">				<span class="keyword">if</span> (!setCurr.contains(next) &amp;&amp; !deadSet.contains(next)) &#123;</span><br><span class="line">					que.offer(next); setCurr.add(next);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="a-better-solution-dp"><a class="markdownIt-Anchor" href="#a-better-solution-dp"></a> A Better Solution: DP</h3>
+<ol>
+<li>
+<p><strong>States:</strong> <code>dp[i][j]</code> the min distance of number at row i and col j.</p>
+</li>
+<li>
+<p><strong>State Transfer Function:</strong></p>
+<ul>
+<li>
+<p>Iterate the matrix <strong>from top left to bottom right</strong>:<br>
+Update <code>dp[i][j] = min(dp[i][j], min(dp[i][j - 1], dp[i - 1][j] + 1))</code><br>
+i.e., minimum of the current dist and distance from top or left neighbour +1, that would have been already calculated previously in the current iteration.</p>
+</li>
+<li>
+<p>Do the back iteration in the similar manner: <strong>from bottom right to top left</strong>:<br>
+Update <code>dp[i][j] = min(dp[i][j], min(dp[i][j + 1], dp[i + 1][j] + 1))</code><br>
+i.e. minimum of current dist and distances calculated from bottom and right neighbours, that would be already available in current iteration.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] updateMatrix(<span class="keyword">int</span>[][] matrix) &#123;</span><br><span class="line">	<span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>) <span class="keyword">return</span> matrix;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> R = matrix.length, C = matrix[<span class="number">0</span>].length;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[R][C];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; R; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; C; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) dp[i][j] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span> dp[i][j] = <span class="number">1000000</span>;</span><br><span class="line">			<span class="keyword">if</span> (i &gt; <span class="number">0</span>) dp[i][j] = Math.min(dp[i][j], dp[i - <span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span> (j &gt; <span class="number">0</span>) dp[i][j] = Math.min(dp[i][j], dp[i][j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = R - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = C - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (dp[i][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (i &lt; R - <span class="number">1</span>) dp[i][j] = Math.min(dp[i][j], dp[i + <span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">				<span class="keyword">if</span> (j &lt; C - <span class="number">1</span>) dp[i][j] = Math.min(dp[i][j], dp[i][j + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ542/" data-id="cjv48wwuw00f90kvee3rn8s54" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/30/leetcodeQ752/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Open the Lock</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.88px;">Array</a> <a href="/tags/BFS/" style="font-size: 12.35px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.65px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.06px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.59px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.18px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.12px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.18px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 15.29px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.41px;">DP</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.82px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.76px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.59px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.35px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.59px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 12.94px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.24px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.18px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.59px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.76px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.18px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.18px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.71px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.18px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.53px;">Stack</a> <a href="/tags/String/" style="font-size: 16.47px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.59px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.35px;">Thread</a> <a href="/tags/Tree/" style="font-size: 11.18px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.59px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.94px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.59px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/30/leetcodeQ542/">01 Matrix</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/leetcodeQ752/">Open the Lock</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/leetcodeQ126/">Word Ladder II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/leetcodeQ127/">Word Ladder</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/29/leetcodeQ212/">Word Search II</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
