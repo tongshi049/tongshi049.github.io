@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Cut Off Trees for Golf Event | Tong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 675 - Cut Off Trees for Golf Event You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:  0 represents the obstacle">
+<meta name="keywords" content="LeetCode,BFS,DFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cut Off Trees for Golf Event">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/leetcodeQ675/index.html">
+<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 675 - Cut Off Trees for Golf Event You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:  0 represents the obstacle">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-01T19:59:39.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cut Off Trees for Golf Event">
+<meta name="twitter:description" content="LeetCode Q 675 - Cut Off Trees for Golf Event You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:  0 represents the obstacle">
+  
+    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ675" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/01/leetcodeQ675/" class="article-date">
+  <time datetime="2019-05-01T19:23:30.000Z" itemprop="datePublished">2019-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cut Off Trees for Golf Event
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-675-cut-off-trees-for-golf-event"><a class="markdownIt-Anchor" href="#leetcode-q-675-cut-off-trees-for-golf-event"></a> LeetCode Q 675 - Cut Off Trees for Golf Event</h1>
+<p>You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:</p>
+<ul>
+<li>0 represents the obstacle can’t be reached.</li>
+<li>1 represents the ground can be walked through.</li>
+<li>The place with number bigger than 1 represents a tree can be walked through, and this positive number represents the tree’s height.</li>
+</ul>
+<p>You are asked to cut off all the trees in this forest in the order of tree’s height - always cut off the tree with lowest height first. And after cutting, the original place has the tree will become a grass (value 1).<br>
+You will start from the point (0, 0) and you should output the minimum steps you need to walk to cut off all the trees. If you can’t cut off all the trees, output -1 in that situation.<br>
+You are guaranteed that no two trees have the same height and there is at least one tree needs to be cut off.</p>
+<p>Example 1:<br>
+Input:<br>
+[<br>
+[1,2,3],<br>
+[0,0,4],<br>
+[7,6,5]<br>
+]<br>
+Output: 6</p>
+<p>Example 2:</p>
+<p>Input:<br>
+[<br>
+[1,2,3],<br>
+[0,0,0],<br>
+[7,6,5]<br>
+]<br>
+Output: -1</p>
+<p>Example 3:<br>
+Input:<br>
+[<br>
+[2,3,4],<br>
+[0,0,5],<br>
+[8,7,6]<br>
+]<br>
+Output: 6<br>
+Explanation: You started from the point (0,0) and you can cut off the tree in (0,0) directly without walking.</p>
+<p><strong>Hint:</strong> size of the given matrix will not exceed 50x50.</p>
+<a id="more"></a>
+<h2 id="solution-bfs-priorityqueue"><a class="markdownIt-Anchor" href="#solution-bfs-priorityqueue"></a> Solution : BFS + PriorityQueue</h2>
+<p><strong>PriorityQueue:</strong> store each tree, order them according to their heights for low to high.</p>
+<p><strong>BFS:</strong> find min steps</p>
+<p><strong>Time complexity analysis:</strong><br>
+The <strong>worst case</strong> time complexity could be <code>O(m^2 * n^2) (m = number of rows, n = number of columns)</code> since there are <code>m * n</code> <strong>trees</strong> and for <strong>each BFS</strong> worst case time complexity is <code>O(m * n)</code> too.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[][] DIRS = <span class="keyword">new</span> <span class="keyword">int</span>[][] &#123; &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125; &#125;;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">cutOffTree</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; forest)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> R = forest.size(), C = forest.get(<span class="number">0</span>).size();</span><br><span class="line">	PriorityQueue&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; (a[<span class="number">2</span>] - b[<span class="number">2</span>]));</span><br><span class="line"></span><br><span class="line">	<span class="comment">// build the priorityqueue</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> r = <span class="number">0</span>; r &lt; R; r++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> c = <span class="number">0</span>; c &lt; C; r++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (forest.get(r).get(c) &gt; <span class="number">0</span>)</span><br><span class="line">				pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[] &#123;r, c, forest.get(r).get(c)&#125;); </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// bfs find the min step</span></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>, sr = <span class="number">0</span>, sc = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!pq.isEmpty()) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] tree = pq.poll();</span><br><span class="line">		<span class="keyword">int</span> dist = getDistBFS(forest, sr, sc, tree[<span class="number">0</span>], tree[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">if</span> (dist == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		sum += dist;</span><br><span class="line">		sr = tree[<span class="number">0</span>]; sc = tree[<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getDistBFS</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; forest, <span class="keyword">int</span> sr, <span class="keyword">int</span> sc, <span class="keyword">int</span> tr, <span class="keyword">int</span> tc)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> R = forest.size(), C = forest.get(<span class="number">0</span>).size();</span><br><span class="line">	<span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[R][C];</span><br><span class="line">	visited[sr][sc] = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	Queue&lt;<span class="keyword">int</span>[]&gt; que = <span class="keyword">new</span> LinkedList();</span><br><span class="line">	que.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;sr, sc, <span class="number">0</span>&#125;);</span><br><span class="line">	<span class="keyword">while</span> (!que.isEmpty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> size = que.size();</span><br><span class="line">		<span class="keyword">while</span> (size-- != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span>[] curr = que.poll();</span><br><span class="line">			<span class="keyword">if</span> (curr[<span class="number">0</span>] == tr &amp;&amp; curr[<span class="number">1</span>] == tc) <span class="keyword">return</span> curr[<span class="number">2</span>];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span>[] dir: DIRS) &#123;</span><br><span class="line">				<span class="keyword">int</span> r = curr[<span class="number">0</span>] + dir[<span class="number">0</span>];</span><br><span class="line">				<span class="keyword">int</span> c = curr[<span class="number">1</span>] + dir[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> (r &gt;= <span class="number">0</span> &amp;&amp; c &gt;= <span class="number">0</span> &amp;&amp; r &lt; R &amp;&amp; c &lt; C &amp;&amp; !visited[r][c]) &#123;</span><br><span class="line">					que.offer(<span class="keyword">new</span> <span class="keyword">int</span>[] &#123;r, c, curr[<span class="number">2</span>] + <span class="number">1</span>&#125;);</span><br><span class="line">					visited[r][c] = <span class="keyword">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ675/" data-id="cjv5lz3gg00kt78vezq9c73k9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/01/leetcodeQ102/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Binary Tree Level Order Traversal
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/01/leetcodeQ934/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Shortest Bridge</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15.63px;">Array</a> <a href="/tags/BFS/" style="font-size: 15px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.5px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.88px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.38px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 15.63px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.13px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 15px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/01/leetcodeQ297/">Serialize and Deserialize Binary Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/01/leetcodeQ102/">Binary Tree Level Order Traversal</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/01/leetcodeQ675/">Cut Off Trees for Golf Event</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/01/leetcodeQ934/">Shortest Bridge</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/leetcodeQ542/">01 Matrix</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
