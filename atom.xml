@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-01T20:43:01.851Z</updated>
+  <updated>2019-05-02T23:39:45.920Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,162 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcodeQ785</title>
+    <link href="http://yoursite.com/2019/05/02/leetcodeQ785/"/>
+    <id>http://yoursite.com/2019/05/02/leetcodeQ785/</id>
+    <published>2019-05-02T23:39:45.000Z</published>
+    <updated>2019-05-02T23:39:45.920Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Clone Graph</title>
+    <link href="http://yoursite.com/2019/05/02/leetcodeQ133/"/>
+    <id>http://yoursite.com/2019/05/02/leetcodeQ133/</id>
+    <published>2019-05-02T23:19:05.000Z</published>
+    <updated>2019-05-02T23:38:47.463Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="leetcode-q-892-clone-graph"><a class="markdownIt-Anchor" href="#leetcode-q-892-clone-graph"></a> LeetCode Q 892 - Clone Graph</h1><p>Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph. Each node in the graph contains a val (int) and a list (List[Node]) of its neighbors.</p><p><strong>Note:</strong></p><ul><li>The number of nodes will be between 1 and 100.</li><li>The undirected graph is a simple graph, which means no repeated edges and no self-loops in the graph.</li><li>Since the graph is undirected, if node p has node q as neighbor, then node q must have node p as neighbor too.</li><li>You must return the copy of the given node as a reference to the cloned graph.</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong>Definition for a Node.</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">public</span> List&lt;Node&gt; neighbors;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> _val,List&lt;Node&gt; _neighbors)</span> </span>&#123;</span><br><span class="line">    val = _val;</span><br><span class="line">    neighbors = _neighbors;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="solution-1-bfs"><a class="markdownIt-Anchor" href="#solution-1-bfs"></a> Solution 1 : BFS</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">cloneGraph</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">Map&lt;Node, Node&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">Queue&lt;Node&gt; que = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">Set&lt;Node&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">que.offer(node); set.add(node);</span><br><span class="line"></span><br><span class="line"><span class="comment">// copy nodes</span></span><br><span class="line"><span class="keyword">while</span> (!que.isEmpty()) &#123;</span><br><span class="line">Node curr = que.poll();</span><br><span class="line">map.put(curr, <span class="keyword">new</span> Node(curr.val, <span class="keyword">new</span> List&lt;Node&gt;()));</span><br><span class="line"><span class="keyword">for</span> (Node nei: curr.neighbors) &#123;</span><br><span class="line"><span class="keyword">if</span> (set.contains(nei)) <span class="keyword">continue</span>;</span><br><span class="line">que.offer(nei); set.add(nei);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// copy edges</span></span><br><span class="line"><span class="keyword">for</span> (Node curr: map.keySet) &#123;</span><br><span class="line"><span class="keyword">for</span> (Node nei: map.get(curr)) &#123;</span><br><span class="line">map.get(curr).neighbors.add(map.get(nei));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> map.get(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-1-dfs"><a class="markdownIt-Anchor" href="#solution-1-dfs"></a> Solution 1 : DFS</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Node <span class="title">cloneGraph</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">Map&lt;Node, Node&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(root, <span class="keyword">new</span> Node(root.val, <span class="keyword">new</span> ArrayList&lt;Node&gt;()));</span><br><span class="line"></span><br><span class="line">dfs(map, root);</span><br><span class="line"><span class="keyword">return</span> map.get(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Map&lt;Node, Node&gt; map, Node node)</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (Node nei: node.neighbors) &#123;</span><br><span class="line"><span class="keyword">if</span> (!map.containsKey(nei)) &#123;</span><br><span class="line">map.put(nei, <span class="keyword">new</span> Node(nei.value, <span class="keyword">new</span> List&lt;Node&gt;()));</span><br><span class="line">dfs(map, nei);</span><br><span class="line">&#125;</span><br><span class="line">map.get(node).neighbors.add(nei);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;leetcode-q-892-clone-graph&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-892-clone-graph&quot;&gt;&lt;/a&gt; LeetCode Q 892 - Clone Graph&lt;/h1&gt;
+&lt;p&gt;Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph. Each node in the graph contains a val (int) and a list (List[Node]) of its neighbors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The number of nodes will be between 1 and 100.&lt;/li&gt;
+&lt;li&gt;The undirected graph is a simple graph, which means no repeated edges and no self-loops in the graph.&lt;/li&gt;
+&lt;li&gt;Since the graph is undirected, if node p has node q as neighbor, then node q must have node p as neighbor too.&lt;/li&gt;
+&lt;li&gt;You must return the copy of the given node as a reference to the cloned graph.&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Alien Dictionary</title>
+    <link href="http://yoursite.com/2019/05/02/lintcodeQ892/"/>
+    <id>http://yoursite.com/2019/05/02/lintcodeQ892/</id>
+    <published>2019-05-02T22:58:18.000Z</published>
+    <updated>2019-05-02T23:18:03.928Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="lintcode-q-892-alien-dictionary"><a class="markdownIt-Anchor" href="#lintcode-q-892-alien-dictionary"></a> LintCode Q 892 - Alien Dictionary</h1><p>There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.</p><p>Example 1:<br><code>Input：[&quot;wrt&quot;,&quot;wrf&quot;,&quot;er&quot;,&quot;ett&quot;,&quot;rftt&quot;] ; Output：&quot;wertf&quot;</code><br>Explanation：<br>from “wrt&quot;and&quot;wrf” ,we can get ‘t’&lt;‘f’<br>from “wrt&quot;and&quot;er” ,we can get ‘w’&lt;‘e’<br>from “er&quot;and&quot;ett” ,we can get ‘r’&lt;‘t’<br>from “ett&quot;and&quot;rtff” ,we can get ‘e’&lt;‘r’<br>So return “wertf”</p><p>Example 2:<br><code>Input：[&quot;z&quot;,&quot;x&quot;] ; Output：&quot;zx&quot;</code><br>Explanation：<br>from “z” and “x”，we can get ‘z’ &lt; ‘x’<br>So return “zx”</p><p><strong>Notice:</strong></p><ul><li>You may assume all letters are in lowercase.</li><li>You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.</li><li>If the order is invalid, return an empty string.</li><li>There may be multiple valid order of letters, return the smallest in normal lexicographical order</li></ul><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="solution-1-dfs"><a class="markdownIt-Anchor" href="#solution-1-dfs"></a> Solution 1 : DFS</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">alienOrder</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (words == <span class="keyword">null</span> || words.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">Map&lt;Character, Set&lt;Character&gt;&gt; graph = buildGraph(words);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> topologySorting(graph);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Map&lt;Character, Set&lt;Character&gt;&gt; buildGraph(String[] words) &#123;</span><br><span class="line"></span><br><span class="line">Map&lt;Character, Set&lt;Character&gt;&gt; graph = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (String word: words) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: word.toCharArray()) </span><br><span class="line">graph.putIfAbsent(ch, <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; words[i].length; index++) &#123;</span><br><span class="line"><span class="keyword">if</span> (word[i].charAt(index) != word[i + <span class="number">1</span>].charAt(index)) &#123;</span><br><span class="line">graph.get(word[i].charAt(index), word[i + <span class="number">1</span>].charAt(index));</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> graph;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">topologySorting</span><span class="params">(Map&lt;Character, Set&lt;Character&gt;&gt; graph)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = graph.size();</span><br><span class="line">Map&lt;Character, Integer&gt; order = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: graph.keySet()) </span><br><span class="line">order.put(ch, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: graph.keySet()) &#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> next: graph.get(ch)) </span><br><span class="line">order.put(next, order.get(next) + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue&lt;Character&gt; que = <span class="keyword">new</span> PriorityQueue&lt;&gt;();  <span class="comment">// not LinkedList</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> ch: order.keySet()) &#123;</span><br><span class="line"><span class="keyword">if</span> (order.get(ch) == <span class="number">0</span>) que.offer(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"><span class="keyword">while</span> (!que.isEmpty()) &#123;</span><br><span class="line"><span class="keyword">char</span> curr = que.poll();</span><br><span class="line">sb.append(curr);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">char</span> next: graph.get(curr)) &#123;</span><br><span class="line">map.put(next, map.get(next) - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> (map.get(next) == <span class="number">0</span>) que.offer(next);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (sb.length() != order.size()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><strong>Tip: why using PriorityQueue not just LinkedList</strong><br>Since for test case <code>[&quot;zy&quot;, &quot;zx&quot;]</code>, the correct output should be <code>&quot;yxz&quot;</code>. If using LinkedList, we get <code>&quot;yzx&quot;</code> which is not correct.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;lintcode-q-892-alien-dictionary&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lintcode-q-892-alien-dictionary&quot;&gt;&lt;/a&gt; LintCode Q 892 - Alien Dictionary&lt;/h1&gt;
+&lt;p&gt;There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input：[&amp;quot;wrt&amp;quot;,&amp;quot;wrf&amp;quot;,&amp;quot;er&amp;quot;,&amp;quot;ett&amp;quot;,&amp;quot;rftt&amp;quot;] ; Output：&amp;quot;wertf&amp;quot;&lt;/code&gt;&lt;br&gt;
+Explanation：&lt;br&gt;
+from “wrt&amp;quot;and&amp;quot;wrf” ,we can get ‘t’&amp;lt;‘f’&lt;br&gt;
+from “wrt&amp;quot;and&amp;quot;er” ,we can get ‘w’&amp;lt;‘e’&lt;br&gt;
+from “er&amp;quot;and&amp;quot;ett” ,we can get ‘r’&amp;lt;‘t’&lt;br&gt;
+from “ett&amp;quot;and&amp;quot;rtff” ,we can get ‘e’&amp;lt;‘r’&lt;br&gt;
+So return “wertf”&lt;/p&gt;
+&lt;p&gt;Example 2:&lt;br&gt;
+&lt;code&gt;Input：[&amp;quot;z&amp;quot;,&amp;quot;x&amp;quot;] ; Output：&amp;quot;zx&amp;quot;&lt;/code&gt;&lt;br&gt;
+Explanation：&lt;br&gt;
+from “z” and “x”，we can get ‘z’ &amp;lt; ‘x’&lt;br&gt;
+So return “zx”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Notice:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You may assume all letters are in lowercase.&lt;/li&gt;
+&lt;li&gt;You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.&lt;/li&gt;
+&lt;li&gt;If the order is invalid, return an empty string.&lt;/li&gt;
+&lt;li&gt;There may be multiple valid order of letters, return the smallest in normal lexicographical order&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Topology Sorting" scheme="http://yoursite.com/tags/Topology-Sorting/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Topological Sorting</title>
+    <link href="http://yoursite.com/2019/05/02/lintcodeQ127/"/>
+    <id>http://yoursite.com/2019/05/02/lintcodeQ127/</id>
+    <published>2019-05-02T22:28:46.000Z</published>
+    <updated>2019-05-02T23:24:44.340Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="lintcode-q-127-topological-sorting"><a class="markdownIt-Anchor" href="#lintcode-q-127-topological-sorting"></a> LintCode Q 127 - Topological Sorting</h1><p>Given an directed graph, a topological order of the graph nodes is defined as follow:</p><ul><li>For each directed edge A -&gt; B in graph, A must before B in the order list.</li><li>The first node in the order can be any node in the graph with no nodes direct to it.</li><li>Find any topological order for the given graph.</li></ul><p><strong>Challenge:</strong> Can you do it in both BFS and DFS?</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><h3 id="solution-1-dfs"><a class="markdownIt-Anchor" href="#solution-1-dfs"></a> Solution 1 : DFS</h3><p>Definition for Directed graph.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DirectedGraphNode</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> label;</span><br><span class="line">ArrayList&lt;DirectedGraphNode&gt; neighbors;</span><br><span class="line">DirectedGraphNode(<span class="keyword">int</span> x) &#123; label = x; neighbors = <span class="keyword">new</span> ArrayList&lt;DirectedGraphNode&gt;(); &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;DirectedGraphNode&gt; <span class="title">topSort</span><span class="params">(ArrayList&lt;DirectedGraphNode&gt; graph)</span> </span>&#123;</span><br><span class="line">ArrayList&lt;DirectedGraphNode&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (graph == <span class="keyword">null</span> || graph.size() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">Set&lt;DirectedGraphNode&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode node: graph) </span><br><span class="line">dfs(node, visited, res);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(DirectedGraphNode node, Set&lt;DirectedGraphNode&gt; visited, ArrayList&lt;DirectedGraphNode&gt; res)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (visited.contains(node)) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">visited.add(node);</span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode next: node.neighbors) &#123;</span><br><span class="line">dfs(next, visited, res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res.add(<span class="number">0</span>, node);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-bfs-topology-sorting"><a class="markdownIt-Anchor" href="#solution-2-bfs-topology-sorting"></a> Solution 2 : BFS / Topology Sorting</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;DirectedGraphNode&gt; <span class="title">topSort</span><span class="params">(ArrayList&lt;DirectedGraphNode&gt; graph)</span> </span>&#123;</span><br><span class="line">ArrayList&lt;DirectedGraphNode&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (graph == <span class="keyword">null</span> || graph.size() == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = graph.size();</span><br><span class="line"><span class="keyword">int</span>[] order = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode node: graph) &#123;</span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode next: node.neighbors) &#123;</span><br><span class="line">order[next.label]++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue&lt;DirectedGraphNode&gt; que = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode node: graph) &#123;</span><br><span class="line"><span class="keyword">if</span> (order[node.label] == <span class="number">0</span>) que.offer(node);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!que.isEmpty()) &#123;</span><br><span class="line">DirectedGraphNode curr = que.poll();</span><br><span class="line">res.add(curr);</span><br><span class="line"><span class="keyword">for</span> (DirectedGraphNode next: curr.neighbors) &#123;</span><br><span class="line">order[next.label]--;</span><br><span class="line"><span class="keyword">if</span> (order[next.label] == <span class="number">0</span>) que.offer(next);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;lintcode-q-127-topological-sorting&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lintcode-q-127-topological-sorting&quot;&gt;&lt;/a&gt; LintCode Q 127 - Topological Sorting&lt;/h1&gt;
+&lt;p&gt;Given an directed graph, a topological order of the graph nodes is defined as follow:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For each directed edge A -&amp;gt; B in graph, A must before B in the order list.&lt;/li&gt;
+&lt;li&gt;The first node in the order can be any node in the graph with no nodes direct to it.&lt;/li&gt;
+&lt;li&gt;Find any topological order for the given graph.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Challenge:&lt;/strong&gt; Can you do it in both BFS and DFS?&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Topology Sorting" scheme="http://yoursite.com/tags/Topology-Sorting/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Graph Valid Tree</title>
+    <link href="http://yoursite.com/2019/05/02/lintcodeQ178/"/>
+    <id>http://yoursite.com/2019/05/02/lintcodeQ178/</id>
+    <published>2019-05-02T21:26:21.000Z</published>
+    <updated>2019-05-02T22:28:11.496Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="lintcode-q-178-graph-valid-tree"><a class="markdownIt-Anchor" href="#lintcode-q-178-graph-valid-tree"></a> LintCode Q 178 - Graph Valid Tree</h1><p>Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.</p><p>Example 1:<br><code>Input: n = 5 edges = [[0, 1], [0, 2], [0, 3], [1, 4]] ; Output: true.</code></p><p>Example 2:<br><code>Input: n = 5 edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]] ; Output: false.</code></p><p><strong>Notice:</strong> You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.</p><a id="more"></a><h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2><p><strong><font color="#06bcf9">An undirected graph is tree if it has following properties.</font></strong></p><ol><li>There is no cycle.</li><li>The graph is connected.</li></ol><p><strong><font color="#06bcf9">How to check if a graph satisfies the above two properties?</font></strong></p><ol><li>If there are <em><strong>N</strong></em> nodes and <em><strong>N-1</strong></em> edges, then the graph has no cycle. That is <code>edges = n - 1</code>.</li><li>There is no island in the graph, <em>if and only if</em> we can visit every node in the graph from any <strong>arbitrary</strong> node in the graph.</li></ol><h3 id="solution-1-bfs"><a class="markdownIt-Anchor" href="#solution-1-bfs"></a> Solution 1 : BFS</h3><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validTree</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] edges)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">if</span> (edges.length != n - <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">Map&lt;Integer, Set&lt;Integer&gt;&gt; graph = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// build the graph</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">graph.put(i, <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span>[] edge: edges) &#123;</span><br><span class="line">graph.get(edge[<span class="number">0</span>]).add(edge[<span class="number">1</span>]);</span><br><span class="line">graph.get(edge[<span class="number">1</span>]).add(edge[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Queue&lt;Integer&gt; que = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">Set&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">que.offer(<span class="number">0</span>); visited.add(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!que.isEmpty()) &#123;</span><br><span class="line"><span class="keyword">int</span> curr = que.poll();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> next: graph.get(curr)) &#123;</span><br><span class="line"><span class="keyword">if</span> (visited.contains(next)) <span class="keyword">continue</span>;</span><br><span class="line">que.offer(next);</span><br><span class="line">visited.add(next);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> vistied.size() == n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="solution-2-disjoint-set-union-find-set"><a class="markdownIt-Anchor" href="#solution-2-disjoint-set-union-find-set"></a> Solution 2 : Disjoint Set / Union Find Set</h3><ol><li>Build the union, if I am trying to union an existing edge, then return false;</li><li>Check if there is only one union in the graph.</li></ol><p><strong>Another way:</strong></p><ol><li>Add a count field in the UnionFindSet, denoting the number of different unions.</li><li>check if the <code>count</code> for the given graph equals <code>1</code>.</li></ol><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnionFindSet</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span>[] parent;</span><br><span class="line"><span class="keyword">int</span>[] rank;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">UnionFindSet</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">parent = <span class="keyword">new</span> <span class="keyword">int</span>[size]; rank = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) </span><br><span class="line">parent[i] = i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Find</span> <span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (x != parent[x])</span><br><span class="line">parent[x] = Find(parent[x]);</span><br><span class="line"><span class="keyword">return</span> parent[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Union</span> <span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> px = Find(x), py = Find(y);</span><br><span class="line"><span class="keyword">if</span> (rank(px) &gt; rank(py)) parent[py] = px;</span><br><span class="line"><span class="keyword">if</span> (rank(py) &gt; rank(px)) parent[px] = py;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">parent[py] = px;</span><br><span class="line">rank[px]++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validTree</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] edges)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"><span class="keyword">if</span> (edges.length != n - <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">UnionFindSet ufs = <span class="keyword">new</span> UnionFindSet();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span>[] edge: edges) &#123;</span><br><span class="line"><span class="keyword">if</span> (ufs.find(edge[<span class="number">0</span>]) == ufs.find(edge[<span class="number">1</span>])) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">ufs.union(edge[<span class="number">0</span>], edge[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (ufs.find(i - <span class="number">1</span>) != ufs.find(i)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;lintcode-q-178-graph-valid-tree&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lintcode-q-178-graph-valid-tree&quot;&gt;&lt;/a&gt; LintCode Q 178 - Graph Valid Tree&lt;/h1&gt;
+&lt;p&gt;Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.&lt;/p&gt;
+&lt;p&gt;Example 1:&lt;br&gt;
+&lt;code&gt;Input: n = 5 edges = [[0, 1], [0, 2], [0, 3], [1, 4]] ; Output: true.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Example 2:&lt;br&gt;
+&lt;code&gt;Input: n = 5 edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]] ; Output: false.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Notice:&lt;/strong&gt; You can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the same as [1, 0] and thus will not appear together in edges.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="LintCode" scheme="http://yoursite.com/tags/LintCode/"/>
+    
+      <category term="Disjoint Set" scheme="http://yoursite.com/tags/Disjoint-Set/"/>
+    
+      <category term="Union Find" scheme="http://yoursite.com/tags/Union-Find/"/>
+    
+  </entry>
   
   <entry>
     <title>Serialize and Deserialize Binary Tree</title>
@@ -613,185 +769,6 @@ Example 3:&lt;br&gt;
       <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
     
       <category term="Permutation" scheme="http://yoursite.com/tags/Permutation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Permutations II</title>
-    <link href="http://yoursite.com/2019/04/28/leetcodeQQ47/"/>
-    <id>http://yoursite.com/2019/04/28/leetcodeQQ47/</id>
-    <published>2019-04-28T21:28:10.000Z</published>
-    <updated>2019-04-30T17:19:36.859Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-47-permutations-ii"><a class="markdownIt-Anchor" href="#leetcode-q-47-permutations-ii"></a> LeetCode Q 47 - Permutations II</h1><p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p><p>Example:<br><code>Input: [1,1,2]</code><br>Output:<br>[<br>[1,1,2],<br>[1,2,1],<br>[2,1,1]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Tips:</strong></p><ul><li>Use an extra boolean array <code>boolean[] used</code> to indicate whether the value is added to list.</li><li>Sort the array <code>int[] nums</code> to make sure we can skip the same value.</li><li><strong>When a number has the same value with its previous, we can use this number only if his previous is used.</strong></li></ul><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line"><span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">backtrack(nums, <span class="keyword">new</span> ArrayList&lt;&gt;(), visited);</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; temp, <span class="keyword">boolean</span>[] visited)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == nums.length) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (visited[i] || i &gt; <span class="number">0</span> &amp;&amp; nums[i] = nums[i - <span class="number">1</span>] &amp;&amp; !visited[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">visited[i] = <span class="keyword">true</span>;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, temp, visited);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">visited[i] = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-47-permutations-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-47-permutations-ii&quot;&gt;&lt;/a&gt; LeetCode Q 47 - Permutations II&lt;/h1&gt;
-&lt;p&gt;Given a collection of numbers that might contain duplicates, return all possible unique permutations.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: [1,1,2]&lt;/code&gt;&lt;br&gt;
-Output:&lt;br&gt;
-[&lt;br&gt;
-[1,1,2],&lt;br&gt;
-[1,2,1],&lt;br&gt;
-[2,1,1]&lt;br&gt;
-]&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Permutation" scheme="http://yoursite.com/tags/Permutation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Permutations</title>
-    <link href="http://yoursite.com/2019/04/28/leetcodeQ46/"/>
-    <id>http://yoursite.com/2019/04/28/leetcodeQ46/</id>
-    <published>2019-04-28T21:25:40.000Z</published>
-    <updated>2019-04-29T16:12:23.501Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-46-permutations"><a class="markdownIt-Anchor" href="#leetcode-q-46-permutations"></a> LeetCode Q 46 - Permutations</h1><p>Given a collection of <strong>distinct</strong> integers, return all possible permutations.</p><p>Example:<br><code>Input: [1,2,3]</code><br>Output:<br>[<br>[1,2,3],<br>[1,3,2],<br>[2,1,3],<br>[2,3,1],<br>[3,1,2],<br>[3,2,1]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(nums, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == nums.length) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!temp.contains(nums[i])) &#123;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-46-permutations&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-46-permutations&quot;&gt;&lt;/a&gt; LeetCode Q 46 - Permutations&lt;/h1&gt;
-&lt;p&gt;Given a collection of &lt;strong&gt;distinct&lt;/strong&gt; integers, return all possible permutations.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: [1,2,3]&lt;/code&gt;&lt;br&gt;
-Output:&lt;br&gt;
-[&lt;br&gt;
-[1,2,3],&lt;br&gt;
-[1,3,2],&lt;br&gt;
-[2,1,3],&lt;br&gt;
-[2,3,1],&lt;br&gt;
-[3,1,2],&lt;br&gt;
-[3,2,1]&lt;br&gt;
-]&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Permutation" scheme="http://yoursite.com/tags/Permutation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Subsets II</title>
-    <link href="http://yoursite.com/2019/04/28/leetcodeQ90/"/>
-    <id>http://yoursite.com/2019/04/28/leetcodeQ90/</id>
-    <published>2019-04-28T21:22:53.000Z</published>
-    <updated>2019-04-28T21:25:00.903Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-78-subsets-ii"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets-ii"></a> LeetCode Q 78 - Subsets II</h1><p>Given a collection of integers that might contain duplicates, <em><strong>nums</strong></em>, return all possible subsets (the power set).</p><p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p><p>Example:<br><code>Input: [1,2,2]</code><br>Output:<br>[<br>[2],<br>[1],<br>[1,2,2],<br>[2,2],<br>[1,2],<br>[]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">Arrays.sort(nums);</span><br><span class="line">backtrack(nums, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; nums.length; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (i != pos &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-78-subsets-ii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-78-subsets-ii&quot;&gt;&lt;/a&gt; LeetCode Q 78 - Subsets II&lt;/h1&gt;
-&lt;p&gt;Given a collection of integers that might contain duplicates, &lt;em&gt;&lt;strong&gt;nums&lt;/strong&gt;&lt;/em&gt;, return all possible subsets (the power set).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The solution set must not contain duplicate subsets.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: [1,2,2]&lt;/code&gt;&lt;br&gt;
-Output:&lt;br&gt;
-[&lt;br&gt;
-[2],&lt;br&gt;
-[1],&lt;br&gt;
-[1,2,2],&lt;br&gt;
-[2,2],&lt;br&gt;
-[1,2],&lt;br&gt;
-[]&lt;br&gt;
-]&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Subsets</title>
-    <link href="http://yoursite.com/2019/04/28/leetcodeQ78/"/>
-    <id>http://yoursite.com/2019/04/28/leetcodeQ78/</id>
-    <published>2019-04-28T21:21:07.000Z</published>
-    <updated>2019-04-28T21:22:28.942Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-78-subsets"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets"></a> LeetCode Q 78 - Subsets</h1><p>Given a set of distinct integers, nums, return all possible subsets (the power set).<br><strong>Note:</strong> The solution set must not contain duplicate subsets.</p><p>Example:<br><code>Input: nums = [1,2,3]</code><br>Output:<br>[<br>[3],<br>[1],<br>[2],<br>[1,2,3],<br>[1,3],<br>[2,3],<br>[1,2],<br>[]<br>]</p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(nums, <span class="number">0</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt; nums.length; i++) &#123;</span><br><span class="line">temp.add(nums[i]);</span><br><span class="line">backtrack(nums, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-78-subsets&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-78-subsets&quot;&gt;&lt;/a&gt; LeetCode Q 78 - Subsets&lt;/h1&gt;
-&lt;p&gt;Given a set of distinct integers, nums, return all possible subsets (the power set).&lt;br&gt;
-&lt;strong&gt;Note:&lt;/strong&gt; The solution set must not contain duplicate subsets.&lt;/p&gt;
-&lt;p&gt;Example:&lt;br&gt;
-&lt;code&gt;Input: nums = [1,2,3]&lt;/code&gt;&lt;br&gt;
-Output:&lt;br&gt;
-[&lt;br&gt;
-[3],&lt;br&gt;
-[1],&lt;br&gt;
-[2],&lt;br&gt;
-[1,2,3],&lt;br&gt;
-[1,3],&lt;br&gt;
-[2,3],&lt;br&gt;
-[1,2],&lt;br&gt;
-[]&lt;br&gt;
-]&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Combination Sum III</title>
-    <link href="http://yoursite.com/2019/04/28/leetcodeQ216/"/>
-    <id>http://yoursite.com/2019/04/28/leetcodeQ216/</id>
-    <published>2019-04-28T21:17:33.000Z</published>
-    <updated>2019-04-28T21:20:41.408Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="leetcode-q-216-combination-sum-iii"><a class="markdownIt-Anchor" href="#leetcode-q-216-combination-sum-iii"></a> LeetCode Q 216 - Combination Sum III</h1><p>Find all possible combinations of <em><strong>k</strong></em> numbers that add up to a number <em><strong>n</strong></em>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p><p><strong>Note:</strong></p><ul><li>All numbers will be positive integers.</li><li>The solution set must not contain duplicate combinations.</li></ul><p>Example 1:<br><code>Input: k = 3, n = 7 ; Output: [[1,2,4]]</code><br>Example 2:<br><code>Input: k = 3, n = 9 ; Output: [[1,2,6], [1,3,5], [2,3,4]]</code></p><a id="more"></a><h2 id="solution-backtracking"><a class="markdownIt-Anchor" href="#solution-backtracking"></a> Solution : Backtracking</h2><p><strong>Code:</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; res;</span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> target) &#123;</span><br><span class="line">res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">if</span> (target == <span class="number">0</span> || k == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">backtrack(k, target, <span class="number">1</span>, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> target, <span class="keyword">int</span> pos, List&lt;Integer&gt; temp)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == k &amp;&amp; target == <span class="number">0</span>) &#123;</span><br><span class="line">res.add(<span class="keyword">new</span> ArrayList(temp)); <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (temp.size() == k || target &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = pos; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!temp.contains(i)) &#123;</span><br><span class="line">temp.add(i);</span><br><span class="line">backtrack(n, target - i, i + <span class="number">1</span>, temp);</span><br><span class="line">temp.remove(temp.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;leetcode-q-216-combination-sum-iii&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#leetcode-q-216-combination-sum-iii&quot;&gt;&lt;/a&gt; LeetCode Q 216 - Combination Sum III&lt;/h1&gt;
-&lt;p&gt;Find all possible combinations of &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt; numbers that add up to a number &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt;, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;All numbers will be positive integers.&lt;/li&gt;
-&lt;li&gt;The solution set must not contain duplicate combinations.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Example 1:&lt;br&gt;
-&lt;code&gt;Input: k = 3, n = 7 ; Output: [[1,2,4]]&lt;/code&gt;&lt;br&gt;
-Example 2:&lt;br&gt;
-&lt;code&gt;Input: k = 3, n = 9 ; Output: [[1,2,6], [1,3,5], [2,3,4]]&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-      <category term="Backtracking" scheme="http://yoursite.com/tags/Backtracking/"/>
-    
-      <category term="Combination" scheme="http://yoursite.com/tags/Combination/"/>
     
   </entry>
   

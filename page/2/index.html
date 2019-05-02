@@ -64,6 +64,320 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcodeQ752" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/leetcodeQ752/" class="article-date">
+  <time datetime="2019-04-30T20:05:03.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/leetcodeQ752/">Open the Lock</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-752-open-the-lock"><a class="markdownIt-Anchor" href="#leetcode-q-752-open-the-lock"></a> LeetCode Q 752 - Open the Lock</h1>
+<p>You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: <code>'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'</code>. The wheels can rotate freely and wrap around: for example we can turn <code>'9'</code> to be <code>'0'</code>, or <code>'0'</code> to be <code>'9'</code>. Each move consists of turning one wheel one slot.<br>
+The lock initially starts at <code>0000'</code>, a string representing the state of the 4 wheels.<br>
+You are given a list of <code>deadends</code> dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.<br>
+Given a <code>target</code> representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.</p>
+<p>Example 1:<br>
+<code>Input: deadends = [&quot;0201&quot;,&quot;0101&quot;,&quot;0102&quot;,&quot;1212&quot;,&quot;2002&quot;], target = &quot;0202&quot; ; Output: 6</code><br>
+Explanation:<br>
+A sequence of valid moves would be “0000” -&gt; “1000” -&gt; “1100” -&gt; “1200” -&gt; “1201” -&gt; “1202” -&gt; “0202”.<br>
+Note that a sequence like “0000” -&gt; “0001” -&gt; “0002” -&gt; “0102” -&gt; “0202” would be invalid,<br>
+because the wheels of the lock become stuck after the display becomes the dead end “0102”.</p>
+<p>Example 2:<br>
+<code>Input: deadends = [&quot;8888&quot;], target = &quot;0009&quot; ; Output: 1</code><br>
+Explanation:<br>
+We can turn the last wheel in reverse to move from “0000” -&gt; “0009”.</p>
+<p>Example 3:<br>
+<code>Input: deadends = [&quot;8887&quot;,&quot;8889&quot;,&quot;8878&quot;,&quot;8898&quot;,&quot;8788&quot;,&quot;8988&quot;,&quot;7888&quot;, &quot;9888&quot;], target = &quot;8888&quot; ; Output: -1</code><br>
+Explanation:<br>
+We can’t reach the target without getting stuck.</p>
+<p>Example 4:<br>
+<code>Input: deadends = [&quot;0000&quot;], target = &quot;8888&quot; ; Output: -1</code></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The length of deadends will be in the range [1, 500].</li>
+<li>target will not be in the list deadends.</li>
+<li>Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities ‘0000’ to ‘9999’.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/30/leetcodeQ752/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ752/" data-id="cjv75feek00ans8veweo9n5hc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ126" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/leetcodeQ126/" class="article-date">
+  <time datetime="2019-04-30T19:34:17.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/leetcodeQ126/">Word Ladder II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-126-word-ladder-ii"><a class="markdownIt-Anchor" href="#leetcode-q-126-word-ladder-ii"></a> LeetCode Q 126 - Word Ladder II</h1>
+<p>Given two words (<em>beginWord</em> and <em>endWord</em>), and a dictionary’s word list, find all shortest transformation sequence(s) from <em>beginWord</em> to <em>endWord</em>, such that:</p>
+<ul>
+<li>Only one letter can be changed at a time</li>
+<li>Each transformed word must exist in the word list. Note that beginWord is not a transformed word.</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Return an empty list if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume beginWord and endWord are non-empty and are not the same.</li>
+</ul>
+<p>Example 1:<br>
+<code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</code><br>
+Output:<br>
+[<br>
+[“hit”,“hot”,“dot”,“dog”,“cog”],<br>
+[“hit”,“hot”,“lot”,“log”,“cog”]<br>
+]</p>
+<p>Example 2:<br>
+<code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</code><br>
+Output: []<br>
+Explanation: The endWord “cog” is not in wordList, therefore no possible transformation.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/30/leetcodeQ126/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ126/" data-id="cjv75fe760027s8ve2iq6d5oz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ127" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/leetcodeQ127/" class="article-date">
+  <time datetime="2019-04-30T17:17:04.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/leetcodeQ127/">Word Ladder</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-127-word-ladder"><a class="markdownIt-Anchor" href="#leetcode-q-127-word-ladder"></a> LeetCode Q 127 - Word Ladder</h1>
+<p>Given two words (<em>beginWord</em> and <em>endWord</em>), and a dictionary’s word list, find the length of shortest transformation sequence from <em>beginWord</em> to <em>endWord</em>, such that:</p>
+<ol>
+<li>Only one letter can be changed at a time.</li>
+<li>Each transformed word must exist in the word list. Note that <em>beginWord</em> is not a transformed word.</li>
+</ol>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Return 0 if there is no such transformation sequence.</li>
+<li>All words have the same length.</li>
+<li>All words contain only lowercase alphabetic characters.</li>
+<li>You may assume no duplicates in the word list.</li>
+<li>You may assume <em>beginWord</em> and <em>endWord</em> are non-empty and are not the same.</li>
+</ul>
+<p>Example 1:<br>
+<code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;] Output: 5</code><br>
+Explanation: As one shortest transformation is “hit” -&gt; “hot” -&gt; “dot” -&gt; “dog” -&gt; “cog”,<br>
+return its length 5.</p>
+<p>Example 2:<br>
+<code>Input: beginWord = &quot;hit&quot;, endWord = &quot;cog&quot;, wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;] Output: 0</code><br>
+Explanation: The endWord “cog” is not in wordList, therefore no possible transformation.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/30/leetcodeQ127/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ127/" data-id="cjv75fe740025s8veh2y95c6y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ212" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/leetcodeQ212/" class="article-date">
+  <time datetime="2019-04-29T17:31:48.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/29/leetcodeQ212/">Word Search II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-212-word-search-ii"><a class="markdownIt-Anchor" href="#leetcode-q-212-word-search-ii"></a> LeetCode Q 212 - Word Search II</h1>
+<p>Given a 2D board and a list of words from the dictionary, find all words in the board.<br>
+Each word must be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.</p>
+<p>Example:<br>
+Input:<br>
+board = [<br>
+[‘o’,‘a’,‘a’,‘n’],<br>
+[‘e’,‘t’,‘a’,‘e’],<br>
+[‘i’,‘h’,‘k’,‘r’],<br>
+[‘i’,‘f’,‘l’,‘v’]<br>
+]<br>
+words = [“oath”,“pea”,“eat”,“rain”]<br>
+Output: [“eat”,“oath”]</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All inputs are consist of lowercase letters a-z.</li>
+<li>The values of words are distinct.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/29/leetcodeQ212/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ212/" data-id="cjv75fe8y003js8vepq1q1fwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Trie/">Trie</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ79" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/leetcodeQ79/" class="article-date">
+  <time datetime="2019-04-29T17:22:35.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/29/leetcodeQ79/">Word Search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-79-word-search"><a class="markdownIt-Anchor" href="#leetcode-q-79-word-search"></a> LeetCode Q 79 - Word Search</h1>
+<p>Given a 2D board and a word, find if the word exists in the grid.<br>
+The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
+<p>Example:<br>
+board =<br>
+[<br>
+[‘A’,‘B’,‘C’,‘E’],<br>
+[‘S’,‘F’,‘C’,‘S’],<br>
+[‘A’,‘D’,‘E’,‘E’]<br>
+]</p>
+<p>Given word = “ABCCED”, return true.<br>
+Given word = “SEE”, return true.<br>
+Given word = “ABCB”, return false.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/29/leetcodeQ79/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ79/" data-id="cjv75feep00avs8vef8dp3dg3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcodeQ52" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/29/leetcodeQ52/" class="article-date">
@@ -110,7 +424,7 @@ Explanation: There are two distinct solutions to the 4-queens puzzle as shown be
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ52/" data-id="cjv5edf8u00c678vez62x38wg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ52/" data-id="cjv75fedr009cs8vetal2q7bv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -159,7 +473,7 @@ Explanation: There exist two distinct solutions to the 4-queens puzzle as shown 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ51/" data-id="cjv5edf8q00c278vej5zr4csn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ51/" data-id="cjv75fedf0090s8vefqfxr2br" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -210,7 +524,7 @@ Example 3:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ301/" data-id="cjv5edf6a009c78ve4fioc0df" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ301/" data-id="cjv75feaw005ns8vewymqzrlr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -262,7 +576,7 @@ Example 3:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ22/" data-id="cjv5edf2g002k78vet50q7net" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ22/" data-id="cjv75fe9r0047s8ve1r31i7e8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -315,284 +629,10 @@ Example 3:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ784/" data-id="cjv5edfab00dr78vezdunjkpy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/29/leetcodeQ784/" data-id="cjv75feeo00ats8vee2fe91vp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Permutation/">Permutation</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQQ47" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/leetcodeQQ47/" class="article-date">
-  <time datetime="2019-04-28T21:28:10.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/leetcodeQQ47/">Permutations II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-47-permutations-ii"><a class="markdownIt-Anchor" href="#leetcode-q-47-permutations-ii"></a> LeetCode Q 47 - Permutations II</h1>
-<p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
-<p>Example:<br>
-<code>Input: [1,1,2]</code><br>
-Output:<br>
-[<br>
-[1,1,2],<br>
-[1,2,1],<br>
-[2,1,1]<br>
-]</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/leetcodeQQ47/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/leetcodeQQ47/" data-id="cjv5edfay00eh78vejk1njn8j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Permutation/">Permutation</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ46" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/leetcodeQ46/" class="article-date">
-  <time datetime="2019-04-28T21:25:40.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/leetcodeQ46/">Permutations</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-46-permutations"><a class="markdownIt-Anchor" href="#leetcode-q-46-permutations"></a> LeetCode Q 46 - Permutations</h1>
-<p>Given a collection of <strong>distinct</strong> integers, return all possible permutations.</p>
-<p>Example:<br>
-<code>Input: [1,2,3]</code><br>
-Output:<br>
-[<br>
-[1,2,3],<br>
-[1,3,2],<br>
-[2,1,3],<br>
-[2,3,1],<br>
-[3,1,2],<br>
-[3,2,1]<br>
-]</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/leetcodeQ46/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/leetcodeQ46/" data-id="cjv5edf8f00bo78veg8sqny71" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Permutation/">Permutation</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ90" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/leetcodeQ90/" class="article-date">
-  <time datetime="2019-04-28T21:22:53.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/leetcodeQ90/">Subsets II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-78-subsets-ii"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets-ii"></a> LeetCode Q 78 - Subsets II</h1>
-<p>Given a collection of integers that might contain duplicates, <em><strong>nums</strong></em>, return all possible subsets (the power set).</p>
-<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
-<p>Example:<br>
-<code>Input: [1,2,2]</code><br>
-Output:<br>
-[<br>
-[2],<br>
-[1],<br>
-[1,2,2],<br>
-[2,2],<br>
-[1,2],<br>
-[]<br>
-]</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/leetcodeQ90/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/leetcodeQ90/" data-id="cjv5edfaq00e778ve7lz0o5py" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Combination/">Combination</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ78" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/leetcodeQ78/" class="article-date">
-  <time datetime="2019-04-28T21:21:07.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/leetcodeQ78/">Subsets</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-78-subsets"><a class="markdownIt-Anchor" href="#leetcode-q-78-subsets"></a> LeetCode Q 78 - Subsets</h1>
-<p>Given a set of distinct integers, nums, return all possible subsets (the power set).<br>
-<strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
-<p>Example:<br>
-<code>Input: nums = [1,2,3]</code><br>
-Output:<br>
-[<br>
-[3],<br>
-[1],<br>
-[2],<br>
-[1,2,3],<br>
-[1,3],<br>
-[2,3],<br>
-[1,2],<br>
-[]<br>
-]</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/leetcodeQ78/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/leetcodeQ78/" data-id="cjv5edfa800dn78vef13u1a4v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Combination/">Combination</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ216" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/leetcodeQ216/" class="article-date">
-  <time datetime="2019-04-28T21:17:33.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/leetcodeQ216/">Combination Sum III</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-216-combination-sum-iii"><a class="markdownIt-Anchor" href="#leetcode-q-216-combination-sum-iii"></a> LeetCode Q 216 - Combination Sum III</h1>
-<p>Find all possible combinations of <em><strong>k</strong></em> numbers that add up to a number <em><strong>n</strong></em>, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>All numbers will be positive integers.</li>
-<li>The solution set must not contain duplicate combinations.</li>
-</ul>
-<p>Example 1:<br>
-<code>Input: k = 3, n = 7 ; Output: [[1,2,4]]</code><br>
-Example 2:<br>
-<code>Input: k = 3, n = 9 ; Output: [[1,2,6], [1,3,5], [2,3,4]]</code></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/28/leetcodeQ216/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/leetcodeQ216/" data-id="cjv5edf2q002x78vepvd7y0ow" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backtracking/">Backtracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Combination/">Combination</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
     </footer>
   </div>
@@ -619,7 +659,7 @@ Example 2:<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15.63px;">Array</a> <a href="/tags/BFS/" style="font-size: 15px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.5px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.88px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.38px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 15.63px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 13.13px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 15px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15.29px;">Array</a> <a href="/tags/BFS/" style="font-size: 15.29px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.65px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.06px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.59px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.18px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.12px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.18px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 15.88px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.41px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 10px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.82px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.76px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.59px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.35px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.59px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 14.71px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.24px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.18px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.59px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.76px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.18px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.18px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.71px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.18px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.53px;">Stack</a> <a href="/tags/String/" style="font-size: 16.47px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.59px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.35px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 10.59px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.35px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.59px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.94px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.59px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -641,23 +681,23 @@ Example 2:<br>
       <ul>
         
           <li>
-            <a href="/2019/05/01/leetcodeQ297/">Serialize and Deserialize Binary Tree</a>
+            <a href="/2019/05/02/leetcodeQ785/">leetcodeQ785</a>
           </li>
         
           <li>
-            <a href="/2019/05/01/leetcodeQ102/">Binary Tree Level Order Traversal</a>
+            <a href="/2019/05/02/leetcodeQ133/">Clone Graph</a>
           </li>
         
           <li>
-            <a href="/2019/05/01/leetcodeQ675/">Cut Off Trees for Golf Event</a>
+            <a href="/2019/05/02/lintcodeQ892/">Alien Dictionary</a>
           </li>
         
           <li>
-            <a href="/2019/05/01/leetcodeQ934/">Shortest Bridge</a>
+            <a href="/2019/05/02/lintcodeQ127/">Topological Sorting</a>
           </li>
         
           <li>
-            <a href="/2019/04/30/leetcodeQ542/">01 Matrix</a>
+            <a href="/2019/05/02/lintcodeQ178/">Graph Valid Tree</a>
           </li>
         
       </ul>
