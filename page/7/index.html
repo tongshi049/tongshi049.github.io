@@ -5,17 +5,17 @@
   
 
   
-  <title>Tong Shi&#39;s Blog</title>
+  <title>TongTong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Tong Shi&#39;s Blog">
+<meta property="og:title" content="TongTong Shi&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/page/7/index.html">
-<meta property="og:site_name" content="Tong Shi&#39;s Blog">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tong Shi&#39;s Blog">
+<meta name="twitter:title" content="TongTong Shi&#39;s Blog">
   
-    <link rel="alternate" href="/atom.xml" title="Tong Shi&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -34,7 +34,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Tong Shi&#39;s Blog</a>
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
       </h1>
       
     </div>
@@ -63,6 +63,443 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-leetcodeQ377" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ377/" class="article-date">
+  <time datetime="2019-04-24T22:58:09.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ377/">Combination Sum IV</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-377-combination-sum-iv"><a class="markdownIt-Anchor" href="#leetcode-q-377-combination-sum-iv"></a> LeetCode Q 377 - Combination Sum IV</h1>
+<p>Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.</p>
+<p>Example:<br>
+<code>nums = [1, 2, 3] ; target = 4</code><br>
+The possible combination ways are:<br>
+(1, 1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 3), (2, 1, 1), (2, 2), (3, 1)<br>
+<strong>Note</strong> that different sequences are counted as different combinations.<br>
+Therefore the output is 7.</p>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>What if negative numbers are allowed in the given array?</li>
+<li>How does it change the problem?</li>
+<li>What limitation we need to add to the question to allow negative numbers?</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ377/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ377/" data-id="cjv9o1ccq0068joveg6lkkl3l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HashTable/">HashTable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Memorization/">Memorization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recurtion/">Recurtion</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ376" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ376/" class="article-date">
+  <time datetime="2019-04-24T22:38:24.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ376/">Wiggle Subsequence</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-376-wiggle-subsequence"><a class="markdownIt-Anchor" href="#leetcode-q-376-wiggle-subsequence"></a> LeetCode Q 376 - Wiggle Subsequence</h1>
+<p>A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence.<br>
+For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.<br>
+Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</p>
+<p>Example 1:<br>
+<code>Input: [1,7,4,9,2,5] ; Output: 6</code><br>
+Explanation: The entire sequence is a wiggle sequence.<br>
+Example 2:<br>
+<code>Input: [1,17,5,10,13,15,10,5,16,8] ; Output: 7</code><br>
+Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].<br>
+Example 3:<br>
+<code>Input: [1,2,3,4,5,6,7,8,9] ; Output: 2</code></p>
+<p><strong>Follow up:</strong> Can you do it in <strong>O(n)</strong> time?</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ376/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ376/" data-id="cjv9o1cco0065joveq8htjva8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ416" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ416/" class="article-date">
+  <time datetime="2019-04-24T22:19:44.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ416/">Partition Equal Subset Sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-416-partition-equal-subset-sum"><a class="markdownIt-Anchor" href="#leetcode-q-416-partition-equal-subset-sum"></a> LeetCode Q 416 - Partition Equal Subset Sum</h1>
+<p>Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.<br>
+<strong>Note:</strong></p>
+<ul>
+<li>Each of the array element will not exceed 100.</li>
+<li>The array size will not exceed 200.</li>
+</ul>
+<p>Example 1:<br>
+<code>Input: [1, 5, 11, 5] ; Output: true</code><br>
+Explanation: The array can be partitioned as [1, 5, 5] and [11].<br>
+Example 2:<br>
+<code>Input: [1, 2, 3, 5] ; Output: false</code><br>
+Explanation: The array cannot be partitioned into equal sum subsets.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ416/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ416/" data-id="cjv9o1cif00enjovetfzhpv28" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ494" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ494/" class="article-date">
+  <time datetime="2019-04-24T22:03:16.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ494/">Target Sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-494-target-sum"><a class="markdownIt-Anchor" href="#leetcode-q-494-target-sum"></a> LeetCode Q 494 - Target Sum</h1>
+<p>You are given a list of non-negative integers, a1, a2, …, an, and a target, S. Now you have 2 symbols + and -. For each integer, you should choose one from + and - as its new symbol.<br>
+Find out how many ways to assign symbols to make sum of integers equal to target S.</p>
+<p>Example 1:<br>
+<code>Input: nums is [1, 1, 1, 1, 1], S is 3. ; Output: 5</code><br>
+Explanation:<br>
+<code>-1+1+1+1+1 = 3 +1-1+1+1+1 = 3 +1+1-1+1+1 = 3 +1+1+1-1+1 = 3 +1+1+1+1-1 = 3</code><br>
+There are 5 ways to assign symbols to make the sum of nums be target 3.<br>
+<strong>Note:</strong></p>
+<ul>
+<li>The length of the given array is positive and will not exceed 20.</li>
+<li>The sum of elements in the given array will not exceed 1000.<br>
+Your output answer is guaranteed to be fitted in a 32-bit integer.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ494/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ494/" data-id="cjv9o1cj200f9jove2vncsbsg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/backtracking/">backtracking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ647" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ647/" class="article-date">
+  <time datetime="2019-04-24T21:54:37.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ647/">Palindromic Substrings</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-647-palindromic-substrings"><a class="markdownIt-Anchor" href="#leetcode-q-647-palindromic-substrings"></a> LeetCode Q 647 - Palindromic Substrings</h1>
+<p>Given a string, your task is to count how many palindromic substrings in this string. The substrings with different start indexes or end indexes are counted as different substrings even they consist of same characters.</p>
+<p>Example 1:<br>
+<code>Input: &quot;abc&quot; ; Output: 3</code><br>
+Explanation: Three palindromic strings: “a”, “b”, “c”.<br>
+Example 2:<br>
+<code>Input: &quot;aaa&quot; ; Output: 6</code><br>
+Explanation: Six palindromic strings: “a”, “a”, “a”, “aa”, “aa”, “aaa”.</p>
+<p><strong>Note:</strong> The input string length won’t exceed 1000.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ647/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ647/" data-id="cjv9o1cjv00g8jove75tbn9fb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ714" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ714/" class="article-date">
+  <time datetime="2019-04-24T21:15:14.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ714/">Best Time to Buy and Sell Stock with Transaction Fee</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-714-best-time-to-buy-and-sell-stock-with-transaction-fee"><a class="markdownIt-Anchor" href="#leetcode-q-714-best-time-to-buy-and-sell-stock-with-transaction-fee"></a> LeetCode Q 714 - Best Time to Buy and Sell Stock with Transaction Fee</h1>
+<p>Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.<br>
+You may complete <strong>as many transactions as you like</strong>, but you need to <strong>pay the transaction fee for each transaction</strong>. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)<br>
+Return the <strong>maximum profit</strong> you can make.</p>
+<p>Example 1:<br>
+<code>Input: prices = [1, 3, 2, 8, 4, 9], fee = 2 ; Output: 8</code><br>
+Explanation: The maximum profit can be achieved by:</p>
+<ul>
+<li>Buying at prices[0] = 1</li>
+<li>Selling at prices[3] = 8</li>
+<li>Buying at prices[4] = 4</li>
+<li>Selling at prices[5] = 9<br>
+The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>0 &lt; prices.length &lt;= 50000.</li>
+<li>0 &lt; prices[i] &lt; 50000.</li>
+<li>0 &lt;= fee &lt; 50000.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ714/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ714/" data-id="cjv9o1ckd00gojovegrje11dd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ338" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ338/" class="article-date">
+  <time datetime="2019-04-24T20:03:00.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ338/">Counting Bits</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-338-counting-bits"><a class="markdownIt-Anchor" href="#leetcode-q-338-counting-bits"></a> LeetCode Q 338 - Counting Bits</h1>
+<p>Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1’s in their binary representation and return them as an array.</p>
+<p>Example 1: <code>Input: 2 ; Output: [0,1,1]</code><br>
+Example 2: <code>Input: 5 ; Output: [0,1,1,2,1,2]</code></p>
+<p><strong>Follow up:</strong></p>
+<ul>
+<li>It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in <strong>linear time O(n)</strong> possibly in a single pass?</li>
+<li>Space complexity should be O(n).</li>
+<li>Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ338/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ338/" data-id="cjv9o1cby0059jovee55xnwqr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ322" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/24/leetcodeQ322/" class="article-date">
+  <time datetime="2019-04-24T19:46:44.000Z" itemprop="datePublished">2019-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/24/leetcodeQ322/">Coin Change</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-322-coin-change"><a class="markdownIt-Anchor" href="#leetcode-q-322-coin-change"></a> LeetCode Q 322 - Coin Change</h1>
+<p>You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.</p>
+<p>Example 1:<br>
+<code>Input: coins = [1, 2, 5], amount = 11 ; Output: 3</code><br>
+Explanation: 11 = 5 + 5 + 1<br>
+Example 2:<br>
+<code>Input: coins = [2], amount = 3 ; Output: -1</code><br>
+<strong>Note:</strong> You may assume that you have an infinite number of each kind of coin.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/24/leetcodeQ322/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ322/" data-id="cjv9o1cbt004zjovej1rice3v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-leetcodeQ304" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -104,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ304/" data-id="cjv8lhys2004sqgve7usel0b7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ304/" data-id="cjv9o1cbh004gjovecgvwst6h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -155,505 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ303/" data-id="cjv8lhys0004nqgvefh0xrc27" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-lintcodeQ909" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/24/lintcodeQ909/" class="article-date">
-  <time datetime="2019-04-24T14:52:14.000Z" itemprop="datePublished">2019-04-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/24/lintcodeQ909/">Android Unlock Patterns</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="lintcode-q-909-android-unlock-patterns"><a class="markdownIt-Anchor" href="#lintcode-q-909-android-unlock-patterns"></a> LintCode Q 909 - Android Unlock Patterns</h1>
-<p>Given an Android 3x3 key lock screen and two integers m and n, where 1 ≤ m ≤ n ≤ 9, count the total number of unlock patterns of the Android lock screen, which consist of minimum of m keys and maximum n keys.<br>
-Rules for a valid pattern:</p>
-<ul>
-<li>Each pattern must connect at least m keys and at most n keys.</li>
-<li>All the keys must be distinct.</li>
-<li>If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.</li>
-<li>The order of keys used matters.</li>
-</ul>
-<p>Example1<br>
-<code>Input: m = 1, n = 1 ; Output: 9</code><br>
-Example2<br>
-<code>Input: m = 1, n = 2 ; Output: 65</code></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/24/lintcodeQ909/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/24/lintcodeQ909/" data-id="cjv8lhywh00c5qgvechb5wj4w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/backtracking/">backtracking</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-lintcodeQ514" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/lintcodeQ514/" class="article-date">
-  <time datetime="2019-04-23T23:00:46.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/lintcodeQ514/">Paint Fence</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="lintcode-q-514-paint-fence"><a class="markdownIt-Anchor" href="#lintcode-q-514-paint-fence"></a> LintCode Q 514 - Paint Fence</h1>
-<p>There is a fence with n posts, each post can be painted with one of the k colors. You have to paint all the posts such that no more than two adjacent fence posts have the same color.<br>
-Return the total number of ways you can paint the fence.</p>
-<p>Example 1:<br>
-<code>Input: n=3, k=2 ; Output: 6</code><br>
-Explanation:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>post1</th>
-<th>post2</th>
-<th>post3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>way1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>way2</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>way3</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>way4</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>way5</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>way6</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>Example 2:<br>
-<code>Input: n=2, k=2 ; Output: 4</code><br>
-Explanation:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>post1</th>
-<th>post2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>way1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>way2</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>way3</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>way4</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Notice:</strong> n and k are non-negative integers.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/lintcodeQ514/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/lintcodeQ514/" data-id="cjv8lhyw100beqgve03gjb5hd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-lintcodeQ515" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/lintcodeQ515/" class="article-date">
-  <time datetime="2019-04-23T21:53:34.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/lintcodeQ515/">Paint House</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="lintcode-q-515-paint-house"><a class="markdownIt-Anchor" href="#lintcode-q-515-paint-house"></a> LintCode Q 515 - Paint House</h1>
-<p>There are a row of n houses, each house can be painted with one of the three colors: red, blue or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color, and you need to cost the least. Return the minimum cost.<br>
-The cost of painting each house with a certain color is represented by a n x 3 cost matrix. For example, costs[0][0] is the cost of painting house 0 with color red; costs[1][2] is the cost of painting house 1 with color green, and so on… Find the minimum cost to paint all houses.</p>
-<p>Example 1:<br>
-<code>Input: [[14,2,11],[11,14,5],[14,3,10]] ; Output: 10</code><br>
-Explanation: blue green blue, 2 + 5 + 3 = 10<br>
-Example 2:<br>
-<code>Input: [[1,2,3],[1,4,6]] ; Output: 3</code><br>
-Notice: All costs are positive integers.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/lintcodeQ515/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/lintcodeQ515/" data-id="cjv8lhyw600bnqgved9zmhesi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ213" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/leetcodeQ213/" class="article-date">
-  <time datetime="2019-04-23T21:24:09.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/leetcodeQ213/">House Robber II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-213-house-robber-ii"><a class="markdownIt-Anchor" href="#leetcode-q-213-house-robber-ii"></a> LeetCode Q 213 - House Robber II</h1>
-<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are <strong>arranged in a circle</strong>. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.<br>
-Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
-<p>Example 1:<br>
-<code>Input: [2,3,2] ; Output: 3</code><br>
-Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are adjacent houses.<br>
-Example 2:<br>
-<code>Input: [1,2,3,1] ; Output: 4</code><br>
-Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount you can rob = 1 + 3 = 4.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/leetcodeQ213/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ213/" data-id="cjv8lhyqp002iqgvedhbslyy5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ198" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/leetcodeQ198/" class="article-date">
-  <time datetime="2019-04-23T21:21:53.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/leetcodeQ198/">House Robber</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-198-house-robber"><a class="markdownIt-Anchor" href="#leetcode-q-198-house-robber"></a> LeetCode Q 198 - House Robber</h1>
-<p>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.<br>
-Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
-<p>Example 1:<br>
-<code>Input: [1,2,3,1] ; Output: 4</code><br>
-Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount you can rob = 1 + 3 = 4.<br>
-Example 2:<br>
-<code>Input: [2,7,9,3,1] ; Output: 12</code><br>
-Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1). Total amount you can rob = 2 + 9 + 1 = 12.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/leetcodeQ198/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ198/" data-id="cjv8lhyql002aqgvehwddytoy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ309" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/leetcodeQ309/" class="article-date">
-  <time datetime="2019-04-23T20:56:37.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/leetcodeQ309/">Best Time to Buy and Sell Stock with Cooldown</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-123-best-time-to-buy-and-sell-stock-with-cooldown"><a class="markdownIt-Anchor" href="#leetcode-q-123-best-time-to-buy-and-sell-stock-with-cooldown"></a> LeetCode Q 123 - Best Time to Buy and Sell Stock with Cooldown</h1>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.<br>
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:<br>
-You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again). <strong>After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)</strong><br>
-Example:<br>
-<code>Input: [1,2,3,0,2] ; Output: 3</code><br>
-Explanation: transactions = [buy, sell, cooldown, buy, sell]</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/leetcodeQ309/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ309/" data-id="cjv8lhys1004pqgvext2jysgz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ123" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/leetcodeQ123/" class="article-date">
-  <time datetime="2019-04-23T20:40:01.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/leetcodeQ123/">Best Time to Buy and Sell Stock III</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-123-best-time-to-buy-and-sell-stock-iii"><a class="markdownIt-Anchor" href="#leetcode-q-123-best-time-to-buy-and-sell-stock-iii"></a> LeetCode Q 123 - Best Time to Buy and Sell Stock III</h1>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.<br>
-Design an algorithm to find the maximum profit. You may complete <strong>at most two transactions</strong>.<br>
-Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).</p>
-<p>Example 1:<br>
-<code>Input: [3,3,5,0,0,3,1,4] ; Output: 6</code><br>
-Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3. Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.<br>
-Example 2:<br>
-<code>Input: [1,2,3,4,5] ; Output: 4</code><br>
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again.<br>
-Example 3:<br>
-<code>Input: [7,6,4,3,1] ; Output: 0</code><br>
-Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/leetcodeQ123/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ123/" data-id="cjv8lhypp000yqgve7bf7131q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ122" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/23/leetcodeQ122/" class="article-date">
-  <time datetime="2019-04-23T19:35:43.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/leetcodeQ122/">Best Time to Buy and Sell Stock II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-122-best-time-to-buy-and-sell-stock-ii"><a class="markdownIt-Anchor" href="#leetcode-q-122-best-time-to-buy-and-sell-stock-ii"></a> LeetCode Q 122 - Best Time to Buy and Sell Stock II</h1>
-<p>Say you have an array for which the ith element is the price of a given stock on day i.<br>
-Design an algorithm to find the maximum profit. You may <strong>complete as many transactions as you like</strong> (i.e., buy one and sell one share of the stock multiple times).</p>
-<p>Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).</p>
-<p>Example 1:</p>
-<p><code>Input: [7,1,5,3,6,4] ; Output: 7</code><br>
-Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.<br>
-Example 2:<br>
-<code>Input: [1,2,3,4,5] ; Output: 4</code><br>
-Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4. Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again.<br>
-Example 3:<br>
-<code>Input: [7,6,4,3,1] ; Output: 0</code><br>
-Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/23/leetcodeQ122/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/23/leetcodeQ122/" data-id="cjv8lhypr0010qgve4hqqvnng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/24/leetcodeQ303/" data-id="cjv9o1cbe004bjovexl7jzb9l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -683,7 +622,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.11px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.78px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.22px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.56px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.89px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 16.67px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.44px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 10px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.67px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.56px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.22px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.56px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 14.44px;">LintCode</a> <a href="/tags/Math/" style="font-size: 18.33px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.11px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.56px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.67px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.11px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.11px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.44px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.11px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.33px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.56px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.22px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.22px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.78px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.56px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15.29px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.65px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 17.65px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 17.06px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.59px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.18px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 14.12px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.18px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 16.47px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.41px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 11.76px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/HashTable/" style="font-size: 18.82px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.76px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.59px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.35px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.59px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15.29px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 18.24px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.18px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.59px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.76px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.18px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.18px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.71px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.18px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.53px;">Stack</a> <a href="/tags/String/" style="font-size: 15.88px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.59px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.35px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.35px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.35px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.59px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.94px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 11.76px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.59px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -705,23 +644,23 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.</p>
       <ul>
         
           <li>
-            <a href="/2019/05/03/leetcodeQ802/">Find Eventual Safe States</a>
+            <a href="/2019/05/04/lintcodeQ663/">Walls and Gates</a>
           </li>
         
           <li>
-            <a href="/2019/05/03/leetcodeQ210/">Course Schedule II</a>
+            <a href="/2019/05/04/lintcodeQ573/">Build Post Office II</a>
           </li>
         
           <li>
-            <a href="/2019/05/03/leetcodeQ207/">Course Schedule</a>
+            <a href="/2019/05/04/lintcodeQ803/">Smallest Rectangle Enclosing Black Pixels</a>
           </li>
         
           <li>
-            <a href="/2019/05/02/leetcodeQ785/">Is Graph Bipartite?</a>
+            <a href="/2019/05/04/lintcodeQ600/">Smallest Rectangle Enclosing Black Pixels</a>
           </li>
         
           <li>
-            <a href="/2019/05/02/leetcodeQ133/">Clone Graph</a>
+            <a href="/2019/05/04/lintcodeQ434/">Number of Islands II</a>
           </li>
         
       </ul>
