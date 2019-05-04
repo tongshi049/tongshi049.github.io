@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/05/03/leetcodeQ802/</loc>
+    
+    <lastmod>2019-05-04T00:43:46.510Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/03/leetcodeQ207/</loc>
+    
+    <lastmod>2019-05-04T00:42:34.679Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/03/leetcodeQ210/</loc>
+    
+    <lastmod>2019-05-04T00:42:28.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/30/leetcodeQ127/</loc>
+    
+    <lastmod>2019-05-03T22:36:19.899Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/05/02/leetcodeQ785/</loc>
     
     <lastmod>2019-05-03T00:45:43.617Z</lastmod>
@@ -82,13 +110,6 @@
     <loc>http://yoursite.com/2019/04/30/leetcodeQ126/</loc>
     
     <lastmod>2019-04-30T20:04:07.973Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/30/leetcodeQ127/</loc>
-    
-    <lastmod>2019-04-30T19:34:57.619Z</lastmod>
     
   </url>
   
