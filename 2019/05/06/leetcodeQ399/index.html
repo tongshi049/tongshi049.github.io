@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Evaluate Division | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 399 - Evaluate Division Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries,">
+<meta name="keywords" content="LeetCode,DFS,Disjoint Set,Union Find">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Evaluate Division">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/leetcodeQ399/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 399 - Evaluate Division Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries,">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-06T20:09:12.306Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Evaluate Division">
+<meta name="twitter:description" content="LeetCode Q 399 - Evaluate Division Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries,">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ399" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/06/leetcodeQ399/" class="article-date">
+  <time datetime="2019-05-06T18:29:14.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Evaluate Division
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-399-evaluate-division"><a class="markdownIt-Anchor" href="#leetcode-q-399-evaluate-division"></a> LeetCode Q 399 - Evaluate Division</h1>
+<p>Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries, return the answers. If the answer does not exist, return -1.0.</p>
+<p>Example:<br>
+<code>Given a / b = 2.0, b / c = 3.0. queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? . return [6.0, 0.5, -1.0, 1.0, -1.0 ].</code></p>
+<p>According to the example above:<br>
+<code>equations = [ [&quot;a&quot;, &quot;b&quot;], [&quot;b&quot;, &quot;c&quot;] ], values = [2.0, 3.0], queries = [ [&quot;a&quot;, &quot;c&quot;], [&quot;b&quot;, &quot;a&quot;], [&quot;a&quot;, &quot;e&quot;], [&quot;a&quot;, &quot;a&quot;], [&quot;x&quot;, &quot;x&quot;] ].</code></p>
+<p>The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-disjoint-set-union-find"><a class="markdownIt-Anchor" href="#solution-1-disjoint-set-union-find"></a> Solution 1: Disjoint Set / Union Find</h3>
+<ol>
+<li>
+<p>We use two maps, <code>Map&lt;String, String&gt; root</code> and <code>Map&lt;String, Double&gt; dist</code>.</p>
+<ul>
+<li><code>root</code> is used to store the divisors. For example, given <code>a / b</code>, in the <code>root</code>, we add two key value pairs, one is <code>{a: b}</code> and another is <code>{b: b}</code>.</li>
+<li><code>dist</code> is used to store the values. For example, given <code>a / b = 2.0</code>, in the <code>root</code>, we add two key value pairs, one is <code>{a: 2.0}</code> and another is <code>{b: 1.0}</code>.</li>
+</ul>
+</li>
+<li>
+<p>In our algorithm, we implicitly utilzie <strong>Union Find</strong> data structure, doing <code>ufs.union</code> and <code>ufs.find</code> operations.</p>
+</li>
+<li>
+<p>why <code>dist.put(p1, values[i] * dist.get(e.get(1)) / dist.get(e.get(0)));</code><br>
+<code>dist</code> is a map that stores the “distance” (or factor) from current node to its root. Since we have <code>e[i][0] = dist.get(e[i][0]) * r1</code> and <code>e[i][1] = dist.get(e[i][1]) * r2</code>, <code>e[i][0] = e[i][1] * values[i]</code> can be rewritten in <code>dist.get(e[i][0]) * r1 = dist.get(e[i][1]) * r2 * values[i]</code>. Then, we can get <code>r1 = dist.get(e[i][1]) * r2 * values[i] / dist.get(e[i][0])</code>. Since <code>r2 = 1</code>, <code>r1 = dist.get(e[i][1]) * values[i] / dist.get(e[i][0])</code>.</p>
+</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">double</span>[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, <span class="keyword">double</span>[] values, List&lt;List&lt;String&gt;&gt; queries) &#123;</span><br><span class="line">	</span><br><span class="line">	Map&lt;String, String&gt; root = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	Map&lt;String, Double&gt; dist = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; equations.size(); i++) &#123;</span><br><span class="line">		List&lt;String&gt; equ = equations.get(i);</span><br><span class="line">		String p1 = find(root, dist, equ.get(<span class="number">0</span>));</span><br><span class="line">		String p2 = find(root, dist, equ.get(<span class="number">1</span>));</span><br><span class="line">		root.put(p1, p2);</span><br><span class="line">		dist.put(p1, values[i] * dist.get(equ.get(<span class="number">1</span>)) / dist.get(equ.get(<span class="number">0</span>)));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span>[] res = <span class="keyword">new</span> <span class="keyword">double</span>(queries.size());</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queries.size()) &#123;</span><br><span class="line">		List&lt;String&gt; que = queries.get(i);</span><br><span class="line">		<span class="keyword">if</span> (!root.containsKey(que(<span class="number">0</span>)) || !root.containsKey(que(<span class="number">1</span>))) &#123;</span><br><span class="line">			res[i] = -<span class="number">1.0</span>; <span class="keyword">continue</span>;</span><br><span class="line">		&#125; </span><br><span class="line">		String p1 = find(root, dist, que.get(<span class="number">0</span>));</span><br><span class="line">		String p2 = find(root, dist, que.get(<span class="number">1</span>));</span><br><span class="line">		<span class="keyword">if</span> (!p1.equals(p2)) &#123;</span><br><span class="line">			res[i] = -<span class="number">1.0</span>; <span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		res[i] = (<span class="keyword">double</span>) dist.get(que.get(<span class="number">0</span>)) / dist.get(que.get(<span class="number">1</span>));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">find</span> <span class="params">(Map&lt;String, String&gt; root, Map&lt;String, Double&gt; dist, String s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!root.containsKey(s)) &#123;</span><br><span class="line">		root.put(s, s); dist.put(s, <span class="number">1.0</span>); <span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root.get(s).equals(s)) <span class="keyword">return</span> s;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> lastParent = root.get(s);</span><br><span class="line">	<span class="keyword">int</span> parent = find(root, dist, lastParent);</span><br><span class="line"></span><br><span class="line">	root.put(s, parent);</span><br><span class="line">	dist.put(s, dist.get(s) * dist.get(lastParent));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> parent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-dfs"><a class="markdownIt-Anchor" href="#solution-2-dfs"></a> Solution 2: DFS</h3>
+<p>The DFS method is more straightforward.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">double</span>[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, <span class="keyword">double</span>[] values, List&lt;List&lt;String&gt;&gt; queries) &#123;</span><br><span class="line">	</span><br><span class="line">	Map&lt;String, List&lt;String&gt;&gt; map1 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	Map&lt;String, List&lt;Double&gt;&gt; map2 = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	buildGraph(map1, map2, equations, values);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">double</span>[] res = <span class="keyword">new</span> <span class="keyword">double</span>[queries.size()];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queries.size(); i++) &#123;</span><br><span class="line">		res[i] = dfs(map1, map2, queries.get(i).get(<span class="number">0</span>), </span><br><span class="line">		queries.get(i).get(<span class="number">1</span>), <span class="keyword">new</span> HashSet&lt;String&gt;(), <span class="number">1.0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">dfs</span> <span class="params">(Map&lt;String, List&lt;String&gt;&gt; map1, Map&lt;String, List&lt;Double&gt;&gt; map2, String start, String end, Set&lt;String&gt; visited, <span class="keyword">double</span> res)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (!map1.containsKey(start) || visited.contains(start)) </span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1.0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (start.equals(end)) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">	visited.add(start);</span><br><span class="line">	</span><br><span class="line">	List&lt;String&gt; nexts = map1.get(start);</span><br><span class="line">	List&lt;Double&gt; values = map2.get(start);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> temp = -<span class="number">1.0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nexts.size(); i++) &#123;</span><br><span class="line">		String next = nexts.get(i);</span><br><span class="line">		Double val = values.get(i);</span><br><span class="line">		temp = dfs(map1, map2, next, end, viisted, res * values.get(i));</span><br><span class="line">		<span class="keyword">if</span> (temp != -<span class="number">1.0</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	visited.remove(visited.size() - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildGraph</span><span class="params">(Map&lt;String, List&lt;String&gt;&gt; map1, Map&lt;String, List&lt;Double&gt;&gt; map2, List&lt;List&lt;String&gt;&gt; equations, <span class="keyword">double</span>[] values)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; equations.size(); i++) &#123;</span><br><span class="line">		List&lt;String&gt; equ = equations.get(i);</span><br><span class="line">		<span class="keyword">if</span> (!map1.containsKey(equ.get(<span class="number">0</span>))) &#123;</span><br><span class="line">			map1.put(equ.get(<span class="number">0</span>), <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">			map2.put(equ.get(<span class="number">0</span>), <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!map1.containsKey(equ.get(<span class="number">1</span>))) &#123;</span><br><span class="line">			map1.put(equ.get(<span class="number">1</span>), <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">			map2.put(equ.get(<span class="number">1</span>), <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		map1.get(equ.get(<span class="number">0</span>)).add(equ.get(<span class="number">1</span>));</span><br><span class="line">		map1.get(equ.get(<span class="number">1</span>)).add(equ.get(<span class="number">0</span>));</span><br><span class="line">		map2.get(equ.get(<span class="number">0</span>)).add(values[i]);</span><br><span class="line">		map2.get(equ.get(<span class="number">1</span>)).add(<span class="number">1</span> / values[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/06/leetcodeQ399/" data-id="cjvcp8kb400oxwgve47nad53v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Disjoint-Set/">Disjoint Set</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/06/leetcodeQ721/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Accounts Merge
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/leetcodeQ670/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Maximum Swap</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.88px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.75px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.38px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.38px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 15.63px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.5px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.38px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ990/">Satisfiability of Equality Equations</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ721/">Accounts Merge</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ399/">Evaluate Division</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ670/">Maximum Swap</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

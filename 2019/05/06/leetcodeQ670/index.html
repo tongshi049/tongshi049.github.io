@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Maximum Swap | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 670 - Maximum Swap Given a non-negative integer, you could swap two digits at most once to get the maximum valued number. Return the maximum valued number you could get. Example 1: Input:">
+<meta name="keywords" content="LeetCode,Stack,Greedy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maximum Swap">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/leetcodeQ670/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 670 - Maximum Swap Given a non-negative integer, you could swap two digits at most once to get the maximum valued number. Return the maximum valued number you could get. Example 1: Input:">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-06T20:01:57.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maximum Swap">
+<meta name="twitter:description" content="LeetCode Q 670 - Maximum Swap Given a non-negative integer, you could swap two digits at most once to get the maximum valued number. Return the maximum valued number you could get. Example 1: Input:">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ670" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/06/leetcodeQ670/" class="article-date">
+  <time datetime="2019-05-06T18:00:34.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Maximum Swap
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-670-maximum-swap"><a class="markdownIt-Anchor" href="#leetcode-q-670-maximum-swap"></a> LeetCode Q 670 - Maximum Swap</h1>
+<p>Given a non-negative integer, you could swap two digits <strong>at most</strong> once to get the maximum valued number. Return the maximum valued number you could get.</p>
+<p>Example 1:<br>
+<code>Input: 2736 ; Output: 7236</code><br>
+Explanation: Swap the number 2 and the number 7.</p>
+<p>Example 2:<br>
+<code>Input: 9973 ; Output: 9973</code><br>
+Explanation: No swap.</p>
+<p><strong>Note:</strong> The given number is in the range <code>[0, 108]</code>.</p>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-greedy"><a class="markdownIt-Anchor" href="#solution-1-greedy"></a> Solution 1: Greedy</h3>
+<p>The <strong>left</strong> and <strong>right</strong> digits we swap should satisfy the following property, if we want to get the maximum num after the exchange.</p>
+<ol>
+<li>the index of <strong>left</strong> digit should be as small as possible.</li>
+<li>the index of <strong>right</strong> digit should be as large as possible. And the <strong>right</strong> digit should be larger than the <strong>left digit</strong>.</li>
+</ol>
+<p>In the following code, we use an array, i.e. <code>int[] last</code> to records the largest index of <code>0, 1, 2, .., 9</code> of the given <code>num</code>.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumSwap</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span>[] chs = (num + <span class="string">""</span>).toCharArray();</span><br><span class="line">	<span class="keyword">int</span>[] last = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chs.length; i++) &#123;</span><br><span class="line">		last[chs[i] - <span class="string">'0'</span>] = i;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chs.length; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">9</span>; j &gt; chs[i] - <span class="string">'0'</span>; j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (last[j] &gt; i) &#123;</span><br><span class="line">				<span class="keyword">int</span> temp = chs[i];</span><br><span class="line">				chs[i] = chs[last[j]];</span><br><span class="line">				chs[last[j]] = temp;</span><br><span class="line">				<span class="keyword">return</span> Integer.parseInt(String.valueOf(chs));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-stack"><a class="markdownIt-Anchor" href="#solution-2-stack"></a> Solution 2: Stack</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumSwap</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span>[] chs = (num + <span class="string">""</span>).toCharArray();</span><br><span class="line">	</span><br><span class="line">	Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">	stack.push(chs[<span class="number">0</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> res = num;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; chs.length; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> left = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; chs[i] &gt; chs[stack.peek()]) &#123;</span><br><span class="line">			left = stack.pop;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (left == -<span class="number">1</span>) &#123;</span><br><span class="line">			stack.push(i);</span><br><span class="line"></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			res = Math.max(res, swapAndTransform(num, i, left));</span><br><span class="line">			stack.push(left);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">swapAndTransform</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> i, <span class="keyword">int</span> j )</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span>[] chs = (num+<span class="string">""</span>).toCharArray();</span><br><span class="line">	<span class="keyword">char</span> temp = chs[i];</span><br><span class="line">	chs[i] = chs[j];</span><br><span class="line">	chs[j] =temp;</span><br><span class="line">	<span class="keyword">return</span> Integer.parseInt(<span class="keyword">new</span> String(chs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/06/leetcodeQ670/" data-id="cjvco7psq00oqwgveopgmhq34" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Greedy/">Greedy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/06/leetcodeQ399/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Evaluate Division
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/leetcodeQ841/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Keys and Rooms</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.88px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.75px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.38px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.38px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 15.63px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.5px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.38px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ990/">Satisfiability of Equality Equations</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ721/">Accounts Merge</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ399/">Evaluate Division</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ670/">Maximum Swap</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

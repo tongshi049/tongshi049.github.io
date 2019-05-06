@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Keys and Rooms | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 841 - Keys and Rooms There are N rooms and you start in room 0.  Each room has a distinct number in 0, 1, 2, ..., N-1, and each room may have some keys to access the next room. Formally, e">
+<meta name="keywords" content="LeetCode,BFS,DFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keys and Rooms">
+<meta property="og:url" content="http://yoursite.com/2019/05/06/leetcodeQ841/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 841 - Keys and Rooms There are N rooms and you start in room 0.  Each room has a distinct number in 0, 1, 2, ..., N-1, and each room may have some keys to access the next room. Formally, e">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-06T20:02:35.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Keys and Rooms">
+<meta name="twitter:description" content="LeetCode Q 841 - Keys and Rooms There are N rooms and you start in room 0.  Each room has a distinct number in 0, 1, 2, ..., N-1, and each room may have some keys to access the next room. Formally, e">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ841" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/06/leetcodeQ841/" class="article-date">
+  <time datetime="2019-05-06T17:41:37.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Keys and Rooms
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-841-keys-and-rooms"><a class="markdownIt-Anchor" href="#leetcode-q-841-keys-and-rooms"></a> LeetCode Q 841 - Keys and Rooms</h1>
+<p>There are <code>N</code> rooms and you start in room 0.  Each room has a distinct number in <code>0, 1, 2, ..., N-1</code>, and each room may have some keys to access the next room.<br>
+Formally, each room i has a list of keys <code>rooms[i]</code>, and each key <code>rooms[i][j]</code> is an integer in <code>[0, 1, ..., N-1]</code> where <code>N = rooms.length</code>.  A key <code>rooms[i][j] = v</code> opens the room with number <code>v</code>.<br>
+Initially, all the rooms start locked (except for room <code>0</code>).<br>
+You can <strong>walk back and forth</strong> between rooms freely.<br>
+Return true if and only if you can enter every room.</p>
+<p>Example 1:<br>
+<code>Input: [[1],[2],[3],[]] ; Output: true</code><br>
+Explanation:<br>
+We start in room 0, and pick up key 1.<br>
+We then go to room 1, and pick up key 2.<br>
+We then go to room 2, and pick up key 3.<br>
+We then go to room 3.  Since we were able to go to every room, we return true.</p>
+<p>Example 2:<br>
+<code>Input: [[1,3],[3,0,1],[2],[0]] ; Output: false</code><br>
+Explanation: We can’t enter the room with number 2.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= rooms.length &lt;= 1000</li>
+<li>0 &lt;= rooms[i].length &lt;= 1000</li>
+<li>The number of keys in all rooms combined is at most 3000.</li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-bfs-dfs"><a class="markdownIt-Anchor" href="#solution-bfs-dfs"></a> Solution : BFS / DFS</h3>
+<p>The codes of the solution when adopting the BFS and DFS are almost same, excepte for that,</p>
+<ul>
+<li>when using BFS, a <code>stack</code> is employed;</li>
+<li>when using DFS, a <code>queue</code> is employed.</li>
+</ul>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canVisitAllRooms</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; rooms)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N = rooms.size();</span><br><span class="line">	Queue&lt;Integer&gt; que = <span class="keyword">new</span> LinkedList&lt;&gt;(); <span class="comment">// Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();</span></span><br><span class="line">	Set&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!que.isEmpty()) &#123; <span class="comment">// while (!stack.isEmpty())</span></span><br><span class="line">		<span class="keyword">int</span> curr = que.poll(); <span class="comment">// int curr = stack.pop();</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> next: rooms.get(curr)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (visited.add(next)) &#123;</span><br><span class="line">				que.offer(next); <span class="comment">// stack.push(next);</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (visited.size() == N) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> visited.size() == N;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/06/leetcodeQ841/" data-id="cjvcnjc0f00omwgveh2cayc4z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/06/leetcodeQ670/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Maximum Swap
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/leetcodeQ827/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Making A Large Island</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.88px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.75px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.38px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.38px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 15.63px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.5px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.38px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ990/">Satisfiability of Equality Equations</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ721/">Accounts Merge</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ399/">Evaluate Division</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ670/">Maximum Swap</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
