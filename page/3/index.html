@@ -64,6 +64,247 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcodeQ802" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/03/leetcodeQ802/" class="article-date">
+  <time datetime="2019-05-03T22:51:18.000Z" itemprop="datePublished">2019-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/03/leetcodeQ802/">Find Eventual Safe States</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-802-find-eventual-safe-states"><a class="markdownIt-Anchor" href="#leetcode-q-802-find-eventual-safe-states"></a> LeetCode Q 802 - Find Eventual Safe States</h1>
+<p>In a directed graph, we start at some node and every turn, walk along a directed edge of the graph.  If we reach a node that is terminal (that is, it has no outgoing directed edges), we stop.<br>
+Now, say our starting node is eventually safe if and only if we must eventually walk to a terminal node.  More specifically, there exists a natural number K so that for any choice of where to walk, we must have stopped at a terminal node in less than K steps.<br>
+Which nodes are eventually safe?  Return them as an array in sorted order.<br>
+The directed graph has N nodes with labels 0, 1, …, N-1, where N is the length of graph.  The graph is given in the following form: graph[i] is a list of labels j such that (i, j) is a directed edge of the graph.</p>
+<p>Example:<br>
+<code>Input: graph = [[1,2],[2,3],[5],[0],[5],[],[]] Output: [2,4,5,6]</code></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>graph</code> will have length at most <code>10000</code>.</li>
+<li>The number of edges in the graph will not exceed <code>32000</code>.</li>
+<li>Each <code>graph[i]</code> will be a sorted list of different integers, chosen within the range <code>[0, graph.length - 1]</code>.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/03/leetcodeQ802/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/03/leetcodeQ802/" data-id="cjvcz8i5o00fgw4ve1l4o0i57" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology-Sorting/">Topology Sorting</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ210" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/03/leetcodeQ210/" class="article-date">
+  <time datetime="2019-05-03T22:23:21.000Z" itemprop="datePublished">2019-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/03/leetcodeQ210/">Course Schedule II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-210-course-schedule-ii"><a class="markdownIt-Anchor" href="#leetcode-q-210-course-schedule-ii"></a> LeetCode Q 210 - Course Schedule II</h1>
+<p>There are a total of n courses you have to take, labeled from 0 to n-1.<br>
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]<br>
+Given the total number of courses and a list of prerequisite pairs, return the ordering of courses you should take to finish all courses.<br>
+There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
+<p>Example 1:<br>
+<code>Input: 2, [[1,0]] ; Output: [0,1]</code><br>
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1].</p>
+<p>Example 2:<br>
+<code>Input: 4, [[1,0],[2,0],[3,1],[3,2]] ; Output: [0,1,2,3] or [0,2,1,3]</code><br>
+Explanation: There are a total of 4 courses to take. To take course 3 you should have finished both courses 1 and 2. Both courses 1 and 2 should be taken after you finished course 0. So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3] .</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The input prerequisites is a graph represented by a list of edges, not adjacency matrices.</li>
+<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/03/leetcodeQ210/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/03/leetcodeQ210/" data-id="cjvcz8hxo002gw4veqq27jn67" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology-Sorting/">Topology Sorting</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ207" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/03/leetcodeQ207/" class="article-date">
+  <time datetime="2019-05-03T21:33:53.000Z" itemprop="datePublished">2019-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/03/leetcodeQ207/">Course Schedule</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-207-course-schedule"><a class="markdownIt-Anchor" href="#leetcode-q-207-course-schedule"></a> LeetCode Q 207 - Course Schedule</h1>
+<p>There are a total of n courses you have to take, labeled from 0 to n-1.<br>
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]<br>
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?</p>
+<p>Example 1:<br>
+<code>Input: 2, [[1,0]] ; Output: true</code><br>
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.</p>
+<p>Example 2:<br>
+<code>Input: 2, [[1,0],[0,1]] ; Output: false</code><br>
+Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about how a graph is <a href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs" title="represented" target="_blank" rel="noopener"></a>.</li>
+<li>You may assume that there are no duplicate edges in the input prerequisites.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/03/leetcodeQ207/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/03/leetcodeQ207/" data-id="cjvcz8hxl002bw4venid4r64i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology-Sorting/">Topology Sorting</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ785" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/02/leetcodeQ785/" class="article-date">
+  <time datetime="2019-05-02T23:39:45.000Z" itemprop="datePublished">2019-05-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/02/leetcodeQ785/">Is Graph Bipartite?</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-785-is-graph-bipartite"><a class="markdownIt-Anchor" href="#leetcode-q-785-is-graph-bipartite"></a> LeetCode Q 785 - Is Graph Bipartite?</h1>
+<p>Given an undirected graph, return true if and only if it is bipartite.<br>
+Recall that a graph is bipartite if we can split it’s set of nodes into two independent subsets A and B such that every edge in the graph has one node in A and another node in B.<br>
+The graph is given in the following form: graph[i] is a list of indexes j for which the edge between nodes i and j exists.  Each node is an integer between 0 and graph.length - 1.  There are no self edges or parallel edges: graph[i] does not contain i, and it doesn’t contain any element twice.</p>
+<p>Example 1:<br>
+<code>Input: [[1,3], [0,2], [1,3], [0,2]] ; Output: true</code><br>
+Explanation:<br>
+The graph looks like this:<br>
+0----1<br>
+|    |<br>
+|    |<br>
+3----2<br>
+We can divide the vertices into two groups: {0, 2} and {1, 3}.</p>
+<p>Example 2:<br>
+<code>Input: [[1,2,3], [0,2], [0,1,3], [0,2]] ; Output: false</code><br>
+Explanation:<br>
+The graph looks like this:<br>
+0----1<br>
+| \  |<br>
+|  \ |<br>
+3----2<br>
+We cannot find a way to divide the set of nodes into two independent subsets.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>graph will have length in range [1, 100].</li>
+<li>graph[i] will contain integers in range [0, graph.length - 1].</li>
+<li>graph[i] will not contain i or duplicate values.</li>
+<li>The graph is undirected: if any element j is in graph[i], then i will be in graph[j].</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/05/02/leetcodeQ785/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/02/leetcodeQ785/" data-id="cjvcz8i5g00f8w4ve6pbb6qg1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcodeQ133" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/02/leetcodeQ133/" class="article-date">
@@ -103,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/02/leetcodeQ133/" data-id="cjvclhjeg0013wgve09zdfust" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/02/leetcodeQ133/" data-id="cjvcz8hww0019w4velajvna4w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -167,7 +408,7 @@ So return “zx”</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ892/" data-id="cjvclhjve00jqwgvevmzoaysp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ892/" data-id="cjvcz8i6w00h8w4vei6zctybo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology-Sorting/">Topology Sorting</a></li></ul>
@@ -217,7 +458,7 @@ So return “zx”</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ127/" data-id="cjvclhjuj00ivwgvesnpiuakz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ127/" data-id="cjvcz8i6e00gfw4veh0tezuh1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Topology-Sorting/">Topology Sorting</a></li></ul>
@@ -266,7 +507,7 @@ So return “zx”</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ178/" data-id="cjvclhjun00j0wgveuy2jzdb6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/02/lintcodeQ178/" data-id="cjvcz8i6f00ghw4vet5j4a9p0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Disjoint-Set/">Disjoint Set</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LintCode/">LintCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
@@ -315,7 +556,7 @@ Clarification: The above format is the same as how LeetCode serializes a binary 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ297/" data-id="cjvclhjgt004jwgvecymkjzfu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ297/" data-id="cjvcz8hyx004aw4ve8kuc3orb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
@@ -372,283 +613,10 @@ return its level order traversal as:<br>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ102/" data-id="cjvclhje6000rwgveujz3dlbs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ102/" data-id="cjvcz8hwi000pw4vele2qc8ny" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tree/">Tree</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ675" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/01/leetcodeQ675/" class="article-date">
-  <time datetime="2019-05-01T19:23:30.000Z" itemprop="datePublished">2019-05-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/01/leetcodeQ675/">Cut Off Trees for Golf Event</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-675-cut-off-trees-for-golf-event"><a class="markdownIt-Anchor" href="#leetcode-q-675-cut-off-trees-for-golf-event"></a> LeetCode Q 675 - Cut Off Trees for Golf Event</h1>
-<p>You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:</p>
-<ul>
-<li>0 represents the obstacle can’t be reached.</li>
-<li>1 represents the ground can be walked through.</li>
-<li>The place with number bigger than 1 represents a tree can be walked through, and this positive number represents the tree’s height.</li>
-</ul>
-<p>You are asked to cut off all the trees in this forest in the order of tree’s height - always cut off the tree with lowest height first. And after cutting, the original place has the tree will become a grass (value 1).<br>
-You will start from the point (0, 0) and you should output the minimum steps you need to walk to cut off all the trees. If you can’t cut off all the trees, output -1 in that situation.<br>
-You are guaranteed that no two trees have the same height and there is at least one tree needs to be cut off.</p>
-<p>Example 1:<br>
-Input:<br>
-[<br>
-[1,2,3],<br>
-[0,0,4],<br>
-[7,6,5]<br>
-]<br>
-Output: 6</p>
-<p>Example 2:</p>
-<p>Input:<br>
-[<br>
-[1,2,3],<br>
-[0,0,0],<br>
-[7,6,5]<br>
-]<br>
-Output: -1</p>
-<p>Example 3:<br>
-Input:<br>
-[<br>
-[2,3,4],<br>
-[0,0,5],<br>
-[8,7,6]<br>
-]<br>
-Output: 6<br>
-Explanation: You started from the point (0,0) and you can cut off the tree in (0,0) directly without walking.</p>
-<p><strong>Hint:</strong> size of the given matrix will not exceed 50x50.</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/01/leetcodeQ675/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ675/" data-id="cjvclhjsm00h2wgverj8sijkm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ934" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/01/leetcodeQ934/" class="article-date">
-  <time datetime="2019-05-01T16:41:11.000Z" itemprop="datePublished">2019-05-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/01/leetcodeQ934/">Shortest Bridge</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-934-shortest-bridge"><a class="markdownIt-Anchor" href="#leetcode-q-934-shortest-bridge"></a> LeetCode Q 934 - Shortest Bridge</h1>
-<p>In a given 2D binary array A, there are two islands.  (An island is a 4-directionally connected group of 1s not connected to any other 1s.)<br>
-Now, we may change 0s to 1s so as to connect the two islands together to form 1 island.<br>
-Return the smallest number of 0s that must be flipped.  (It is guaranteed that the answer is at least 1.)</p>
-<p>Example 1:<br>
-<code>Input: [[0,1],[1,0]] ; Output: 1</code></p>
-<p>Example 2:<br>
-<code>Input: [[0,1,0],[0,0,0],[0,0,1]] ; Output: 2</code></p>
-<p>Example 3:<br>
-<code>Input: [[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]; Output: 1</code></p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>1 &lt;= A.length = A[0].length &lt;= 100</li>
-<li>A[i][j] == 0 or A[i][j] == 1</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/05/01/leetcodeQ934/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/01/leetcodeQ934/" data-id="cjvclhjug00irwgveo6awrdwv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ542" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/30/leetcodeQ542/" class="article-date">
-  <time datetime="2019-04-30T20:16:16.000Z" itemprop="datePublished">2019-04-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/leetcodeQ542/">01 Matrix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-542-01-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-542-01-matrix"></a> LeetCode Q 542 - 01 Matrix</h1>
-<p>Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.<br>
-The distance between two adjacent cells is 1.</p>
-<p>Example 1:<br>
-Input:<br>
-[[0,0,0],<br>
-[0,1,0],<br>
-[0,0,0]]<br>
-Output:<br>
-[[0,0,0],<br>
-[0,1,0],<br>
-[0,0,0]]<br>
-Example 2:<br>
-Input:<br>
-[[0,0,0],<br>
-[0,1,0],<br>
-[1,1,1]]<br>
-Output:<br>
-[[0,0,0],<br>
-[0,1,0],<br>
-[1,2,1]]</p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The number of elements of the given matrix will not exceed 10,000.</li>
-<li>There are at least one 0 in the given matrix.</li>
-<li>The cells are adjacent in only four directions: up, down, left and right.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/30/leetcodeQ542/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ542/" data-id="cjvclhjrt00gfwgveiivbrb6t" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ752" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/30/leetcodeQ752/" class="article-date">
-  <time datetime="2019-04-30T20:05:03.000Z" itemprop="datePublished">2019-04-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/leetcodeQ752/">Open the Lock</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-752-open-the-lock"><a class="markdownIt-Anchor" href="#leetcode-q-752-open-the-lock"></a> LeetCode Q 752 - Open the Lock</h1>
-<p>You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: <code>'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'</code>. The wheels can rotate freely and wrap around: for example we can turn <code>'9'</code> to be <code>'0'</code>, or <code>'0'</code> to be <code>'9'</code>. Each move consists of turning one wheel one slot.<br>
-The lock initially starts at <code>0000'</code>, a string representing the state of the 4 wheels.<br>
-You are given a list of <code>deadends</code> dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.<br>
-Given a <code>target</code> representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.</p>
-<p>Example 1:<br>
-<code>Input: deadends = [&quot;0201&quot;,&quot;0101&quot;,&quot;0102&quot;,&quot;1212&quot;,&quot;2002&quot;], target = &quot;0202&quot; ; Output: 6</code><br>
-Explanation:<br>
-A sequence of valid moves would be “0000” -&gt; “1000” -&gt; “1100” -&gt; “1200” -&gt; “1201” -&gt; “1202” -&gt; “0202”.<br>
-Note that a sequence like “0000” -&gt; “0001” -&gt; “0002” -&gt; “0102” -&gt; “0202” would be invalid,<br>
-because the wheels of the lock become stuck after the display becomes the dead end “0102”.</p>
-<p>Example 2:<br>
-<code>Input: deadends = [&quot;8888&quot;], target = &quot;0009&quot; ; Output: 1</code><br>
-Explanation:<br>
-We can turn the last wheel in reverse to move from “0000” -&gt; “0009”.</p>
-<p>Example 3:<br>
-<code>Input: deadends = [&quot;8887&quot;,&quot;8889&quot;,&quot;8878&quot;,&quot;8898&quot;,&quot;8788&quot;,&quot;8988&quot;,&quot;7888&quot;, &quot;9888&quot;], target = &quot;8888&quot; ; Output: -1</code><br>
-Explanation:<br>
-We can’t reach the target without getting stuck.</p>
-<p>Example 4:<br>
-<code>Input: deadends = [&quot;0000&quot;], target = &quot;8888&quot; ; Output: -1</code></p>
-<p><strong>Note:</strong></p>
-<ul>
-<li>The length of deadends will be in the range [1, 500].</li>
-<li>target will not be in the list deadends.</li>
-<li>Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities ‘0000’ to ‘9999’.</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2019/04/30/leetcodeQ752/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/30/leetcodeQ752/" data-id="cjvclhjta00howgveasemw8zq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
     </footer>
   </div>
@@ -661,7 +629,7 @@ We can’t reach the target without getting stuck.</p>
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -675,7 +643,7 @@ We can’t reach the target without getting stuck.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.5px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.88px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.63px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.25px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.75px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.25px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.38px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.38px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.75px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.88px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.63px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.5px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.63px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 18.13px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.25px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.63px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.88px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.25px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.25px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 14.38px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.25px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.75px;">Stack</a> <a href="/tags/String/" style="font-size: 15.63px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.63px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.5px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.5px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.63px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 13.13px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.38px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.63px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.22px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.67px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.11px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.56px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.33px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 18.33px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.44px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.44px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.67px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.56px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.22px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.56px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.11px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.56px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.67px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.11px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.11px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.89px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.11px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.33px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.56px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.22px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.22px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.78px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.44px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.56px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -697,23 +665,23 @@ We can’t reach the target without getting stuck.</p>
       <ul>
         
           <li>
+            <a href="/2019/05/07/leetcodeQ787/">Cheapest Flights Within K Stops</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ685/">Redundant Connection II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ684/">Redundant Connection</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ130/">Surrounded Regions</a>
+          </li>
+        
+          <li>
             <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/06/leetcodeQ990/">Satisfiability of Equality Equations</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/06/leetcodeQ721/">Accounts Merge</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/06/leetcodeQ399/">Evaluate Division</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/06/leetcodeQ670/">Maximum Swap</a>
           </li>
         
       </ul>

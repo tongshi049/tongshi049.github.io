@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Cheapest Flights Within K Stops | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 787 - Cheapest Flights Within K Stops There are n cities connected by m flights. Each fight starts from city u and arrives at v with a price w. Now given all the cities and flights, togeth">
+<meta name="keywords" content="LeetCode,DP,DFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cheapest Flights Within K Stops">
+<meta property="og:url" content="http://yoursite.com/2019/05/07/leetcodeQ787/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 787 - Cheapest Flights Within K Stops There are n cities connected by m flights. Each fight starts from city u and arrives at v with a price w. Now given all the cities and flights, togeth">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-07T17:54:08.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cheapest Flights Within K Stops">
+<meta name="twitter:description" content="LeetCode Q 787 - Cheapest Flights Within K Stops There are n cities connected by m flights. Each fight starts from city u and arrives at v with a price w. Now given all the cities and flights, togeth">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/author">About me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ787" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/07/leetcodeQ787/" class="article-date">
+  <time datetime="2019-05-07T17:02:52.000Z" itemprop="datePublished">2019-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cheapest Flights Within K Stops
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-787-cheapest-flights-within-k-stops"><a class="markdownIt-Anchor" href="#leetcode-q-787-cheapest-flights-within-k-stops"></a> LeetCode Q 787 - Cheapest Flights Within K Stops</h1>
+<p>There are n cities connected by m flights. Each fight starts from city u and arrives at v with a price w.<br>
+Now given all the cities and flights, together with starting city src and the destination dst, your task is to find the cheapest price from src to dst with up to k stops. If there is no such route, output -1.</p>
+<p>Example 1:<br>
+Input:<br>
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]<br>
+src = 0, dst = 2, k = 1<br>
+Output: 200</p>
+<p>Example 2:<br>
+Input:<br>
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]<br>
+src = 0, dst = 2, k = 0<br>
+Output: 500</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of nodes n will be in range [1, 100], with nodes labeled from 0 to n - 1.</li>
+<li>The size of flights will be in range [0, n * (n - 1) / 2].</li>
+<li>The format of each flight will be (src, dst, price).</li>
+<li>The price of each flight will be in the range [1, 10000].</li>
+<li>k is in the range of [0, n - 1].</li>
+<li>There will not be any duplicated flights or self cycles.</li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-dijkstras-algorithm"><a class="markdownIt-Anchor" href="#solution-1-dijkstras-algorithm"></a> Solution 1: Dijkstra’s algorithm</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Edge</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> to, <span class="keyword">int</span> weight;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Edge</span> <span class="params">(<span class="keyword">int</span> to, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.to = to; <span class="keyword">this</span>.weigth = weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stop</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> id, count, price;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Stop</span> <span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> count, <span class="keyword">int</span> price)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id; <span class="keyword">this</span>.count = count; <span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findCheapestPrice</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] flights, <span class="keyword">int</span> src, <span class="keyword">int</span> dst, <span class="keyword">int</span> K)</span></span>&#123;</span><br><span class="line">	Map&lt;Integer, List&lt;Edge&gt;&gt; graph = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>[] f: flights) &#123;</span><br><span class="line">		graph.putIfAbsent(f[<span class="number">0</span>], <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">		graph.get(f[<span class="number">0</span>]).add(<span class="keyword">new</span> Edge (f[<span class="number">1</span>], f[<span class="number">2</span>]));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Queue&lt;Stop&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; (a.price - b.price));</span><br><span class="line">	pq.offer(<span class="keyword">new</span> Stop (src, K + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!pq.isEmpty()) &#123;</span><br><span class="line">		Stop stop = pq.poll();</span><br><span class="line">		<span class="keyword">if</span> (stop.id == dst) <span class="keyword">return</span> stop.price;</span><br><span class="line">		<span class="keyword">if</span> (stop.count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			List&lt;Edge&gt; list = graph.getOrDefault(curr.id, <span class="keyword">new</span> ArrayList());</span><br><span class="line">			<span class="keyword">for</span> (Edge e: edges)</span><br><span class="line">				pq.offer(<span class="keyword">new</span> Stop(e.to, stop.count - <span class="number">1</span>, stop.price + e.weight));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-dp"><a class="markdownIt-Anchor" href="#solution-2-dp"></a> Solution 2: DP</h3>
+<ol>
+<li>
+<p><strong>States:</strong> <code>long[k][i] dp</code> represents the minimum price that flight <strong>from src to i within k - 1 steps</strong>.</p>
+</li>
+<li>
+<p><strong>State Transfer Function:</strong><br>
+<code>dp[i][flight[1]] = Math.min(dp[i][flight[1]], dp[i - 1][flight[0]] + flight[2]);</code></p>
+</li>
+</ol>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findCheapestPrice</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] flights, <span class="keyword">int</span> src, <span class="keyword">int</span> dst, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">long</span>[][] dp = <span class="keyword">new</span> <span class="keyword">long</span>[K + <span class="number">2</span>][n];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">long</span>[] arr: dp)</span><br><span class="line">		Arrays.fill(arr, Integer.MAX_VALUE);</span><br><span class="line">	dp[<span class="number">0</span>][src] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; K + <span class="number">2</span>; i++) &#123;</span><br><span class="line">		dp[i][src] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span>[] flight: flights) &#123;</span><br><span class="line">			dp[i][flight[<span class="number">1</span>]] = Math.min(dp[i][flight[<span class="number">1</span>]], dp[i - <span class="number">1</span>][flight[<span class="number">0</span>]] + flight[<span class="number">2</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp[K + <span class="number">1</span>][dst] == Integer.MAX_VALUE ? -<span class="number">1</span> : (<span class="keyword">int</span>)dp[K + <span class="number">1</span>][dst];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/07/leetcodeQ787/" data-id="cjve1lci8000ekcveb6kda33w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/07/leetcodeQ685/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redundant Connection II</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.22px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.67px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.11px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.56px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.33px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 18.33px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.44px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.44px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.67px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.56px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.22px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.56px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.11px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.56px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.67px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.11px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.11px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.89px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.11px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.33px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.56px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.22px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.22px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.78px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.44px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.56px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ787/">Cheapest Flights Within K Stops</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ685/">Redundant Connection II</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ684/">Redundant Connection</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/07/leetcodeQ130/">Surrounded Regions</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/author" class="mobile-nav-link">About me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
