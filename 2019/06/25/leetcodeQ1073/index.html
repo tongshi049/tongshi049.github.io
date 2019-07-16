@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Adding Two Negabinary Numbers | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 1073 - Adding Two Negabinary Numbers Given two numbers arr1 and arr2 in base -2, return the result of adding them together. Each number is given in array format:  as an array of 0s and 1s,">
+<meta name="keywords" content="LeetCode,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adding Two Negabinary Numbers">
+<meta property="og:url" content="http://yoursite.com/2019/06/25/leetcodeQ1073/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 1073 - Adding Two Negabinary Numbers Given two numbers arr1 and arr2 in base -2, return the result of adding them together. Each number is given in array format:  as an array of 0s and 1s,">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/06/25/leetcodeQ1073/negadd.png">
+<meta property="og:updated_time" content="2019-06-25T15:54:01.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Adding Two Negabinary Numbers">
+<meta name="twitter:description" content="LeetCode Q 1073 - Adding Two Negabinary Numbers Given two numbers arr1 and arr2 in base -2, return the result of adding them together. Each number is given in array format:  as an array of 0s and 1s,">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/25/leetcodeQ1073/negadd.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ1073" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/25/leetcodeQ1073/" class="article-date">
+  <time datetime="2019-06-25T14:53:05.000Z" itemprop="datePublished">2019-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Adding Two Negabinary Numbers
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-1073-adding-two-negabinary-numbers"><a class="markdownIt-Anchor" href="#leetcode-q-1073-adding-two-negabinary-numbers"></a> LeetCode Q 1073 - Adding Two Negabinary Numbers</h1>
+<p>Given two numbers arr1 and arr2 in base <strong>-2</strong>, return the result of adding them together.</p>
+<p>Each number is given in array format:  as an array of 0s and 1s, from most significant bit to least significant bit.  For example, arr = [1,1,0,1] represents the number (-2)^3 + (-2)^2 + (-2)^0 = -3.  A number arr in array format is also guaranteed to have no leading zeros: either arr == [0] or arr[0] == 1.</p>
+<p>Return the result of adding arr1 and arr2 in the same format: as an array of 0s and 1s with no leading zeros.</p>
+<p>Example 1: <code>Input: arr1 = [1,1,1,1,1], arr2 = [1,0,1] ; Output: [1,0,0,0,0]</code><br>
+Explanation: arr1 represents 11, arr2 represents 5, the output represents 16.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= arr1.length &lt;= 1000</code></li>
+<li><code>1 &lt;= arr2.length &lt;= 1000</code></li>
+<li><code>arr1</code> and <code>arr2</code> have no leading zeros</li>
+<li><code>arr1[i]</code> is <code>0</code> or <code>1</code></li>
+<li><code>arr2[i]</code> is <code>0</code> or <code>1</code></li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<h3 id="solution-1-not-correct"><a class="markdownIt-Anchor" href="#solution-1-not-correct"></a> Solution 1: Not Correct</h3>
+<p>First transform two number to 10-base number and obtain the sum. Then transform the 10-base sum to -2-base int array.</p>
+<p>This method is <strong>not</strong> correct. Since the number may be larger than Long.MAX_VALUE.</p>
+<p><strong>Code:</strong></p>
+<figure class="highlight cpp"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> final <span class="keyword">int</span> BASE = <span class="number">-2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] addNegabinary(<span class="keyword">int</span>[] arr1, <span class="keyword">int</span>[] arr2) &#123;</span><br><span class="line">  <span class="keyword">long</span> sum = transformTo10(arr1) + transformTo10(arr2);</span><br><span class="line">  <span class="keyword">return</span> transformToN2(sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">transformTo10</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    res = BASE * res + arr[i]; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] transformToN2(<span class="keyword">long</span> num) &#123;</span><br><span class="line">  List&lt;Integer&gt; <span class="built_in">list</span> = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(num != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> remainder = (<span class="keyword">int</span>) (num % BASE);</span><br><span class="line">    num /= BASE;</span><br><span class="line">    <span class="keyword">if</span> (remainder &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      remainder += Math.<span class="built_in">abs</span>(BASE);</span><br><span class="line">      num++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">list</span>.add(<span class="number">0</span>, remainder);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">list</span>.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="built_in">list</span>.size()];</span><br><span class="line">  <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i: <span class="built_in">list</span>)</span><br><span class="line">    res[index++] = i;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2"><a class="markdownIt-Anchor" href="#solution-2"></a> Solution 2:</h3>
+<p>Get idea from <a href="https://en.wikipedia.org/wiki/Negative_base#Addition" target="_blank" rel="noopener">wikipedia</a></p>
+<p>Adding negabinary numbers proceeds bitwise, starting from the <em>least significant bits</em>; the bits from each addend are summed with <em>carry</em> from the previous bit(0 at the <em>LSB</em>). This sum is then decomposed into an output bit and carry for the next iteration as shown in the table:<br>
+<img src="negadd.png" width="50%" height="50%"></p>
+<p><strong>codes</strong>:</p>
+<figure class="highlight angelscript"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> static <span class="keyword">final</span> <span class="built_in">int</span> BASE = <span class="number">-2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span>[] addNegabinary(<span class="built_in">int</span>[] arr1, <span class="built_in">int</span>[] arr2) &#123;</span><br><span class="line">  List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">  <span class="built_in">int</span> carry = <span class="number">0</span>, i = arr1.length - <span class="number">1</span>, j = arr2.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || carry != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">int</span> sum = carry;</span><br><span class="line">    sum += i &gt;= <span class="number">0</span> ? arr1[i] : <span class="number">0</span>;</span><br><span class="line">    sum += j &gt;= <span class="number">0</span> ? arr2[j] : <span class="number">0</span>;</span><br><span class="line">    list.add(<span class="number">0</span>, Math.abs(sum % BASE));</span><br><span class="line">    carry = sum &lt; <span class="number">0</span> ? <span class="number">1</span> : (sum &lt;= <span class="number">1</span> ? <span class="number">0</span> : <span class="number">-1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">int</span> leadingZeros = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> m = <span class="number">0</span>; m &lt; list.size(); m++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (list.<span class="keyword">get</span>(m) != <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    leadingZeros++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (list.size() - leadingZeros == <span class="number">0</span>) <span class="keyword">return</span> new <span class="built_in">int</span>[]&#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">int</span>[] res = new <span class="built_in">int</span>[list.size() - leadingZeros];</span><br><span class="line">  <span class="built_in">int</span> index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> n = leadingZeros; n &lt; list.size(); n++) &#123;</span><br><span class="line">    res[index++] = list.<span class="keyword">get</span>(n);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/25/leetcodeQ1073/" data-id="cjy6arxph0039fkveoz36mak0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/25/leetcodeQ1017/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Convert to Base -2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/24/leetcodeQ1095/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Find in Mountain Array</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -7,18 +7,18 @@
   
   <title>Divide Two Integers | TongTong Shi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+  <meta name="description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator. Return the quotient after dividing dividend b">
 <meta name="keywords" content="LeetCode,Math,Integer Overflow,Multiplication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Divide Two Integers">
 <meta property="og:url" content="http://yoursite.com/2019/04/08/leetcodeQ29/index.html">
 <meta property="og:site_name" content="TongTong Shi&#39;s Blog">
-<meta property="og:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+<meta property="og:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator. Return the quotient after dividing dividend b">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-09T17:12:39.719Z">
+<meta property="og:updated_time" content="2019-06-19T14:09:39.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Divide Two Integers">
-<meta name="twitter:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.">
+<meta name="twitter:description" content="LeetCode Q 29 - Divide Two Integers Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator. Return the quotient after dividing dividend b">
   
     <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
   
@@ -50,8 +50,6 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/author">About me</a>
         
       </nav>
       <nav id="sub-nav">
@@ -91,6 +89,16 @@
       
         <h1 id="leetcode-q-29-divide-two-integers"><a class="markdownIt-Anchor" href="#leetcode-q-29-divide-two-integers"></a> LeetCode Q 29 - Divide Two Integers</h1>
 <p>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.</p>
+<p>Return the quotient after dividing dividend by divisor.</p>
+<p>The integer division should truncate toward zero.</p>
+<p>Example 1: <code>Input: dividend = 10, divisor = 3 ; Output: 3</code></p>
+<p>Example 2: <code>Input: dividend = 7, divisor = -3 ; Output: -2</code></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Both dividend and divisor will be 32-bit signed integers.</li>
+<li>The divisor will never be 0.</li>
+<li>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.</li>
+</ul>
 <a id="more"></a>
 <h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
 <p>Basic idea is to utilize subtraction, checking how many times a dividend can substract a divisor. But this approach has a potential to cause time limit exceeds, when the dividend is very large.<br>
@@ -102,12 +110,12 @@ At the same time, we need a variable to record how many times is the current div
 <li>tempDivisor should not double anymore if we know it will larger than dividend.</li>
 </ul>
 <p><strong>Code:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (divisor == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> dividend &gt;= <span class="number">0</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE;</span><br><span class="line">	<span class="keyword">if</span> (dividend == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> sign = -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>) || (dividend &lt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">		sign = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> dividendLong = Math.abs((<span class="keyword">long</span>) dividend);</span><br><span class="line">	<span class="keyword">long</span> divisorLong = Math.abs((<span class="keyword">long</span>) divisor);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> res = divideHelper(dividendLong, divisorLong);</span><br><span class="line">	<span class="keyword">return</span> sign * (<span class="keyword">int</span>) res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">divideHelper</span><span class="params">(<span class="keyword">long</span> dividend, <span class="keyword">long</span> divisor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (dividend &lt; divisor)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">long</span> sum = divisor, multiplication = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (sum + sum &lt; divisor) &#123;</span><br><span class="line">		sum += sum; multiplication += multiplication;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> multiplication + divideHelper(dividend - sum, divisor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public int <span class="keyword">divide(int </span><span class="keyword">dividend, </span>int <span class="keyword">divisor) </span>&#123;</span><br><span class="line"></span><br><span class="line">  if (<span class="keyword">dividend </span>== <span class="number">0</span>)</span><br><span class="line">    return <span class="number">0</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">  int sign = -<span class="number">1</span><span class="comment">;</span></span><br><span class="line">  if ((<span class="keyword">dividend </span>&lt; <span class="number">0</span> &amp;&amp; <span class="keyword">divisor </span>&lt; <span class="number">0</span>) <span class="title">||</span> (<span class="keyword">dividend </span>&lt; <span class="number">0</span> &amp;&amp; <span class="keyword">divisor </span>&lt; <span class="number">0</span>))</span><br><span class="line">    sign = <span class="number">1</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">  long <span class="keyword">dividendLong </span>= Math.abs((long) <span class="keyword">dividend);</span></span><br><span class="line"><span class="keyword"> </span> long <span class="keyword">divisorLong </span>= Math.abs((long) <span class="keyword">divisor);</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword"> </span> long res = <span class="keyword">divideHelper(dividendLong, </span><span class="keyword">divisorLong);</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword"> </span> if (res == Integer.MAX_VALUE) </span><br><span class="line">    return sign == <span class="number">1</span> ? Integer.MAX_VALUE : Integer.MIN_VALUE<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">  return sign * (int) res<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private long <span class="keyword">divideHelper(long </span><span class="keyword">dividend, </span>long <span class="keyword">divisor) </span>&#123;</span><br><span class="line">  if (<span class="keyword">dividend </span>&lt; <span class="keyword">divisor)</span></span><br><span class="line"><span class="keyword"> </span>   return <span class="number">0</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">  long sum = <span class="keyword">divisor, </span><span class="keyword">multiplication </span>= <span class="number">1</span><span class="comment">;</span></span><br><span class="line">  while (sum + sum &lt; <span class="keyword">divisor) </span>&#123;</span><br><span class="line">    sum += sum<span class="comment">; multiplication += multiplication;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return <span class="keyword">multiplication </span>+ <span class="keyword">divideHelper(dividend </span>- sum, <span class="keyword">divisor);</span></span><br><span class="line"><span class="keyword">&#125;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/08/leetcodeQ29/" data-id="cjvcz8hyw0048w4ve1io79vte" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/08/leetcodeQ29/" data-id="cjy6arxt5009ffkve5k1scy1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Integer-Overflow/">Integer Overflow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Multiplication/">Multiplication</a></li></ul>
@@ -143,13 +151,10 @@ At the same time, we need a variable to record how many times is the current div
           <aside id="sidebar">
   
     
-
-  
-    
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Array/" style="font-size: 15px;">Array</a> <a href="/tags/BFS/" style="font-size: 17.22px;">BFS</a> <a href="/tags/Backtracking/" style="font-size: 16.67px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.11px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.56px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 11.11px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 13.33px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 11.11px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 18.33px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.44px;">DP</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.44px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 10px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.89px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 11.67px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.56px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 12.22px;">Java Basic</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 10.56px;">Linked List</a> <a href="/tags/LintCode/" style="font-size: 15px;">LintCode</a> <a href="/tags/LinttCode/" style="font-size: 10px;">LinttCode</a> <a href="/tags/Math/" style="font-size: 17.78px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.11px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Multiplication/" style="font-size: 10.56px;">Multiplication</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.67px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 11.11px;">Permutation</a> <a href="/tags/Recursion/" style="font-size: 11.11px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/Sliding-Window/" style="font-size: 13.89px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 11.11px;">Sort</a> <a href="/tags/Stack/" style="font-size: 13.33px;">Stack</a> <a href="/tags/String/" style="font-size: 15.56px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.56px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 12.22px;">Thread</a> <a href="/tags/Topology-Sorting/" style="font-size: 12.22px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 12.22px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10.56px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 12.78px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.44px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.56px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -158,7 +163,7 @@ At the same time, we need a variable to record how many times is the current div
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
     </div>
   </div>
 
@@ -171,23 +176,23 @@ At the same time, we need a variable to record how many times is the current div
       <ul>
         
           <li>
-            <a href="/2019/05/07/leetcodeQ787/">Cheapest Flights Within K Stops</a>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
           </li>
         
           <li>
-            <a href="/2019/05/07/leetcodeQ685/">Redundant Connection II</a>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
           </li>
         
           <li>
-            <a href="/2019/05/07/leetcodeQ684/">Redundant Connection</a>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
           </li>
         
           <li>
-            <a href="/2019/05/07/leetcodeQ130/">Surrounded Regions</a>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
           </li>
         
           <li>
-            <a href="/2019/05/06/leetcodeQ839/">Similar String Groups</a>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
           </li>
         
       </ul>
@@ -201,20 +206,26 @@ At the same time, we need a variable to record how many times is the current div
       <footer id="footer">
   
   <div class="outer">
-    <div id="footer-info" class="inner">
+    <span id="footer-info" class="inner">
       &copy; 2019 Tong Shi<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
   </div>
 </footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
     </div>
     <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/author" class="mobile-nav-link">About me</a>
   
 </nav>
     

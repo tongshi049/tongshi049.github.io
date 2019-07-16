@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Advantage Shuffle | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 870 - Advantage Shuffle Given two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] &amp;gt; B[i]. Return any permutation of A that m">
+<meta name="keywords" content="LeetCode,Greedy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advantage Shuffle">
+<meta property="og:url" content="http://yoursite.com/2019/06/05/leetcodeQ870/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 870 - Advantage Shuffle Given two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] &amp;gt; B[i]. Return any permutation of A that m">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-05T15:44:23.678Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advantage Shuffle">
+<meta name="twitter:description" content="LeetCode Q 870 - Advantage Shuffle Given two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] &amp;gt; B[i]. Return any permutation of A that m">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ870" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/05/leetcodeQ870/" class="article-date">
+  <time datetime="2019-06-05T14:25:46.000Z" itemprop="datePublished">2019-06-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Advantage Shuffle
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-870-advantage-shuffle"><a class="markdownIt-Anchor" href="#leetcode-q-870-advantage-shuffle"></a> LeetCode Q 870 - Advantage Shuffle</h1>
+<p>Given two arrays A and B of equal size, the advantage of A with respect to B is the number of indices i for which A[i] &gt; B[i].</p>
+<p>Return any permutation of A that maximizes its advantage with respect to B.</p>
+<p>Example 1:<br>
+<code>Input: A = [2,7,11,15], B = [1,10,4,11] ; Output: [2,11,7,15]</code></p>
+<p>Example 2:<br>
+<code>Input: A = [12,24,8,32], B = [13,25,32,11] ; Output: [24,32,8,12]</code></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= A.length = B.length &lt;= 10000</li>
+<li>0 &lt;= A[i] &lt;= 10^9</li>
+<li>0 &lt;= B[i] &lt;= 10^9</li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution</h2>
+<p>We maximize its advantage <strong>greedily</strong>.<br>
+For a number in array <em>B</em>, among the larger numbers in array <em>A</em> we choose the smallest one. If we cannot find a larger number in <em>A</em>, we use the <em>smallest</em> number in <em>A</em>.</p>
+<h3 id="solution-1-use-heap"><a class="markdownIt-Anchor" href="#solution-1-use-heap"></a> Solution 1: Use Heap</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B) &#123;</span><br><span class="line">	</span><br><span class="line">	Arrays.sort(A);</span><br><span class="line"></span><br><span class="line">	PriorityQueue&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a, b) -&gt; (b[<span class="number">1</span>]-a[<span class="number">1</span>]));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B.length; i++)</span><br><span class="line">		pq.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, B[i]&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">0</span>; right = A.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!pq.isEmpty()) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] curr = pq.poll();</span><br><span class="line">		<span class="keyword">if</span> (A[right] &gt; curr[<span class="number">1</span>])</span><br><span class="line">			res[curr[<span class="number">0</span>]] = A[right--];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			res[curr[<span class="number">0</span>]] = A[left++];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="solution-2-use-treemap"><a class="markdownIt-Anchor" href="#solution-2-use-treemap"></a> Solution 2: Use TreeMap</h3>
+<p><strong>Code:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] advantageCount(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B) &#123;</span><br><span class="line">	</span><br><span class="line">	TreeMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> a : A)</span><br><span class="line">		map.put(a, map.getOrDefault(a, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; B.length; i++) &#123;</span><br><span class="line">		Integer number = map.higherKey(B[i]);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (number == <span class="keyword">null</span>)</span><br><span class="line">			number = map.firstKey();</span><br><span class="line">		</span><br><span class="line">		map.put(x, map.get(x)-<span class="number">1</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (map.get(x) == <span class="number">0</span>) map.remove(x);</span><br><span class="line">		</span><br><span class="line">		res[i] = x;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><font size="4" color="dodgerblue">TreeMap in Java</font></strong><br>
+TreeMap is sorted map, built based on Red-Black tree. The map is sorted according to the <strong>natural ordering</strong> of its keys, or by a <strong>Comparator</strong> provided at the map creation time. It is <strong>not thread safe</strong>. It provides many useful method, such as:</p>
+<ul>
+<li><code>ceilingKey(K key)</code>: Returns the <strong>least key greater than or equal to</strong> the given key, or null if there is no such key.</li>
+<li><code>ceilingEntry(K key)</code>: Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.</li>
+<li><code>floorKey(K key)</code>: Returns <strong>the greatest key less than or equal to</strong> the given key, or null if there is no such key.</li>
+<li><code>floorEntry(K key)</code>: Returns a key-value mapping associated with <strong>the greatest key less than or equal to</strong> the given key, or null if there is no such key.</li>
+<li><code>firstKey()</code>: Returns <strong>the first (lowest)</strong> key currently in this map.</li>
+<li><code>lastKey()</code>: Returns <strong>the last (highest)</strong> key currently in this map.</li>
+<li><code>higherKey(K key)</code>: Returns <strong>the least key strictly greater than</strong> the given key, or null if there is no such key.</li>
+<li><code>lowerKey(K key)</code>: Returns <strong>the greatest key strictly less than</strong> the given key, or null if there is no such key.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/05/leetcodeQ870/" data-id="cjy6arxzc00k8fkve2won2iq0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Greedy/">Greedy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/05/leetcodeQ1052/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Grumpy Bookstore Owner
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/02/leetcodeQ861/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Score After Flipping Matrix</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

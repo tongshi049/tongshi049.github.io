@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>TODO List Project - Backend Part III | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="previous_step  Connecting Angular Frontend to Spring Boot Restful Services 1 The next few steps would associated with invoking RESTful API from angular applications. We would use something called HTTP">
+<meta name="keywords" content="Project,Angular,Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TODO List Project - Backend Part III">
+<meta property="og:url" content="http://yoursite.com/2019/06/08/todo-backendII/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="previous_step  Connecting Angular Frontend to Spring Boot Restful Services 1 The next few steps would associated with invoking RESTful API from angular applications. We would use something called HTTP">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-16T16:20:18.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TODO List Project - Backend Part III">
+<meta name="twitter:description" content="previous_step  Connecting Angular Frontend to Spring Boot Restful Services 1 The next few steps would associated with invoking RESTful API from angular applications. We would use something called HTTP">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-todo-backendII" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/08/todo-backendII/" class="article-date">
+  <time datetime="2019-06-08T16:51:32.000Z" itemprop="datePublished">2019-06-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TODO List Project - Backend Part III
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a href="/2019/06/06/todo-backendI/" title="previous_step">previous_step</a>
+<h2 id="connecting-angular-frontend-to-spring-boot-restful-services-1"><a class="markdownIt-Anchor" href="#connecting-angular-frontend-to-spring-boot-restful-services-1"></a> Connecting Angular Frontend to Spring Boot Restful Services 1</h2>
+<p>The next few steps would associated with invoking RESTful API from angular applications. We would use something called <em><strong>HTTPClientModule</strong></em>, where you’ll see that Angular provides us with an awesome framework based on something called the <strong>observable</strong>.</p>
+<p>In our backend controller, the code is as follows.</p>
+<figure class="highlight aspectj"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello-world-bean</span></span><br><span class="line"><span class="meta">@GetMapping</span>(path = <span class="string">"/hello-world-bean"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="function">HelloWorldBean <span class="title">helloWorldBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> HelloWorldBean(<span class="string">"Hello World"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><font color="dodgerblue"><strong>1. Creating Data Service</strong></font></p>
+<p>How can we invoke some data from angular front end? Usually we create a new service. This service would call up backend service a backend API.</p>
+<p><font color="dodgerblue"><strong>2. HttpClientModule</strong></font></p>
+<p><strong>HttpClient</strong> - we can use this client to get, post, delete, put: all kinds of HTTP requests.</p>
+<ul>
+<li>Firstly, import the <em>HttpClient</em> Module.</li>
+</ul>
+<figure class="highlight oxygene"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import <span class="comment">&#123; HttpClient &#125;</span> <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;</span><br><span class="line"><span class="function"><span class="keyword">constructor</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">private</span> http: HttpClient;</span></span></span><br><span class="line"><span class="function"><span class="params">)</span> <span class="comment">&#123;&#125;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Second, we can use the client to do HTTP requests, such as</li>
+</ul>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">executeHelloWorldBeanService() &#123;</span><br><span class="line">	console.log(<span class="keyword">this</span>.http.<span class="keyword">get</span>(<span class="string">'http://localhost:8080/hello-world-bean'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>But only doing this will cause error, i.e. <code>NullInjectorError: No provider for HttpClient</code>. Why this error happens?</p>
+<p>To make use of a component or a utility from a module, what do we need to do is importing that module in. The thing is we have not really imported the modul in. <font color="tomato"> We need to import it in <strong><code>app.module.ts</code></strong>.</font> In <code>app.module.ts</code> we add <code>HttpClientModule</code> in <strong><code>imports</code></strong> array.</p>
+<p>Now we can see an <code>Observable</code> is printed int the console, like</p>
+<figure class="highlight groovy"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable &#123; \<span class="string">_isScalar:</span> <span class="literal">false</span>, <span class="string">source:</span> Observable, <span class="string">operator:</span> MapOperator &#125;</span><br></pre></td></tr></table></figure>
+<p>But by checking the <code>NetWork</code> in Chrome, we find actually there is <strong>no</strong> request sent to backend. That is this call is not going over the network. What happens? Let’s see the next step.</p>
+<p><font color="dodgerblue"><strong>3. Understanding Observable</strong></font></p>
+<p>Typically if I call a http service, it might really take a long time to execute. If we do it <em>synchronously</em>, that what would happen because of this is we wait for the response, and meanwhile the entire browser would hang. That’s the reason why <font color="tomato">we should call all http services asynchrnously</font>.</p>
+<p><font color="tomato"><strong>Observable</strong></font> is one of the best approaches to implementing an asynchronnous communication. The most important thing about <em>observable</em> is this is declarative, in the sense that you can define what you are allowed to call. We can define what should happen when I got a response back, or what should happen when I get an error back.</p>
+<p>Let’s look at the above question again. If we want that request to be executed, we need to do something called <font color="tomato"><strong>subscribe</strong></font>.</p>
+<p>So basically observable will help us to define what you are allowed to call, but it does not really invoke the service until somebody <font color="tomato"><strong>subscribes</strong></font> to it like the following</p>
+<figure class="highlight less"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">getWelcomeMessage</span>() &#123;</span><br><span class="line">	<span class="selector-tag">this</span><span class="selector-class">.service</span><span class="selector-class">.executeHelloWorldBeanService</span>()<span class="selector-class">.subscribe</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Note that we also need to do some modification in <code>WelcomeDataService</code> Module to let method <code>executeHelloWorldBeanService()</code> return something. That is,</p>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">executeHelloWorldBeanService() &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.http.<span class="keyword">get</span>(<span class="string">'http://localhost:8080/hello-world-bean'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now, we may still have one more error, i.e. <code>Access to XMLHttpRequest at 'http://localhost:8080/hello-world-bean' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.</code></p>
+<p>This is because we are calling from one web server to another web server. So we are calling a service which is hosted on different server from our front-end application. And by default, spring boot prevent these kind of request. We need to tell Spring Boot to allow such request, by adding <code>@CrossOrigin(origins = &quot;http://localhost:4200&quot;)</code>. Now we can have the correct response back.</p>
+<p><font color="dodgerblue"><strong>4. Understanding Subscribe</strong></font></p>
+<p>The subscribers send asynchronous call. We should define in <code>.subscribe()</code> what should do when we get the results back, when we get the response back what should we do? So we should create a function like that, and tie it up to the subsribe. For example,</p>
+<figure class="highlight reasonml"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">get<span class="constructor">WelcomeMessage()</span> &#123;</span><br><span class="line">	this.service.execute<span class="constructor">HelloWorldBeanService()</span>;</span><br><span class="line">	this.service.execute<span class="constructor">HelloWorldBeanService()</span>.subscribe(</span><br><span class="line">	<span class="function">	<span class="params">response</span> =&gt;</span> this.handle<span class="constructor">SuccessfulResponse(<span class="params">response</span>)</span></span><br><span class="line">	);</span><br><span class="line">	console.log('Last line <span class="keyword">of</span> Welcome Message');</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handle<span class="constructor">SuccessfulResponse(<span class="params">response</span>)</span> &#123;</span><br><span class="line">	console.log(response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Next, we want to realize <code>console.log(response.message)</code>, we need to define what type of the response in <code>WelcomeDataService</code>. That is,</p>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldBean</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(<span class="keyword">public</span> message: string) &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line">executeHelloWorldBeanService() &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.http.<span class="keyword">get</span>&lt;HelloWorldBean&gt;(<span class="string">'http://localhost:8080/hello-world-bean'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is very similar to <em>Generics</em> in Java. After doing this, the following code will be correct.</p>
+<figure class="highlight reasonml"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">get<span class="constructor">WelcomeMessage()</span> &#123;</span><br><span class="line">	this.service.execute<span class="constructor">HelloWorldBeanService()</span>.subscribe(</span><br><span class="line">	<span class="function">	<span class="params">response</span> =&gt;</span> this.handle<span class="constructor">SuccessfulResponse(<span class="params">response</span>)</span></span><br><span class="line">	);</span><br><span class="line">&#125;</span><br><span class="line">handle<span class="constructor">SuccessfulResponse(<span class="params">response</span>)</span> &#123;</span><br><span class="line">	console.log(response.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>5. Handling Error Response</strong></font></p>
+<p>Now we change the code in backend controller</p>
+<figure class="highlight aspectj"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello-world-bean</span></span><br><span class="line"><span class="meta">@GetMapping</span>(path = <span class="string">"/hello-world-bean"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="function">HelloWorldBean <span class="title">helloWorldBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Some error has happened"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Next, we will use <em>subscribe()</em> method to handle Error Response. In <em>subscribe()</em> the first parameter is the function to handle <strong>successful</strong> response. You can add another parameter to tell what should happen when there is an error. The code is like this.</p>
+<figure class="highlight sas"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">getWelcomeMessage() &#123;</span><br><span class="line">	this.service.executeHelloWorldBeanService();</span><br><span class="line">	this.service.executeHelloWorldBeanService().subscribe(</span><br><span class="line">		response =&gt; this.handleSuccessfulResponse(response),</span><br><span class="line">		<span class="meta">error</span> =&gt; this.handleErrorResponse(<span class="meta">error</span>)</span><br><span class="line">	);</span><br><span class="line">	console<span class="meta">.log(</span><span class="string">'Last line of Welcome Message'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleSuccessfulResponse(response) &#123;</span><br><span class="line">//console<span class="meta">.log(</span>response.<span class="meta">message</span>);</span><br><span class="line">	this.welcomeMessageFromService = response.<span class="meta">message</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">handleErrorResponse(<span class="meta">error</span>) &#123;</span><br><span class="line">	console<span class="meta">.log(</span><span class="meta">error</span>)</span><br><span class="line">	console<span class="meta">.log(</span><span class="meta">error</span>.<span class="meta">error</span>)</span><br><span class="line">	console<span class="meta">.log(</span><span class="meta">error</span>.<span class="meta">error</span>.<span class="meta">message</span>)</span><br><span class="line">	this.welcomeMessageFromService = <span class="meta">error</span>.<span class="meta">error</span>.<span class="meta">message</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>6. Calling Welcome Http Service with Path Variable</strong></font></p>
+<p>Now we want to call the following service:</p>
+<figure class="highlight less"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//hello-world-bean/path-variable/teemo</span></span><br><span class="line"><span class="variable">@GetMapping</span>(path = <span class="string">"/hello-world-bean/path-variable/&#123;name&#125;"</span>)</span><br><span class="line">public HelloWorldBean helloWorldPathVariable(<span class="variable">@PathVariable</span> String name) &#123;</span><br><span class="line">	<span class="selector-tag">return</span> <span class="selector-tag">new</span> <span class="selector-tag">HelloWorldBean</span>(String.format(<span class="string">"Hello World, %s"</span>, name));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>First step: define the service in <code>welcome-data.service.ts</code>. How can we pass varaible in the uri? We can use back-tick, i.e. ``. After using backtick we can use ${name} to pass the path varaible <em>name</em> into the url. That is,</li>
+</ul>
+<figure class="highlight stylus"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">executeHelloWorldServiceWithPathVariable</span><span class="params">(name)</span></span> &#123;</span><br><span class="line">    return this<span class="selector-class">.http</span><span class="selector-class">.get</span>&lt;HelloWorldBean&gt;(`http:<span class="comment">//localhost:8080/hello-world-bean/path-variable/$&#123;name&#125;`);</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<a href="/2019/06/08/todo-backendIII/" title="next_step">next_step</a>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/08/todo-backendII/" data-id="cjy6aryb801crfkveoo31253r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project/">Project</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/08/todo-backendIII/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TODO List Project - Backend Part IV
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/08/leetcodeQ1011/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Capacity To Ship Packages Within D Days</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

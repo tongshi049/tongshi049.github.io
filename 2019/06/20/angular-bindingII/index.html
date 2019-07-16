@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Angular Study Notes - II | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Angular Binding previous This post is the notes of Official Angular Document. This amazing document can be found here.  1. Binding Syntax: an Overview Data-binding is a mechanism for corrdinating wha">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular Study Notes - II">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/angular-bindingII/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="Angular Binding previous This post is the notes of Official Angular Document. This amazing document can be found here.  1. Binding Syntax: an Overview Data-binding is a mechanism for corrdinating wha">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-21T16:30:33.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular Study Notes - II">
+<meta name="twitter:description" content="Angular Binding previous This post is the notes of Official Angular Document. This amazing document can be found here.  1. Binding Syntax: an Overview Data-binding is a mechanism for corrdinating wha">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-angular-bindingII" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/20/angular-bindingII/" class="article-date">
+  <time datetime="2019-06-20T17:32:28.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angular Study Notes - II
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="angular-binding"><a class="markdownIt-Anchor" href="#angular-binding"></a> Angular Binding</h3>
+<a href="/2019/06/20/angular-binding/" title="previous">previous</a>
+<p>This post is the notes of Official Angular Document. This amazing document can be found <a href="https://angular.io/guide/template-syntax" target="_blank" rel="noopener">here</a>.</p>
+<h4 id="font-colordodgerblue1-binding-syntax-an-overviewfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-binding-syntax-an-overviewfont"></a> <font color="dodgerblue">1. Binding Syntax: an Overview</font></h4>
+<p>Data-binding is a mechanism for corrdinating what users see, specifically with app data values. Angular provides many kinds of data-binding. Binding types can be grouped into three categories distinguished by the direction of data flow:</p>
+<ul>
+<li>From the <code>soure-to-view</code></li>
+<li>From the <code>view-to-source</code></li>
+<li>Two-way sequence: <code>view-to-source-to-view</code></li>
+</ul>
+<a id="more"></a>
+<table>
+  <tr>
+  	<th>Type</th>
+  	<th>Syntax</th>
+  	<th>Category</th>
+  </tr>
+  <tr>
+  	<td>Interpolation <br> Property <br> Attribute <br>
+  	    Class <br> Style 
+  	</td>
+  	<td>\{\{expresion}} <br> [target]="expression" <br>
+        bind-target="expression"
+    </td>
+    <td>
+    	One-way from data source <br>
+    	to view target
+    </td>
+  </tr>
+  <tr>
+  	<td>Event</td>
+  	<td>(target)="statement" <br> on-target="statement"</td>
+  	<td>One-way from view target <br> to data source </td>
+  </tr>
+  <tr>
+  	<td>Two-way</td>
+  	<td>[(target)]="expression" <br> bindon-target="expression"</td>
+  	<td>Two-way</td>
+  </tr>
+</table>
+<ul>
+<li>Binding types other than interpolation have a <strong>target name</strong> to the left of <code>=</code>, either surrounded by punctuation, <code>[]</code>, <code>()</code>, or preceded by a prefix: <code>bind-</code>, <code>on-</code>, <code>bindon-</code>.</li>
+<li>The <em>target</em> of a binding is the <strong>property</strong> or <strong>event</strong> inside the binding punctuation: <code>[]</code>, <code>()</code>, <code>[()]</code></li>
+</ul>
+<h4 id="font-colordodgerblue2-data-binding-and-htmlfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-data-binding-and-htmlfont"></a> <font color="dodgerblue">2. Data-binding and HTML</font></h4>
+<p>With data-binding, you can control things like the state of a button:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Bind button disabled state to `isUnchanged` property --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">disabled</span>]=<span class="string">"isUnchanged"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Notice that the binding is to the <em>disabled property of the button’s DOM element</em>, <em>not the attribute</em>. This applies to data-binding in general. Data-binding works with <em>properties of DOM elements, components, and directives, not HTML attributes</em>.</p>
+<h4 id="font-colordodgerblue3-html-attribute-vs-dom-propertyfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue3-html-attribute-vs-dom-propertyfont"></a> <font color="dodgerblue">3. HTML attribute vs. DOM property</font></h4>
+<p>The distinction between an HTML attribute and a DOM property is key to understanding hwo Angular binding works. <font color="DARKORANGE"><strong>Attributes are defined by HTML. Properties are accessed from DOM, or the Document Object Model, nodes.</strong></font> When the browser loads the page, it “reads” the HTML and generates DOM objects from it. For element nodes, most standard HTML attributes automatically become properties of DOM objects. But,</p>
+<ul>
+<li>A few HTML attributes have 1:1 mapping to properties; for example, <code>id</code>.</li>
+<li>Some HTML attributes don’t have corresponding properties; for example, <code>aria-*</code>.</li>
+<li>Some DOM properties don’t have corresponding attributes; for example, <code>textContent</code>.</li>
+</ul>
+<p>This general rule can help you build a mental model of attributes and DOM properties: <font color="DARKORANGE"><strong>attributes initialize DOM properties and then they are done. Property values can change; attribute values can’t.</strong></font><br>
+<font color="DARKORANGE"><strong>The HTML attribute and the DOM property are not the same thing, even when they have the same name.</strong></font></p>
+<p><font color="mediumslateblue"><strong>DOM properties</strong></font></p>
+<p>DOM nodes are regular JS objects. Properties are what’s in DOM objects. We can alter them. They can have any value. They are case-sensitive(e.g. <code>elem.nodeType</code>, not <code>elem.NoDeType</code>). DOM property values are not always strings. They can be boolean.</p>
+<p><font color="mediumslateblue"><strong>HTML attributes</strong></font></p>
+<p>In HTML, tags may have attributes. When the browser parses the HTML to create DOM objects for tags, it recognizes standard attributes and creates DOM properties from them. So attributes are what’s written in HTML. And HTML attributes have the following features:</p>
+<ul>
+<li>Their name is case-insensitive</li>
+<li>Their values are always strings.</li>
+</ul>
+<p><font color="mediumslateblue"><strong>Example 1: <code>&lt;input&gt;</code></strong></font></p>
+<p>When the browser renders <code>&lt;input&gt;</code>, it creates a corresponding DOM node with a <code>value</code> property initialized to “Sarah”.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">"Sarah"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>When the user enters “Sally” into the input, the DOM element <code>value</code> <em>property</em> becomes “Sally”. However, if you look at the HTML attributes <code>value</code> using input <code>.getAttribute('value')</code>, you can see that the <em>attribute</em> remains unchanged - it returns “Sarah”.</p>
+<p><font color="DARKORANGE"><strong>The HTML attribute value specifies the initial value; the DOM value property is the current value.</strong></font></p>
+<p><font color="mediumslateblue"><strong>Example 2: <code>&lt;button&gt;</code></strong></font></p>
+<p>The <code>disable</code> property of a button is false by default so the button is enabled. When adding the <code>disable</code> attribute, its presence alone initializes the button’s <code>disable</code> <em>property</em> to true so teh button is disabled.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">disable</span>&gt;</span>Test Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Adding and removing the disabled attribute disables and enables the button. <font color="tomato">However, the value of the attribute is irrelevant, which is why you cannot enable a button by writing <code>&lt;button disabled=&quot;false&quot;&gt;Still Disabled&lt;/button&gt;</code></font></p>
+<p>To control the state of the button, <strong>set the disabled property</strong>,</p>
+<p>Note: Though you could technically set the <code>[attr.disabled]</code> attribute binding, the values are different in that the <em>property binding</em> requires to a <em>boolean</em> value, while its corresponding <em>attribute binding</em> relies on whether the value is <em>null or not</em>. That is,</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> [<span class="attr">disabled</span>]=<span class="string">"condition ? true : false"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> [<span class="attr">attr.disabled</span>]=<span class="string">"condition ? 'disabled' : null"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><font color="tomato">Generally, use property binding over attribute binding as it is more intuitive (being a boolean value), has a shorter syntax, and is more performant.</font></p>
+<p>Template binding works with properties and events, not attributes.</p>
+<p>In Angular, the only role of attributes is to initialize element and directive state. When you write a data-binding, you’re dealing exclusively with properties and events of the target object.</p>
+<h4 id="font-colordodgerblue4-binding-targetsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue4-binding-targetsfont"></a> <font color="dodgerblue">4. Binding targets</font></h4>
+<p>The <strong>target of a data-binding</strong> is something in the DOM. Depending on the binding type, the target can be a property (element, component, or directive), an event (element, component or directive), or sometimes an attribute name. They can be summarized as</p>
+<table>
+  <tr>
+  	<th>Type</th>
+  	<th>Target</th>
+  	<th>Examples</th>
+  </tr>
+  <tr>
+  	<td>Property</td>
+  	<td>Element property <br> Component property <br>
+  	    Directive property 
+  	</td>
+  	<td>src, hero and ngClass in the following: <br>
+  		&lt;img [src]="heroImageUrl"> <br>
+  		&lt;app-hero-detail [hero]="currentHero"> &lt;/app-hero-detail> <br>
+        &lt;div [ngClass]="{'special': isSpecial}">
+  	</td>
+  </tr>
+  <tr>
+  	<td>Event</td>
+  	<td>Element event<br>Component event<br>Directive event</td>
+  	<td>click, deleteRequest, and myClick in the following: <br>
+  		&lt;button (click)="onSave()">Save&lt;/button> <br>
+  		&lt;app-hero-detail (deleteRequest)="deleteHero()">&lt;/app-hero-detail> <br>
+  		&lt;div (myClick)="clicked=$event" clickable>click me&lt;/div>
+  	</td>
+  	</tr><tr>
+  		<td>Two-way</td>
+  		<td>Event and property</td>
+  		<td>&lt;input [(ngModel)]="name"></td>
+  	</tr>
+  	<tr>
+  		<td>Attribute</td>
+  		<td>Attribute <br> (the exception)</td>
+  		<td>&lt;button [attr.aria-label]="help">help&lt;/button></td>
+  	</tr>
+  	<tr>
+  		<td>Class</td>
+  		<td>class property</td>
+  		<td>&lt;div [class.special]="isSpecial">Special&lt;/div></td>
+  	</tr>
+  	<tr>
+  		<td>Style</td>
+  		<td>style property</td>
+  		<td>&lt;button [style.color]="isSpecial ? 'red' : 'green'"></td>
+  	</tr>
+  
+</table>
+<h4 id="font-colordodgerblue5-property-binding-propertyfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue5-property-binding-propertyfont"></a> <font color="dodgerblue">5. Property Binding [property]</font></h4>
+<p>Use property binding to <em>set</em> properties of target elements or directive @Input decorators.</p>
+<p><font color="mediumslateblue"><strong>One-way in</strong></font></p>
+<ul>
+<li>Property binding flows a value in one direction, from a component’s property into a target element property.</li>
+<li>Cannot use property binding to read or pull values out of target elements.</li>
+<li>Cannot use property binding to call a method on the target element. If the element raises events, you can listen to them with an event binding.</li>
+</ul>
+<p><font color="mediumslateblue"><strong>Examples:</strong></font></p>
+<ul>
+<li><code>&lt;img [scr]=&quot;itemImageUrl&quot;&gt;</code>: set an element property to a component property value.</li>
+<li><code>&lt;td [colSpan]=&quot;2&quot;&gt;Span 2 columns&lt;/tr&gt;</code>: bind to the <code>colSpan</code> <em>property</em>. Notice that it’s not <code>colspan</code>, which is the <em>attribute</em>.</li>
+<li><code>&lt;button [disable]=&quot;isUnchanged&quot;&gt;Disable Button&lt;/button&gt;</code>: Bind button <code>disabled</code> <em>state</em> to <code>isUnchanged</code> <em>property</em>.</li>
+<li><code>&lt;p [ngClass]=&quot;classes&quot;&gt;[ngClass] binding to the classes property making this blue&lt;/p&gt;</code>: set a property of directive, <code>[ngClass]</code> binding to the <code>classes</code> <em>property</em> making this…</li>
+<li><code>&lt;app-item-detail [childItem]=&quot;parentItem&quot;&gt;&lt;/app-item-detail&gt;</code>: set the model <em>property</em> of a custom component - <font color="tomato"> a great way for parent and child components to communicate.</font></li>
+</ul>
+<p><font color="mediumslateblue"><strong>Binding target</strong></font></p>
+<p>An element <em>property</em> between <code>[]</code> identifies the target property. There is also the <code>bind-</code> prefix alternative. That is<br>
+<code>&lt;img [src]=&quot;itemImageUrl&quot;&gt;</code> is equivalent to <code>&lt;img bind-src=&quot;itemImageUrl&quot;&gt;</code>.</p>
+<p>Though the target name is usually the name of a <em>property</em>, there is an automatic attribute-to-property mapping in Angular for several common attributes. These include class/className, innerHtml/innerHTML, and tabindex/tabIndex.</p>
+<p><font color="mediumslateblue"><strong>Avoid side effects</strong></font></p>
+<p><font color="mediumslateblue"><strong>Return the proper type</strong></font></p>
+<p>The template expression should evaluate to the type of value that the target property expects. For exampe, <code>ListItemComponent</code> is nested within <code>AppComponnet</code> and the <code>item</code> property expects an object.</p>
+<p>In <code>src/app/app.component.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-list-item</span> [<span class="attr">items</span>]=<span class="string">"currentItem"</span>&gt;</span><span class="tag">&lt;/<span class="name">app-list-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>In <code>src/app/list-item.component.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Input</span>() items: Item[];</span><br></pre></td></tr></table></figure>
+<p>In <code>scr/app/item.ts</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Item &#123;</span><br><span class="line">	id: <span class="built_in">number</span>;</span><br><span class="line">	name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>So in <code>src/app/app.component.ts</code>, we give value to the current Item as follows</p>
+<figure class="highlight ebnf"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">currentItem</span> = [&#123;</span><br><span class="line">	id: 49, </span><br><span class="line">	name: <span class="string">'phone'</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Remember the brackets <code>[]</code></strong></font></p>
+<p>If you omit the brackets, Angular treats the string as a constant and <em>initiazlize the target property</em> with that string. E.g.</p>
+<figure class="highlight applescript"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;app-<span class="built_in">item</span>-detail childItem=<span class="string">"parentItem"</span>&gt;&lt;/app-<span class="built_in">item</span>-detail&gt;</span><br></pre></td></tr></table></figure>
+<p>Omitting the <code>[]</code> will render <strong>the string</strong> <code>parentItem</code> <font color="red">not</font> <strong>the value</strong> of <code>parentItem</code>.</p>
+<p><font color="mediumslateblue"><strong>One-time string initialization</strong></font></p>
+<p>You should omit the <code>[]</code> when <em>all</em> of the follwoing are tre:</p>
+<ul>
+<li>The target <em>property</em> accepts a string value.</li>
+<li>The string is a fixed value that you can put directly into the template.</li>
+<li>This initial value never changes.</li>
+</ul>
+<p><font color="mediumslateblue"><strong>Property binding vs. interpolation</strong></font></p>
+<p>You often have a choice between interpolation and property binding. The following binding pairs do the same thing:</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">scr</span>=<span class="string">""</span>&gt;</span> is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>interpolated<span class="tag">&lt;/<span class="name">i</span>&gt;</span> image.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> [<span class="attr">src</span>]=<span class="string">"itemImageUrl"</span>&gt;</span> is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>property bound<span class="tag">&lt;/<span class="name">i</span>&gt;</span> image.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>"" is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>interpolated<span class="tag">&lt;/<span class="name">i</span>&gt;</span> title.<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> [<span class="attr">innerHTML</span>]=<span class="string">"propertyTitle"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> is the <span class="tag">&lt;<span class="name">i</span>&gt;</span>property bound<span class="tag">&lt;/<span class="name">i</span>&gt;</span> title.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Interpolation is a convenient alternative to property binding in many cases. When rendering data values as strings, there is no technical reason to prefer one form to the other. However, <font color="tomato"><em>when setting an element property to a non-string data value, you <strong>must</strong> use property binding.</em></font></p>
+<p><font color="mediumslateblue"><strong>Content security</strong></font></p>
+<p>For example, in <code>src/app/app.componnet.ts</code></p>
+<figure class="highlight xml"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evilTitle = 'Template <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">alert("evil never sleeps)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> Syntax';</span><br></pre></td></tr></table></figure>
+<p>Both interpolation and property binding will render the content harmlessly.</p>
+<h4 id="font-colordodgerblue6-attribute-class-and-style-bindingsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue6-attribute-class-and-style-bindingsfont"></a> <font color="dodgerblue">6. Attribute, class, and style bindings</font></h4>
+<p><font color="mediumslateblue"><strong>Attribute binding</strong></font></p>
+<p>Usually, setting an element property with a property binding is preferable to setting the attribute with a string. However, sometimes there is no element property to bind, so attribute binding is the solution. Attribute binding syntax: between the <code>[]</code>, start with the prefix <code>attr</code>, followed by a dot (<code>.</code>), and the name of the attribute. E.g.</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- create and set an aria attribute for assistive technology --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">attr.aria-label</span>]=<span class="string">"actionName"</span>&gt;</span> with Aria<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Class binding</strong></font></p>
+<p>Add and removes CSS class names from an element’s <code>class</code> attritube with a <strong>class binding</strong>. Syntax: between the <code>[]</code>, start with the prefix <code>class</code>, optionally followed by a dot (<code>.</code>) and the name of a CSS class: <code>[class.class-name]</code>. For example, we can bind to a specific class name. Angular adds the class when the template expression evaluates to truthy. It removes the class when the expressio is falsy.</p>
+<figure class="highlight applescript"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;h3&gt;toggle <span class="keyword">the</span> <span class="string">"special"</span> <span class="built_in">class</span> <span class="keyword">on</span>/off <span class="keyword">with</span> a <span class="keyword">property</span>:&lt;/h3&gt;</span><br><span class="line">&lt;<span class="keyword">div</span> [<span class="built_in">class</span>.special]=<span class="string">"isSpecial"</span>&gt;This <span class="keyword">div</span> <span class="keyword">is</span> special&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;binding <span class="keyword">to</span> <span class="built_in">class</span>.special overrides <span class="keyword">the</span> <span class="built_in">class</span> attribute:&lt;/h3&gt;</span><br><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"special"</span> [<span class="built_in">class</span>.special]=<span class="string">"!isSPecial"</span>&gt;This one <span class="keyword">is</span> <span class="keyword">not</span> so special.&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;Using <span class="keyword">the</span> bind- syntax:&lt;/h3&gt;</span><br><span class="line">&lt;<span class="keyword">div</span> bind-<span class="built_in">class</span>.special=<span class="string">"special"</span>&gt;This <span class="built_in">class</span> binding <span class="keyword">is</span> special too.&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Style binding</strong></font></p>
+<p>You can set inline styles with a <strong>style binding</strong>.<br>
+Syntax: <code>[style.style-property]</code>. E.g.</p>
+<figure class="highlight stylus"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">button</span> [style.<span class="attribute">color</span>]=<span class="string">"isSpecial ? 'red' : 'green'"</span>&gt;Red&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>Some style binding styles have a unit extension. The following example conditionally sets the font size in <code>em</code> and <code>%</code>units. E.g.</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">style.font-size.em</span>]=<span class="string">"isSpecial ? 3 : 1"</span>&gt;</span>Big<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> [<span class="attr">style.font-size.</span>%]=<span class="string">"isSpecial ? 150 : 50"</span>&gt;</span>Small<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><font color="tomato"> This technique is suitable for setting a single style, but consider the <code>NgStyle</code> directive when setting several inline styles at the same time.</font></p>
+<h4 id="font-colordodgerblue7-event-binding-eventfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue7-event-binding-eventfont"></a> <font color="dodgerblue">7. Event binding (event)</font></h4>
+<p>Event binding allows you to listen for certain events such as keystrokes, mouse movements, clicks, and touches.<br>
+Syntax: <code>(event)=&quot;action()&quot;</code>, <code>event</code> is the target event name and <code>action()</code> is teh template statement; alternatively, we can use <code>on-</code> prefix, i.e. <code>on-click=&quot;action()&quot;</code></p>
+<p><font color="mediumslateblue"><strong><code>$event</code> and event handling statements</strong></font></p>
+<p>In an event binding, Angular sets up an event handler for the target event. When the event is raised, the handler executes the template statement. The template statement typically involves a receiver, which performs an action in response to the event, such as storing a value from the HTML control into a model.</p>
+<p>The binding conveys information about the event. This information can include data values such as an event object, string, or number named <code>$event</code>. The <em>target event</em> determines the shape of the <code>$event</code> object. If the target event is a native DOM element event, then <code>$event</code> is a DOM event object, with properties such as target and target.value. For example,</p>
+<figure class="highlight pgsql"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">input</span> [<span class="keyword">value</span>]="currentItem.name"</span><br><span class="line">       (<span class="keyword">input</span>)="current.name=$event.target.value"&gt;</span><br></pre></td></tr></table></figure>
+<p>This code binds <em>property</em> and <em>event</em> seperately.</p>
+<ul>
+<li><code>[value]</code>: <em>property</em> binding</li>
+<li><code>(input)</code>: event binding. To update the <code>name</code> property, the changed text is retrieved by <code>$event.target.value</code>.</li>
+</ul>
+<p><font color="mediumslateblue"><strong>Custom events with <code>EventEmitter</code></strong></font></p>
+<p>Directives typically raise custom events with an Angular <code>EventEmitter</code>. The directive creates an <code>EventEmitter</code> and exposes it as a property. The directive calls <code>EventEmitter.emit(payload)</code> to fire an event, passing in a message payload, which can be anything. <em><strong>Parent directives</strong></em> listen for the event by binding to this property and accessing the payload through the <code>$event</code> object. For example,</p>
+<p>In <code>src/app/item-detail/item-detail.component.html</code> we bind an click event:</p>
+<figure class="highlight stylus"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">""</span> [style.<span class="attribute">display</span>]=<span class="string">"displayNone"</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">span</span> [style.<span class="attribute">text-decoration</span>]=<span class="string">"lineThrough"</span>&gt;&lt;/span&gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span> (click)=<span class="string">"delete()"</span>&gt;Delete&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>In <code>src/app/item-detail/item-detail.component.ts</code>:</p>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This component makes a request but it can't actually delete a hero.</span></span><br><span class="line"><span class="meta">@Output()</span> deleteRequest = new EventEmitter&lt;Item&gt;();</span><br><span class="line"></span><br><span class="line">delete() &#123;</span><br><span class="line">  <span class="keyword">this</span>.deleteRequest.emit(<span class="keyword">this</span>.item);</span><br><span class="line">  <span class="keyword">this</span>.displayNone = <span class="keyword">this</span>.displayNone ? <span class="string">''</span> : <span class="string">'none'</span>;</span><br><span class="line">  <span class="keyword">this</span>.lineThrough = <span class="keyword">this</span>.lineThrough ? <span class="string">''</span> : <span class="string">'line-through'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The component defines a deleteRequest <em>property</em> that returns an <code>EventEmitter</code>. When the user clicks delete, the component invokes the <code>delete()</code> method, telling the <code>EventEmitter</code> to <code>emit</code> an <code>Item</code> object.</p>
+<p>In <code>src/app/app.component.html</code></p>
+<figure class="highlight applescript"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;app-<span class="built_in">item</span>-detail </span><br><span class="line">    (deleteRequest)=<span class="string">"deleteItem($event)"</span> </span><br><span class="line">    [<span class="built_in">item</span>]=<span class="string">"currentItem"</span>&gt;</span><br><span class="line">&lt;/app-<span class="built_in">item</span>-detail&gt;</span><br></pre></td></tr></table></figure>
+<p>In <code>src/app/app.component.ts</code>, we can do the customized events by editting <code>deleteItem(item: Item)</code>:</p>
+<figure class="highlight stylus"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">deleteItem</span><span class="params">(item: Item)</span></span> &#123;</span><br><span class="line">	<span class="comment">// do something;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Template statements have side effects</strong></font></p>
+<p>Though <em>template expressions</em> shouldn’t have side effects, <em>template statements</em> usually do. The <code>deleteItem()</code> method does have a side effect: it deletes an item.</p>
+<h4 id="font-colordodgerblue8-two-way-binding-font"><a class="markdownIt-Anchor" href="#font-colordodgerblue8-two-way-binding-font"></a> <font color="dodgerblue">8. Two-way binding [(…)]</font></h4>
+<p>Two-way binding gives your app a way to share data between a component class and its template.</p>
+<p><font color="mediumslateblue"><strong>Basics of two-way binding</strong></font></p>
+<p>Two-way binding does two things:</p>
+<ul>
+<li><font color="tomato">Sets a specific element property.</font></li>
+<li><font color="tomato">Listens for an element change event.</font><br>
+Angular offers a special two-way data binding syntax for this purpose, <code>[()]</code>. The <code>[()]</code> syntax combines the brackets of property binding, <code>[]</code>, with the parentheses of event binding, <code>()</code>. Visually, <font color="gold"><strong><code>[()]</code> = BANANA IN A BOX.</strong></font></li>
+</ul>
+<p><font color="mediumslateblue"><strong>Two-way binding in forms</strong></font></p>
+<p>The two-way binding syntax is a great convenience compared to separate property and event bindings. It would be convenient to use two-way binding with HTML form elements like <code>&lt;input&gt;</code> and <code>&lt;select&gt;</code>. However, no native HTML element follows the x value and xChange event pattern.</p>
+<a href="/2019/06/21/angular-bindingIII/" title="next">next</a>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/20/angular-bindingII/" data-id="cjy6arye401dhfkveqf16cqp5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/21/leetcodeQ223/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Rectangle Area
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/20/angular-binding/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Angular Study Notes - I</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

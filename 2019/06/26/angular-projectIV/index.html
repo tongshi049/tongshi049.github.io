@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Project - Groupbuy App Part IV | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="prev  Angular Basics II - Content Projection &amp;amp; Router &amp;amp; Pipe &amp;amp; Validation Component nesting is inevitable. For example, previously we added ImageSlider (&amp;lt;app-image-slider&amp;gt;,Scrollable">
+<meta name="keywords" content="Project,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project - Groupbuy App Part IV">
+<meta property="og:url" content="http://yoursite.com/2019/06/26/angular-projectIV/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="prev  Angular Basics II - Content Projection &amp;amp; Router &amp;amp; Pipe &amp;amp; Validation Component nesting is inevitable. For example, previously we added ImageSlider (&amp;lt;app-image-slider&amp;gt;,Scrollable">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/angular-projectIV/router.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/angular-projectIV/pipes.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/angular-projectIV/DI.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/angular-projectIV/console1.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/26/angular-projectIV/validation.png">
+<meta property="og:updated_time" content="2019-07-03T20:09:34.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project - Groupbuy App Part IV">
+<meta name="twitter:description" content="prev  Angular Basics II - Content Projection &amp;amp; Router &amp;amp; Pipe &amp;amp; Validation Component nesting is inevitable. For example, previously we added ImageSlider (&amp;lt;app-image-slider&amp;gt;,Scrollable">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/26/angular-projectIV/router.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-angular-projectIV" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/26/angular-projectIV/" class="article-date">
+  <time datetime="2019-06-26T17:01:05.000Z" itemprop="datePublished">2019-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Project - Groupbuy App Part IV
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a href="/2019/06/25/angular-projectIII/" title="prev">prev</a>
+<h3 id="angular-basics-ii-content-projection-router-pipe-validation"><a class="markdownIt-Anchor" href="#angular-basics-ii-content-projection-router-pipe-validation"></a> Angular Basics II - Content Projection &amp; Router &amp; Pipe &amp; Validation</h3>
+<p><em>Component nesting</em> is inevitable. For example, previously we added <code>ImageSlider</code> (<code>&lt;app-image-slider&gt;</code>,<code>ScrollableTab</code>(<code>&lt;app-scrollable-tab&gt;</code>) components in <code>App</code> component (<code>app.component.html</code>). We can use <code>@Input()</code> and <code>@Output</code> to realize the data transfer between nesting components or between components and outside world. However, over nesting can lead to complexity and redundancy in our codes. To avoid the redundant data and events brought by component nesting, we can use <em>content projetion</em>, <em>router</em>, <em>directive</em> and <em>service</em>.</p>
+<a id="more"></a>
+<h4 id="font-colordodgerblue1-content-projectionfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-content-projectionfont"></a> <font color="dodgerblue">1. Content Projection</font></h4>
+<p>Using <code>ng-content</code> to realize content projection.</p>
+<ul>
+<li>what: dynamic content</li>
+<li>syntax: <code>&lt;ng-content select=&quot;style classes / HTML tags / directives&quot;&gt;&lt;/ng-content&gt;</code></li>
+<li>possible scenarios: display dynamic contents / as a component container</li>
+</ul>
+<p>For example:</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">select</span>=<span class="string">"span"</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">select</span>=<span class="string">".special"</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span> <span class="comment">&lt;!-- special is class name --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">select</span>=<span class="string">"[appGridItem]"</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="font-colordodgerblue2-routerfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-routerfont"></a> <font color="dodgerblue">2. Router</font></h4>
+<p>The most important benefit <em>Router</em> brings to us is that it helps decouple independent components. Its definition includes:</p>
+<ul>
+<li>path</li>
+<li>component</li>
+<li>child router</li>
+</ul>
+<p>And to use it, we need to import <code>RouterModule</code> both <code>forRoot</code> and <code>forChild</code>. For example,<br>
+<img src="router.png" width="80%" height="70%"><br>
+Next, we will see how to use <em>Router</em> in detail.</p>
+<p><font color="mediumslateblue"><strong>Practice 1: Router to Home Page</strong></font></p>
+<ul>
+<li>First, create a file <code>app-routing.module.ts</code>. Use directive <code>ng-router-appmodule</code> generating a router template. Then add a <em>route</em>.</li>
+</ul>
+<figure class="highlight livescript"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; RouterModule, Routes &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HomeContainerComponent &#125; <span class="keyword">from</span> <span class="string">'./home'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, component: HomeContainerComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppRoutingModule</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>In <code>app.component.html</code> add a tag <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>. Then, don’t forget to import <code>AppRoutingModule</code> and <code>HomeModule</code> in <code>app.module.ts</code>.</p>
+<p><font color="mediumslateblue"><strong>Practice 2: Child Router in Home Page</strong></font></p>
+<p>We create a child router in the home page as follows. In file <code>home-routing.module.ts</code>,</p>
+<figure class="highlight properties"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">const</span> <span class="string">routes: Routes = [</span></span><br><span class="line">  <span class="attr">&#123;</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">'home',</span></span><br><span class="line">    <span class="attr">component</span>: <span class="string">HomeContainerComponent,</span></span><br><span class="line">    <span class="attr">children</span>: <span class="string">[</span></span><br><span class="line">      <span class="attr">&#123;</span></span><br><span class="line">        <span class="attr">path</span>: <span class="string">'',</span></span><br><span class="line">        <span class="attr">redirectTo</span>: <span class="string">'hot',</span></span><br><span class="line">        <span class="attr">pathMatch</span>: <span class="string">'full'</span></span><br><span class="line">      <span class="attr">&#125;,</span></span><br><span class="line">      <span class="attr">&#123;</span></span><br><span class="line">        <span class="attr">path</span>: <span class="string">':tabLink', </span></span><br><span class="line">        <span class="attr">component</span>: <span class="string">HomeDetailComponent</span></span><br><span class="line">      <span class="attr">&#125;</span></span><br><span class="line">    <span class="attr">]</span></span><br><span class="line">  <span class="attr">&#125;</span></span><br><span class="line"><span class="attr">];</span></span><br><span class="line"></span><br><span class="line"><span class="attr">@NgModule(&#123;</span></span><br><span class="line">  <span class="attr">imports</span>: <span class="string">[RouterModule.forChild(routes)],</span></span><br><span class="line">  <span class="attr">exports</span>: <span class="string">[RouterModule]</span></span><br><span class="line"><span class="attr">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Practice 3: Params in Router URL</strong></font></p>
+<ul>
+<li><strong>Configuration</strong></li>
+</ul>
+<figure class="highlight css"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attribute">path</span>: <span class="string">':tabLink'</span>, component: HomeDetailComponent &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Activation</strong>: Two types</li>
+</ul>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- params --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>=<span class="string">"['/home', tab.link]"</span>]&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>=<span class="string">"['/home', tab.link, </span></span></span><span class="template-variable">&#123;name: 'val1'&#125;</span><span class="xml"><span class="tag"><span class="string">]"</span>]&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- query params --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>=<span class="string">"['/home', tab.link, [queryParams]=</span></span></span><span class="template-variable">&#123;name: 'val1'&#125;</span><span class="xml"><span class="tag"><span class="string">]"</span>]&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- add style for activated router link --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- class name: active --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">"[ 'grand' ]"</span> <span class="attr">routerLinkActive</span>=<span class="string">"active"</span></span></span></span><br><span class="line"><span class="xml">   [queryParams]="</span><span class="template-variable">&#123;name: 'tonny', gender: 'girl'&#125;</span><span class="xml">"</span></span><br><span class="line"><span class="xml">   &gt;...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">this.router.navigate(['home', tab.link]);</span></span><br><span class="line"><span class="xml">this.router.navigate(['home', tab.link, </span><span class="template-variable">&#123;queryParams: &#123;name: 'val1'&#125;</span><span class="xml">&#125;]);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Corresponding <strong>URL</strong> is like
+<ul>
+<li><code>http://localhost:4200/home/sports</code></li>
+<li><code>http://localhost:4200/home/sports;name=val1</code></li>
+<li><code>http://localhost:4200/home/sports?name=val1</code></li>
+</ul>
+</li>
+<li><strong>Read Params in URL</strong></li>
+</ul>
+<figure class="highlight nimrod"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.route.paramsMap.subscribe(param =&gt; <span class="meta">&#123;...&#125;</span>);</span><br><span class="line">this.route.queryParamsMap.subscribe(param =&gt; <span class="meta">&#123;...&#125;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="font-colordodgerblue3-pipefont"><a class="markdownIt-Anchor" href="#font-colordodgerblue3-pipefont"></a> <font color="dodgerblue">3. Pipe</font></h4>
+<p>Pipe can help transform values in the <em>View</em>. For example, <code>1234</code> -&gt; <code>$ 1234</code>. The following image shows <em>pipes</em> provided by Angular.</p>
+<img src="pipes.png" width="80%" height="85%">
+<p>How to use it ? Using <code>|</code>, e.g.</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; obj | json &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; date | date: 'MM-dd' &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; date | date: 'yyyy-MM-dd' &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; price | currency &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; price | currency: 'CNY' &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; price | currency: 'CNY': 'symbol': '4.0-2' &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- data = [1, 2, 3, 4, 5] --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- output is [2, 3] --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- slice: left: right (left close, right open) --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; data | slice: 1:3 &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span></span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Practice: customized <em>pipe</em></strong></font></p>
+<p>We can also create our customized <em>pipe</em>. In the following example, we create an <em>ago-pipe</em>, which returns <code>... units ago</code>. First, use <code>ng-pipe</code> generating the pipe template.</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Pipe, PipeTransform &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line">@Pipe(&#123;name: <span class="string">'appAgo'</span>&#125;)</span><br><span class="line">export <span class="keyword">class</span> <span class="symbol">AgoPipe</span> <span class="symbol">implements</span> <span class="symbol">PipeTransform</span> &#123;</span><br><span class="line">  transform(value: any): any &#123;</span><br><span class="line">    <span class="keyword">if</span> (value) &#123;</span><br><span class="line">      <span class="keyword">const</span> seconds = Math.floor((+new Date - +new Date(value)) / <span class="number">1000</span>);</span><br><span class="line">      <span class="keyword">if</span> (seconds &lt; <span class="number">30</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'A few seconds ago'</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> <span class="built_in">int</span>ervals = &#123;</span><br><span class="line">        years: <span class="number">3600</span> * <span class="number">24</span> * <span class="number">365</span>,</span><br><span class="line">        months: <span class="number">3600</span> * <span class="number">24</span> * <span class="number">30</span>,</span><br><span class="line">        weeks: <span class="number">3600</span> * <span class="number">24</span> * <span class="number">7</span>,</span><br><span class="line">        days: <span class="number">3600</span> * <span class="number">24</span>,</span><br><span class="line">        hours: <span class="number">3600</span>,</span><br><span class="line">        minutes: <span class="number">60</span>,</span><br><span class="line">        secondes: <span class="number">1</span></span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      let counter = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> unitName <span class="keyword">in</span> <span class="built_in">int</span>ervals) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">int</span>ervals.hasOwnProperty(unitName)) &#123;</span><br><span class="line">          <span class="keyword">const</span> unitValue = <span class="built_in">int</span>ervals[unitName];  </span><br><span class="line">          counter = Math.floor(seconds / unitValue);</span><br><span class="line">          <span class="keyword">if</span> (counter &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> `$&#123;counter&#125; $&#123;unitName&#125; ago`;</span><br><span class="line">          &#125;           </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then we can use the created <code>ago-pipe</code>.</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- html file --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><span class="template-variable">&#123;\&#123; date | agoPipe &#125;</span><span class="xml">&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- according ts file --&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HomeGrandComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">  date: <span class="built_in">Date</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123; &#125;</span><br><span class="line">  </span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="keyword">this</span>.date = <span class="keyword">this</span>.minusDays(<span class="keyword">new</span> <span class="built_in">Date</span>(), <span class="number">60</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  minusDays(date: <span class="built_in">Date</span>, days: <span class="built_in">number</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    result.setDate(result.getDate() - days);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then we can see 2 months ago in the <em>view</em>.</p>
+<h4 id="font-colordodgerblue4-dependency-injectionfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue4-dependency-injectionfont"></a> <font color="dodgerblue">4. Dependency Injection</font></h4>
+<p>The procedure of how to use <em>DI</em> is shown as follows.<br>
+<img src="DI.png" width="80%" height="80%"><br>
+The instance created through <em>DI</em> is singleton. Say if component A and component B both inject a service, they are acturally using the same instance.</p>
+<p>In angular, if we want to make some class injectable, we just need to add decorator <code>@Injectable()</code> above that class. For example,</p>
+<figure class="highlight typescript"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span></span><br><span class="line"><span class="keyword">class</span> Product &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> name: <span class="built_in">string</span>, <span class="keyword">private</span> color: <span class="built_in">string</span></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// the above line combine the field declaration and constructor together.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span></span><br><span class="line"><span class="keyword">class</span> PurchaseOrder &#123;</span><br><span class="line">  <span class="keyword">private</span> amount: <span class="built_in">number</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> product: Product</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then declare the <em>injectable</em> class / factory using <code>Injector.create();</code> as follows.</p>
+<figure class="highlight dart"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeGrandComponent</span> <span class="keyword">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  <span class="comment">// some codes</span></span><br><span class="line">  ngOninit() &#123;</span><br><span class="line">    <span class="keyword">const</span> injector = Injector.create(&#123;</span><br><span class="line">      providers: [</span><br><span class="line">        &#123;</span><br><span class="line">          provider: Product,</span><br><span class="line">          <span class="comment">//useClass: Product // inject a class</span></span><br><span class="line">          <span class="comment">// or we can directly inject a specific object using useFactory</span></span><br><span class="line">          useFactory: () =&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Product(<span class="string">"molten edge"</span>, <span class="string">"golden"</span>)</span><br><span class="line">          &#125;,</span><br><span class="line">          deps: [] <span class="comment">// the dependencies of this provider</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          provider: PurchaseOrder,</span><br><span class="line">          useCass: PurchaseOrder,</span><br><span class="line">          deps: [Product]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    console.log(injector.<span class="keyword">get</span>(Product));</span><br><span class="line">    console.log(injector.<span class="keyword">get</span>(PurchaseOrder));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then we can get the following results in the console.<br>
+<img src="console1.png" width="70%" height="70%"></p>
+<p><font color="mediumslateblue"><strong>Practice 1: home service</strong></font></p>
+<p>It’s better to create serives for each module to do the data transfer job. Say we want to decouple <em>data</em> and <em>components</em>. <em>DI</em> provides a great way to do this. Next we will create a home service and see how to use <em>DI</em> to decouple <em>data</em> and our components.<br>
+First, use <code>ng-service</code> to generate a service template. In this service, we put our data.</p>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; from <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; TopMenu, ImageSlider, Channel &#125; from <span class="string">'src/app/shared/components'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable()</span></span><br><span class="line">export <span class="class"><span class="keyword">class</span> <span class="title">HomeService</span> </span>&#123;</span><br><span class="line">  menus: TopMenu[] = [...];</span><br><span class="line"></span><br><span class="line">  imageSliders: ImageSlider[] = [...];</span><br><span class="line">  </span><br><span class="line">  getTabs() &#123; <span class="keyword">return</span> <span class="keyword">this</span>.menus; &#125;</span><br><span class="line"></span><br><span class="line">  getBanners() &#123; <span class="keyword">return</span> <span class="keyword">this</span>.imageSliders; &#125;</span><br><span class="line"></span><br><span class="line">  getChannels() &#123; <span class="keyword">return</span> <span class="keyword">this</span>.channels; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Future, we will get these data throug HTTP.</p>
+<p><font color="tomato">To use this service, <strong>don’t forget</strong> to declare this service in <code>.module.ts</code>.</font></p>
+<figure class="highlight less"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@NgModule</span>(&#123;</span><br><span class="line">  <span class="attribute">declarations</span>: [...],</span><br><span class="line">  <span class="attribute">providers</span>: [</span><br><span class="line">    HomeService</span><br><span class="line">  ],</span><br><span class="line">  <span class="attribute">imports</span>: [...]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Now we can employ <em>DI</em> to get the data.</p>
+<figure class="highlight delphi"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">topMenus: TopMenu[]: [];</span><br><span class="line"><span class="function"><span class="keyword">constructor</span><span class="params">(<span class="keyword">private</span> service: HomeService)</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">ngOnInit</span><span class="params">()</span> <span class="comment">&#123; this.topMenus = this.service.getTabs(); &#125;</span></span></span><br></pre></td></tr></table></figure>
+<p><font color="mediumslateblue"><strong>Practice 2: transfer a string value</strong></font></p>
+<p>We can also just transfer a value using <em>DI</em>.</p>
+<figure class="highlight stylus"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">ngOnInit</span><span class="params">()</span></span> &#123;</span><br><span class="line">  const injector = new Injector.create(&#123;</span><br><span class="line">    providers: [&#123;</span><br><span class="line">      &#123;</span><br><span class="line">        provider: <span class="string">'baseUrl'</span>,</span><br><span class="line">        useValue: <span class="string">'http://localhost'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;)	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We can use a string <code>'baseUrl'</code> to be the indicator of a injectable value, however in large project this may cause conflict. So Angular wants us to use <em>Token</em> as the string type indicator.</p>
+<figure class="highlight arduino"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ngOnInit() &#123;</span><br><span class="line">  <span class="keyword">const</span> token = <span class="keyword">new</span> InjectionToken&lt;<span class="keyword">string</span>&gt;(<span class="string">'baseUrl'</span>);</span><br><span class="line">  <span class="keyword">const</span> injector = <span class="keyword">new</span> Injector.create(&#123;</span><br><span class="line">    providers: [&#123;</span><br><span class="line">      &#123;</span><br><span class="line">        provide: token,</span><br><span class="line">        useValue: <span class="string">'http://localhost'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;)	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>How to transfer a string to other components?</strong></p>
+<ul>
+<li>First export it and also do the declaration in <code>.module.ts</code>.</li>
+</ul>
+<figure class="highlight arduino"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> token = <span class="keyword">new</span> InjectionToken&lt;<span class="keyword">string</span>&gt;(<span class="string">'baseUrl'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">providers:</span> [HomeService, &#123; <span class="string">provide:</span> token, <span class="string">useValue:</span> <span class="string">'http://localhost'</span> &#125;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Then we can use it as follows.</li>
+</ul>
+<figure class="highlight delphi"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constructor</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">  @Inject(token)</span> <span class="title">private</span> <span class="title">baseUrl</span>:</span> <span class="keyword">string</span></span><br><span class="line">) <span class="comment">&#123; &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="font-colordodgerblue5-validationfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue5-validationfont"></a> <font color="dodgerblue">5. Validation</font></h4>
+<ul>
+<li><font color="PALEVIOLETRED"><strong>What?</strong></font> <em>view</em> is refreshed when the data is changed.</li>
+<li><font color="DARKORANGE"><strong>When?</strong></font> when validation is triggered?
+<ul>
+<li>browser events (e.g. click, mouseover, keyup,… )</li>
+<li><code>setTimeout()</code> and <code>setInterval()</code></li>
+<li><code>HTTP</code> request</li>
+</ul>
+</li>
+<li><font color="YELLOWGREEN"><strong>How?</strong></font> Compare current status and new status.</li>
+</ul>
+<p><font color="tomato"> The validation procedure is synchronous. And it is done twice by Angular framework.</font></p>
+<img src="validation.png" width="80%" height="80%">
+<p>As the above pic shows <font color="tomato">validation procedure is done <strong>before</strong> <code>AfterViewChecked</code> and <code>AfterViewInit</code> hook, so we should change property values in functions <code>ngAfterViewChecked()</code> and <code>ngAfterViewInit()</code>.</font> For example, the following code will cause <font color="red">Error</font>.</p>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> [<span class="attr">textContent</span>]=<span class="string">"time | HH:mm:ss:SSS"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- or &lt;span&gt;&lt;/span&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">get</span> time(): number &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.\_time;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ngAfterViewChecked(): void &#123;</span><br><span class="line">  <span class="keyword">this</span>.\_title = <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>How to solve this problem? We can use <strong>NgZone</strong>, set the change to be outside Angular.</p>
+<figure class="highlight typescript"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\_time;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">get</span> time(): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.\_time;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> ngZone: NgZone</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">ngAfterViewChecked(): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.ngZone.runOutsideAngular(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    setInterval( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.\_time = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;, <span class="number">200</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then add a button to trigger <em>Validation</em>.</p>
+<p>The above code still has limitation. We can not read time continuously. If we want to view the change in every millisecond, we’d better not use <em>binding</em>. Instead, operating <em>DOM</em> element is an effecient solution.</p>
+<figure class="highlight apache"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;span #timeRef&gt;</span><span class="section">&lt;/span&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(<span class="string">'timeRef'</span>) timeRef: ElementRef;</span><br><span class="line">ngAfterViewChecked(): <span class="built_in">void</span> &#123;</span><br><span class="line">  setInterval( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.timeRef.nativeElement.innerText = <span class="built_in">Date</span>.now();</span><br><span class="line">  &#125; , <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Operating <em>DOM</em> element directly is not recommended. Instead, we can use <code>Renderer2</code>.</p>
+<figure class="highlight delphi"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constructor</span><span class="params">(<span class="keyword">private</span> rd2: Renderer2)</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function">@<span class="title">ViewChild</span><span class="params">(<span class="string">'timeRef'</span>)</span> <span class="title">timeRef</span>:</span> ElementRef;</span><br><span class="line">ngAfterViewChecked(): void <span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  setInterval( () =&gt; &#123;</span></span><br><span class="line"><span class="comment">    this.rd2.setProperty(this.timeRef.nativeElement, </span></span><br><span class="line"><span class="comment">    'innerText', </span></span><br><span class="line"><span class="comment">    Date.now());</span></span><br><span class="line"><span class="comment">  &#125;</span> , <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We can also pipes in class to format Date.</p>
+<figure class="highlight delphi"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constructor</span><span class="params">(<span class="keyword">private</span> rd2: Renderer2)</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function">@<span class="title">ViewChild</span><span class="params">(<span class="string">'timeRef'</span>)</span> <span class="title">timeRef</span>:</span> ElementRef;</span><br><span class="line">ngAfterViewChecked(): void <span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  setInterval( () =&gt; &#123;</span></span><br><span class="line"><span class="comment">    this.rd2.setProperty(this.timeRef.nativeElement, </span></span><br><span class="line"><span class="comment">    'innerText', </span></span><br><span class="line"><span class="comment">    formatDate(Date.now(), HH:mm:ss:SSS), 'zh-Hans');</span></span><br><span class="line"><span class="comment">  &#125;</span> , <span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/26/angular-projectIV/" data-id="cjy6aryaz01cifkvewl6sjyub" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project/">Project</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/27/leetcodeQ927/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Three Equal Parts
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/26/leetcodeQ1037/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Valid Boomerang</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

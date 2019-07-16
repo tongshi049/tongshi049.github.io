@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Angular Study Notes - I | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Angular Template This post is the notes of Official Angular Document. This amazing document can be found here. The Angular application manages what the user sees and can do, achieving this through th">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular Study Notes - I">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/angular-binding/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="Angular Template This post is the notes of Official Angular Document. This amazing document can be found here. The Angular application manages what the user sees and can do, achieving this through th">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-20T17:34:28.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular Study Notes - I">
+<meta name="twitter:description" content="Angular Template This post is the notes of Official Angular Document. This amazing document can be found here. The Angular application manages what the user sees and can do, achieving this through th">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-angular-binding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/20/angular-binding/" class="article-date">
+  <time datetime="2019-06-20T15:19:56.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angular Study Notes - I
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="angular-template"><a class="markdownIt-Anchor" href="#angular-template"></a> Angular Template</h3>
+<p>This post is the notes of Official Angular Document. This amazing document can be found <a href="https://angular.io/guide/template-syntax" target="_blank" rel="noopener">here</a>.</p>
+<p>The Angular application manages what the user sees and can do, achieving this through the interaction of a component class instance (the <em>component</em>) and its user-facing template.</p>
+<p>In Angular, the <em>component</em> plays the part of the <font color="mediumspringgreen"><strong>controller/viewmodel</strong></font>, and the <em>template</em> represents the <font color="mediumspringgreen"><strong>view</strong></font>. It is essentially the <em>MVC</em> and <em>MVVM</em> structure.</p>
+<a id="more"></a>
+<h4 id="font-colordodgerblue1-html-in-templatesfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-html-in-templatesfont"></a> <font color="dodgerblue">1. HTML in templates</font></h4>
+<ul>
+<li><code>&lt;script&gt;</code> is forbidden, eliminating the risk of script injection attacks.</li>
+<li><code>&lt;html&gt;</code>, <code>&lt;body&gt;</code> and <code>base</code> elements have no useful role.</li>
+</ul>
+<h4 id="font-colordodgerblue2-interpolationfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-interpolationfont"></a> <font color="dodgerblue">2. Interpolation</font></h4>
+<p><em>Interpolation</em> allows you to incorporate calculated strings into the text between HTML element tags and within attribute assignments.</p>
+<p>Its syntax is <code></code>. The <code>text</code> between the braces is often the name of a component property. Angular replaces that name with the string values of the corresponding component property. More generally, the text between the braces is a <em><strong>template expression</strong></em> that Angular first evaluates and then converts to a string. For example,</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span> The sum of 1 + 1 is not &#123;&#123; 1 + 1 + getVal() &#125;&#125;.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Angular evaluates all expressions in double curly braces, converts the expression results to strings, and links them with neighboring literal strings. Finally, it assigns this composite interpolated result to an <strong>element or directive property</strong>.</p>
+<p>We can insert the result between element tags and assigning it to the attributes. However, interpolation is a syntax that Angular converts into a property binding.</p>
+<h4 id="font-colordodgerblue3-template-expressionsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue3-template-expressionsfont"></a> <font color="dodgerblue">3. Template Expressions</font></h4>
+<p>A template expression produces a value and appears within the double curly braces. Angular executes the expression and assigns it to a property of a binding target; the target could be an HTML element, a component, or a directive.</p>
+<p>In terms of syntax, template expressions are similar to JavaScript. Many JS expressions are legal template expressions, with a few exceptions.</p>
+<p>You can’t use JavaScript expressions that have or promote side effects, including:</p>
+<ul>
+<li>Assignments <code>(=, +=, -=, ...)</code></li>
+<li>Operators such as new, typeof, instanceof, etc.</li>
+<li>Chaining expressions with <code>;</code> or <code>,</code></li>
+<li>The increment and decrement operators <code>++</code> and <code>--</code></li>
+<li>Some of the ES2015+ operators</li>
+</ul>
+<p><font color="mediumslateblue"><strong>Expression context</strong></font></p>
+<p>The <em>expression context</em> is typically the <em>component</em> instance. For example, in the following snippets, the <code>recommended</code> and <code>itemImageUrl</code> refer to properties of the <code>AppComponent</code>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; recommended &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> [<span class="attr">src</span>]=<span class="string">"tiemImageUrl"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>An expression may also refer to properties of the <em>template’s</em> context such as a template input variable, e.g <code>let customer</code>, or a template reference variable, e.g. <code>customerInput</code>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">"let customer of customers"</span>&gt;</span>&#123;&#123;customer.name&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Type something:</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> #<span class="attr">customerInput</span>&gt;</span>&#123;&#123;customerInput.value&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The component has a <code>customer</code> property, and</li>
+<li><code>*ngFor</code> defines a <code>customer</code> template variable.</li>
+<li><code></code> refers to the template input variable, not the component’s property.</li>
+</ul>
+<p><font color="mediumslateblue"><strong>No visible side effects</strong></font></p>
+<p>A template expression should not change any application state other than the value of the target property.</p>
+<p>This rule is essential to Angular’s “unidirectional data flow” policy. You should never worry that reading a component value might change some other displayed value. The view should be stable throughout a single rendering pass.</p>
+<p>There is one exception to this behavior that applies to <code>*ngFor</code>. <code>*ngFor</code> has <code>trackBy</code> functionality that can deal with referential inequality of objects that when iterating over them.</p>
+<p><font color="mediumslateblue"><strong>Quick execution</strong></font></p>
+<p>Angular executes template expressions after every change detection cycle. Change detection cycles are triggered by many asynchronous activities such as <em>promise resolutions</em>, <em>HTTP results</em>, <em>timer events</em>, <em>key presses</em> and <em>mouse moves</em>.</p>
+<p>Expressions should finish quickly or the user experience may drag, especially on slower devices. Consider <strong>caching values</strong> when their computation is expensive.</p>
+<p><font color="mediumslateblue"><strong>Simpicity</strong></font></p>
+<p>Although it’s possible to write complex template expressions, it’s better practive to avoid them.</p>
+<h4 id="font-colordodgerblue4-template-statementsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue4-template-statementsfont"></a> <font color="dodgerblue">4. Template Statements</font></h4>
+<p>A template <strong>statement</strong> responds to an <strong>event</strong> raised by a binding target such as an element, component, or derictive. The template <strong>statements</strong> appearing in <em>quotes</em> to the right of the <code>=</code> symbol as in <code>(event)=&quot;statement&quot;</code>. E.g.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"deleteHero()"</span>&gt;</span>Delete hero<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>A template statement <font color="tomato">has a side effect.</font> That’s the whole point of an event. It’s how you update application state from user action.</p>
+<p><font color="mediumslateblue"><strong>Statement context</strong></font></p>
+<p>As with expression, statements can refer only to what’s in the statement context such as an event handling method of the component instantce.</p>
+<p>The <em>statement context</em> is typically the component instance. E.g. the <code>deleteHero</code> in <code>(click)=&quot;deleteHero()&quot;</code> is a method of the data-bound component.</p>
+<p>The <em>statement context</em> may also refer to properties of the template’s own context, e.g. the template <code>$event</code> object, a template input variable, e.g. <code>(let hero)</code>, a template reference variable, e.g. <code>heroRorm</code> are passed to an event handling method of the component.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">"onSave($event)"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span> (<span class="attr">click</span>)=<span class="string">"deleteHero(hero)"</span>&gt;</span>&#123;&#123;hero.name&#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> #<span class="attr">heroForm</span> (<span class="attr">ngSubmit</span>)=<span class="string">"onSubmit(heroForm)"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a href="/2019/06/20/angular-bindingII/" title="next">next</a>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/20/angular-binding/" data-id="cjy6arxnc0004fkve27oy6tfm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/20/angular-bindingII/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Angular Study Notes - II
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/20/leetcodeQ593/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Valid Square</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

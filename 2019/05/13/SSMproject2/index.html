@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>SSM Project - An On-line Shopping Website (2-1) | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Part 2. Database design (Step 1 and Step 2) Proper design of database is an important step, which can provide a strong backup for our following APP design. The design can be categorized into these st">
+<meta name="keywords" content="SSM,Spring,SpringMVC,MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSM Project - An On-line Shopping Website (2-1)">
+<meta property="og:url" content="http://yoursite.com/2019/05/13/SSMproject2/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="Part 2. Database design (Step 1 and Step 2) Proper design of database is an important step, which can provide a strong backup for our following APP design. The design can be categorized into these st">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/05/13/SSMproject2/ER_diagram.png">
+<meta property="og:updated_time" content="2019-05-14T15:27:21.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SSM Project - An On-line Shopping Website (2-1)">
+<meta name="twitter:description" content="Part 2. Database design (Step 1 and Step 2) Proper design of database is an important step, which can provide a strong backup for our following APP design. The design can be categorized into these st">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/13/SSMproject2/ER_diagram.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SSMproject2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/13/SSMproject2/" class="article-date">
+  <time datetime="2019-05-13T23:34:19.000Z" itemprop="datePublished">2019-05-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SSM Project - An On-line Shopping Website (2-1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="part-2-database-design-step-1-and-step-2"><a class="markdownIt-Anchor" href="#part-2-database-design-step-1-and-step-2"></a> Part 2. Database design (Step 1 and Step 2)</h3>
+<p>Proper design of database is an important step, which can provide a strong backup for our following APP design. The design can be categorized into these steps:</p>
+<ol>
+<li>Database creation</li>
+<li>Design ERD between different tables</li>
+<li>Write SQL statments</li>
+<li>Create different pages according to tables</li>
+</ol>
+<a id="more"></a>
+<h3 id="21-create-database"><a class="markdownIt-Anchor" href="#21-create-database"></a> 2.1 Create Database</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> tmall_ssm;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> tmall_ssm <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br></pre></td></tr></table></figure>
+<h3 id="22-tables"><a class="markdownIt-Anchor" href="#22-tables"></a> 2.2 Tables</h3>
+<p>In this project, we design 9 schemas, the <strong>ERD</strong> is shown as follows.<br>
+<img src="ER_diagram.png" width="75%" height="75%"></p>
+<p>The schemas include:</p>
+<table>
+	<tr>
+		<th>Table Name</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Category</td>
+		<td>Category info, e.g. clothes, toys, books, etc.</td>
+	</tr>
+	<tr>
+		<td>Property</td>
+		<td>Property info, e.g. weight, color, type, manufacturer, etc.</td>
+	</tr>
+	<tr>
+		<td>Product</td>
+		<td>Product info, e.g. name.</td>
+	</tr>
+	<tr>
+		<td>PropertyValue</td>
+		<td>Property value info, e.g. weight is 900g, color is pink, etc.</td>
+	</tr>
+	<tr>
+		<td>ProductImage</td>
+		<td>Product images</td>
+	</tr>
+	<tr>
+		<td>Review</td>
+		<td>Customers reviews</td>
+	</tr>
+	<tr>
+		<td>User</td>
+		<td>User info, e.g. user name,...</td>
+	</tr>
+	<tr>
+		<td>Order</td>
+		<td>Order info, e.g. mailing address, telephone,...</td>
+	</tr>
+	<tr>
+		<td>OrderItem</td>
+		<td>Order item info, e.g. the type or the number of the ordered product</td>
+	</tr>
+</table>
+<h3 id="23-relationships-between-tables"><a class="markdownIt-Anchor" href="#23-relationships-between-tables"></a> 2.3 Relationships between tables</h3>
+<p>There are three types of Ralationships in SQL Serveer</p>
+<ol>
+<li>One-One Ralationship (1-1 Relationship)</li>
+<li>One-Many Relationship (1-M Relationship)</li>
+<li>Many-Many Relationship (M-M Relationship)</li>
+</ol>
+<p>In <strong>SQL Server</strong>, these relationships are defined using <strong>Primary Key-Foreign Key constraints</strong>. A link is created between two tables where the primary key of one table is associated with the foreign key of another table using database relationships.</p>
+<h4 id="231-one-one-ralationship-1-1-relationship"><a class="markdownIt-Anchor" href="#231-one-one-ralationship-1-1-relationship"></a> 2.3.1 One-One Ralationship (1-1 Relationship)</h4>
+<p>One-to-One Relationship is defined as the relationship between two tables where both the tables should be associated with each other based on <strong>only one matching row</strong>. This relationship can be created using <strong>Primary key-Unique foreign key constraints</strong>.</p>
+<h4 id="232-one-many-relationship-1-m-relationship"><a class="markdownIt-Anchor" href="#232-one-many-relationship-1-m-relationship"></a> 2.3.2 One-Many Relationship (1-M Relationship)</h4>
+<p>The One-to-Many relationship is defined as a relationship between two tables where <strong>a row from one table can have multiple matching rows in another table</strong>. This relationship can be created using <strong>Primary key-Foreign key relationship</strong>.</p>
+<h4 id="233-many-many-relationship-m-m-relationship"><a class="markdownIt-Anchor" href="#233-many-many-relationship-m-m-relationship"></a> 2.3.3 Many-Many Relationship (M-M Relationship)</h4>
+<p>If two tables have a M-M Relationship, we need <strong>another table</strong> which is used to store their relationships. In the third table, the <strong>Primary key from both these two tables</strong> should be the <strong>Foreign key constraints</strong> in the third table.</p>
+<p>For example, in the above ERD the table <code>Product</code> and <code>User</code> has a M-M Relationship, say a user can buy many product and at the same time a produce can be bought by many users. So we create an <code>OrderItem</code> table. The table <code>Product</code> and <code>OrderItem</code> has a 1-M Relationship and the table <code>User</code> and <code>OrderItem</code> has a 1-M Relationship. That is<br>
+<code>Product &lt;-&gt; User is M : M;</code>  ==&gt; <code>Product -&gt; OrderItem is 1 : M;</code> + <code>User -&gt; OderItem is 1 : M.</code><br>
+In the above <strong>ERD</strong>, table <code>property</code> and table <code>product</code> also has a <strong>M-M relationship</strong>.</p>
+<p>In the above ERD, the <strong>1-M Relationship</strong> is summarized as below.</p>
+<table>
+	<tr>
+		<th>One</th>
+		<th>Many</th>
+	</tr>
+	<tr>
+		<td>Category</td>
+		<td>Product</td>
+	</tr>
+	<tr>
+		<td>Category</td>
+		<td>Property</td>
+	</tr>
+	<tr>
+		<td>Property</td>
+		<td>PropertyValue</td>
+	</tr>
+	<tr>
+		<td>Product</td>
+		<td>PropertyValue</td>
+	</tr>
+	<tr>
+		<td>Product</td>
+		<td>ProductImage</td>
+	</tr>
+	<tr>
+		<td>Product</td>
+		<td>Review</td>
+	</tr>
+	<tr>
+		<td>User</td>
+		<td>Order</td>
+	</tr>
+	<tr>
+		<td>Product</td>
+		<td>OrderItem</td>
+	</tr>
+	<tr>
+		<td>User</td>
+		<td>OrderItem</td>
+	</tr>
+	<tr>
+		<td>Order</td>
+		<td>OrderItem</td>
+	</tr>
+	<tr>
+		<td>User</td>
+		<td>Review</td>
+	</tr>
+</table>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/05/13/SSMproject2/" data-id="cjy6arxna0003fkve5q3hakeq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/">MyBatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSM/">SSM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/14/SSMproject2-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SSM Project - An On-line Shopping Website (2-2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/13/SSMproject1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SSM Project - An On-line Shopping Website (1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

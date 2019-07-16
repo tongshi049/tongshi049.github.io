@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>TODO List Project - JWT | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="previous_step  Connecting Spring Security and Spring Boot with JWT 1. Introduction to JWT Basic authentication As part of basic authentication, what we send is a basic 64 encoded username and password">
+<meta name="keywords" content="Project,Angular,Spring Boot,Spring Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TODO List Project - JWT">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/todo-security-JWT/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="previous_step  Connecting Spring Security and Spring Boot with JWT 1. Introduction to JWT Basic authentication As part of basic authentication, what we send is a basic 64 encoded username and password">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/JWT.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/getTokenRequest.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/getTokenResponse.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/requestWithToken.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/refreshToken.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/refreshTokenResp.png">
+<meta property="og:updated_time" content="2019-06-17T17:23:24.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TODO List Project - JWT">
+<meta name="twitter:description" content="previous_step  Connecting Spring Security and Spring Boot with JWT 1. Introduction to JWT Basic authentication As part of basic authentication, what we send is a basic 64 encoded username and password">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/11/todo-security-JWT/JWT.png">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-todo-security-JWT" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/11/todo-security-JWT/" class="article-date">
+  <time datetime="2019-06-11T13:16:53.000Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TODO List Project - JWT
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a href="/2019/06/10/todo-authentication/" title="previous_step">previous_step</a>
+<h2 id="connecting-spring-security-and-spring-boot-with-jwt"><a class="markdownIt-Anchor" href="#connecting-spring-security-and-spring-boot-with-jwt"></a> Connecting Spring Security and Spring Boot with JWT</h2>
+<p><font color="dodgerblue"><strong>1. Introduction to JWT</strong></font></p>
+<p><font color="tomato"><strong>Basic authentication</strong></font></p>
+<p>As part of basic authentication, what we send is a basic 64 encoded username and password. The important thing about basic authentication is there is <font color="purple"><strong>no expiration time</strong></font>. And the other thing is basic authentication token <font color="purple"><strong>doesn’t have any user details on them and any authorization details on them</strong>, </font>it’s pure user id and password. In summarize,</p>
+<ul>
+<li>Basic authentication
+<ul>
+<li>no expiration time</li>
+<li>no user detail</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<p><font color="tomato"><strong>Custom Token System</strong></font></p>
+<p>There were a number of attemps to extend and create <font color="purple"><strong>custom token</strong></font> based authentication systems. It has the following features,</p>
+<ul>
+<li>Custom token system
+<ul>
+<li>both teams should understand</li>
+<li>custom structure</li>
+<li>possible security flaws.</li>
+</ul>
+</li>
+</ul>
+<p>The final output of these custom token based authentication systems is that it’s some kind of a hashed value, some tokenized value. Typically these tokens contain the user details, the user authorizations and any other details which the systems are talking to each other might need.</p>
+<p>The problem with the custom authentication systems is the <font color="purple"><strong>custom structure</strong></font>, and because of it there might be <font color="purple"><strong>security flaws</strong></font>.</p>
+<p><font color="tomato"><strong>JWT</strong></font></p>
+<p>So what happened was we wanted a common token standard which is called <font color="purple"><strong>JWT, Jott</strong></font>. It continas features like</p>
+<ul>
+<li>JWT
+<ul>
+<li>standard</li>
+<li>contain user details and authorizations</li>
+</ul>
+</li>
+</ul>
+<p>The awesome thing about JWT is that it can contian user authorizations and a number of other details. There is a <font color="purple"><strong>standard</strong></font> by which it is defined, and there is a part where you can <font color="purple"><strong>extend and add custom information</strong></font>.</p>
+<p>Next let’s see what’s in <strong>JWT</strong>?<br>
+<img src="JWT.png" width="80%" height="80%"><br>
+The Jott contians a <em>HEADER</em>, a <em>PAYLOAD</em> and a <em>VERIFY SIGNATURE</em>.</p>
+<ul>
+<li><strong>HEADER</strong>, define what algorithm you are using for the hashing, and a type (JWT).</li>
+<li><strong>PAYLOAD</strong>, contains predefined elements, most of them are not mandentory, you might add what are the authorizations that a specific user has. For example,
+<ul>
+<li>sub: the subject who are we talking about</li>
+<li>name: the name of the person</li>
+<li>admin: if the user is admin</li>
+<li>iat: creation time of the token</li>
+</ul>
+</li>
+<li><strong>VERIFY SIGNATURE</strong>, contains the base 64 encoded paylaod. And also one of the most important part of it is your-512-bit-secret. This is kind of what secret string is provided in the JWT.</li>
+</ul>
+<p><font color="tomato"><strong>Our Next Steps</strong></font></p>
+<p>What we would do next is when user logs in with a user ID and password, we would send a request to the server and we would get JWT token back, and for all the subsequent requests we would using JWT token and we will be positioning it as part of the header. There would be an expiration time also on the Jott tokens and when the expiration data is coming near, you have to send the request to something called refresh token request.</p>
+<p><font color="dodgerblue"><strong>2. Importing JWT Framework</strong></font></p>
+<p>Need to remove the previous codes related to basic auth out of the package where class <code>TodoListApplication</code> locates. Since these tags can only be applied to one specific class <code>@EnableWebSecurity</code>.</p>
+<p>See this post  to know more details about <em>Componet Scan</em> in <em>Spring</em>.</p>
+<p><font color="dodgerblue"><strong>3. Executing JWT Resources - Get Token and Refresh Token</strong></font></p>
+<p><font color="tomato"><strong>Get Token</strong></font></p>
+<p>To get the token, visiting <code>POST http://localhost:8080/authenticate</code> and in the body adding <code>username</code> and <code>password</code>. The request is shown as follows.<br>
+<img src="getTokenRequest.png" width="80%" height="80%"></p>
+<ul>
+<li>The <em>URL</em> to get the token is set in <code>application.properties</code>.</li>
+</ul>
+<figure class="highlight stylus"><figcaption><span>lang: properties</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jwt<span class="selector-class">.signing</span><span class="selector-class">.key</span><span class="selector-class">.secret</span>=mySecret</span><br><span class="line">jwt<span class="selector-class">.get</span><span class="selector-class">.token</span><span class="selector-class">.uri</span>=/authenticate</span><br><span class="line">jwt<span class="selector-class">.refresh</span><span class="selector-class">.token</span><span class="selector-class">.uri</span>=/refresh</span><br><span class="line">jwt<span class="selector-class">.http</span><span class="selector-class">.request</span><span class="selector-class">.header</span>=Authorization</span><br><span class="line">jwt<span class="selector-class">.token</span><span class="selector-class">.expiration</span><span class="selector-class">.in</span><span class="selector-class">.seconds</span>=<span class="number">604800</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>The <code>username</code> and <code>password</code> in Request body is set in class <code>JwtInMemoryUserDetailsService</code>.</li>
+</ul>
+<details>
+<summary>CLICK</summary>
+<figure class="highlight dart"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">JwtInMemoryUserDetailsService</span> <span class="keyword">implements</span> <span class="title">UserDetailsService</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">List</span>&lt;JwtUserDetails&gt; inMemoryUserList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    inMemoryUserList.add(<span class="keyword">new</span> JwtUserDetails(<span class="number">1</span>L, <span class="string">"teemo"</span>,</span><br><span class="line">            <span class="string">"<span class="subst">$2a</span><span class="subst">$10</span><span class="subst">$3zHzb</span>.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e"</span>, <span class="string">"ROLE_USER_2"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  public UserDetails loadUserByUsername(<span class="built_in">String</span> username) throws UsernameNotFoundException &#123;</span><br><span class="line">    Optional&lt;JwtUserDetails&gt; findFirst = inMemoryUserList.stream()</span><br><span class="line">            .filter(user -&gt; user.getUsername().equals(username)).findFirst();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!findFirst.isPresent()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UsernameNotFoundException(<span class="built_in">String</span>.format(<span class="string">"USER_NOT_FOUND '%s'."</span>, username));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> findFirst.<span class="keyword">get</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p>Then we can get the response as follows.<br>
+<img src="getTokenResponse.png" width="90%" height="90%"></p>
+<p><font color="tomato"><strong>Use that token when sending other requests</strong></font></p>
+<p>When sending request, we add <code>Authentication</code> in the <code>HEADERS</code> like this.<br>
+<img src="requestWithToken.png" width="90%" height="90%"></p>
+<p><font color="tomato"><strong>Refresh Token</strong></font></p>
+<p>The <em>URL</em> to refresh the token is also defined in <code>application.properties</code> shown above. The request and response are shown as follows.<br>
+<img src="refreshToken.png" width="100%" height="100%"><br>
+<img src="refreshTokenResp.png" width="100%" height="100%"></p>
+<p><font color="dodgerblue"><strong>4. Understanding JWT Spring Security Framework Setup</strong></font></p>
+<ul>
+<li>
+<p><code>JwtTokenUtil.java</code>: processing the token, e.g. creating tokens, getting detials out of the token; also taking care of all the expiration date and that kind of stuff.</p>
+</li>
+<li>
+<p>Files related to JWT Resources Implementation: <code>AuthenticationException</code>,<code>JwtAuthenticationRestController</code>,<code>JwtTokenRequest</code>,<code>JwtTokenResponse</code>.</p>
+</li>
+<li>
+<p>Files related to User Details includes <code>JwtInMemoryUserDetailsService</code>, <code>JwtUserDetails</code>.</p>
+</li>
+<li>
+<p>class <code>JWTWebSecurityConfig</code> extends <code>WebSecurityConfigurerAdapterConfigures</code>, where we set http configures</p>
+<ul>
+<li>userDetailsService with BCryptPasswordEncoder</li>
+<li>statelessness! That is we don’t want any session created on the server.</li>
+<li>AuthenticationEntryPoint, which is all about handling an anthenticated users. If the user is not authenticated what should send back in our response.</li>
+<li>JwtTokenAuthorizationOncePerRequestFilter</li>
+<li>/h2-console, h2 is an in memory database, which we would be using hash to control to look at the data in the database. So we would want to ensure the <em>URL</em> <code>/h2-console</code> is not secure.</li>
+</ul>
+<p>The code in this part is shown as follows.</p>
+</li>
+</ul>
+<details>
+<summary>JWTWebSecurityConfig</summary>
+<figure class="highlight less"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">public</span> <span class="selector-tag">class</span> <span class="selector-tag">JWTWebSecurityConfig</span> <span class="selector-tag">extends</span> <span class="selector-tag">WebSecurityConfigurerAdapter</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@Autowired</span></span><br><span class="line">  private JwtUnAuthorizedResponseAuthenticationEntryPoint jwtUnAuthorizedResponseAuthenticationEntryPoint;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@Autowired</span></span><br><span class="line">  private UserDetailsService jwtInMemoryUserDetailsService;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@Autowired</span></span><br><span class="line">  private JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@Value</span>(<span class="string">"$&#123;jwt.get.token.uri&#125;"</span>)</span><br><span class="line">  private String authenticationPath;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@Autowired</span></span><br><span class="line">  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception &#123;</span><br><span class="line">    <span class="selector-tag">auth</span></span><br><span class="line">      <span class="selector-class">.userDetailsService</span>(jwtInMemoryUserDetailsService)</span><br><span class="line">      <span class="selector-class">.passwordEncoder</span>(passwordEncoderBean());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="selector-tag">Bean</span></span><br><span class="line">  <span class="selector-tag">public</span> <span class="selector-tag">PasswordEncoder</span> <span class="selector-tag">passwordEncoderBean</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">new</span> <span class="selector-tag">BCryptPasswordEncoder</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="selector-tag">Bean</span></span><br><span class="line">  @<span class="selector-tag">Override</span></span><br><span class="line">  <span class="selector-tag">public</span> <span class="selector-tag">AuthenticationManager</span> <span class="selector-tag">authenticationManagerBean</span>() <span class="selector-tag">throws</span> <span class="selector-tag">Exception</span> &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">super</span><span class="selector-class">.authenticationManagerBean</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="selector-tag">Override</span></span><br><span class="line">  <span class="selector-tag">protected</span> <span class="selector-tag">void</span> <span class="selector-tag">configure</span>(HttpSecurity httpSecurity) <span class="selector-tag">throws</span> <span class="selector-tag">Exception</span> &#123;</span><br><span class="line">    <span class="selector-tag">httpSecurity</span></span><br><span class="line">      <span class="selector-class">.csrf</span>()<span class="selector-class">.disable</span>()</span><br><span class="line">      <span class="selector-class">.exceptionHandling</span>()<span class="selector-class">.authenticationEntryPoint</span>(jwtUnAuthorizedResponseAuthenticationEntryPoint)<span class="selector-class">.and</span>()</span><br><span class="line">      <span class="selector-class">.sessionManagement</span>()<span class="selector-class">.sessionCreationPolicy</span>(SessionCreationPolicy.STATELESS)<span class="selector-class">.and</span>()</span><br><span class="line">      <span class="selector-class">.authorizeRequests</span>()</span><br><span class="line">      <span class="selector-class">.anyRequest</span>()<span class="selector-class">.authenticated</span>();</span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">httpSecurity</span></span><br><span class="line">      <span class="selector-class">.addFilterBefore</span>(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);</span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">httpSecurity</span></span><br><span class="line">      <span class="selector-class">.headers</span>()</span><br><span class="line">      <span class="selector-class">.frameOptions</span>()<span class="selector-class">.sameOrigin</span>()  <span class="comment">//H2 Console Needs this setting</span></span><br><span class="line">      <span class="selector-class">.cacheControl</span>(); <span class="comment">//disable caching</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="selector-tag">Override</span></span><br><span class="line">  <span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">configure</span>(WebSecurity webSecurity) <span class="selector-tag">throws</span> <span class="selector-tag">Exception</span> &#123;</span><br><span class="line">    <span class="selector-tag">webSecurity</span></span><br><span class="line">      <span class="selector-class">.ignoring</span>()</span><br><span class="line">      <span class="selector-class">.antMatchers</span>(</span><br><span class="line">              HttpMethod.POST,</span><br><span class="line">              authenticationPath</span><br><span class="line">      )</span><br><span class="line">      <span class="selector-class">.antMatchers</span>(HttpMethod.OPTIONS, <span class="string">"/**"</span>)</span><br><span class="line">      <span class="selector-class">.and</span>()</span><br><span class="line">      <span class="selector-class">.ignoring</span>()</span><br><span class="line">      <span class="selector-class">.antMatchers</span>(</span><br><span class="line">              HttpMethod.GET,</span><br><span class="line">              <span class="string">"/"</span> <span class="comment">//Other Stuff You want to Ignore</span></span><br><span class="line">      )</span><br><span class="line">      <span class="selector-class">.and</span>()</span><br><span class="line">      <span class="selector-class">.ignoring</span>()</span><br><span class="line">      <span class="selector-class">.antMatchers</span>(<span class="string">"/h2-console/**/**"</span>);<span class="comment">//Should not be in Production!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p><font color="dodgerblue"><strong>5. Creating a New User with Encoded Password</strong></font></p>
+<p>We use <code>BCryptPasswordEncoder</code> generating password. For example,</p>
+<figure class="highlight pgsql"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BCryptPasswordEncoder encoder = <span class="built_in">new</span> BCryptPasswordEncoder();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">  String encodedString = encoder.encode("qwer");</span><br><span class="line">  <span class="keyword">System</span>.<span class="keyword">out</span>.println(encodedString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>6. Using JWT Token in Angular Frontend</strong></font></p>
+<ul>
+<li>In <code>basic-authentication.service.ts</code>, create a new method to generate JWT authentication.</li>
+</ul>
+<figure class="highlight typescript"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">executeJWTAuthenticationService(username, password) &#123;</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.http.post&lt;<span class="built_in">any</span>&gt;(</span><br><span class="line">    <span class="string">`<span class="subst">$&#123;API_URL&#125;</span>/authenticate`</span>, &#123;</span><br><span class="line">      username,</span><br><span class="line">      password</span><br><span class="line">    &#125;).pipe(</span><br><span class="line">      map(</span><br><span class="line">        data =&gt; &#123;</span><br><span class="line">          sessionStorage.setItem(AUTHENTICATED_USER, username);</span><br><span class="line">          sessionStorage.setItem(TOKEN, <span class="string">`Bearer <span class="subst">$&#123;data.token&#125;</span>`</span>);</span><br><span class="line">          <span class="keyword">return</span> data;</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In <code>login.component.ts</code>, create a new method <code>handleJWTAuthLogin()</code> binding with the Login button. That is,</li>
+</ul>
+<figure class="highlight xml"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-success"</span> (<span class="attr">click</span>)=<span class="string">handleJWTAuthLogin()</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><figcaption><span>lang: typescript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">handleJWTAuthLogin() &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.basicAuthenticationService</span><br><span class="line">    .executeJWTAuthenticationService(<span class="keyword">this</span>.username, <span class="keyword">this</span>.password)</span><br><span class="line">    .subscribe(</span><br><span class="line">      <span class="keyword">data</span> =&gt; &#123;</span><br><span class="line">        console.log(<span class="keyword">data</span>);</span><br><span class="line">        <span class="keyword">this</span>.router.navigate([<span class="string">'welcome'</span>, <span class="keyword">this</span>.username])</span><br><span class="line">        <span class="keyword">this</span>.invalidLogin = <span class="literal">false</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      error =&gt; &#123;</span><br><span class="line">        console.log(error)</span><br><span class="line">        <span class="keyword">this</span>.invalidLogin = <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a href="/2019/06/11/todo-db/" title="next_step">next_step</a>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/11/todo-security-JWT/" data-id="cjy6aryfe01dmfkven25us71x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project/">Project</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Security/">Spring Security</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/11/todo-db/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TODO List Project - JPA and Hibernate
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/10/todo-authentication/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TODO List Project - Spring Security</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.45px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.27px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.82px;">BFS</a> <a href="/tags/BST/" style="font-size: 10.91px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.36px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 16.36px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.45px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.91px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.73px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.91px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.73px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.55px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Design/" style="font-size: 15.45px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.91px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.09px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Greedy/" style="font-size: 18.64px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.18px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.73px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.45px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.82px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.36px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.91px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.82px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.36px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.64px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.45px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.27px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.36px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.91px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.27px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 12.27px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.64px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.18px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.27px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.73px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.45px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.27px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.27px;">Stack</a> <a href="/tags/String/" style="font-size: 15.91px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.45px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.82px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.36px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.82px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 15.91px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.36px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.82px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.55px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.45px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ897/">Increasing Order Search Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ919/">Complete Binary Tree Inserter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ938/">Range Sum of BST</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ1123/">Lowest Common Ancestor of Deepest Leaves</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/leetcodeQ236/">Lowest Common Ancestor of a Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
