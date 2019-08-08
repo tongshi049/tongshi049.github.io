@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Video Stitching | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LeetCode Q 1024 - Video Stitching You are given a series of video clips from a sporting event that lasted T seconds.  These video clips can be overlapping with each other and have varied lengths. Eac">
+<meta name="keywords" content="LeetCode,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Video Stitching">
+<meta property="og:url" content="http://yoursite.com/2019/08/07/leetcodeQ1024/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="LeetCode Q 1024 - Video Stitching You are given a series of video clips from a sporting event that lasted T seconds.  These video clips can be overlapping with each other and have varied lengths. Eac">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-07T21:22:12.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Video Stitching">
+<meta name="twitter:description" content="LeetCode Q 1024 - Video Stitching You are given a series of video clips from a sporting event that lasted T seconds.  These video clips can be overlapping with each other and have varied lengths. Eac">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-leetcodeQ1024" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/07/leetcodeQ1024/" class="article-date">
+  <time datetime="2019-08-07T21:04:56.000Z" itemprop="datePublished">2019-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Video Stitching
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-1024-video-stitching"><a class="markdownIt-Anchor" href="#leetcode-q-1024-video-stitching"></a> LeetCode Q 1024 - Video Stitching</h1>
+<p>You are given a series of video clips from a sporting event that lasted <code>T</code> seconds.  These video clips can be overlapping with each other and have varied lengths.<br>
+Each video clip <code>clips[i]</code> is an interval: it starts at time <code>clips[i][0]</code> and ends at time <code>clips[i][1]</code>.  We can cut these clips into segments freely: for example, a clip <code>[0, 7]</code> can be cut into segments <code>[0, 1] + [1, 3] + [3, 7]</code>.<br>
+Return the <strong>minimum</strong> number of clips needed so that we can cut the clips into segments that cover the entire sporting event (<code>[0, T]</code>).  If the task is <strong>impossible</strong>, return <code>-1</code>.</p>
+<p><strong>Example 1:</strong> <code>Input: clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], T = 10 ; Output: 3</code><br>
+Explanation: We take the clips [0,2], [8,10], [1,9]; a total of 3 clips.<br>
+Then, we can reconstruct the sporting event as follows:<br>
+We cut [1,9] into segments [1,2] + [2,8] + [8,9].<br>
+Now we have segments [0,2] + [2,8] + [8,10] which cover the sporting event [0, 10].<br>
+<strong>Example 2:</strong> <code>Input: clips = [[0,1],[1,2]], T = 5 ; Output: -1</code><br>
+Explanation: We can’t cover [0,5] with only [0,1] and [0,2].<br>
+<strong>Example 3:</strong> <code>Input: clips = [[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], T = 9 ; Output: 3</code><br>
+Explanation: We can take clips [0,4], [4,7], and [6,9].<br>
+<strong>Example 4:</strong> <code>Input: clips = [[0,4],[2,8]], T = 5 ; Output: 2</code><br>
+Explanation: Notice you can have extra video after the event ends.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>1 &lt;= clips.length &lt;= 100</code></li>
+<li><code>0 &lt;= clips[i][0], clips[i][1] &lt;= 100</code></li>
+<li><code>0 &lt;= T &lt;= 100</code></li>
+</ul>
+<a id="more"></a>
+<h2 id="solution"><a class="markdownIt-Anchor" href="#solution"></a> Solution:</h2>
+<h2 id="solution-1-sorting"><a class="markdownIt-Anchor" href="#solution-1-sorting"></a> Solution 1: Sorting</h2>
+<p><strong>Code:</strong></p>
+<figure class="highlight angelscript"><figcaption><span>lang: java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> videoStitching(<span class="built_in">int</span>[][] clips, <span class="built_in">int</span> T) &#123;</span><br><span class="line">  Arrays.sort(clips, (a, b) -&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (a[<span class="number">0</span>] == b[<span class="number">0</span>]) <span class="keyword">return</span> a[<span class="number">1</span>] - b[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">0</span>] - b[<span class="number">0</span>];</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">int</span> len = clips.length;</span><br><span class="line">  <span class="keyword">if</span> (clips[<span class="number">0</span>][<span class="number">0</span>] != <span class="number">0</span> || clips[len - <span class="number">1</span>][<span class="number">1</span>] &lt; T) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">int</span> curEnd = <span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; len; ) &#123;</span><br><span class="line">    <span class="keyword">if</span> (curEnd &lt; clips[i][<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">int</span> maxEnd = curMax;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; len &amp;&amp; clips[i][<span class="number">0</span>] &lt;= curEnd) &#123;</span><br><span class="line">      maxEnd = Math.max(maxEnd, clips[i++][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    curEnd = maxEnd;</span><br><span class="line">    count++;</span><br><span class="line">    <span class="keyword">if</span> (curEnd &gt;= T) <span class="keyword">return</span> count;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="solution-2-dp-todo"><a class="markdownIt-Anchor" href="#solution-2-dp-todo"></a> Solution 2: DP (TODO)</h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/07/leetcodeQ1024/" data-id="cjz30qpmy00230svepkln9bs4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/08/coding-PropertyPlaceholderConfigurer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Encode important configuration information with DES
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/07/leetcodeQ1030/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Matrix Cells in Distance Order</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.31px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.54px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.31px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 15.77px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.77px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.38px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.77px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.69px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.77px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.69px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.62px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Design/" style="font-size: 15px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.77px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 13.85px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.46px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.08px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.69px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.38px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.54px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.15px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.77px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.15px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.23px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.15px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.85px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.38px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 11.92px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.15px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.77px;">Permutation</a> <a href="/tags/Project/" style="font-size: 14.62px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 11.92px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 11.92px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.46px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.08px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.31px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.69px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.38px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 11.92px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 16.92px;">Stack</a> <a href="/tags/String/" style="font-size: 15.38px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.38px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.54px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.15px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.54px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.85px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.15px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.15px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.23px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.38px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/08/coding-PropertyPlaceholderConfigurer/">Encode important configuration information with DES</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ1024/">Video Stitching</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ1030/">Matrix Cells in Distance Order</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ538/">Convert BST to Greater Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ543/">Diameter of Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

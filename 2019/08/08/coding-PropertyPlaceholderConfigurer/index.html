@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Encode important configuration information with DES | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="In some projects, we exposed our username and password of mySql in file .properties, which is not safe. To solve this issue, in this post we will introduct, 1) how to use DES to encode and decode info">
+<meta name="keywords" content="Project,Spring,PropertyPlaceholderConfigurer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Encode important configuration information with DES">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/coding-PropertyPlaceholderConfigurer/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="In some projects, we exposed our username and password of mySql in file .properties, which is not safe. To solve this issue, in this post we will introduct, 1) how to use DES to encode and decode info">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-08T18:13:36.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Encode important configuration information with DES">
+<meta name="twitter:description" content="In some projects, we exposed our username and password of mySql in file .properties, which is not safe. To solve this issue, in this post we will introduct, 1) how to use DES to encode and decode info">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-coding-PropertyPlaceholderConfigurer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/coding-PropertyPlaceholderConfigurer/" class="article-date">
+  <time datetime="2019-08-08T17:33:30.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Encode important configuration information with DES
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In some projects, we exposed our username and password of mySql in file <code>.properties</code>, which is not safe. To solve this issue, in this post we will introduct, 1) how to use <em><strong>DES</strong></em> to encode and decode information, 2) how to customized the resolution of <code>${...}</code> placeholders against local properties based on class <code>PropertyPlaceholderConfigurer</code>.</p>
+<a id="more"></a>
+<h2 id="font-colordodgerblue1-des-font"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-des-font"></a> <font color="dodgerblue">1. DES </font></h2>
+<p>The <strong>Data Encryption Standard (DES)</strong> is a symmetric-key algorithm for the encryption of data. To encrypt our important information, we need to write a <code>DESUtil</code> at first, which is responsible to encrypt and decrypt strings. In <code>DESUtil</code> we first need to generate a key for encrption. Then we can write <code>getEncryptString(...)</code> and <code>getDecryptString(...)</code> methods. The code in <code>DESUtil</code> is shown as follows.</p>
+<details>
+<summary>CODE</summary>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DES algorithm for Encoding and Decoding configuration properties in our project</span></span><br><span class="line"><span class="comment"> * It is a symmetric Security algorithm,</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DESUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Key key;</span><br><span class="line">    <span class="comment">//setting key</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String KEY_STR = <span class="string">"mykey"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String CHARSETNAME = <span class="string">"UTF-8"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String ALGORITHM = <span class="string">"DES"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * generate key for encoding</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// create a generator instance for generating code using DES algorithm</span></span><br><span class="line">            KeyGenerator generator = KeyGenerator.getInstance(ALGORITHM);</span><br><span class="line">            <span class="comment">// Using SHA1 security strategy</span></span><br><span class="line">            SecureRandom secureRandom = SecureRandom.getInstance(<span class="string">"SHA1PRNG"</span>);</span><br><span class="line">            <span class="comment">// Setting seed</span></span><br><span class="line">            secureRandom.setSeed(KEY_STR.getBytes());</span><br><span class="line">            generator.init(secureRandom);</span><br><span class="line">            key = generator.generateKey();</span><br><span class="line">            generator = <span class="keyword">null</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * To Encrypt a String</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> str:String need to Encrypt</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getEncryptString</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//BASE64 Encoding, receiving byte[] array and change it to String</span></span><br><span class="line">        BASE64Encoder base64Decoder = <span class="keyword">new</span> BASE64Encoder();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//Encoding way:UTF-8</span></span><br><span class="line">            <span class="keyword">byte</span>[] bytes = str.getBytes(CHARSETNAME);</span><br><span class="line">            <span class="comment">// create a cipher based on DES algorithm</span></span><br><span class="line">            Cipher cipher = Cipher.getInstance(ALGORITHM);</span><br><span class="line">            <span class="comment">// using generated key to init the cipher</span></span><br><span class="line">            cipher.init(Cipher.ENCRYPT_MODE, key);</span><br><span class="line">            <span class="comment">// get the encrypted bytes</span></span><br><span class="line">            <span class="keyword">byte</span>[] doFinal = cipher.doFinal(bytes);</span><br><span class="line">            <span class="comment">// return the encrypted String</span></span><br><span class="line">            <span class="keyword">return</span> base64Decoder.encode(doFinal);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">//<span class="doctag">TODO:</span>handle exception</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getDecryptString</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">        BASE64Decoder base64Decoder = <span class="keyword">new</span> BASE64Decoder();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//Encoding way:UTF-8</span></span><br><span class="line">            <span class="keyword">byte</span>[] bytes = base64Decoder.decodeBuffer(str);</span><br><span class="line">            <span class="comment">//get he cipher instance</span></span><br><span class="line">            Cipher cipher = Cipher.getInstance(ALGORITHM);</span><br><span class="line">            <span class="comment">// using the generated key</span></span><br><span class="line">            cipher.init(Cipher.DECRYPT_MODE,key);</span><br><span class="line">            <span class="comment">// get the decoded byte stream</span></span><br><span class="line">            <span class="keyword">byte</span>[] doFinal = cipher.doFinal(bytes);</span><br><span class="line">            <span class="comment">// change it to string using UTF_8 charset</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> String(doFinal,CHARSETNAME);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            <span class="comment">//<span class="doctag">TODO:</span>handle exception</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(getEncryptString(<span class="string">"work"</span>));</span><br><span class="line">        System.out.println(getEncryptString(<span class="string">"Tahm233!"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<h2 id="font-colordodgerblue2-propertyplaceholderconfigurerfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-propertyplaceholderconfigurerfont"></a> <font color="dodgerblue">2. PropertyPlaceholderConfigurer</font></h2>
+<p><code>PlaceholderConfigurer</code>(org.springframework.beans.factory.config) subclass that resolves <code>${...}</code> placeholders against local properties and/or system properties and environment variables.</p>
+<p>To enable encryption and decryption of placeholders in our configuration files with <strong>DES</strong>, first we create a class <code>EncryptPropertyPlaceholderConfigurer</code> which extends <code>PlaceholderConfigurer</code>. In this class, we override method <code>convertProperty</code> to realizing the convertion using DES.</p>
+<details>
+<summary>CODE</summary>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EncryptPropertyPlaceholderConfigurer</span> <span class="keyword">extends</span> <span class="title">PropertyPlaceholderConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// all the String need to decryptStirng</span></span><br><span class="line">    <span class="keyword">private</span> String[] encryptPropNames = &#123;<span class="string">"jdbc.username"</span>,<span class="string">"jdbc.password"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * return the property value of the corresponding property value</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> propertyName</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> propertyValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> String <span class="title">convertProperty</span><span class="params">(String propertyName, String propertyValue)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(isEncryptProp(propertyName))&#123;</span><br><span class="line">            String decryptValue = DESUtil.getDecryptString(propertyValue);</span><br><span class="line">            <span class="keyword">return</span> decryptValue;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> propertyValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * verify if that property has encrypted</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> propertyName</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isEncryptProp</span><span class="params">(String propertyName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(String encryptPropName:encryptPropNames)&#123;</span><br><span class="line">            <span class="keyword">if</span>(propertyName.equals(encryptPropName)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<p>Then we need to create a bean to tell spring use created <code>EncryptPropertyPlaceholderConfigurer</code> to reolve system properties. Previous, we only appoint the location where to find <code>${...}</code> placeholders like</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:property-holder</span> <span class="attr">location</span>=<span class="string">"classpath:jdbc.properties"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Now we define a bean like this.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.example.o2o.util.EncryptPropertyPlaceholderConfigurer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"locations"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:jdbc.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:redis.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"fileEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/08/coding-PropertyPlaceholderConfigurer/" data-id="cjz30qplc000e0svejye40y78" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project/">Project</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PropertyPlaceholderConfigurer/">PropertyPlaceholderConfigurer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/07/leetcodeQ1024/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Video Stitching</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.31px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.54px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.31px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 15.77px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.77px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.38px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.77px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.69px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.77px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.69px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.62px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Design/" style="font-size: 15px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.77px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 13.85px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.46px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.08px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.69px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.38px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.54px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.15px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.77px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.15px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.23px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.15px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 13.85px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.38px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 11.92px;">MyBatis</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/Partition/" style="font-size: 11.15px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.77px;">Permutation</a> <a href="/tags/Project/" style="font-size: 14.62px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 11.92px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SSM/" style="font-size: 11.92px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.46px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.08px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.31px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.69px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.38px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 11.92px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 16.92px;">Stack</a> <a href="/tags/String/" style="font-size: 15.38px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.38px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.54px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.15px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.54px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.85px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.15px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.15px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.23px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.38px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/08/coding-PropertyPlaceholderConfigurer/">Encode important configuration information with DES</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ1024/">Video Stitching</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ1030/">Matrix Cells in Distance Order</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ538/">Convert BST to Greater Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/07/leetcodeQ543/">Diameter of Binary Tree</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
