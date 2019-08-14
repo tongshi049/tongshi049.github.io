@@ -2,9 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/08/14/sql-notes-3/</loc>
+    
+    <lastmod>2019-08-14T20:00:33.588Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/12/sql-notes-1/</loc>
+    
+    <lastmod>2019-08-14T16:18:55.404Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/12/sql-nodes-2/</loc>
+    
+    <lastmod>2019-08-14T16:17:59.388Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcodeQ1131/</loc>
+    
+    <lastmod>2019-08-09T21:42:38.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/06/leetcodeQ9/</loc>
+    
+    <lastmod>2019-08-09T21:11:50.148Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcodeQ108/</loc>
+    
+    <lastmod>2019-08-09T21:06:23.003Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcodeQ1140/</loc>
+    
+    <lastmod>2019-08-09T20:45:07.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcodeQ1139/</loc>
+    
+    <lastmod>2019-08-09T20:15:22.575Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcode1138/</loc>
+    
+    <lastmod>2019-08-09T20:01:25.321Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/09/leetcodeQ678/</loc>
+    
+    <lastmod>2019-08-09T19:39:38.389Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/08/08/coding-PropertyPlaceholderConfigurer/</loc>
     
-    <lastmod>2019-08-08T18:13:36.506Z</lastmod>
+    <lastmod>2019-08-08T19:07:03.726Z</lastmod>
     
   </url>
   
@@ -880,13 +950,6 @@
     <loc>http://yoursite.com/2019/04/07/leetcodeQ12/</loc>
     
     <lastmod>2019-06-18T13:15:53.357Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/06/leetcodeQ9/</loc>
-    
-    <lastmod>2019-06-18T13:15:30.589Z</lastmod>
     
   </url>
   
