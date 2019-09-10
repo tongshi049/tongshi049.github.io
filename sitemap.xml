@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/09/10/php-pdo/</loc>
+    
+    <lastmod>2019-09-10T21:25:39.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/10/php-study-notes/</loc>
+    
+    <lastmod>2019-09-10T15:12:12.202Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/04/23/leetcodeQ42/</loc>
+    
+    <lastmod>2019-09-10T15:02:59.871Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/leetcodeQ1072/</loc>
+    
+    <lastmod>2019-08-15T16:45:27.823Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/leetcodeQ1080/</loc>
+    
+    <lastmod>2019-08-15T16:06:42.609Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/leetcodeQ386/</loc>
+    
+    <lastmod>2019-08-15T15:54:23.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/leetcodeQ848/</loc>
+    
+    <lastmod>2019-08-15T15:40:58.675Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/08/15/leetcodeq1054/</loc>
+    
+    <lastmod>2019-08-15T15:32:28.003Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/06/05/leetcodeQ1051/</loc>
+    
+    <lastmod>2019-08-15T14:55:44.054Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/08/14/sql-notes-3/</loc>
     
     <lastmod>2019-08-14T20:13:49.918Z</lastmod>
@@ -1248,13 +1311,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/06/05/leetcodeQ1051/</loc>
-    
-    <lastmod>2019-06-05T15:58:56.382Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2019/06/05/leetcodeQ1035/</loc>
     
     <lastmod>2019-06-05T15:52:30.255Z</lastmod>
@@ -1832,13 +1888,6 @@
     <loc>http://yoursite.com/2019/05/13/leetcodeQ407/</loc>
     
     <lastmod>2019-05-13T16:47:32.586Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/04/23/leetcodeQ42/</loc>
-    
-    <lastmod>2019-05-13T16:21:29.261Z</lastmod>
     
   </url>
   

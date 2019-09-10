@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>PHP Study Notes - PDO | TongTong Shi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PHP Data Objects (PDO) Interface official documentation The PDO extension defines a lightweight, consistent interface for accessing databases in PHP. Each database driver that implements the PDO inte">
+<meta name="keywords" content="PHP,MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP Study Notes - PDO">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/php-pdo/index.html">
+<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
+<meta property="og:description" content="PHP Data Objects (PDO) Interface official documentation The PDO extension defines a lightweight, consistent interface for accessing databases in PHP. Each database driver that implements the PDO inte">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-10T21:25:39.532Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP Study Notes - PDO">
+<meta name="twitter:description" content="PHP Data Objects (PDO) Interface official documentation The PDO extension defines a lightweight, consistent interface for accessing databases in PHP. Each database driver that implements the PDO inte">
+  
+    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-php-pdo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/php-pdo/" class="article-date">
+  <time datetime="2019-09-10T15:12:44.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP Study Notes - PDO
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="php-data-objects-pdo-interface"><a class="markdownIt-Anchor" href="#php-data-objects-pdo-interface"></a> PHP Data Objects (PDO) Interface</h3>
+<a href="https://www.php.net/manual/en/book.pdo.php" target="_blank" rel="noopener">official documentation</a>
+<p><font color="slateblue">The <strong>PDO</strong> extension defines a lightweight, consistent interface for accessing databases in PHP. Each database driver that implements the PDO interface can expose database-specific features as regular extension functions. It provides a <em>data-access</em> abstracton layer, regardless of which database you’re using, you use the same functions to issue queries and fetch data.</font></p>
+<a id="more"></a>
+<h4 id="font-colordodgerblue1-connection-to-databasefont"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-connection-to-databasefont"></a> <font color="dodgerblue">1. Connection to database</font></h4>
+<p><font color="dodgerblue"><strong>MySql PDO Driver</strong></font><br>
+Since we cannot perform any database functions using the PDO extention by itself; a <font color="mediumaquamarine"><strong>database-specific PDO driver</strong></font> is required to access a database. In php configuration file <code>php.ini</code>, we can do the following settings to let the driver extension loaded automatically.</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span>=mysqli</span><br><span class="line"><span class="attr">extension</span>=pdo_mysql</span><br><span class="line"><span class="attr">extension</span>=pdo_sqlite</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>Connections</strong></font></p>
+<p>By creating instances of the PDO base class, connections can be established. It doesn’t matter which driver is used; the <strong>PDO class name</strong> is always used. The <strong>constructor</strong> accepts parameters for specifying the <font color="mediumslateblue">database source (DSN), username, password</font>. For example,</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$dsn = <span class="string">'mysql:host='</span> . $db_host . <span class="string">';dbname='</span> . $db_name . <span class="string">';charset=utf8'</span>;</span><br><span class="line"></span><br><span class="line">$db = <span class="keyword">new</span> PDO($dsn, $db_user, $db_pass);</span><br></pre></td></tr></table></figure>
+<p>If the connection errors occur, a <font color="tomato"><em>PDOException</em></font> object will be thrown. To handle the error condition, a <em>try-catch</em> block can be used. For example,</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$dsn = <span class="string">'mysql:localhost='</span> . $db_host . <span class="string">'; dbname='</span> . $db_name . <span class="string">'; charset=utf8'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    $db = <span class="keyword">new</span> PDO($dsn, $db_user, $db_pass);</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (PDOException $e) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="font-colordodgerblue2-prepared-statements-and-stored-proceduresfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-prepared-statements-and-stored-proceduresfont"></a> <font color="dodgerblue">2. Prepared statements and stored procedures</font></h4>
+<p>To avoid <font color="tomato"><em>SQL injection</em></font>occurs, the <strong>prepared statements</strong> need to be used. They can be thought of as kind of complied template for the SQL that an applicaion wants to run, that can be customized using variable parameters.</p>
+<p>The <strong>prepared statements</strong> bring two major benefits:</p>
+<ul>
+<li>The query only needs to be prepared once, but can be executed multiple times with the same or different parameters.</li>
+<li>No SQL injection will occur.</li>
+</ul>
+<p>When using the <strong>prepared statments</strong>, it follows <code>prepare -&gt; bindValue -&gt; execute</code> procedure. For example,</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"SELECT * </span></span><br><span class="line"><span class="string">        FROM user</span></span><br><span class="line"><span class="string">        WHERE username = :username"</span></span><br><span class="line"></span><br><span class="line">$stmt = $conn-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">$stmt-&gt;bindValue(<span class="string">':username'</span>, $username, PDO::PARAM_STR);</span><br><span class="line"></span><br><span class="line">$stmt-&gt;execute();</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>Repeated inserts using prepared statements</strong></font><br>
+The following example shows how to repeat inserts using prepared statements. The <code>?</code> can be used as the placeholder.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setCategories</span> <span class="params">($conn, $ids)</span> </span>&#123;</span><br><span class="line">    $sql = <span class="string">"INSERT IGNORE INTO article_category (article_id, category_id VALUES "</span>; <span class="comment">// be attention to the space in the end</span></span><br><span class="line"></span><br><span class="line">    $values = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($ids <span class="keyword">as</span> $ad) &#123;</span><br><span class="line">	    $values[] = <span class="string">"(&#123;$this-&gt;id&#125;, ?&#125;)"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $sql .= implode(<span class="string">", "</span>, $values); <span class="comment">// implode - join array elements with a gluestring. Syntax: implode(string $glue, array $pieces): string</span></span><br><span class="line"></span><br><span class="line">    $stmt = $conn-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($ids <span class="keyword">as</span> $i =&gt; $id) &#123;</span><br><span class="line">    	$stmt-&gt;bindValue($i + <span class="number">1</span>, $id, PDO::PARAM_INT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $stmt-&gt;execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="dodgerblue"><strong>Fetch data using prepared statements</strong></font><br>
+The following example shows how to fetch data using prepared statements. The user input has automatically quoted, so there is no risk of a SQL injection attack.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"SELECT * FROM article where id = ?"</span>;</span><br><span class="line"></span><br><span class="line">$stmt = $db-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">$stmt-&gt;bindValue(<span class="number">1</span>, $id, PDO::PARAM_INT);</span><br><span class="line"></span><br><span class="line">$stmt-&gt;setFetchMode(PDO::FETCH_CLASS, <span class="string">'Article'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($stmt-&gt;execute()) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $stmt-&gt;fetch();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If we need to get data from user input, we can also add validations like <code>isset($_GET['id'])</code> and <code>is_numeric($_GET['id'])</code></p>
+<p><font color="dodgerblue"><strong>Call a stored procedure with an output parameter</strong></font></p>
+<h4 id="font-colordodgerblue3-pdo-classfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue3-pdo-classfont"></a> <font color="dodgerblue">3. PDO class</font></h4>
+<p>Represents a connection between PHP and a database server.</p>
+<p>Commonly used methods:</p>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDO::__construct ( string $dsn [, string $username [, string $passwd [, array $options ]]] )</code></font> : Creates a PDO instance to represent a connection to the requested database.</li>
+<li><font color="MEDIUMSEAGREEN"><code>PDO::prepare ( string $statement [, array $driver_options = array() ] ) : PDOStatement</code></font></li>
+<li><font color="MEDIUMSEAGREEN"><code>PDO::query ( string $statement ) : PDOStatement</code></font>. E.g.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"SELECT *</span></span><br><span class="line"><span class="string">        FROM category</span></span><br><span class="line"><span class="string">        ORDER BY name"</span>;</span><br><span class="line"></span><br><span class="line">$result = $conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> $result-&gt;fetchAll(PDO::FETCH_ASSOC);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDO::query ( string $statement , int $fetch_style = PDO::FETCH_COLUMN , int $colno ) : PDOStatement</code></font>. E.g.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> $conn-&gt;query(<span class="string">"SELECT COUNT(*) FROM article"</span>)-&gt;fetchColumn();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDO::lastInsertId ([ string $name = NULL ] ) : string</code></font> : returns the ID of the last inserted row or sequence value.
+<ul>
+<li>If a sequence name was not specified for the name parameter, <code>PDO::lastInsertId()</code> returns a string representing the <em>row ID of the last row that was inserted into the database</em>.</li>
+<li>If a sequence name was specified for the name parameter, <code>PDO::lastInsertId()</code> returns a string representing the <em>last value retrieved from the specified sequence object</em>. E.g.</li>
+</ul>
+</li>
+</ul>
+<details>
+	<summary>EXAMPLE</summary>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">($conn)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;validate()) &#123;</span><br><span class="line"></span><br><span class="line">        $sql = <span class="string">"INSERT INTO article (title, content, published_at)</span></span><br><span class="line"><span class="string">                VALUES (:title, :content, :published_at)"</span>;</span><br><span class="line"></span><br><span class="line">        $stmt = $conn-&gt;prepare($sql);</span><br><span class="line"></span><br><span class="line">        $stmt-&gt;bindValue(<span class="string">':title'</span>, <span class="keyword">$this</span>-&gt;title, PDO::PARAM_STR);</span><br><span class="line">        $stmt-&gt;bindValue(<span class="string">':content'</span>, <span class="keyword">$this</span>-&gt;content, PDO::PARAM_STR);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;published_at == <span class="string">''</span>) &#123;</span><br><span class="line">            $stmt-&gt;bindValue(<span class="string">':published_at'</span>, <span class="keyword">null</span>, PDO::PARAM_NULL);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $stmt-&gt;bindValue(<span class="string">':published_at'</span>, <span class="keyword">$this</span>-&gt;published_at, PDO::PARAM_STR);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($stmt-&gt;execute()) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;id = $conn-&gt;lastInsertId();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<h4 id="font-colordodgerblue4-pdostatementfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue4-pdostatementfont"></a> <font color="dodgerblue">4. PDOStatement</font></h4>
+<p>Represents a prepared statement and, after the statement is executed, an associated result set.</p>
+<p>Commonly used methods:</p>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::bindColumn ( mixed $column , mixed &amp;$param [, int $type [, int $maxlen [, mixed $driverdata ]]] ) : bool</code></font> : bind a column to a PHP available. E.g.</li>
+</ul>
+<details>
+	<summary>EXAMPLE</summary>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span> php</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readData</span><span class="params">($conn)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $sql = <span class="string">'SELECT name, colour, calories FROM fruit'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">        $stmt = $conn-&gt;prepare($sql);</span><br><span class="line">        $stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Bind by column number */</span></span><br><span class="line">        $stmt-&gt;bindColumn(<span class="number">1</span>, $name);</span><br><span class="line">        $stmt-&gt;bindColumn(<span class="number">2</span>, $color);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Bind by column name */</span></span><br><span class="line">        $stmt-&gt;bindColumn(<span class="string">'calories'</span>, $cals);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> ($row = $stmt-&gt;fetch(PDO::FETCH_BOUND)) &#123;</span><br><span class="line">            $data = $name . <span class="string">" "</span> . $color . <span class="string">" "</span> . $cals . <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">            <span class="keyword">echo</span> $data;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">catch</span> (PDOException $e) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $e-&gt;getMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::bindParam ( mixed $parameter , mixed &amp;$variable [, int $data_type = PDO::PARAM_STR [, int $length [, mixed $driver_options ]]] ) : bool</code></font> : bind a parameter to the specified variable name. E.g.</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$calories = <span class="number">150</span>;</span><br><span class="line">$colour = <span class="string">'red'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Execute a prepared statement with named placeholder */</span></span><br><span class="line"></span><br><span class="line">$sql = <span class="string">'SELECT name, colour, calories</span></span><br><span class="line"><span class="string">        FROM fruit</span></span><br><span class="line"><span class="string">        WHERE calories &lt; :calories AND colour = :colour'</span>;</span><br><span class="line">$stmt = $conn-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;bindParam(<span class="string">':calories'</span>, $calories, PDO::PARAM_INT);</span><br><span class="line">$stmt-&gt;bindParam(<span class="string">':colour'</span>, $colour, PDO::PARAM_STR, <span class="number">12</span>);</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Execute a prepared statement with question mark placeholders */</span></span><br><span class="line">$stmt = $dbh-&gt;prepare(<span class="string">'SELECT name, colour, calories</span></span><br><span class="line"><span class="string">    FROM fruit</span></span><br><span class="line"><span class="string">    WHERE calories &lt; ? AND colour = ?'</span>);</span><br><span class="line">$stmt-&gt;bindParam(<span class="number">1</span>, $calories, PDO::PARAM_INT);</span><br><span class="line">$stmt-&gt;bindParam(<span class="number">2</span>, $colour, PDO::PARAM_STR, <span class="number">12</span>);</span><br><span class="line">$stmt-&gt;execute();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::bindValue ( mixed $parameter , mixed $value [, int $data_type = PDO::PARAM_STR ] ) : bool</code></font> : bind a value to a parameter</li>
+</ul>
+<p><font color="tomato"><strong>Difference between <code>bindParam</code> and <code>bindValue</code></strong></font></p>
+<ol>
+<li><font color="tomato"><code>bindParam</code>: only <em>variables</em> can be passed in; <code>bindValue</code>: both <em>variables</em> and <em>values</em> can be passed in.</font></li>
+<li><font color="tomato"><code>bindParam</code>: the variable is bound as a reference and will only be evaluated at the time that <code>PDOStatement:: execute()</code> is called.</font></li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$value = <span class="string">'foo'</span>;</span><br><span class="line">$stmt = $conn-&gt;prepare(<span class="string">'SELECT name FROM bar WHERE baz = :baz'</span>);</span><br><span class="line">$stmt-&gt;bindParam(<span class="string">':baz'</span>, $value); <span class="comment">// use bindParam to bind the variable</span></span><br><span class="line">$value = <span class="string">'foobarbaz'</span>;</span><br><span class="line">$s-&gt;execute(); <span class="comment">// executed with WHERE baz = 'foobarbaz'</span></span><br><span class="line"></span><br><span class="line">$value = <span class="string">'foo'</span>;</span><br><span class="line">$stmt = $conn-&gt;prepare(<span class="string">'SELECT name FROM bar WHERE baz = :baz'</span>);</span><br><span class="line">$stmt-&gt;bindValue(<span class="string">':baz'</span>, $value); <span class="comment">// use bindValue to bind the variable's value</span></span><br><span class="line">$value = <span class="string">'foobarbaz'</span>;</span><br><span class="line">$s-&gt;execute(); <span class="comment">// executed with WHERE baz = 'foo'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::fetch ([ int $fetch_style [, int $cursor_orientation = PDO::FETCH_ORI_NEXT [, int $cursor_offset = 0 ]]] ) : mixed</code></font> : fetch the next row from a result set. <code>fetch_style</code> includes:
+<ul>
+<li><code>PDO::FETCH_ASSOC</code>: returns an array indexed by column name as returned in result set.</li>
+<li><code>PDO::FETCH_BOUND</code>: returns <strong>TRUE</strong> and assigns the values of the columns in result set to the PHP variables to which they were bound with the <code>PDOStatement::bindColumn()</code> method.</li>
+<li><code>PDO::FETCH_CLASS</code>: returns a new instance of the requested class, mapping the columns of the result set to named properties in the class, and calling the constructor afterwards.</li>
+</ul>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$stmt-&gt;setFetchMode(PDO::FETCH_CLASS, <span class="string">'Article'</span>);</span><br><span class="line">$stmt-&gt;fetch();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<details>
+	<summary>Examples</summary>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"SELECT name, color FROM fruit"</span>;</span><br><span class="line">$stmt = $conn-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1. PDO::FETCH_ASSOC */</span></span><br><span class="line">$result = $stmt-&gt;fetch(PDO::FETCH_ASSOC);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; apple</span></span><br><span class="line"><span class="comment">    [color] =&gt; red</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 2. PDO::FETCH_BOTH */</span></span><br><span class="line">$result = $stmt-&gt;fetch(PDO::FETCH_BOTH);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [name] =&gt; banana</span></span><br><span class="line"><span class="comment">    [0] =&gt; banana</span></span><br><span class="line"><span class="comment">    [color] =&gt; yellow</span></span><br><span class="line"><span class="comment">    [1] =&gt; yellow</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</details>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::fetchAll ([ int $fetch_style [, mixed $fetch_argument [, array $ctor_args = array() ]]] ) : array</code></font> : return an array containing all of the result set rows.</li>
+</ul>
+<details>
+	<summary>Examples</summary>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"SELECT name, color FROM fruit"</span>;</span><br><span class="line">$stmt = $conn-&gt;prepare($sql);</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1. Fetch all remaining rows in a result set*/</span></span><br><span class="line"></span><br><span class="line">$result = $stmt-&gt;fetchAll();</span><br><span class="line"><span class="comment">/* $result: </span></span><br><span class="line"><span class="comment">Array</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; Array </span></span><br><span class="line"><span class="comment">        (</span></span><br><span class="line"><span class="comment">            [name] =&gt; apple</span></span><br><span class="line"><span class="comment">            [0] =&gt; apple</span></span><br><span class="line"><span class="comment">            [color] =&gt; red</span></span><br><span class="line"><span class="comment">            [1] =&gt; red</span></span><br><span class="line"><span class="comment">        )</span></span><br><span class="line"><span class="comment">    [1] =&gt; ....</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 2. Fetch all values of a single column from a result set*/</span></span><br><span class="line"></span><br><span class="line">$result = $stmt-&gt;fetchAll(PDO::FETCH_COLUMN, <span class="number">0</span>);</span><br><span class="line">var_dump($result);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* $result: </span></span><br><span class="line"><span class="comment">Array(3)</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">    [0] =&gt; string(5) =&gt; apple</span></span><br><span class="line"><span class="comment">    [1] =&gt; string(4) =&gt; pear</span></span><br><span class="line"><span class="comment">    [2] =&gt; string(5) =&gt; grape</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 3. Group all values by a single column */</span></span><br><span class="line">$insert = $conn-&gt;prepare(<span class="string">"INSERT INTO fruit(name, colour) VALUES (?, ?)"</span>);</span><br><span class="line">$insert-&gt;execute(<span class="keyword">array</span>(<span class="string">'apple'</span>, <span class="string">'green'</span>));</span><br><span class="line">$insert-&gt;execute(<span class="keyword">array</span>(<span class="string">'pear'</span>, <span class="string">'yellow'</span>));</span><br><span class="line"></span><br><span class="line">$stmt = $conn-&gt;prepare(<span class="string">"SELECT name, colour FROM fruit"</span>);</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Group values by the first column */</span></span><br><span class="line">$result = $stmt-&gt;fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* $result:</span></span><br><span class="line"><span class="comment">array(3) &#123;</span></span><br><span class="line"><span class="comment">  ["apple"]=&gt;</span></span><br><span class="line"><span class="comment">  array(2) &#123;</span></span><br><span class="line"><span class="comment">    [0] =&gt; string(5) "green"</span></span><br><span class="line"><span class="comment">    [1] =&gt; string(3) "red"</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">  ["pear"]=&gt;</span></span><br><span class="line"><span class="comment">  array(2) &#123;</span></span><br><span class="line"><span class="comment">    [0] =&gt; string(5) "green"</span></span><br><span class="line"><span class="comment">    [1] =&gt; string(6) "yellow"</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">  ["watermelon"]=&gt;</span></span><br><span class="line"><span class="comment">  array(1) &#123;</span></span><br><span class="line"><span class="comment">    [0] =&gt; string(5) "pink"</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 4. Instantiating a class for each result */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fruit</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $name;</span><br><span class="line">    <span class="keyword">public</span> $color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$stmt = $conn-&gt;prepare(<span class="string">"SELECT name, color FROM fruit"</span>);</span><br><span class="line">$stmt-&gt;execute();</span><br><span class="line"></span><br><span class="line">$result = $stmt-&gt;fetchAll(PDO::FETCH_CLASS, <span class="string">"fruit"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* $result</span></span><br><span class="line"><span class="comment">array(3) &#123;</span></span><br><span class="line"><span class="comment">  [0]=&gt;</span></span><br><span class="line"><span class="comment">  object(fruit)#1 (2) &#123;</span></span><br><span class="line"><span class="comment">    ["name"]=&gt;string(5) "apple"</span></span><br><span class="line"><span class="comment">    ["colour"]=&gt;string(5) "green"</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">  [1]=&gt;</span></span><br><span class="line"><span class="comment">  object(fruit)#2 (2) &#123;</span></span><br><span class="line"><span class="comment">    ...</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">  ...</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</details>
+<ul>
+<li><font color="MEDIUMSEAGREEN"><code>PDOStatement::fetchColumn ([ int $column_number = 0 ] ) : mixed</code></font> : return a single column from the next row of a result set or <font color="red"><strong>FALSE</strong></font> if there are no more rows. <font color="red"><strong>Note:</strong></font><br>
+<code>PDOStatement::fetchColumn()</code> should not be used to retrieve <strong>boolean columns</strong>, as it is impossible to distinguish a value of FALSE from there being no more rows to retrieve. Use <code>PDOStatement::fetch()</code> instead.</li>
+</ul>
+<details>
+	<summary>Examples</summary>
+<figure class="highlight elixir"><figcaption><span>lang: php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">"SELECT name, color FROM fruit"</span>;</span><br><span class="line"><span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;prepare(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$stmt</span>-&gt;execute();</span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$stmt</span>-&gt;fetchColumn(); <span class="regexp">/* first col of first row : name = lemon * /</span></span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$stmt</span>-&gt;fetchColumn(<span class="number">1</span>); <span class="regexp">/\* second col of second row : color = red \*/</span></span><br></pre></td></tr></table></figure>
+</details>
+<ul>
+<li><code>PDOStatement::setFetchMode ( int $mode ) : bool</code> : set the default fetch mode for this statement.</li>
+<li><code>PDOStatement::rowCount ( void ) : int</code> : return the number of rows affected by the last SQL statement.</li>
+</ul>
+<details>
+	<summary>Examples</summary>
+<figure class="highlight elixir"><figcaption><span>lang: php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$del</span> = <span class="variable">$dbh</span>-&gt;prepare(<span class="string">'DELETE FROM fruit'</span>);</span><br><span class="line"><span class="variable">$del</span>-&gt;execute();</span><br><span class="line"></span><br><span class="line">/* Return number of rows that were deleted \*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">$count = $del-&gt;rowCount(); /</span>\* <span class="number">9</span> \*<span class="regexp">/</span></span><br></pre></td></tr></table></figure>
+</details>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/10/php-pdo/" data-id="ck0ecke4z01gknovei2plflr2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySql/">MySql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/10/php-study-notes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP Study Notes - Overview</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Angular/" style="font-size: 15.42px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.5px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.25px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.83px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.42px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.83px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.92px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.83px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.92px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.58px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 11.25px;">Database</a> <a href="/tags/Design/" style="font-size: 15.42px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.83px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.17px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.75px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.33px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.92px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.42px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.67px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.83px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.25px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.17px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.67px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 14.17px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.42px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.5px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10.42px;">MySQL</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/PHP/" style="font-size: 10.42px;">PHP</a> <a href="/tags/Partition/" style="font-size: 11.25px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.83px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.08px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SQL/" style="font-size: 10.42px;">SQL</a> <a href="/tags/SSM/" style="font-size: 12.08px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.75px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.33px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.92px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.42px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.08px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.08px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.42px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.67px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.25px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.67px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.75px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.25px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.25px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.58px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.42px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/10/php-pdo/">PHP Study Notes - PDO</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/php-study-notes/">PHP Study Notes - Overview</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/leetcodeQ1072/">Flip Columns For Maximum Number of Equal Rows</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/leetcodeQ1080/">Insufficient Nodes in Root to Leaf Paths</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/15/leetcodeQ386/">Lexicographical Numbers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <span id="footer-info" class="inner">
+      &copy; 2019 Tong Shi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </span>
+  </div>
+  <div id="analysis" style="text-align:center;">
+  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
+	<span id="busuanzi_container_site_pv">
+      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
+  </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
