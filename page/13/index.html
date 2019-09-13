@@ -62,6 +62,133 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-leetcodeQ1090" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/17/leetcodeQ1090/" class="article-date">
+  <time datetime="2019-06-17T15:36:24.000Z" itemprop="datePublished">2019-06-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/17/leetcodeQ1090/">Largest Values From Labels</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-1090-largest-values-from-labels"><a class="markdownIt-Anchor" href="#leetcode-q-1090-largest-values-from-labels"></a> LeetCode Q 1090 - Largest Values From Labels</h1>
+<p>We have a set of items: the i-th item has value values[i] and label labels[i].<br>
+Then, we choose a subset S of these items, such that:</p>
+<ul>
+<li>|S| &lt;= num_wanted</li>
+<li>For every label L, the number of items in S with label L is &lt;= use_limit.</li>
+<li>Return the largest possible sum of the subset S.</li>
+</ul>
+<p>Example 1:<br>
+<code>Input: values = [5,4,3,2,1], labels = [1,1,2,2,3], num_wanted = 3, use_limit = 1 ; Output: 9</code><br>
+Explanation: The subset chosen is the first, third, and fifth item.</p>
+<p>Example 2:<br>
+<code>Input: values = [5,4,3,2,1], labels = [1,3,3,3,2], num_wanted = 3, use_limit = 2 ; Output: 12</code><br>
+Explanation: The subset chosen is the first, second, and third item.</p>
+<p>Example 3:<br>
+<code>Input: values = [9,8,8,7,6], labels = [0,0,0,1,1], num_wanted = 3, use_limit = 1 Output: 16</code><br>
+Explanation: The subset chosen is the first and fourth item.</p>
+<p>Example 4:<br>
+<code>Input: values = [9,8,8,7,6], labels = [0,0,0,1,1], num_wanted = 3, use_limit = 2 Output: 24</code><br>
+Explanation: The subset chosen is the first, second, and fourth item.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= values.length == labels.length &lt;= 20000</li>
+<li>0 &lt;= values[i], labels[i] &lt;= 20000</li>
+<li>1 &lt;= num_wanted, use_limit &lt;= values.length</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/06/17/leetcodeQ1090/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/17/leetcodeQ1090/" data-id="ck0iio63u003kzgveyou16mb8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sort/">Sort</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-leetcodeQ1091" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/17/leetcodeQ1091/" class="article-date">
+  <time datetime="2019-06-17T15:27:32.000Z" itemprop="datePublished">2019-06-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/17/leetcodeQ1091/">Shortest Path in Binary Matrix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="leetcode-q-1091-shortest-path-in-binary-matrix"><a class="markdownIt-Anchor" href="#leetcode-q-1091-shortest-path-in-binary-matrix"></a> LeetCode Q 1091 - Shortest Path in Binary Matrix</h1>
+<p>In an N by N square grid, each cell is either empty (0) or blocked (1).</p>
+<p>A clear path from top-left to bottom-right has length k if and only if it is composed of cells C_1, C_2, …, C_k such that:</p>
+<ul>
+<li>Adjacent cells C_i and C_{i+1} are connected 8-directionally (ie., they are different and share an edge or corner)</li>
+<li>C_1 is at location (0, 0) (ie. has value grid[0][0])</li>
+<li>C_k is at location (N-1, N-1) (ie. has value grid[N-1][N-1])</li>
+<li>If C_i is located at (r, c), then grid[r][c] is empty (ie. grid[r][c] == 0).</li>
+</ul>
+<p>Return the length of the shortest such clear path from top-left to bottom-right.  If such a path does not exist, return -1.</p>
+<p>Example 1: <code>Input: [[0,1],[1,0]] ; Output: 2</code></p>
+<p>Example 2: <code>Input: [[0,0,0],[1,1,0],[1,1,0]] ; Output: 4</code></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= grid.length == grid[0].length &lt;= 100</li>
+<li>grid[r][c] is 0 or 1</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2019/06/17/leetcodeQ1091/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/17/leetcodeQ1091/" data-id="ck0iio63z003ozgve0dtcuz3v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-leetcodeQ1089" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/17/leetcodeQ1089/" class="article-date">
@@ -105,7 +232,7 @@ Explanation: After calling your function, the input array is modified to: [1,2,3
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/17/leetcodeQ1089/" data-id="ck0eckdax003unove6vrzk3do" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/17/leetcodeQ1089/" data-id="ck0iio65y004pzgveevymjaw0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -164,7 +291,7 @@ Explanation: The -2 and -1 are moving left, while the 1 and 2 are moving right. 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ735/" data-id="ck0eckdlj00k4novelgswjgnd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ735/" data-id="ck0iio7md00jvzgveb367s7l6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -222,7 +349,7 @@ Explanation: The -2 and -1 are moving left, while the 1 and 2 are moving right. 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ856/" data-id="ck0eckdnh00manove6uw2u3d5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ856/" data-id="ck0iio7wz00m8zgvefn8ubpc8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -287,7 +414,7 @@ The decoded string is “a” repeated 8301530446056247680 times.  The 1st lette
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ880/" data-id="ck0eckdnv00mtnove66oebztf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ880/" data-id="ck0iio8t600ofzgve2wttv423" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -333,7 +460,7 @@ The decoded string is “a” repeated 8301530446056247680 times.  The 1st lette
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ739/" data-id="ck0eckdll00k7novegv1eaoik" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ739/" data-id="ck0iio7n400kazgvesf34k6k4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -399,7 +526,7 @@ S.next(85) is called and returns 6.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ901/" data-id="ck0eckdo500n6novej7pph181" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ901/" data-id="ck0iio87c00mxzgvewoq6ir32" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -457,7 +584,7 @@ Explanation: “abcabcabc” is valid after consecutive insertings of “abc”.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ1003/" data-id="ck0eckd8v0010novei8mh6jnt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ1003/" data-id="ck0iio5zw0017zgvencsujcu2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -504,104 +631,7 @@ Explanation: “abcabcabc” is valid after consecutive insertings of “abc”.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ84/" data-id="ck0eckdn200lvnovea9nfbq7h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ456" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/15/leetcodeQ456/" class="article-date">
-  <time datetime="2019-06-15T14:56:20.000Z" itemprop="datePublished">2019-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/15/leetcodeQ456/">132 Pattern</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-456-132-pattern"><a class="markdownIt-Anchor" href="#leetcode-q-456-132-pattern"></a> LeetCode Q 456 - 132 Pattern</h1>
-<p>Given a sequence of n integers a1, a2, …, an, a 132 pattern is a subsequence ai, aj, ak such that i &lt; j &lt; k and ai &lt; ak &lt; aj. Design an algorithm that takes a list of n numbers as input and checks whether there is a 132 pattern in the list.</p>
-<p>Note: n will be less than 15,000.</p>
-<p>Example 1: <code>Input: [1, 2, 3, 4] ; Output: False</code><br>
-Explanation: There is no 132 pattern in the sequence.</p>
-<p>Example 2: <code>Input: [3, 1, 4, 2] ; Output: True</code><br>
-Explanation: There is a 132 pattern in the sequence: [1, 4, 2].</p>
-<p>Example 3: <code>Input: [-1, 3, 2, 0] ; Output: True</code><br>
-Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/15/leetcodeQ456/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ456/" data-id="ck0eckdi300f5novezw45a7as" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcodeQ556" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/15/leetcodeQ556/" class="article-date">
-  <time datetime="2019-06-15T14:45:14.000Z" itemprop="datePublished">2019-06-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/15/leetcodeQ556/">Next Greater Element III</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="leetcode-q-556-next-greater-element-iii"><a class="markdownIt-Anchor" href="#leetcode-q-556-next-greater-element-iii"></a> LeetCode Q 556 - Next Greater Element III</h1>
-<p>Given a positive 32-bit integer n, you need to find the smallest 32-bit integer which has exactly the same digits existing in the integer n and is greater in value than n. If no such positive 32-bit integer exists, you need to return -1.</p>
-<p>Example 1: <code>Input: 12 ; Output: 21</code></p>
-<p>Example 2: <code>Input: 21 ; Output: -1</code></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/06/15/leetcodeQ556/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ556/" data-id="ck0eckdjh00hanovev2tefvue" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/15/leetcodeQ84/" data-id="ck0iio7wl00m0zgve7w8ukwe3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monotonous-Stack/">Monotonous Stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stack/">Stack</a></li></ul>
@@ -628,7 +658,7 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Angular/" style="font-size: 15.42px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.5px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.25px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.83px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.42px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.83px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.92px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.83px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.92px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.58px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 11.25px;">Database</a> <a href="/tags/Design/" style="font-size: 15.42px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.83px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.17px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.75px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.33px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.92px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.42px;">Integer Overflow</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.67px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.83px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.25px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.17px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.67px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 14.17px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.42px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.5px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10.42px;">MySQL</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/PHP/" style="font-size: 10.42px;">PHP</a> <a href="/tags/Partition/" style="font-size: 11.25px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.83px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.08px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SQL/" style="font-size: 10.42px;">SQL</a> <a href="/tags/SSM/" style="font-size: 12.08px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.75px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.33px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.92px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.42px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.08px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.08px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.42px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.67px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.25px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.67px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.75px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.25px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.25px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.58px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.42px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+      <a href="/tags/Angular/" style="font-size: 15.42px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.5px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.25px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.83px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.42px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.83px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.92px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.83px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.92px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.58px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 11.25px;">Database</a> <a href="/tags/Design/" style="font-size: 15.42px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 10.83px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.17px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.75px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.33px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.92px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.42px;">Integer Overflow</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.67px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.83px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.25px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.17px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.67px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 14.17px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.42px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.5px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10.42px;">MySQL</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/Partition/" style="font-size: 11.25px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.83px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.08px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SQL/" style="font-size: 10.42px;">SQL</a> <a href="/tags/SSM/" style="font-size: 12.08px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.75px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.33px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.92px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.42px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.08px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.08px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.42px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.67px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.25px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.67px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.75px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.25px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.25px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.58px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.42px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
     </div>
   </div>
 
@@ -650,6 +680,14 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
       <ul>
         
           <li>
+            <a href="/2019/09/11/php-ajax/">PHP Study Notes - Ajax</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/php-session/">PHP Study Notes - Session</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/10/php-pdo/">PHP Study Notes - PDO</a>
           </li>
         
@@ -659,14 +697,6 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
         
           <li>
             <a href="/2019/08/15/leetcodeQ1072/">Flip Columns For Maximum Number of Equal Rows</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/15/leetcodeQ1080/">Insufficient Nodes in Root to Leaf Paths</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/15/leetcodeQ386/">Lexicographical Numbers</a>
           </li>
         
       </ul>

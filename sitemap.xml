@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2019/09/10/php-pdo/</loc>
+    <loc>http://yoursite.com/2019/09/11/php-ajax/</loc>
     
-    <lastmod>2019-09-10T21:25:39.532Z</lastmod>
+    <lastmod>2019-09-11T17:07:48.828Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/10/php-session/</loc>
+    
+    <lastmod>2019-09-11T16:56:01.241Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2019/09/10/php-study-notes/</loc>
     
-    <lastmod>2019-09-10T15:12:12.202Z</lastmod>
+    <lastmod>2019-09-11T16:55:39.197Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/10/php-pdo/</loc>
+    
+    <lastmod>2019-09-10T21:25:39.532Z</lastmod>
     
   </url>
   
