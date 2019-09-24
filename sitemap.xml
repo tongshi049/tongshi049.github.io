@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/09/24/observer-design-pattern/</loc>
+    
+    <lastmod>2019-09-24T21:09:16.278Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/24/builder-design-pattern/</loc>
+    
+    <lastmod>2019-09-24T18:06:17.048Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/05/16/designPattern-IteratorPattern/</loc>
+    
+    <lastmod>2019-09-24T16:01:22.256Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/09/11/php-ajax/</loc>
     
     <lastmod>2019-09-11T17:07:48.828Z</lastmod>
@@ -782,13 +803,6 @@
     <loc>http://yoursite.com/2019/06/19/factoryMethod/</loc>
     
     <lastmod>2019-06-25T18:55:27.567Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/05/16/designPattern-IteratorPattern/</loc>
-    
-    <lastmod>2019-06-25T16:44:41.132Z</lastmod>
     
   </url>
   
