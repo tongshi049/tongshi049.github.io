@@ -1,110 +1,418 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="null">
+
+
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Study Notes - SQL &amp; MySQL &amp; MyBatis (1), TongTong Shi&#39;s Blog">
+    <meta name="description" content="SQLStructured Query Language (SQL) is a standard Database language which is used to create, maintain and retrieve the ra">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Study Notes - SQL &amp; MySQL &amp; MyBatis (1) | TongTong Shi&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  
-  <title>Study Notes - SQL &amp; MySQL &amp; MyBatis (1) | TongTong Shi&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQL Structured Query Language (SQL) is a standard Database language which is used to create, maintain and retrieve the ralational database. It is very useful in handling structured data where there a">
-<meta name="keywords" content="Database,SQL">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Study Notes - SQL &amp; MySQL &amp; MyBatis (1)">
-<meta property="og:url" content="http://yoursite.com/2019/08/12/sql-nodes-2/index.html">
-<meta property="og:site_name" content="TongTong Shi&#39;s Blog">
-<meta property="og:description" content="SQL Structured Query Language (SQL) is a standard Database language which is used to create, maintain and retrieve the ralational database. It is very useful in handling structured data where there a">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/tb_student.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/result_1.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/inner_join.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/left_join.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/right_join.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/full_join.png">
-<meta property="og:updated_time" content="2019-08-14T16:17:59.388Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Study Notes - SQL &amp; MySQL &amp; MyBatis (1)">
-<meta name="twitter:description" content="SQL Structured Query Language (SQL) is a standard Database language which is used to create, maintain and retrieve the ralational database. It is very useful in handling structured data where there a">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/12/sql-nodes-2/tb_student.png">
-  
-    <link rel="alternate" href="/atom.xml" title="TongTong Shi&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">TongTong Shi&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-sql-nodes-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/12/sql-nodes-2/" class="article-date">
-  <time datetime="2019-08-12T17:58:03.000Z" itemprop="datePublished">2019-08-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Study Notes - SQL &amp; MySQL &amp; MyBatis (1)
-    </h1>
-  
 
-      </header>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TongTong Shi's Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="sql"><a class="markdownIt-Anchor" href="#sql"></a> SQL</h3>
-<p><font color="STEELBLUE"><strong>Structured Query Language (SQL)</strong></font> is a standard Database language which is used to create, maintain and retrieve the <strong>ralational database</strong>. It is very useful in handling <strong>structured data</strong> where there are <strong>relations</strong> between different entities/variables of the data.</p>
-<h4 id="font-colordodgerblue1-what-is-relational-databasefont"><a class="markdownIt-Anchor" href="#font-colordodgerblue1-what-is-relational-databasefont"></a> <font color="dodgerblue">1. What is Relational Database</font></h4>
-<p style="background-color: cornsilk"><b>Definition of <font color="MEDIUMSLATEBLUE">RDB</font> from Wikipedia:</b> A <b>relational database</b> is a digital database based on <b>relational model</b> of data. A software system used to maintain relational databases is a relational database management system (RDBMS). Virtually all relational database systems use SQL (Structured Query Language) for querying and maintaining the database.</p>
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>Index</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>Tags</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>About</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/contact" class="waves-effect waves-light">
+						
+						<i class="fa fa-comments"></i>
+						
+						<span>Contact</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TongTong Shi's Blog</div>
+        <div class="logo-desc">
+            
+            A Playground to Share My Knowledge
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Study Notes - SQL &amp; MySQL &amp; MyBatis (1)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SQL/" target="_blank">
+                                <span class="chip bg-color">SQL</span>
+                            </a>
+                        
+                            <a href="/tags/Database/" target="_blank">
+                                <span class="chip bg-color">Database</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-08-12
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
+                        2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
+                        12 Min
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p><font color="STEELBLUE"><strong>Structured Query Language (SQL)</strong></font> is a standard Database language which is used to create, maintain and retrieve the <strong>ralational database</strong>. It is very useful in handling <strong>structured data</strong> where there are <strong>relations</strong> between different entities/variables of the data. </p>
+<h4 id="1-What-is-Relational-Database"><a href="#1-What-is-Relational-Database" class="headerlink" title="1. What is Relational Database"></a><font color="dodgerblue">1. What is Relational Database</font></h4><p style="background-color: cornsilk"><b>Definition of <font color="MEDIUMSLATEBLUE">RDB</font> from Wikipedia:</b> A <b>relational database</b> is a digital database based on <b>relational model</b> of data. A software system used to maintain relational databases is a relational database management system (RDBMS). Virtually all relational database systems use SQL (Structured Query Language) for querying and maintaining the database.</p>
 <a id="more"></a>
+
 <p style="background-color: cornsilk"><b>Definition of <font color="MEDIUMSLATEBLUE">Relational Model</font> from Wikipedia:</b> This model organizes data into one or more <b>tables</b> of columns and rows, with a <b>unique key</b> identifying each row. Rows are also called <b>recodes (tuples)</b>. Columns are also called attributes. Generally, each table/relation represents one "entity type". The rows represent instances of that type of entity and the columns representing values attributed to that instance.</p>
+
 <p>Therefore, <strong><font color="royalblue">relational database means the data is stored as well as retrieved in the form of relations (tables).</font></strong></p>
-<h4 id="font-colordodgerblue2-important-terminologiesfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue2-important-terminologiesfont"></a> <font color="dodgerblue">2. Important terminologies</font></h4>
-<ul>
-<li><strong><font color="MEDIUMSLATEBLUE">Keys</font></strong>: Each row in a table has its own <em>unique key</em>. Rows in a table can be linked to rows in other tables by adding a column for the <em>unique key</em> of the linked row (known as <em>foreign key</em>). Most physical implementations have a unique <em>primary key (PK)</em> for each row in a table. It is the key that the system is uses primarily for accessing the table.
-<ul>
+<h4 id="2-Important-terminologies"><a href="#2-Important-terminologies" class="headerlink" title="2. Important terminologies"></a><font color="dodgerblue">2. Important terminologies</font></h4><ul>
+<li><strong><font color="MEDIUMSLATEBLUE">Keys</font></strong>: Each row in a table has its own <em>unique key</em>. Rows in a table can be linked to rows in other tables by adding a column for the <em>unique key</em> of the linked row (known as <em>foreign key</em>). Most physical implementations have a unique <em>primary key (PK)</em> for each row in a table. It is the key that the system is uses primarily for accessing the table. <ul>
 <li><em><font color="MEDIUMSLATEBLUE">superkey</font></em>: a set of attributes of a relation schema upon which all attributes of the schema are functionally dependent. No two rows can have the same value of super key attributes.</li>
 <li><em><font color="MEDIUMSLATEBLUE">candidate key</font></em>: minimal superkey.</li>
 <li><em><font color="MEDIUMSLATEBLUE">primary key</font></em>: one of the candidate keys. One of the candidate keys is selected as most important and becomes the primary key. There cannot be more than one pk in a table.</li>
@@ -117,10 +425,8 @@
 <li><strong><font color="MEDIUMSLATEBLUE">Cardinality</font></strong>: the number of tuples in a relation.</li>
 <li><strong><font color="MEDIUMSLATEBLUE">Column</font></strong>: the set of values for a particular attribute.</li>
 </ul>
-<h4 id="font-colordodgerblue3-queries-of-rdbfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue3-queries-of-rdbfont"></a> <font color="dodgerblue">3. Queries of RDB</font></h4>
-<ul>
-<li><strong><font color="MEDIUMSLATEBLUE">Data Definition Langurage (DDL)</font></strong>: It is used to <strong>define</strong> the structure of the database. E.g. <strong><font>CREATE, ALTER, DROP and RENAME</font></strong>
-<ul>
+<h4 id="3-Queries-of-RDB"><a href="#3-Queries-of-RDB" class="headerlink" title="3. Queries of RDB"></a><font color="dodgerblue">3. Queries of RDB</font></h4><ul>
+<li><strong><font color="MEDIUMSLATEBLUE">Data Definition Langurage (DDL)</font></strong>: It is used to <strong>define</strong> the structure of the database. E.g. <strong><font>CREATE, ALTER, DROP and RENAME</font></strong><ul>
 <li><strong>CREATE</strong>: create databases or its objects (like table).</li>
 <li><strong>DROP</strong>: delete objects from the database.</li>
 <li><strong>ALTER</strong>: alter the structure of the database.</li>
@@ -129,288 +435,682 @@
 </li>
 <li><strong><font color="MEDIUMSLATEBLUE">Data Manipulation Langurage (DML)</font></strong>: It is used to <strong>manipulate</strong> data in the relations. E.g. <strong><font>INSERT, UPDATE, DELETE</font></strong></li>
 <li><strong><font color="MEDIUMSLATEBLUE">Data Query Langurage (DQL)</font></strong>: It is used to <strong>extract</strong> the data from the relations. E.g. <strong><font>INSERT, UPDATE, DELETE</font></strong></li>
-<li><strong><font color="MEDIUMSLATEBLUE">Data Control Langurage (DCL)</font></strong>: includs commands such as <strong><font>GRANT, REVOKE</font></strong> which mainly deals with the rights and other controls of the database system.
-<ul>
+<li><strong><font color="MEDIUMSLATEBLUE">Data Control Langurage (DCL)</font></strong>: includs commands such as <strong><font>GRANT, REVOKE</font></strong> which mainly deals with the rights and other controls of the database system.<ul>
 <li><strong>GRANT</strong>: gives user’s access privileges to database.</li>
 <li><strong>REVOKE</strong>: withdraw use’s access privileges give by using the <strong>GRANT</strong> command.</li>
 </ul>
 </li>
-<li><strong><font color="MEDIUMSLATEBLUE">Transctional Control Language (TCL)</font></strong>: TCL commands deals with the transction within the database.
-<ul>
+<li><strong><font color="MEDIUMSLATEBLUE">Transctional Control Language (TCL)</font></strong>: TCL commands deals with the transction within the database.<ul>
 <li><strong>COMMIT</strong>: commits a transaction.</li>
-<li><strong>ROLLBACK</strong>: rollbacks a transaction in case of any error occurs.</li>
+<li><strong>ROLLBACK</strong>: rollbacks a transaction in case of any error occurs.  </li>
 </ul>
 </li>
 </ul>
-<h4 id="font-colordodgerblue4-select-statements-some-clausesfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue4-select-statements-some-clausesfont"></a> <font color="dodgerblue">4. SELECT Statements &amp; Some clauses</font></h4>
-<h5 id="font-colormediumslateblue41-select-statementfont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue41-select-statementfont"></a> <font color="MEDIUMSLATEBLUE">4.1 SELECT Statement</font></h5>
-<p>A generic query to retrieve from a RDB is:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] attribute_List <span class="keyword">FROM</span> R1, R2,...RM</span><br><span class="line">[<span class="keyword">WHERE</span> condition]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> (<span class="keyword">attributes</span>)][<span class="keyword">HAVING</span> condition]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> (<span class="keyword">attributes</span>)][<span class="keyword">DESC</span>]</span><br><span class="line">[<span class="keyword">LIMIT</span>] limit_number;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue42-aggregation-functionsfont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue42-aggregation-functionsfont"></a> <font color="MEDIUMSLATEBLUE">4.2 Aggregation functions</font></h5>
-<p><strong>Aggregation functions</strong>: used to perform mathematical operations on data values of a relation. Some of the commonly used ones in SQL are:</p>
+<h4 id="4-SELECT-Statements-amp-Some-clauses"><a href="#4-SELECT-Statements-amp-Some-clauses" class="headerlink" title="4. SELECT Statements &amp; Some clauses"></a><font color="dodgerblue">4. SELECT Statements &amp; Some clauses</font></h4><h5 id="4-1-SELECT-Statement"><a href="#4-1-SELECT-Statement" class="headerlink" title="4.1 SELECT Statement"></a><font color="MEDIUMSLATEBLUE">4.1 SELECT Statement</font></h5><p>A generic query to retrieve from a RDB is:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token punctuation">[</span><span class="token keyword">DISTINCT</span><span class="token punctuation">]</span> attribute_List <span class="token keyword">FROM</span> R1<span class="token punctuation">,</span> R2<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>RM
+<span class="token punctuation">[</span><span class="token keyword">WHERE</span> condition<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">GROUP</span> <span class="token keyword">BY</span> <span class="token punctuation">(</span>attributes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token keyword">HAVING</span> condition<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token punctuation">(</span>attributes<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token keyword">DESC</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token keyword">LIMIT</span><span class="token punctuation">]</span> limit_number<span class="token punctuation">;</span></code></pre>
+<h5 id="4-2-Aggregation-functions"><a href="#4-2-Aggregation-functions" class="headerlink" title="4.2 Aggregation functions"></a><font color="MEDIUMSLATEBLUE">4.2 Aggregation functions</font></h5><p><strong>Aggregation functions</strong>: used to perform mathematical operations on data values of a relation. Some of the commonly used ones in SQL are:</p>
 <ul>
-<li><strong><font color="MEDIUMTURQUOISE">COUNT</font></strong>: count the number of rows in a relation. e.g.</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span> (stu_phone) <span class="keyword">FROM</span> tb_student;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong><font color="MEDIUMTURQUOISE">SUM</font></strong>: add the values of an attribute in a relation. e.g.</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUM</span> (stu_age) <span class="keyword">FROM</span> tb_student;</span><br></pre></td></tr></table></figure>
-<ul>
+<li><strong><font color="MEDIUMTURQUOISE">COUNT</font></strong>: count the number of rows in a relation. e.g.<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">COUNT</span> <span class="token punctuation">(</span>stu_phone<span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_student<span class="token punctuation">;</span></code></pre>
+</li>
+<li><strong><font color="MEDIUMTURQUOISE">SUM</font></strong>: add the values of an attribute in a relation. e.g.<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">SUM</span> <span class="token punctuation">(</span>stu_age<span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_student<span class="token punctuation">;</span></code></pre>
+</li>
 <li><strong><font color="MEDIUMTURQUOISE">MAX, MIN, AVG</font></strong></li>
 </ul>
-<h5 id="font-colormediumslateblue43-group-by-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue43-group-by-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.3 GROUP BY clause</font></h5>
-<p><strong><font color="MEDIUMTURQUOISE">GROUP BY clause</font></strong>: arrange identical data into groups with the help of some functions. <strong>Key points</strong>:</p>
+<h5 id="4-3-GROUP-BY-clause"><a href="#4-3-GROUP-BY-clause" class="headerlink" title="4.3 GROUP BY clause"></a><font color="MEDIUMSLATEBLUE">4.3 GROUP BY clause</font></h5><p><strong><font color="MEDIUMTURQUOISE">GROUP BY clause</font></strong>: arrange identical data into groups with the help of some functions. <strong>Key points</strong>:</p>
 <ul>
 <li><strong>GROUP BY</strong> is used with the <strong>SELECT</strong> statement;</li>
 <li>Placed after the <strong>WHERE</strong> clause;</li>
 <li>Placed before <strong>ORDER BY</strong> clause if used any.</li>
 </ul>
 <p><strong>Syntax</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, function_name(column2)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> condition</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column1, column2</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> column1, column2;</span><br><span class="line"></span><br><span class="line">fuction_name: Name of the function used, e.g. SUM(), AVG().</span><br></pre></td></tr></table></figure>
-<p><strong>Example</strong>:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> column1<span class="token punctuation">,</span> function_name<span class="token punctuation">(</span>column2<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> table_name
+<span class="token keyword">WHERE</span> condition
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> column1<span class="token punctuation">,</span> column2
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> column1<span class="token punctuation">,</span> column2<span class="token punctuation">;</span>
+
+fuction_name: Name <span class="token keyword">of</span> the <span class="token keyword">function</span> used<span class="token punctuation">,</span> <span class="token number">e</span><span class="token punctuation">.</span>g<span class="token punctuation">.</span> <span class="token function">SUM</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span></code></pre>
+<p><strong>Example</strong>: </p>
 <ul>
-<li><strong>GROUP BY single column</strong>: place all the rows with the same value of only a particular column in one group. E.g.</li>
+<li><strong>GROUP BY single column</strong>: place all the rows with the same value of only a particular column in one group. E.g.<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> employee_name<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>SALARY<span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_employee
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> employee_name<span class="token punctuation">;</span></code></pre>
+</li>
+<li><strong>GROUP BY multiple columns</strong>: place all the rows with the same values of all columns in one group. E.g.<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> stu_subject<span class="token punctuation">,</span> stu_year<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_student
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stu_subject<span class="token punctuation">,</span> stu_year<span class="token punctuation">;</span></code></pre>
+</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> employee_name, <span class="keyword">SUM</span>(SALARY) <span class="keyword">FROM</span> tb_employee</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> employee_name;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>GROUP BY multiple columns</strong>: place all the rows with the same values of all columns in one group. E.g.</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> stu_subject, stu_year, <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> tb_student</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> stu_subject, stu_year;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue44-having-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue44-having-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.4 HAVING clause</font></h5>
-<p><strong><font color="MEDIUMTURQUOISE">HAVING clause</font></strong>: place conditions to decide which group will be the part of final result-set.</p>
-<p><strong><font color="tomato">Difference between HAVING and WHERE clause</font></strong><br>
-<strong>HAVING</strong> is used to specify a condition for a group or an aggregate function used in <strong>SELELCT</strong> statement. The <strong>WHERE</strong> clause selects before grouping. The <strong>HAVING</strong> clause selects rows after grouping. Unlike <strong>HAVING</strong> clause, the <strong>WHERE</strong> clause cannot contain aggregate functions. E.g.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> employee_name, <span class="keyword">SUM</span>(employee_salary) <span class="keyword">FROM</span> tb_employee</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> employee_name</span><br><span class="line"><span class="keyword">HAVING</span> employee_salary &gt;= <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> stu_subject, stu_year, <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> c <span class="keyword">FROM</span> tb_student</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> stu_subject, stu_year</span><br><span class="line"><span class="keyword">HAVING</span> c <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue45-limit-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue45-limit-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.5 LIMIT clause</font></h5>
-<p>If there are a large number of tuples satisfying the query conditions, it might be resourceful to view only a handful of them at a time. <strong>Key Point</strong> of <strong>LIMIT</strong> clause:</p>
+<h5 id="4-4-HAVING-clause"><a href="#4-4-HAVING-clause" class="headerlink" title="4.4 HAVING clause"></a><font color="MEDIUMSLATEBLUE">4.4 HAVING clause</font></h5><p><strong><font color="MEDIUMTURQUOISE">HAVING clause</font></strong>: place conditions to decide which group will be the part of final result-set.</p>
+<p><strong><font color="tomato">Difference between HAVING and WHERE clause</font></strong><br><strong>HAVING</strong> is used to specify a condition for a group or an aggregate function used in <strong>SELELCT</strong> statement. The <strong>WHERE</strong> clause selects before grouping. The <strong>HAVING</strong> clause selects rows after grouping. Unlike <strong>HAVING</strong> clause, the <strong>WHERE</strong> clause cannot contain aggregate functions. E.g.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> employee_name<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>employee_salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_employee
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> employee_name
+<span class="token keyword">HAVING</span> employee_salary <span class="token operator">>=</span> <span class="token number">3000</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> stu_subject<span class="token punctuation">,</span> stu_year<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token number">c</span> <span class="token keyword">FROM</span> tb_student
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stu_subject<span class="token punctuation">,</span> stu_year
+<span class="token keyword">HAVING</span> <span class="token number">c</span> <span class="token operator">BETWEEN</span> <span class="token number">1</span> <span class="token operator">AND</span> <span class="token number">3</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-5-LIMIT-clause"><a href="#4-5-LIMIT-clause" class="headerlink" title="4.5 LIMIT clause"></a><font color="MEDIUMSLATEBLUE">4.5 LIMIT clause</font></h5><p>If there are a large number of tuples satisfying the query conditions, it might be resourceful to view only a handful of them at a time. <strong>Key Point</strong> of <strong>LIMIT</strong> clause:</p>
 <ul>
 <li><strong>LIMIT</strong> clause is used to set an upper bound limit on the number of tuples returned by SQL.</li>
 <li><font color="tomato">Not supported by all SQL versions</font></li>
 <li>Can be specified using the SQL 2008 <font color="royalblue">OFFSET/FETCH/FIRST</font> clauses.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ALL</span> <span class="keyword">FROM</span> tb_student</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> stu_id</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue46-order-by-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue46-order-by-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.6 ORDER BY clause</font></h5>
-<p>The <strong>ORDER BY</strong> in SQL is used to sort the fetched data in either ascending or descending according to one or more columns.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student
+<span class="token keyword">LIMIT</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token keyword">ALL</span> <span class="token keyword">FROM</span> tb_student
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stu_id
+<span class="token keyword">LIMIT</span> <span class="token number">5</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-6-ORDER-BY-clause"><a href="#4-6-ORDER-BY-clause" class="headerlink" title="4.6 ORDER BY clause"></a><font color="MEDIUMSLATEBLUE">4.6 ORDER BY clause</font></h5><p>The <strong>ORDER BY</strong> in SQL is used to sort the fetched data in either ascending or descending according to one or more columns.</p>
 <ul>
 <li>By default <strong>ORDER BY</strong> sorts the data in <strong>ascending order</strong>.</li>
 <li>User keyword <strong>DESC</strong> to sort the data in <strong>descending order</strong>.</li>
 <li>Can sort according to either <strong>one column</strong> or <strong>multiple columns</strong>.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> column_name <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> column1 <span class="keyword">ASC</span>|<span class="keyword">DESC</span>, column2 <span class="keyword">ASC</span>|<span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue46-distinct-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue46-distinct-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.6 DISTINCT clause</font></h5>
-<p><strong>DISTINCT</strong> clause is used in conjunction with <strong>SELECT</strong> keyword. It is helpful when there is need of <strong>avoiding the duplicate values</strong> in any specific columns/table. When using it, only the <strong>unique values</strong> are fetched.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> column_name <span class="token keyword">ASC</span><span class="token operator">|</span><span class="token keyword">DESC</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> column1 <span class="token keyword">ASC</span><span class="token operator">|</span><span class="token keyword">DESC</span><span class="token punctuation">,</span> column2 <span class="token keyword">ASC</span><span class="token operator">|</span><span class="token keyword">DESC</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-6-DISTINCT-clause"><a href="#4-6-DISTINCT-clause" class="headerlink" title="4.6 DISTINCT clause"></a><font color="MEDIUMSLATEBLUE">4.6 DISTINCT clause</font></h5><p><strong>DISTINCT</strong> clause is used in conjunction with <strong>SELECT</strong> keyword. It is helpful when there is need of <strong>avoiding the duplicate values</strong> in any specific columns/table. When using it, only the <strong>unique values</strong> are fetched.</p>
 <p><strong>Example</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> stu_name <span class="keyword">FROM</span> tb_student;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* To fetch unique combination of rows from the whole table */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> * <span class="keyword">FROM</span> tb_student;</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue47-where-clausefont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue47-where-clausefont"></a> <font color="MEDIUMSLATEBLUE">4.7 WHERE clause</font></h5>
-<p><strong>WHERE</strong> is used for fetching <strong>filtered data</strong> in a result set. E.g.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">operator</span> <span class="keyword">value</span>;</span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> stu_name <span class="token keyword">FROM</span> tb_student<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* To fetch unique combination of rows from the whole table */</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student<span class="token punctuation">;</span></code></pre>
+<h5 id="4-7-WHERE-clause"><a href="#4-7-WHERE-clause" class="headerlink" title="4.7 WHERE clause"></a><font color="MEDIUMSLATEBLUE">4.7 WHERE clause</font></h5><p><strong>WHERE</strong> is used for fetching <strong>filtered data</strong> in a result set. E.g.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> column1<span class="token punctuation">,</span> column2 <span class="token keyword">FROM</span> table_name
+<span class="token keyword">WHERE</span> column_name operator <span class="token keyword">value</span><span class="token punctuation">;</span></code></pre>
 <p><strong>Operator</strong> includes: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&lt;&gt;</code>, <code>BETWEEN</code> (in an inclusive range), <code>LIKE</code> (search for a pattern), <code>IN</code> (specify multiple possible values for a column). E.g.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_age=<span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_id <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">% : Used to match zero or more characters. (Variable Length)</span></span><br><span class="line"><span class="comment">_ : Used to match exactly one character. (Fixed Length)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/* fetch records of students where NAME starts with letter S */</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_name <span class="keyword">LIKE</span> <span class="string">'S%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* fetch records of students where NAME contains the patter ‘AM’</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_name <span class="keyword">LIKE</span> <span class="string">'%AM%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_age <span class="keyword">IN</span> (<span class="number">18</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_student <span class="keyword">WHERE</span> stu_id <span class="keyword">IN</span> (<span class="number">1</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue47-exists-keywordfont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue47-exists-keywordfont"></a> <font color="MEDIUMSLATEBLUE">4.7 EXISTS keyword</font></h5>
-<p><strong>EXISTS</strong> contition in SQL is used to check whether the result of a correlated nested query is empty (contains no tuples) or not. The result of <strong>EXIST</strong> is a boolean value True or False. It can be used in a <strong>SELECT, UPDATE, DELETE or INSERT</strong> statment.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_age<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_id <span class="token operator">BETWEEN</span> <span class="token number">1</span> <span class="token operator">AND</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*
+% : Used to match zero or more characters. (Variable Length)
+_ : Used to match exactly one character. (Fixed Length)
+*/</span>
+<span class="token comment" spellcheck="true">/* fetch records of students where NAME starts with letter S */</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_name <span class="token operator">LIKE</span> <span class="token string">'S%'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* fetch records of students where NAME contains the patter ‘AM’
+*/</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_name <span class="token operator">LIKE</span> <span class="token string">'%AM%'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_age <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_student <span class="token keyword">WHERE</span> stu_id <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-7-EXISTS-keyword"><a href="#4-7-EXISTS-keyword" class="headerlink" title="4.7 EXISTS keyword"></a><font color="MEDIUMSLATEBLUE">4.7 EXISTS keyword</font></h5><p><strong>EXISTS</strong> contition in SQL is used to check whether the result of a correlated nested query is empty (contains no tuples) or not. The result of <strong>EXIST</strong> is a boolean value True or False. It can be used in a <strong>SELECT, UPDATE, DELETE or INSERT</strong> statment.</p>
 <p><strong>Syntax</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span></span><br><span class="line">  (<span class="keyword">SELECT</span> column_name(s)</span><br><span class="line">   <span class="keyword">FROM</span> table_name</span><br><span class="line">   <span class="keyword">WHERE</span> condition);</span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> table_name
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span>
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+   <span class="token keyword">FROM</span> table_name
+   <span class="token keyword">WHERE</span> condition<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p><strong>Example</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*with SELECT statment*/</span></span><br><span class="line"><span class="keyword">SELECT</span> fname, lname</span><br><span class="line"><span class="keyword">FROM</span> tb_customers</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> </span><br><span class="line">  (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_orders</span><br><span class="line">   <span class="keyword">WHERE</span> tb_customers.customer_id = tb_orders.c_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Using NOT with EXISTS*/</span></span><br><span class="line"><span class="keyword">SELECT</span> lname, fname</span><br><span class="line"><span class="keyword">FROM</span> tb_customers</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">  (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_orders</span><br><span class="line">   <span class="keyword">WHERE</span> tb_customers.customer_id = tb_orders.c_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*with DELETE statment*/</span></span><br><span class="line"><span class="keyword">DELETE</span> </span><br><span class="line"><span class="keyword">FROM</span> tb_orders</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> </span><br><span class="line">  (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_customers</span><br><span class="line">   <span class="keyword">WHERE</span> tb_customers.customer_id = tb_orders.c_id</span><br><span class="line">   <span class="keyword">AND</span> Customers.lname = <span class="string">'EZReal'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*with UPDATE statment*/</span></span><br><span class="line"><span class="keyword">UPDATE</span> tb_customers</span><br><span class="line"><span class="keyword">SET</span> lname = <span class="string">'Lux'</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> tb_customers <span class="keyword">WHERE</span> customer_id = <span class="number">401</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="font-colormediumslateblue48-with-keywordfont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue48-with-keywordfont"></a> <font color="MEDIUMSLATEBLUE">4.8 WITH keyword</font></h5>
-<p><strong>WITH</strong> clause allows you to give a sub-query block a name, which can be referenced in several places within the main SQL query.</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">/*with SELECT statment*/</span>
+<span class="token keyword">SELECT</span> fname<span class="token punctuation">,</span> lname
+<span class="token keyword">FROM</span> tb_customers
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> 
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_orders
+   <span class="token keyword">WHERE</span> tb_customers<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> tb_orders<span class="token punctuation">.</span>c_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*Using NOT with EXISTS*/</span>
+<span class="token keyword">SELECT</span> lname<span class="token punctuation">,</span> fname
+<span class="token keyword">FROM</span> tb_customers
+<span class="token keyword">WHERE</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> 
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_orders
+   <span class="token keyword">WHERE</span> tb_customers<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> tb_orders<span class="token punctuation">.</span>c_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*with DELETE statment*/</span>
+<span class="token keyword">DELETE</span> 
+<span class="token keyword">FROM</span> tb_orders
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> 
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_customers
+   <span class="token keyword">WHERE</span> tb_customers<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> tb_orders<span class="token punctuation">.</span>c_id
+   <span class="token operator">AND</span> Customers<span class="token punctuation">.</span>lname <span class="token operator">=</span> <span class="token string">'EZReal'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*with UPDATE statment*/</span>
+<span class="token keyword">UPDATE</span> tb_customers
+<span class="token keyword">SET</span> lname <span class="token operator">=</span> <span class="token string">'Lux'</span>
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_customers <span class="token keyword">WHERE</span> customer_id <span class="token operator">=</span> <span class="token number">401</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="4-8-WITH-keyword"><a href="#4-8-WITH-keyword" class="headerlink" title="4.8 WITH keyword"></a><font color="MEDIUMSLATEBLUE">4.8 WITH keyword</font></h5><p><strong>WITH</strong> clause allows you to give a sub-query block a name, which can be referenced in several places within the main SQL query. </p>
 <p><strong>Syntax</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> tb_temp (ave_val) <span class="keyword">as</span> </span><br><span class="line">  (<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(attr1) <span class="keyword">FROM</span> <span class="keyword">table</span>),</span><br><span class="line">  <span class="keyword">SELECT</span> attr1 <span class="keyword">FROM</span> <span class="keyword">table</span></span><br><span class="line">  <span class="keyword">WHERE</span> table.attr1 &gt; tb_temp.ave_val;</span><br></pre></td></tr></table></figure>
-<p>For example, the tables are shown as follows. Find all the student whose score is more than the average score of all employees.<br>
-<img src="tb_student.png" width="80%" height="80%"></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">WITH</span> tb_temp <span class="token punctuation">(</span>ave_val<span class="token punctuation">)</span> <span class="token keyword">as</span> 
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>attr1<span class="token punctuation">)</span> <span class="token keyword">FROM</span> <span class="token keyword">table</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">SELECT</span> attr1 <span class="token keyword">FROM</span> <span class="token keyword">table</span>
+  <span class="token keyword">WHERE</span> <span class="token keyword">table</span><span class="token punctuation">.</span>attr1 <span class="token operator">></span> tb_temp<span class="token punctuation">.</span>ave_val<span class="token punctuation">;</span></code></pre>
+<p>For example, the tables are shown as follows. Find all the student whose score is more than the average score of all employees.<br><img src="tb_student.png" width="80%" height="80%"></p>
 <p><strong>SQL Query</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> tb_temp (ave_score) <span class="keyword">AS</span></span><br><span class="line">  (<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(stu_score) <span class="keyword">FROM</span> tb_student)</span><br><span class="line">  <span class="keyword">SELECT</span> stu_name, stu_score <span class="keyword">FROM</span> tb_student</span><br><span class="line">  <span class="keyword">WHERE</span> tb_student.stu_score &gt; tb_temp.ave_score;</span><br></pre></td></tr></table></figure>
-<p><strong>Result</strong> will be:<br>
-<img src="result_1.png" width="60%" height="60%"></p>
-<h5 id="font-colormediumslateblue49-join-statementfont"><a class="markdownIt-Anchor" href="#font-colormediumslateblue49-join-statementfont"></a> <font color="MEDIUMSLATEBLUE">4.9 JOIN statement</font></h5>
-<p><strong>JOIN</strong> statement is used to combine rows from two or more tables based on a common field between them. Different types of Joins are:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">WITH</span> tb_temp <span class="token punctuation">(</span>ave_score<span class="token punctuation">)</span> <span class="token keyword">AS</span>
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>stu_score<span class="token punctuation">)</span> <span class="token keyword">FROM</span> tb_student<span class="token punctuation">)</span>
+  <span class="token keyword">SELECT</span> stu_name<span class="token punctuation">,</span> stu_score <span class="token keyword">FROM</span> tb_student
+  <span class="token keyword">WHERE</span> tb_student<span class="token punctuation">.</span>stu_score <span class="token operator">></span> tb_temp<span class="token punctuation">.</span>ave_score<span class="token punctuation">;</span></code></pre>
+<p><strong>Result</strong> will be:<br><img src="result_1.png" width="60%" height="60%"></p>
+<h5 id="4-9-JOIN-statement"><a href="#4-9-JOIN-statement" class="headerlink" title="4.9 JOIN statement"></a><font color="MEDIUMSLATEBLUE">4.9 JOIN statement</font></h5><p><strong>JOIN</strong> statement is used to combine rows from two or more tables based on a common field between them. Different types of Joins are:</p>
 <ul>
-<li><strong><font color="MEDIUMTURQUOISE">INNER JOIN</font></strong>: selects all rows from the tables as long as the condition satisfies.<br>
-<img src="inner_join.png" width="30%" height="30%"><br>
-<strong>Syntax</strong>:</li>
+<li><strong><font color="MEDIUMTURQUOISE">INNER JOIN</font></strong>: selects all rows from the tables as long as the condition satisfies. <img src="inner_join.png" width="30%" height="30%"></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tb1.col1, tb1.col2, tb2.col1,...</span><br><span class="line"><span class="keyword">FROM</span> tb1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> tb2</span><br><span class="line"><span class="keyword">ON</span> tb1.matching_col = tb2.matching_col;</span><br></pre></td></tr></table></figure>
+<p><strong>Syntax</strong>:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> tb1<span class="token punctuation">.</span>col1<span class="token punctuation">,</span> tb1<span class="token punctuation">.</span>col2<span class="token punctuation">,</span> tb2<span class="token punctuation">.</span>col1<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">FROM</span> tb1
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> tb2
+<span class="token keyword">ON</span> tb1<span class="token punctuation">.</span>matching_col <span class="token operator">=</span> tb2<span class="token punctuation">.</span>matching_col<span class="token punctuation">;</span></code></pre>
 <ul>
-<li><strong><font color="MEDIUMTURQUOISE">LEFT JOIN (LEFT OUTER JOIN)</font></strong>: returns all the rows of the table on the left side of the JOIN and matching rows for the tables on the right side of JOIN. The rows for which there is no matching row on right side, the result-set will contain NULL.<br>
-<img src="left_join.png" width="30%" height="30%"><br>
-<strong>Syntax</strong>:</li>
+<li><strong><font color="MEDIUMTURQUOISE">LEFT JOIN (LEFT OUTER JOIN)</font></strong>: returns all the rows of the table on the left side of the JOIN and matching rows for the tables on the right side of JOIN. The rows for which there is no matching row on right side, the result-set will contain NULL.<img src="left_join.png" width="30%" height="30%"></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tb1.col1, tb1.col2, tb2.col1,...</span><br><span class="line"><span class="keyword">FROM</span> tb1</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tb2</span><br><span class="line"><span class="keyword">ON</span> tb1.matching_col = tb2.matching_col;</span><br></pre></td></tr></table></figure>
+<p><strong>Syntax</strong>:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> tb1<span class="token punctuation">.</span>col1<span class="token punctuation">,</span> tb1<span class="token punctuation">.</span>col2<span class="token punctuation">,</span> tb2<span class="token punctuation">.</span>col1<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">FROM</span> tb1
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> tb2
+<span class="token keyword">ON</span> tb1<span class="token punctuation">.</span>matching_col <span class="token operator">=</span> tb2<span class="token punctuation">.</span>matching_col<span class="token punctuation">;</span></code></pre>
 <ul>
-<li><strong><font color="MEDIUMTURQUOISE">RIGHT JOIN (RIGHT OUTER JOIN)</font></strong>: returns all the rows of the table on the right side of the JOIN and matching rows for the table on the left side of JOIN. The rows for which there is no matching row on the left, the result-set will contain NULL.<br>
-<img src="right_join.png" width="30%" height="30%"><br>
-<strong>Syntax</strong>:</li>
+<li><strong><font color="MEDIUMTURQUOISE">RIGHT JOIN (RIGHT OUTER JOIN)</font></strong>: returns all the rows of the table on the right side of the JOIN and matching rows for the table on the left side of JOIN. The rows for which there is no matching row on the left, the result-set will contain NULL.<img src="right_join.png" width="30%" height="30%"></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tb1.col1, tb1.col2, tb2.col1,...</span><br><span class="line"><span class="keyword">FROM</span> tb1</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> tb2</span><br><span class="line"><span class="keyword">ON</span> tb1.matching_col = tb2.matching_col;</span><br></pre></td></tr></table></figure>
+<p><strong>Syntax</strong>:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> tb1<span class="token punctuation">.</span>col1<span class="token punctuation">,</span> tb1<span class="token punctuation">.</span>col2<span class="token punctuation">,</span> tb2<span class="token punctuation">.</span>col1<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">FROM</span> tb1
+<span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> tb2
+<span class="token keyword">ON</span> tb1<span class="token punctuation">.</span>matching_col <span class="token operator">=</span> tb2<span class="token punctuation">.</span>matching_col<span class="token punctuation">;</span></code></pre>
 <ul>
-<li><strong><font color="MEDIUMTURQUOISE">FULL JOIN</font></strong>: creates the result-set by combining result of both LEFT JOIN and RIGHT JOIN. The result-set will contain all the rows from both the tables. The rows for which there is no matching, the result-set will contain NULL values<br>
-<img src="full_join.png" width="30%" height="30%"><br>
-<strong>Syntax</strong>:</li>
+<li><strong><font color="MEDIUMTURQUOISE">FULL JOIN</font></strong>: creates the result-set by combining result of both LEFT JOIN and RIGHT JOIN. The result-set will contain all the rows from both the tables. The rows for which there is no matching, the result-set will contain NULL values<img src="full_join.png" width="30%" height="30%"></li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tb1.col1, tb1.col2, tb2.col1,...</span><br><span class="line"><span class="keyword">FROM</span> tb1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> tb2</span><br><span class="line"><span class="keyword">ON</span> tb1.matching_col = tb2.matching_col;</span><br></pre></td></tr></table></figure>
-<h4 id="font-colordodgerblue5-ddl-statementsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue5-ddl-statementsfont"></a> <font color="dodgerblue">5. DDL Statements</font></h4>
-<ul>
+<p><strong>Syntax</strong>:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> tb1<span class="token punctuation">.</span>col1<span class="token punctuation">,</span> tb1<span class="token punctuation">.</span>col2<span class="token punctuation">,</span> tb2<span class="token punctuation">.</span>col1<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">FROM</span> tb1
+<span class="token keyword">FULL</span> <span class="token keyword">JOIN</span> tb2
+<span class="token keyword">ON</span> tb1<span class="token punctuation">.</span>matching_col <span class="token operator">=</span> tb2<span class="token punctuation">.</span>matching_col<span class="token punctuation">;</span></code></pre>
+<h4 id="5-DDL-Statements"><a href="#5-DDL-Statements" class="headerlink" title="5. DDL Statements"></a><font color="dodgerblue">5. DDL Statements</font></h4><ul>
 <li><strong><font color="MEDIUMTURQUOISE">Crate DB</font></strong>: <code>CREATE DATABASE dbname;</code></li>
 <li><strong><font color="MEDIUMTURQUOISE">Drop DB</font></strong>: <code>DROP DTABASE dbname</code>;</li>
-<li><strong><font color="MEDIUMTURQUOISE">Create Table</font></strong></li>
+<li><strong><font color="MEDIUMTURQUOISE">Create Table</font></strong><pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> table_name <span class="token punctuation">(</span>
+column1 datatype<span class="token punctuation">,</span>
+column2 datatype<span class="token punctuation">,</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 datatype,</span><br><span class="line">  column2 datatype,</span><br><span class="line">  ...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*create table using another table*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> new_table_name <span class="keyword">AS</span></span><br><span class="line">  <span class="keyword">SELECT</span> column1, column2,...</span><br><span class="line">  <span class="keyword">FROM</span> existing_table_name</span><br><span class="line">  <span class="keyword">WHERE</span> condition;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong><font color="MEDIUMTURQUOISE">DROP Table</font></strong></li>
+<p>/<em>create table using another table</em>/<br>CREATE TABLE new_table_name AS<br>  SELECT column1, column2,…<br>  FROM existing_table_name<br>  WHERE condition;</p>
+<pre><code>- **&lt;font color=&quot;MEDIUMTURQUOISE&quot;&gt;DROP Table&lt;/font&gt;**
+``` sql
+DROP TABLE table_name;</code></pre><ul>
+<li><strong><font color="MEDIUMTURQUOISE">ALTER Table</font></strong><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">/*add column*/</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name
+<span class="token keyword">ADD</span> <span class="token punctuation">(</span>column_name_1 datatype<span class="token punctuation">,</span>
+   column_name_2 datatype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong><font color="MEDIUMTURQUOISE">ALTER Table</font></strong></li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*add column*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> (column_name_1 datatype,</span><br><span class="line">	 column_name_2 datatype);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*drop column*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> column_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*modify column*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> column_name datatype;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*rename table name*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">RENAME</span> <span class="keyword">TO</span> new_table_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*rename column name*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">RENAME</span>|<span class="keyword">CHANGE</span> <span class="keyword">COLUMN</span> old_name <span class="keyword">TO</span> new_name;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong><font color="MEDIUMTURQUOISE">Constraints</font></strong>: includes <strong>NOT NULL</strong>, <strong>UNIQUE</strong>, <strong>PRIMARY KEY</strong>, <strong>FOREIGN KEY</strong>, <strong>CHECK</strong>, <strong>DEFAULT</strong>, <strong>INDEX</strong>. E.g.</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tb_product`</span> (</span><br><span class="line">  <span class="comment">/*NOT NULL, auto increment*/</span></span><br><span class="line">  <span class="string">`product_id`</span> <span class="built_in">int</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`product_name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*Default*/</span></span><br><span class="line">  <span class="string">`product_desc`</span> <span class="built_in">varchar</span>(<span class="number">2000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`shop_id`</span> <span class="built_in">int</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'0'</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/*Unique in MySQL*/</span></span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`uc_id_name`</span> <span class="keyword">UNIQUE</span> (<span class="string">`product_id`</span>, <span class="string">`product_name`</span>),</span><br><span class="line">  <span class="comment">/*or we can write it as*/</span></span><br><span class="line">  <span class="keyword">UNIQUE</span> (<span class="string">`product_name`</span>),</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*primary key*/</span></span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`product_id`</span>),</span><br><span class="line">  <span class="comment">/*PK in MySQL*/</span></span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`pk_product`</span> PRIMARY <span class="keyword">KEY</span> (<span class="string">`product_id`</span>),</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*FK in MySQL*/</span></span><br><span class="line">  <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(<span class="string">`shop_id`</span>) <span class="keyword">REFERENCES</span> <span class="string">`tb_shop`</span>(<span class="string">`shop_id`</span>),</span><br><span class="line">  <span class="comment">/*or */</span></span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`fk_product_shop`</span> (<span class="string">`shop_id`</span>),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`fk_product_shop`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> <span class="string">`shop_id`</span> <span class="keyword">REFERENCES</span> <span class="string">`tb_shop`</span>(<span class="string">`shop_id`</span>)</span><br><span class="line"></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Add PK constraint*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tb_shop`</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="string">`pk_shop`</span> PRIMARY <span class="keyword">KEY</span> (<span class="string">`shop_id`</span>);</span><br><span class="line"><span class="comment">/*or*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tb_shop`</span></span><br><span class="line"><span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (<span class="string">`shop_id`</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Add Unique constraint*/</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`tb_shop`</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> <span class="string">`product_shop_unique`</span> (<span class="string">`shop_id`</span> <span class="keyword">ASC</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="font-colordodgerblue6-dml-statementsfont"><a class="markdownIt-Anchor" href="#font-colordodgerblue6-dml-statementsfont"></a> <font color="dodgerblue">6. DML Statements</font></h4>
-<p><strong><font color="MEDIUMTURQUOISE">6.1 UPDATE</font></strong></p>
+<p>/<em>drop column</em>/<br>ALTER TABLE table_name<br>DROP COLUMN column_name;</p>
+<p>/<em>modify column</em>/<br>ALTER TABLE table_name<br>MODIFY COLUMN column_name datatype;</p>
+<p>/<em>rename table name</em>/<br>ALTER TABLE table_name<br>RENAME TO new_table_name;</p>
+<p>/<em>rename column name</em>/<br>ALTER TABLE table_name<br>RENAME|CHANGE COLUMN old_name TO new_name;</p>
+<pre><code>- **&lt;font color=&quot;MEDIUMTURQUOISE&quot;&gt;Constraints&lt;/font&gt;**: includes **NOT NULL**, **UNIQUE**, **PRIMARY KEY**, **FOREIGN KEY**, **CHECK**, **DEFAULT**, **INDEX**. E.g.
+``` sql
+
+CREATE TABLE `tb_product` (
+  /*NOT NULL, auto increment*/
+  `product_id` int(100) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(100) NOT NULL,
+
+  /*Default*/
+  `product_desc` varchar(2000) DEFAULT NULL,
+  `shop_id` int(20) NOT NULL DEFAULT &#39;0&#39;,
+
+  /*Unique in MySQL*/
+  CONSTRAINT `uc_id_name` UNIQUE (`product_id`, `product_name`),
+  /*or we can write it as*/
+  UNIQUE (`product_name`),
+
+  /*primary key*/
+  PRIMARY KEY (`product_id`),
+  /*PK in MySQL*/
+  CONSTRAINT `pk_product` PRIMARY KEY (`product_id`),
+
+  /*FK in MySQL*/
+  FOREIGN KEY(`shop_id`) REFERENCES `tb_shop`(`shop_id`),
+  /*or */
+  KEY `fk_product_shop` (`shop_id`),
+  CONSTRAINT `fk_product_shop` FOREIGN KEY `shop_id` REFERENCES `tb_shop`(`shop_id`)
+
+);
+
+
+/*Add PK constraint*/
+ALTER TABLE `tb_shop`
+ADD CONSTRAINT `pk_shop` PRIMARY KEY (`shop_id`);
+/*or*/
+ALTER TABLE `tb_shop`
+ADD PRIMARY KEY (`shop_id`);
+
+/*Add Unique constraint*/
+ALTER TABLE `tb_shop`
+ADD UNIQUE INDEX `product_shop_unique` (`shop_id` ASC);</code></pre><h4 id="6-DML-Statements"><a href="#6-DML-Statements" class="headerlink" title="6. DML Statements"></a><font color="dodgerblue">6. DML Statements</font></h4><p><strong><font color="MEDIUMTURQUOISE">6.1 UPDATE</font></strong></p>
 <p><strong>Syntax</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> tb_name <span class="keyword">SET</span> column1 = value1, column2 = value2,...</span><br><span class="line"><span class="keyword">WHERE</span> condition;</span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> tb_name <span class="token keyword">SET</span> column1 <span class="token operator">=</span> value1<span class="token punctuation">,</span> column2 <span class="token operator">=</span> value2<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span></code></pre>
 <p><strong><font color="MEDIUMTURQUOISE">6.2 DELETE</font></strong></p>
 <p><strong>Syntax</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> tb_name <span class="keyword">WHERE</span> condition;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*delete all*/</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> tb_name;</span><br><span class="line"><span class="comment">/*or*/</span></span><br><span class="line"><span class="keyword">DELETE</span> * <span class="keyword">FROM</span> tb_name;</span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> tb_name <span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/*delete all*/</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> tb_name<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/*or*/</span>
+<span class="token keyword">DELETE</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> tb_name<span class="token punctuation">;</span></code></pre>
 <p><strong><font color="MEDIUMTURQUOISE">6.3 INSERT</font></strong></p>
 <p><strong>Syntax</strong>:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tb_name <span class="keyword">VALUES</span> (value1, value2, value3, ...);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tb_name (column1, column2, column3,...)</span><br><span class="line"><span class="keyword">VALUES</span> (value1, value2, value3,...);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* using SELECT in INSERT INTO Statement*/</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_1 <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_2 <span class="keyword">WHERE</span> condition;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_1 (t1_column1) <span class="keyword">SELECT</span> t2_column1 <span class="keyword">FROM</span> table_2;</span><br></pre></td></tr></table></figure>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> tb_name <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">,</span> value3<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> tb_name <span class="token punctuation">(</span>column1<span class="token punctuation">,</span> column2<span class="token punctuation">,</span> column3<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">,</span> value3<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* using SELECT in INSERT INTO Statement*/</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> table_1 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_2 <span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> table_1 <span class="token punctuation">(</span>t1_column1<span class="token punctuation">)</span> <span class="token keyword">SELECT</span> t2_column1 <span class="token keyword">FROM</span> table_2<span class="token punctuation">;</span></code></pre>
 <a href="/2019/08/14/sql-notes-3/" title="next">next</a>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/12/sql-nodes-2/" data-id="ck1hylxll01fzq4veqv75sf0e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li></ul>
+            </div>
+            <hr>
 
-    </footer>
-  </div>
-  
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
     
-<nav id="article-nav">
-  
-    <a href="/2019/08/14/sql-notes-3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Study Notes - SQL &amp; MySQL &amp; MyBatis (2)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/08/12/sql-notes-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Study Notes - SQL &amp; MySQL &amp; MyBatis</div>
-    </a>
-  
-</nav>
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
 
-  
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>Reprint policy</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                    <img alt style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png">
+                </a>
+            </div>
+            <br>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">
+                    《Study Notes - SQL &amp; MySQL &amp; MyBatis (1)》
+                </span> by
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/12/sql-nodes-2/" property="cc:attributionName" rel="cc:attributionURL">
+                Tong Shi
+            </a> is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                Creative Commons Attribution 4.0 International License
+            </a> 
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/08/14/sql-notes-3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Study Notes - SQL & MySQL & MyBatis (2)">
+                        
+                        <span class="card-title">Study Notes - SQL & MySQL & MyBatis (2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            MySQLMySQL is an open-source relational database management system (RDBMS). It is popular used in many websites. Java JD
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Database/" target="_blank">
+                        <span class="chip bg-color">Database</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/08/12/sql-notes-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Study Notes - SQL & MySQL & MyBatis">
+                        
+                        <span class="card-title">Study Notes - SQL & MySQL & MyBatis</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            IntroductionStructured Query Language (SQL) is a standard Database language which is used to create, maintain and retrie
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MyBatis/" target="_blank">
+                        <span class="chip bg-color">MyBatis</span>
+                    </a>
+                    
+                    <a href="/tags/SQL/" target="_blank">
+                        <span class="chip bg-color">SQL</span>
+                    </a>
+                    
+                    <a href="/tags/Database/" target="_blank">
+                        <span class="chip bg-color">Database</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
 </article>
+</div>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Angular/" style="font-size: 15.42px;">Angular</a> <a href="/tags/Array/" style="font-size: 17.5px;">Array</a> <a href="/tags/BFS/" style="font-size: 16.67px;">BFS</a> <a href="/tags/BST/" style="font-size: 12.5px;">BST</a> <a href="/tags/Backtracking/" style="font-size: 16.25px;">Backtracking</a> <a href="/tags/Binary-Search/" style="font-size: 15.83px;">Binary Search</a> <a href="/tags/Binary-Search-Tree/" style="font-size: 10.42px;">Binary Search Tree</a> <a href="/tags/Bucket-Sort/" style="font-size: 10.83px;">Bucket Sort</a> <a href="/tags/Cantor-Unfold/" style="font-size: 10px;">Cantor Unfold</a> <a href="/tags/Cat1-Cat1-1/" style="font-size: 10px;">Cat1,Cat1.1</a> <a href="/tags/Cat2/" style="font-size: 10px;">Cat2</a> <a href="/tags/Cat3/" style="font-size: 10px;">Cat3</a> <a href="/tags/Combination/" style="font-size: 12.92px;">Combination</a> <a href="/tags/Counting-Sort/" style="font-size: 10.83px;">Counting Sort</a> <a href="/tags/DFS/" style="font-size: 17.92px;">DFS</a> <a href="/tags/DP/" style="font-size: 19.58px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Database/" style="font-size: 11.25px;">Database</a> <a href="/tags/Design/" style="font-size: 15.42px;">Design</a> <a href="/tags/Design-Pattern/" style="font-size: 12.92px;">Design Pattern</a> <a href="/tags/Disjoint-Set/" style="font-size: 14.17px;">Disjoint Set</a> <a href="/tags/Divide-and-Conquer/" style="font-size: 10px;">Divide and Conquer</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Greedy/" style="font-size: 18.75px;">Greedy</a> <a href="/tags/HashTable/" style="font-size: 18.33px;">HashTable</a> <a href="/tags/Heap/" style="font-size: 12.92px;">Heap</a> <a href="/tags/Integer-Overflow/" style="font-size: 10.42px;">Integer Overflow</a> <a href="/tags/JQuery/" style="font-size: 10px;">JQuery</a> <a href="/tags/Java-Baisc/" style="font-size: 10px;">Java Baisc</a> <a href="/tags/Java-Basic/" style="font-size: 11.67px;">Java Basic</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/KMP-algorithm/" style="font-size: 10px;">KMP algorithm</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Linked-List/" style="font-size: 11.25px;">Linked List</a> <a href="/tags/LinkedList/" style="font-size: 10.83px;">LinkedList</a> <a href="/tags/LintCode/" style="font-size: 16.25px;">LintCode</a> <a href="/tags/Math/" style="font-size: 19.17px;">Math</a> <a href="/tags/Memorization/" style="font-size: 11.67px;">Memorization</a> <a href="/tags/Merge-Sort/" style="font-size: 10px;">Merge Sort</a> <a href="/tags/Monotonous-Stack/" style="font-size: 14.17px;">Monotonous Stack</a> <a href="/tags/Multiplication/" style="font-size: 10.42px;">Multiplication</a> <a href="/tags/MyBatis/" style="font-size: 12.5px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10.42px;">MySQL</a> <a href="/tags/MySql/" style="font-size: 10px;">MySql</a> <a href="/tags/Number-Theoretic-Algorithm/" style="font-size: 10px;">Number-Theoretic Algorithm</a> <a href="/tags/OOD/" style="font-size: 10px;">OOD</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/Partition/" style="font-size: 11.25px;">Partition</a> <a href="/tags/Permutation/" style="font-size: 10.83px;">Permutation</a> <a href="/tags/Project/" style="font-size: 15px;">Project</a> <a href="/tags/PropertyPlaceholderConfigurer/" style="font-size: 10px;">PropertyPlaceholderConfigurer</a> <a href="/tags/Queue/" style="font-size: 10px;">Queue</a> <a href="/tags/Quick-Select/" style="font-size: 10px;">Quick Select</a> <a href="/tags/Recursion/" style="font-size: 12.08px;">Recursion</a> <a href="/tags/Recurtion/" style="font-size: 10px;">Recurtion</a> <a href="/tags/Reflection/" style="font-size: 10px;">Reflection</a> <a href="/tags/SQL/" style="font-size: 10.42px;">SQL</a> <a href="/tags/SSM/" style="font-size: 12.08px;">SSM</a> <a href="/tags/Sliding-Window/" style="font-size: 13.75px;">Sliding Window</a> <a href="/tags/Sort/" style="font-size: 13.33px;">Sort</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 12.92px;">Spring Boot</a> <a href="/tags/Spring-Security/" style="font-size: 10.42px;">Spring Security</a> <a href="/tags/SpringMVC/" style="font-size: 12.08px;">SpringMVC</a> <a href="/tags/Stack/" style="font-size: 17.08px;">Stack</a> <a href="/tags/String/" style="font-size: 16.25px;">String</a> <a href="/tags/Sweep-Line/" style="font-size: 10.42px;">Sweep Line</a> <a href="/tags/Thread/" style="font-size: 11.67px;">Thread</a> <a href="/tags/Top-Interview-Qs/" style="font-size: 11.25px;">Top Interview Qs</a> <a href="/tags/Topology-Sorting/" style="font-size: 11.67px;">Topology Sorting</a> <a href="/tags/Tree/" style="font-size: 18.75px;">Tree</a> <a href="/tags/Trie/" style="font-size: 11.25px;">Trie</a> <a href="/tags/Two-Pointers/" style="font-size: 16.25px;">Two Pointers</a> <a href="/tags/Union-Find/" style="font-size: 14.58px;">Union Find</a> <a href="/tags/backtracking/" style="font-size: 10.42px;">backtracking</a> <a href="/tags/gcd/" style="font-size: 10px;">gcd</a>
+
+
     </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
     </div>
-  </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
 
 
-  
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/10/07/design-patterns/">OO Design Patterns</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/26/singleton-design-pattern/">Singleton Design Pattern - One-of-a-Kind Objects</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/25/command-design-pattern/">Command Design Pattern - Encapsulating Invocation</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/24/observer-design-pattern/">Observer Design Pattern = Publishers + Subscribers</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/24/builder-design-pattern/">Builder Design Pattern</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <span id="footer-info" class="inner">
-      &copy; 2019 Tong Shi<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </span>
-  </div>
-  <div id="analysis" style="text-align:center;">
-  <span id="busuanzi_container_site_uv">Total visitors: <span id="busuanzi_value_site_uv"></span>persion-time</span>
-	<span id="busuanzi_container_site_pv">
-      Total visits: <span id="busuanzi_value_site_pv"></span> times</span>
-  </div>
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Tong Shi&nbsp;@
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167.1k</span>&nbsp;
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tongshi049" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:tshi3@ualberta.ca" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+</div>
+    </div>
 </footer>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
 
 
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
 
-  </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140095224-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-140095224-1');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {

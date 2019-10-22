@@ -1,0 +1,1004 @@
+<!DOCTYPE HTML>
+<html lang="null">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Study Notes - Multithreading, TongTong Shi&#39;s Blog">
+    <meta name="description" content="This post is the study note of multithreading in Java. 
+
+
+1. Thread vs. ProcessQs: what is thread ? what is process? wha">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Study Notes - Multithreading | TongTong Shi&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TongTong Shi's Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>Index</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>Tags</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>About</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/contact" class="waves-effect waves-light">
+						
+						<i class="fa fa-comments"></i>
+						
+						<span>Contact</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TongTong Shi's Blog</div>
+        <div class="logo-desc">
+            
+            A Playground to Share My Knowledge
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Study Notes - Multithreading
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Thread/" target="_blank">
+                                <span class="chip bg-color">Thread</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-10-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
+                        1.3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
+                        8 Min
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>This post is the study note of multithreading in Java. </p>
+<a id="more"></a>
+
+<h3 id="1-Thread-vs-Process"><a href="#1-Thread-vs-Process" class="headerlink" title="1. Thread vs. Process"></a><font color="dodgerblue">1. Thread vs. Process</font></h3><h4 id="Qs-what-is-thread-what-is-process-what’s-the-difference-between-them"><a href="#Qs-what-is-thread-what-is-process-what’s-the-difference-between-them" class="headerlink" title="Qs: what is thread ? what is process? what’s the difference between them?"></a><font color="tomato">Qs: what is thread ? what is process? what’s the difference between them?</font></h4><p>Both processes and threads are <font color="mediumslateblue"><strong>independent sequences of execution</strong></font>. The typical difference is that <font color="mediumslateblue"><strong>threads (of the same process) run in a shared memory space, while process run in separate memory spaces</strong></font>. More specifically,</p>
+<ul>
+<li>A <font color="royalblue">Process</font> can be thought of as an instance of a program in execution. It runs independelty and isolated of other processes. It <strong>cannot directly access variables and data structures</strong> of other processes. If you wish to access another process’ resource, <strong>Inter-process communication(IPC)</strong> has to be used such as <em>pipes</em>, <em>files</em>, <em>sockets</em> etc.</li>
+<li>A <font color="royalblue">Thread</font> is aslo called <strong>Lightweight Process</strong>. It has its own call stack, but can <strong>access shared data of other threads</strong> in the same process. When one thread <strong>modifies a process resource</strong>, the change is immediately visible to sibling threads. And every thread has its own memory cache - <strong>Thread Local Storage</strong>.</li>
+<li>A Java application runs by default in <strong>One Process</strong>.</li>
+</ul>
+<h4 id="Qs-what’s-the-difference-between-Mutliprocessing-and-Multithreading"><a href="#Qs-what’s-the-difference-between-Mutliprocessing-and-Multithreading" class="headerlink" title="Qs: what’s the difference between Mutliprocessing and Multithreading?"></a><font color="tomato">Qs: what’s the difference between Mutliprocessing and Multithreading?</font></h4><p><font color="mediumslateblue">Both <strong>Multiprocessing and Multithreading</strong> are used to increase the computing power of a system</font>.</p>
+<p>For <strong>Multiprocessing</strong>,</p>
+<ul>
+<li>Multiprocessing is a system that has more than one or two processors. </li>
+<li>CPUs are added for increasing computing speed of the system.</li>
+<li>Multiple processes are executing concurrently.</li>
+<li>Creation of a process is time-consuming and resource intensive.</li>
+<li>It can be divided into two types, symmetric and asymmetirc.</li>
+</ul>
+<p>For <strong>Multithreading</strong>,</p>
+<ul>
+<li>Multithreading creates multiple threads of a single process ot increase computing power.</li>
+<li>Myltiple thread of a single process are exected concurrently.</li>
+<li>Creation of a thread is economical in both sense time and resource.</li>
+</ul>
+<p><strong>Example</strong>,</p>
+<ul>
+<li>Considering <strong>Chrome</strong>, it uses multiprocessing instead of multithreading. That is, each tab in the browser is a process. The reason of using multiprocessing rather than multithreading in the brower is that making the browser more crash resistant.<br><font color="tomato">The problem with threads is that if you try to access memory you shouldn’t or something, it’s not just that thread which will end, it’s the whole process, along with all the other threads managing all your tabs.</font><br><font color="royalblue">If using the multipleprocessing model and it means that you can crash one tab, but generally the rest won’t crash with it, because they’re in isolated processes.</font></li>
+<li>Considering <strong>Controller</strong>, we can do Multithreading in <em>SpringBoot</em>, and both Multitheading and Multiprocessing in <em>PHP</em>.</li>
+<li>Considering <strong>Database</strong>, <em>PostgreSQL</em> supports Multiprocessing and <em>MySql</em> supports multithreading. </li>
+</ul>
+<h3 id="2-How-to-create-a-Java-thread"><a href="#2-How-to-create-a-Java-thread" class="headerlink" title="2. How to create a Java thread?"></a><font color="dodgerblue">2. How to create a Java thread?</font></h3><p>There are two basic ways to do this,</p>
+<ul>
+<li><font color="royalblue"><strong>Extending the <em>Thread</em> class</strong></font></li>
+<li><font color="royalblue"><strong>Implementing the <em>Runnable</em> class</strong></font></li>
+</ul>
+<h4 id="1-Creating-a-thread-via-extending-the-Thread-class"><a href="#1-Creating-a-thread-via-extending-the-Thread-class" class="headerlink" title="(1). Creating a thread via extending the Thread class"></a><font color="mediumslateblue">(1). Creating a thread via extending the <i>Thread</i> class</font></h4><p>We can create a thread through extending the <code>Thread</code> class as follows.</p>
+<pre><code>class MyThread extends Thread {
+    public MyThread() {}
+
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 200; i++) 
+            System.out.println(i + &quot;  &quot;);
+    }
+}</code></pre>
+
+<p>Then we can do <font color="royalblue"><strong>non-parallel execution</strong> (using method <code>run()</code>)</font> or <font color="royalblue"><strong>parallel execution</strong> (using method <code>start()</code>)</font>.</p>
+<pre><code>class MyThreadTestDrive {
+	
+    public static void main(String[] args) {
+
+        MyThread thread1 = new MyThread();
+        MyThread thread2 = new MyThread();
+        MyThread thread2 = new MyThread();        
+
+        System.out.println(&quot;======Non-parallel execution======&quot;);
+        thread1.run();
+        thread2.run();
+        thread3.run();
+
+        System.out.println();
+
+        System.out.println(&quot;======Non-parallel execution======&quot;);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}</code></pre>
+
+<p>The difference between <em>parallel</em> and <em>non-parallel</em> excution is shown as follows.</p>
+<img src="parallel.png" width="80%" height="80%">
+
+<h4 id="2-Creating-a-thread-via-implementing-the-Runnable-interface"><a href="#2-Creating-a-thread-via-implementing-the-Runnable-interface" class="headerlink" title="(2). Creating a thread via implementing the Runnable interface"></a><font color="mediumslateblue">(2). Creating a thread via implementing the <i>Runnable</i> interface</font></h4><p>This may be desired if you want your thread to extend another class.</p>
+<pre><code>public class MyThread implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println(&quot;A new thread has been created.&quot;);
+    }
+}</code></pre>
+
+<p>Classes that implement <code>Runnable</code> are instantiate in a different way, i.e. </p>
+<pre><code>class MyThreadTestDrive {
+	
+    public static void main(String[] args) {
+
+        Thread thread = new Thread(new MyThread());
+
+        thread.start();
+    }
+}</code></pre>
+
+<h3 id="3-Advanced-Ways-to-Create-Thread"><a href="#3-Advanced-Ways-to-Create-Thread" class="headerlink" title="3. Advanced Ways to Create Thread"></a><font color="dodgerblue">3. Advanced Ways to Create Thread</font></h3><p>Next, two advanced ways to create thread will be introduced. They are,</p>
+<ul>
+<li>Using class <code>ExecutorService</code></li>
+<li>Using class <code>CompletableFuture</code></li>
+</ul>
+<h4 id="1-Creating-a-thread-Using-ExecutorService"><a href="#1-Creating-a-thread-Using-ExecutorService" class="headerlink" title="(1). Creating a thread Using ExecutorService"></a><font color="mediumslateblue">(1). Creating a thread Using <i>ExecutorService</i></font></h4><p><code>ExecutorService</code> is a framework provided by the <em>JDK</em> which automatically <font color="royalblue">provides a pool of threads and API for assigning tasks to it.</font> </p>
+<p>Instantiating <code>ExecutorService</code> can be done by using <font color="lightseagreen"><strong>Factory Method of class <code>Executors</code></strong></font>. This is the simplest method. For example,</p>
+<pre><code>ExecutorService executor2 = Executors.newSingleThreadPool();
+
+ExecutorService executor = Executors.newFixedThreadPool(10);</code></pre>
+
+<p>Because <code>ExecutorService</code> is an interface, <font color="lightseagreen"><strong>an instance of any its implementations can be used</strong></font>. There are several implementations to choose from in the <font color="lightseagreen"><strong><code>java.util.concurrent</code></strong></font> package or you can create your own. For example,</p>
+<pre><code>ExecutorService executor2 = new ThreadPoolExecutor(1, 1, 0L, 
+                TimeUnit.MILLISECONDS, 
+                new LinkedBlockingDeque&lt;Runnable&gt;());</code></pre>
+
+<p>Then, the next step is to <font color="lightseagreen"><strong>assign tasks to the <code>ExecutorService</code></strong></font>. <code>ExecutorService</code> can execute both <code>Runnable</code> and <code>Callable</code> tasks. Let’s create some tasks at first.</p>
+<pre><code>&#x2F;&#x2F; Runnable object is created using lambda expression
+
+Runnable runnable = () -&gt; {
+    try {
+        TimeUnit.MILLISECONDS.sleep(200);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+};
+
+Callable&lt;String&gt; callable = () -&gt; {
+    TimeUnit.MILLISECOND.sleep(200);
+    return &quot;Task&#39;s execution&quot;;
+};
+
+List&lt;Callable&lt;String&gt;&gt; callables = new ArrayList&lt;&gt;();
+callables.add(callable);
+callables.add(callable);
+callables.add(callable);</code></pre>
+
+<p>Tasks can be assigned to the <code>ExecutorService</code> using several methods, including <font color="lightseagreen"><code>execute()</code>, <code>submit()</code>, <code>invokeAll()</code>, <code>invokeAny()</code>.</font></p>
+<p>The <font color="lightseagreen"><code>execute()</code></font> method is void and it <font color="tomato">doesn’t give any possibility to get the result of task’s execution or to check the task’s status (is it running or executed)</font>. It accepts runnable tasks.</p>
+<pre><code>executor.execute(runnable);</code></pre>
+
+<p>The <font color="lightseagreen"><code>submit()</code></font> method <font color="tomato">submits a <code>Callable</code> or a <code>Runnable</code> task to an <code>ExecutorService</code> and returns a result of type Future</font>.</p>
+<pre><code>executor.submit(callable);</code></pre>
+
+<p>The <font color="lightseagreen"><code>invokeAll()</code></font> method assigns a collection of tasks to an <code>ExecutorService</code>, causing each to be executed, and <font color="tomato">returns the result of all task executions in the form of a list of objects of type Future</font>.</p>
+<pre><code>try {
+    List&lt;Future&lt;String&gt;&gt; futures = executor.invokeAll(callables);
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}</code></pre>
+
+<p><font color="tomato"><strong>Tip 1: Difference between <em>Callable</em> and <em>Runnable</em> objects.</strong></font> </p>
+<ul>
+<li>They are similar, and are both designed for classes whose instances are potentially executed by another thread.</li>
+<li>A <em>Callable</em> needs to implement <code>call()</code> method while a <em>Runnable</em> needs to implement <code>run()</code> method.</li>
+<li>A <em>Runnable</em> object doesn’t return a result whereas a <em>Callable</em> object returns a result of type <code>Future</code>. </li>
+<li>A <em>Runnable</em> object cannot throw a checked exception. The <em>Callable</em> object can throw an exception.</li>
+</ul>
+<p>For example,</p>
+<pre><code>public class MyCallable implements Callable {
+    @Override
+    public Object call() throws Exception {
+        return null;
+    }
+}
+
+public class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        
+    }
+}</code></pre>
+
+<p><font color="tomato"><strong>Tip 2: Future object.</strong></font> </p>
+<p>Java <em>Callable</em> tasks return <font color="mediumslateblue"><strong><code>java.util.concurrent.Future</code></strong></font> object. Uing <font color="mediumslateblue"><strong>Java Future</strong></font> object, we can find out the status of the <em>Callable</em> task and get the returned Object. Methods are provided to check if the <em>asynchronous</em> computation is complete, to wait for its completion, and to retrieve the result of the compuration.</p>
+<ul>
+<li><font color="royalblue"><code>get()</code></font>: Waits if necessary for the computation to complete, and then retrieves its result.</li>
+<li><font color="royalblue"><code>isCancel()</code></font>: Returns true if this task was cancelled before it completed normally.</li>
+<li><font color="royalblue"><code>isDone()</code></font>: Returns true if this task completed.</li>
+</ul>
+<p><font color="tomato"><strong>Tip 3: CountDownLatch object.</strong></font> </p>
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CountDownLatch.html" target="_blank" rel="noopener">document</a>
+<p>It provides a <font color="royalblue"><strong>synchronization aid</strong></font> that <font color="royalblue">allows one or more threads to wait until a set of operations being performed in other threads completes</font>.</p>
+<p>A <strong>CountDownLatch</strong> is initialized with a given <font color="orange"><em><code>count</code></em></font>. The <font color="orange"><em>await()</em></font> mehtods block until the current count reaches zero due to invocations of the <font><em><code>countDown()</code></em></font> method, after which all waiting threads are released and any subsequent invocations of <font color="orange"><em>await()</em></font> return immediately. This is a <strong>one-shot</strong> phenomenon – the count cannot be reset. </p>
+<p>A <strong>CountDownLatch</strong> is a versatile synchronization tool and can be used for a number of purposes. A CountDownLatch initialized with a count of <strong><em>one</em></strong> serves as a simple on/off latch, or gate: all threads invoking await wait at the gate until it is opened by a thread invoking <font color="orange"><em><code>countDown()</code></em></font>. A CountDownLatch initialized to <strong><em>N</em></strong> can be used to make one thread wait until N threads have completed some action, or some action has been completed N times.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>Reprint policy</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                    <img alt style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png">
+                </a>
+            </div>
+            <br>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">
+                    《Study Notes - Multithreading》
+                </span> by
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/15/multithreading-udemy-1/" property="cc:attributionName" rel="cc:attributionURL">
+                Tong Shi
+            </a> is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                Creative Commons Attribution 4.0 International License
+            </a> 
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2019/10/18/leetcode1193/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="SQL Qs - Monthly Transaction I">
+                        
+                        <span class="card-title">SQL Qs - Monthly Transaction I</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            LeetCode Q 1193 - Monthly Transaction IGiven a table Transactions, write a SQL solution to get the amount of transaction
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/" target="_blank">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                    <a href="/tags/SQL/" target="_blank">
+                        <span class="chip bg-color">SQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/07/design-patterns/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="OO Design Patterns">
+                        
+                        <span class="card-title">OO Design Patterns</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            This post is the study note of `Head First Design Patterns`. In this post, many design patterns will be introduced brief
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Design-Pattern/" target="_blank">
+                        <span class="chip bg-color">Design Pattern</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Tong Shi&nbsp;@
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167.1k</span>&nbsp;
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tongshi049" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:tshi3@ualberta.ca" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140095224-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-140095224-1');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
