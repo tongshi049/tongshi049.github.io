@@ -433,62 +433,58 @@
 <li><font color="royalblue"><strong>Implementing the <em>Runnable</em> class</strong></font></li>
 </ul>
 <h4 id="1-Creating-a-thread-via-extending-the-Thread-class"><a href="#1-Creating-a-thread-via-extending-the-Thread-class" class="headerlink" title="(1). Creating a thread via extending the Thread class"></a><font color="mediumslateblue">(1). Creating a thread via extending the <i>Thread</i> class</font></h4><p>We can create a thread through extending the <code>Thread</code> class as follows.</p>
-<pre><code>class MyThread extends Thread {
-    public MyThread() {}
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 
-    @Override
-    public void run() {
-        for (int i = 0; i &lt; 200; i++) 
-            System.out.println(i + &quot;  &quot;);
-    }
-}</code></pre>
-
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">200</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">"  "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>Then we can do <font color="royalblue"><strong>non-parallel execution</strong> (using method <code>run()</code>)</font> or <font color="royalblue"><strong>parallel execution</strong> (using method <code>start()</code>)</font>.</p>
-<pre><code>class MyThreadTestDrive {
-	
-    public static void main(String[] args) {
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MyThreadTestDrive</span> <span class="token punctuation">{</span>
 
-        MyThread thread1 = new MyThread();
-        MyThread thread2 = new MyThread();
-        MyThread thread2 = new MyThread();        
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        System.out.println(&quot;======Non-parallel execution======&quot;);
-        thread1.run();
-        thread2.run();
-        thread3.run();
+        MyThread thread1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        MyThread thread2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        MyThread thread2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
 
-        System.out.println();
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"======Non-parallel execution======"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread1<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread2<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread3<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        System.out.println(&quot;======Non-parallel execution======&quot;);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-    }
-}</code></pre>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"======Non-parallel execution======"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        thread3<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>The difference between <em>parallel</em> and <em>non-parallel</em> excution is shown as follows.</p>
 <img src="parallel.png" width="80%" height="80%">
 
 <h4 id="2-Creating-a-thread-via-implementing-the-Runnable-interface"><a href="#2-Creating-a-thread-via-implementing-the-Runnable-interface" class="headerlink" title="(2). Creating a thread via implementing the Runnable interface"></a><font color="mediumslateblue">(2). Creating a thread via implementing the <i>Runnable</i> interface</font></h4><p>This may be desired if you want your thread to extend another class.</p>
-<pre><code>public class MyThread implements Runnable {
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyThread</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
 
-    @Override
-    public void run() {
-        System.out.println(&quot;A new thread has been created.&quot;);
-    }
-}</code></pre>
-
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"A new thread has been created."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>Classes that implement <code>Runnable</code> are instantiate in a different way, i.e. </p>
-<pre><code>class MyThreadTestDrive {
-	
-    public static void main(String[] args) {
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MyThreadTestDrive</span> <span class="token punctuation">{</span>
 
-        Thread thread = new Thread(new MyThread());
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        thread.start();
-    }
-}</code></pre>
+        Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+        thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="3-Advanced-Ways-to-Create-Thread"><a href="#3-Advanced-Ways-to-Create-Thread" class="headerlink" title="3. Advanced Ways to Create Thread"></a><font color="dodgerblue">3. Advanced Ways to Create Thread</font></h3><p>Next, two advanced ways to create thread will be introduced. They are,</p>
 <ul>
 <li>Using class <code>ExecutorService</code></li>
@@ -496,50 +492,44 @@
 </ul>
 <h4 id="1-Creating-a-thread-Using-ExecutorService"><a href="#1-Creating-a-thread-Using-ExecutorService" class="headerlink" title="(1). Creating a thread Using ExecutorService"></a><font color="mediumslateblue">(1). Creating a thread Using <i>ExecutorService</i></font></h4><p><code>ExecutorService</code> is a framework provided by the <em>JDK</em> which automatically <font color="royalblue">provides a pool of threads and API for assigning tasks to it.</font> </p>
 <p>Instantiating <code>ExecutorService</code> can be done by using <font color="lightseagreen"><strong>Factory Method of class <code>Executors</code></strong></font>. This is the simplest method. For example,</p>
-<pre><code>ExecutorService executor2 = Executors.newSingleThreadPool();
+<pre class=" language-java"><code class="language-java">ExecutorService executor2 <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newSingleThreadPool</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-ExecutorService executor = Executors.newFixedThreadPool(10);</code></pre>
-
+ExecutorService executor <span class="token operator">=</span> Executors<span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Because <code>ExecutorService</code> is an interface, <font color="lightseagreen"><strong>an instance of any its implementations can be used</strong></font>. There are several implementations to choose from in the <font color="lightseagreen"><strong><code>java.util.concurrent</code></strong></font> package or you can create your own. For example,</p>
-<pre><code>ExecutorService executor2 = new ThreadPoolExecutor(1, 1, 0L, 
-                TimeUnit.MILLISECONDS, 
-                new LinkedBlockingDeque&lt;Runnable&gt;());</code></pre>
-
+<pre class=" language-java"><code class="language-java">ExecutorService executor2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThreadPoolExecutor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> 0L<span class="token punctuation">,</span> 
+                TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">,</span> 
+                <span class="token keyword">new</span> <span class="token class-name">LinkedBlockingDeque</span><span class="token operator">&lt;</span>Runnable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Then, the next step is to <font color="lightseagreen"><strong>assign tasks to the <code>ExecutorService</code></strong></font>. <code>ExecutorService</code> can execute both <code>Runnable</code> and <code>Callable</code> tasks. Let’s create some tasks at first.</p>
-<pre><code>&#x2F;&#x2F; Runnable object is created using lambda expression
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// Runnable object is created using lambda expression</span>
 
-Runnable runnable = () -&gt; {
-    try {
-        TimeUnit.MILLISECONDS.sleep(200);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-};
+Runnable runnable <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        TimeUnit<span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-Callable&lt;String&gt; callable = () -&gt; {
-    TimeUnit.MILLISECOND.sleep(200);
-    return &quot;Task&#39;s execution&quot;;
-};
+Callable<span class="token operator">&lt;</span>String<span class="token operator">></span> callable <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    TimeUnit<span class="token punctuation">.</span>MILLISECOND<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token string">"Task's execution"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-List&lt;Callable&lt;String&gt;&gt; callables = new ArrayList&lt;&gt;();
-callables.add(callable);
-callables.add(callable);
-callables.add(callable);</code></pre>
-
+List<span class="token operator">&lt;</span>Callable<span class="token operator">&lt;</span>String<span class="token operator">>></span> callables <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+callables<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>callable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+callables<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>callable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+callables<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>callable<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>Tasks can be assigned to the <code>ExecutorService</code> using several methods, including <font color="lightseagreen"><code>execute()</code>, <code>submit()</code>, <code>invokeAll()</code>, <code>invokeAny()</code>.</font></p>
 <p>The <font color="lightseagreen"><code>execute()</code></font> method is void and it <font color="tomato">doesn’t give any possibility to get the result of task’s execution or to check the task’s status (is it running or executed)</font>. It accepts runnable tasks.</p>
-<pre><code>executor.execute(runnable);</code></pre>
-
+<pre class=" language-java"><code class="language-java">executor<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>runnable<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>The <font color="lightseagreen"><code>submit()</code></font> method <font color="tomato">submits a <code>Callable</code> or a <code>Runnable</code> task to an <code>ExecutorService</code> and returns a result of type Future</font>.</p>
-<pre><code>executor.submit(callable);</code></pre>
-
+<pre class=" language-java"><code class="language-java">executor<span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span>callable<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>The <font color="lightseagreen"><code>invokeAll()</code></font> method assigns a collection of tasks to an <code>ExecutorService</code>, causing each to be executed, and <font color="tomato">returns the result of all task executions in the form of a list of objects of type Future</font>.</p>
-<pre><code>try {
-    List&lt;Future&lt;String&gt;&gt; futures = executor.invokeAll(callables);
-} catch (InterruptedException e) {
-    e.printStackTrace();
-}</code></pre>
-
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Future<span class="token operator">&lt;</span>String<span class="token operator">>></span> futures <span class="token operator">=</span> executor<span class="token punctuation">.</span><span class="token function">invokeAll</span><span class="token punctuation">(</span>callables<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p><font color="tomato"><strong>Tip 1: Difference between <em>Callable</em> and <em>Runnable</em> objects.</strong></font> </p>
 <ul>
 <li>They are similar, and are both designed for classes whose instances are potentially executed by another thread.</li>
@@ -548,20 +538,19 @@ callables.add(callable);</code></pre>
 <li>A <em>Runnable</em> object cannot throw a checked exception. The <em>Callable</em> object can throw an exception.</li>
 </ul>
 <p>For example,</p>
-<pre><code>public class MyCallable implements Callable {
-    @Override
-    public Object call() throws Exception {
-        return null;
-    }
-}
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyCallable</span> <span class="token keyword">implements</span> <span class="token class-name">Callable</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Object <span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-public class MyRunnable implements Runnable {
-    @Override
-    public void run() {
-        
-    }
-}</code></pre>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyRunnable</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p><font color="tomato"><strong>Tip 2: Future object.</strong></font> </p>
 <p>Java <em>Callable</em> tasks return <font color="mediumslateblue"><strong><code>java.util.concurrent.Future</code></strong></font> object. Uing <font color="mediumslateblue"><strong>Java Future</strong></font> object, we can find out the status of the <em>Callable</em> task and get the returned Object. Methods are provided to check if the <em>asynchronous</em> computation is complete, to wait for its completion, and to retrieve the result of the compuration.</p>
 <ul>
@@ -857,7 +846,7 @@ public class MyRunnable implements Runnable {
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;
             <br>
             
-            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167.1k</span>&nbsp;
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167k</span>&nbsp;
             
             
             

@@ -377,7 +377,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
-                        728
+                        720
                     </div>
                     
 
@@ -447,79 +447,80 @@ In object-oriented programming, the iterator pattern is a design pattern in whic
 <p>The UML diagram is shown as follows.<br><img src="Iterator pattern.png" width="50%" height="50%"></p>
 <p>Notice: <strong>Concrete iterable</strong> products particular <strong>concrete iterator</strong>, <strong>not iterator</strong>, and <strong>pass itself</strong>. So that <strong>concrete iterator</strong> has a <strong>reference</strong> to <strong>concrete iterable</strong>.</p>
 <p><strong>Implementation:</strong></p>
-<pre><code>
-&#x2F;&#x2F; iterable interface
-Interface Inventory {
-    InventoryIterator getIterator()
+<pre class=" language-java"><code class="language-java">
+<span class="token comment" spellcheck="true">// iterable interface</span>
+Interface <span class="token class-name">Inventory</span> <span class="token punctuation">{</span>
+    InventoryIterator <span class="token function">getIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     …
-}
+<span class="token punctuation">}</span>
 
-&#x2F;&#x2F; an concrete iterable
-Class HandHoldInventory implements Inventory {
+<span class="token comment" spellcheck="true">// an concrete iterable</span>
+Class <span class="token class-name">HandHoldInventory</span> <span class="token keyword">implements</span> <span class="token class-name">Inventory</span> <span class="token punctuation">{</span>
 
-    public Item Right { getter; private setter }
-    public Item Left { getter; private setter }
+    <span class="token keyword">public</span> Item Right <span class="token punctuation">{</span> getter<span class="token punctuation">;</span> <span class="token keyword">private</span> setter <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> Item Left <span class="token punctuation">{</span> getter<span class="token punctuation">;</span> <span class="token keyword">private</span> setter <span class="token punctuation">}</span>
 
-    public HandHoldItemInventory (Item right, Item left) {
-        this.Right = right; this.Left = left;
-    }
+    <span class="token keyword">public</span> <span class="token function">HandHoldItemInventory</span> <span class="token punctuation">(</span>Item right<span class="token punctuation">,</span> Item left<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>Right <span class="token operator">=</span> right<span class="token punctuation">;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>Left <span class="token operator">=</span> left<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public InventoryIterator getIterator() {
-        Return new HandHoldInventoryItorator(this);
-    }
+    <span class="token keyword">public</span> InventoryIterator <span class="token function">getIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Return <span class="token keyword">new</span> <span class="token class-name">HandHoldInventoryItorator</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-}
+<span class="token punctuation">}</span>
 
-&#x2F;&#x2F; Iterator interface
-Interface InventoryIterator {
-    boolean isDone()    &#x2F;&#x2F;hasNext()
-    void next()
-    Item current()
-}
+<span class="token comment" spellcheck="true">// Iterator interface</span>
+Interface <span class="token class-name">InventoryIterator</span> <span class="token punctuation">{</span>
+    <span class="token keyword">boolean</span> <span class="token function">isDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//hasNext()</span>
+    <span class="token keyword">void</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    Item <span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-Interface Item {…}
+Interface <span class="token class-name">Item</span> <span class="token punctuation">{</span>…<span class="token punctuation">}</span>
 
-&#x2F;&#x2F; a concrete iterator
-Class HandHeldInventoryIterator implements InventoryIterator {
+<span class="token comment" spellcheck="true">// a concrete iterator</span>
+Class <span class="token class-name">HandHeldInventoryIterator</span> <span class="token keyword">implements</span> <span class="token class-name">InventoryIterator</span> <span class="token punctuation">{</span>
 
-    HandHeldInventory inventory;
-    Int index = 0;
+    HandHeldInventory inventory<span class="token punctuation">;</span>
+    Int index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-    public HandHeldInventoryIterator (HandHeldInventory i) {
-        this.inventory = I;
-    }
+    <span class="token keyword">public</span> <span class="token function">HandHeldInventoryIterator</span> <span class="token punctuation">(</span>HandHeldInventory i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>inventory <span class="token operator">=</span> I<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public boolean isDone() {
-        Return this.index &lt; 2;
-    }
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Return <span class="token keyword">this</span><span class="token punctuation">.</span>index <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public void next() {
-        this.index == 1;
-    }
-        
-    public Item current() {
-        Switch (this.index) {
-            Case 0 : return this.inventory.Right;
-            Case 1 : return this.inventory.Left;
-            Others : return null;
-        }
-    }
-}
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>index <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Item <span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">Switch</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Case <span class="token number">0</span> <span class="token operator">:</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>inventory<span class="token punctuation">.</span>Right<span class="token punctuation">;</span>
+            Case <span class="token number">1</span> <span class="token operator">:</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>inventory<span class="token punctuation">.</span>Left<span class="token punctuation">;</span>
+            Others <span class="token operator">:</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">{</span><span class="token operator">%</span> endcodeblock <span class="token operator">%</span><span class="token punctuation">}</span>
+
+Next<span class="token punctuation">,</span> we can traverse the `HandHeldInventory` as follows<span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token operator">%</span> codeblock lang<span class="token operator">:</span>java <span class="token operator">%</span><span class="token punctuation">}</span>
+
+Inventory inv <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HandHeldInventory</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+InentoryIterator iter <span class="token operator">=</span> inv<span class="token punctuation">.</span><span class="token function">getIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">isDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Iter<span class="token punctuation">.</span><span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// do something cool</span>
+    Iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-
-<p>Next, we can traverse the <code>HandHeldInventory</code> as follows,</p>
-<pre><code>
-Inventory inv = new HandHeldInventory(…);
-
-InentoryIterator iter = inv.getIterator();
-
-while(iter.isDone()) {
-    Iter.current();
-    &#x2F;&#x2F; do something cool
-    Iter.next();
-}
-</code></pre>
-
 <h2 id="Iterator-in-Java"><a href="#Iterator-in-Java" class="headerlink" title="Iterator in Java"></a>Iterator in Java</h2><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html" target="_blank" rel="noopener">source</a>
 <p>An iterator over a collection. Iterator takes the place of Enumeration in the Java Collections Framework. Iterators differ from enumerations in two ways:</p>
 <ul>
@@ -832,7 +833,7 @@ while(iter.isDone()) {
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;
             <br>
             
-            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167.1k</span>&nbsp;
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">167k</span>&nbsp;
             
             
             
