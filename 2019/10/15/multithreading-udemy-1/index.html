@@ -5,10 +5,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="Study Notes - Multithreading, TongTong Shi&#39;s Blog">
-    <meta name="description" content="This post is the study note of multithreading in Java. 
-
-
-1. Thread vs. ProcessQs: what is thread ? what is process? wha">
+    <meta name="description" content="1. Thread vs. ProcessQs: what is thread ? what is process? what’s the difference between them?Both processes and threads">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -403,10 +400,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>This post is the study note of multithreading in Java. </p>
-<a id="more"></a>
-
-<h3 id="1-Thread-vs-Process"><a href="#1-Thread-vs-Process" class="headerlink" title="1. Thread vs. Process"></a><font color="dodgerblue">1. Thread vs. Process</font></h3><h4 id="Qs-what-is-thread-what-is-process-what’s-the-difference-between-them"><a href="#Qs-what-is-thread-what-is-process-what’s-the-difference-between-them" class="headerlink" title="Qs: what is thread ? what is process? what’s the difference between them?"></a><font color="tomato">Qs: what is thread ? what is process? what’s the difference between them?</font></h4><p>Both processes and threads are <font color="mediumslateblue"><strong>independent sequences of execution</strong></font>. The typical difference is that <font color="mediumslateblue"><strong>threads (of the same process) run in a shared memory space, while process run in separate memory spaces</strong></font>. More specifically,</p>
+                <h3 id="1-Thread-vs-Process"><a href="#1-Thread-vs-Process" class="headerlink" title="1. Thread vs. Process"></a><font color="dodgerblue">1. Thread vs. Process</font></h3><h4 id="Qs-what-is-thread-what-is-process-what’s-the-difference-between-them"><a href="#Qs-what-is-thread-what-is-process-what’s-the-difference-between-them" class="headerlink" title="Qs: what is thread ? what is process? what’s the difference between them?"></a><font color="tomato">Qs: what is thread ? what is process? what’s the difference between them?</font></h4><p>Both processes and threads are <font color="mediumslateblue"><strong>independent sequences of execution</strong></font>. The typical difference is that <font color="mediumslateblue"><strong>threads (of the same process) run in a shared memory space, while process run in separate memory spaces</strong></font>. More specifically,</p>
 <ul>
 <li>A <font color="royalblue">Process</font> can be thought of as an instance of a program in execution. It runs independelty and isolated of other processes. It <strong>cannot directly access variables and data structures</strong> of other processes. If you wish to access another process’ resource, <strong>Inter-process communication(IPC)</strong> has to be used such as <em>pipes</em>, <em>files</em>, <em>sockets</em> etc.</li>
 <li>A <font color="royalblue">Thread</font> is aslo called <strong>Lightweight Process</strong>. It has its own call stack, but can <strong>access shared data of other threads</strong> in the same process. When one thread <strong>modifies a process resource</strong>, the change is immediately visible to sibling threads. And every thread has its own memory cache - <strong>Thread Local Storage</strong>.</li>
@@ -668,7 +662,7 @@ public class MyRunnable implements Runnable {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            LeetCode Q 1193 - Monthly Transaction IGiven a table Transactions, write a SQL solution to get the amount of transaction
+                            A medium SQL question from Leetcode (LeetCode Q1193).
                         
                     </div>
                     <div class="publish-info">
@@ -717,7 +711,7 @@ public class MyRunnable implements Runnable {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            This post is the study note of `Head First Design Patterns`. In this post, many design patterns will be introduced brief
+                            The study notes of book `Head First Design Patterns`. Here, many design patterns will be introduced briefly.
                         
                     </div>
                     <div class="publish-info">

@@ -2,9 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/09/24/builder-design-pattern/</loc>
+    
+    <lastmod>2019-10-22T15:27:19.081Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/24/observer-design-pattern/</loc>
+    
+    <lastmod>2019-10-22T15:26:45.613Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/25/command-design-pattern/</loc>
+    
+    <lastmod>2019-10-22T15:26:12.312Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/09/26/singleton-design-pattern/</loc>
+    
+    <lastmod>2019-10-22T15:25:48.954Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/07/design-patterns/</loc>
+    
+    <lastmod>2019-10-22T15:24:27.238Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/18/leetcode1193/</loc>
+    
+    <lastmod>2019-10-22T15:22:40.272Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/10/18/leetcodeQ1205/</loc>
     
-    <lastmod>2019-10-22T01:08:39.026Z</lastmod>
+    <lastmod>2019-10-22T15:22:22.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/15/multithreading-udemy-1/</loc>
+    
+    <lastmod>2019-10-22T15:22:14.326Z</lastmod>
     
   </url>
   
@@ -26,55 +75,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2019-10-21T22:17:46.525Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/15/multithreading-udemy-1/</loc>
-    
-    <lastmod>2019-10-19T23:24:58.441Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/18/leetcode1193/</loc>
-    
-    <lastmod>2019-10-18T16:34:36.053Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/07/design-patterns/</loc>
-    
-    <lastmod>2019-10-10T17:19:01.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/09/26/singleton-design-pattern/</loc>
-    
-    <lastmod>2019-10-07T19:20:38.324Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/09/24/observer-design-pattern/</loc>
-    
-    <lastmod>2019-10-07T19:04:38.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/09/25/command-design-pattern/</loc>
-    
-    <lastmod>2019-09-26T17:28:20.748Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/09/24/builder-design-pattern/</loc>
-    
-    <lastmod>2019-09-24T18:06:17.048Z</lastmod>
     
   </url>
   
