@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/10/23/leetcodeQ592/</loc>
+    
+    <lastmod>2019-10-23T17:15:12.133Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/10/18/leetcodeQ1205/</loc>
+    
+    <lastmod>2019-10-23T14:35:55.349Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/10/15/multithreading-udemy-1/</loc>
     
     <lastmod>2019-10-22T15:36:29.774Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>http://yoursite.com/2019/10/18/leetcode1193/</loc>
     
     <lastmod>2019-10-22T15:22:40.272Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/10/18/leetcodeQ1205/</loc>
-    
-    <lastmod>2019-10-22T15:22:22.283Z</lastmod>
     
   </url>
   
