@@ -1,0 +1,1042 @@
+<!DOCTYPE HTML>
+<html lang="null">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="Study Notes - Multithreading (2), TongTong Shi&#39;s Blog">
+    <meta name="description" content="1. Implement Thread Safe Blocking QueueCode:
+class BoundedBlockingQueue {
+
+    private int capacity;
+    private Deque&amp;l">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Study Notes - Multithreading (2) | TongTong Shi&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TongTong Shi's Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right nav-menu">
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/" class="waves-effect waves-light">
+						
+						<i class="fa fa-home"></i>
+						
+						<span>Index</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/tags" class="waves-effect waves-light">
+						
+						<i class="fa fa-tags"></i>
+						
+						<span>Tags</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/about" class="waves-effect waves-light">
+						
+						<i class="fa fa-user-circle-o"></i>
+						
+						<span>About</span>
+					</a>
+          
+        </li>
+    
+	<li class="hide-on-med-and-down nav-item">
+		
+					  <a href="/contact" class="waves-effect waves-light">
+						
+						<i class="fa fa-comments"></i>
+						
+						<span>Contact</span>
+					</a>
+          
+        </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="Search"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TongTong Shi's Blog</div>
+        <div class="logo-desc">
+            
+            A Playground to Share My Knowledge
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-user-circle-o"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa fa-fw fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Study Notes - Multithreading (2)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Thread/" target="_blank">
+                                <span class="chip bg-color">Thread</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2019-10-28
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>Word Count:&nbsp;&nbsp;
+                        1.5k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>Read Times:&nbsp;&nbsp;
+                        9 Min
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-Implement-Thread-Safe-Blocking-Queue"><a href="#1-Implement-Thread-Safe-Blocking-Queue" class="headerlink" title="1. Implement Thread Safe Blocking Queue"></a><font color="dodgerblue">1. Implement Thread Safe Blocking Queue</font></h3><p><strong>Code</strong>:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">BoundedBlockingQueue</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> capacity<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Deque<span class="token operator">&lt;</span>Integer<span class="token operator">></span> que<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Object LOCK <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// OOD - implement a non-param constructor.</span>
+    <span class="token keyword">public</span> <span class="token function">BoundedBlockingQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">BoundedBlockingQueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>que <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> element<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>LOCK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>capacity<span class="token punctuation">)</span> 
+                LOCK<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">// instead of calling LOCK.notifyALL() directly, add a condition</span>
+            <span class="token comment" spellcheck="true">// since if the que is not empty then no threads will wait, we don't need to call notifyAll() method.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                LOCK<span class="token punctuation">.</span><span class="token function">notifyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">offer</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>    
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>LOCK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+                LOCK<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>capacity<span class="token punctuation">)</span>
+                LOCK<span class="token punctuation">.</span><span class="token function">notifyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span><span class="token punctuation">(</span>LOCK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips: "></a><font color="tomato">Tips: </font></h4><ol>
+<li><font color="royalblue"><strong>method <code>wait()</code></strong></font></li>
+</ol>
+<ul>
+<li><strong>Defined</strong> in class <code>Object</code>.</li>
+<li><strong>Inhereted</strong> by all objects.</li>
+<li>A thread invoking <code>wait()</code> will <strong>suspend the thread</strong>.</li>
+<li>A thread invoking <code>wait()</code> must <strong>own the intrinsic lock of the object</strong> it is calling <code>wait()</code> from.</li>
+<li><code>wait()</code> method must be in a <strong>try-catch</strong> block that catches <strong>InterruptedExceptions</strong>.</li>
+<li>All threads that call <code>wait()</code> on an object are placed in <strong>a poll of waiting threads for that object</strong>.</li>
+</ul>
+<ol start="2">
+<li><font color="royalblue"><strong>method <code>notify()</code></strong></font></li>
+</ol>
+<ul>
+<li><strong>Defined</strong> in class <code>Object</code>.</li>
+<li><strong>Inhereted</strong> by all objects.</li>
+<li><strong>Execution resumes</strong> when <strong>another</strong> thread calls the <code>notify()</code> mehtod of the <strong>object our first thread is waiting on</strong>.</li>
+<li>When <code>notify()</code> of an object is called, then a <strong>single waiting thread</strong> on that object is signaled to get ready to resume execution.</li>
+</ul>
+<ol start="3">
+<li><font color="royalblue"><strong>method <code>notifyAll()</code></strong></font></li>
+</ol>
+<ul>
+<li><strong>Defined</strong> in class <code>Object</code>.</li>
+<li><strong>Inhereted</strong> by all objects.</li>
+<li>Notifies <strong>all</strong> the waiting threads.</li>
+<li>These waiting threads would then <strong>compete</strong> to see which single thread resumes execution, the <strong>rest</strong> of the threads would <strong>once again wait</strong>.</li>
+</ul>
+<h3 id="2-Classes-for-Locking"><a href="#2-Classes-for-Locking" class="headerlink" title="2. Classes for Locking"></a><font color="dodgerblue">2. Classes for Locking</font></h3><p>Besides using <code>synchronized</code> block to realize Thread Saft Blocking Queue, we can also use <code>Lock</code> implementations. They allow more flexible struturing, may have quite different properties, and support multiple associated <code>Condition</code> objects.</p>
+<h4 id="1-Interface-Lock"><a href="#1-Interface-Lock" class="headerlink" title="(1). Interface Lock"></a><font color="tomato">(1). Interface Lock</font></h4><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html" target="_blank" rel="noopener">document</a>
+<p><code>java.util.concurrent.locks</code><br>A lock is a tool for controlling access to a shared resource by multiple threads. Commonly, a lock provides exclusive access to a shared resource: only one thread at a time can acquire the lock and all access to the shared resource requires that the lock be acquired first. However, some locks may allow <strong>concurrent access to a shared resource</strong>, such as the <strong>read lock</strong> of a <code>ReadWriteLock</code>.</p>
+<p>To use them, first instantiate a lock.<br><code>Lock lock = bew ReentrantLock();</code><br>Then follow this pattern</p>
+<pre class=" language-java"><code class="language-java">lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// use shared resource</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+    lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><strong>Differences between <code>Lock</code> and <code>synchronized</code> block</strong></p>
+<ul>
+<li>A <code>synchronized</code> block is fully contained within a method, whereas we can have <code>lock()</code> and <code>unlock()</code> operations in sepatate methods.</li>
+<li>A <code>synchonized</code> block doesn’t support the <strong>fairness</strong>, any thread can acquire the lock once released, no preference can be specified. We can achieve fairness within the <code>Lock APIs</code> by specifying the <code>fairness</code> property. <strong>It makes sure that no thread is starved out from accessing a resource.</strong></li>
+<li>A thread gets blocked if it can’t get an access to the synchronized block. The <code>Lock API</code> provides <code>tryLock()</code> method. The thread acquires lock only if it’s available and not held by any other thread. This reduces blocking time of thread waiting for the lock</li>
+<li>A thread which is in “waiting” state to acquire the access to synchronized block, <strong>can’t be interrupted</strong>. The <code>Lock API</code> provides a method <code>lockInterruptibly()</code> which can be used to interrupt the thread when it’s waiting for the lock</li>
+</ul>
+<h4 id="2-Class-ReentrantLock"><a href="#2-Class-ReentrantLock" class="headerlink" title="(2). Class ReentrantLock"></a><font color="tomato">(2). Class ReentrantLock</font></h4><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReentrantLock.html" target="_blank" rel="noopener">document</a>
+<p><code>java.util.concurrent.locks.ReentrantLock</code></p>
+<p>The <code>ReentrantLock</code> class implements the <code>Lock</code> interface and provides synchronization to methods while accessing shared resource. The code which manipulates the shared resource is surrounded by calls to <code>lock()</code> and <code>unlock()</code> method. </p>
+<p><strong>The <code>ReentrantLock</code> allows threads to enter into lock on a resource more than once</strong>. When the thread first enters into lock, a hold <code>count</code> is set to one. Before unlocking the thread can re-enter into lock again and every time hold count is <strong>incremented by one</strong>. For every <code>unlock</code> request, hold count is <strong>decremented by one</strong> and when hold count is <code>0</code>, the resource is <strong>unlocked</strong>.</p>
+<h4 id="3-Interface-Condition"><a href="#3-Interface-Condition" class="headerlink" title="(3). Interface Condition"></a><font color="tomato">(3). Interface Condition</font></h4><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Condition.html" target="_blank" rel="noopener">document</a>
+<p><code>java.util.concurrent.locks</code></p>
+<p>Condition factors out the Object monitor methods (<code>wait</code>, <code>notify</code> and <code>notifyAll</code>) into distinct objects to give the effect of <strong>having multiple wait-sets per object</strong>, by combining them with the use of arbitrary Lock implementations. <strong>Where a <code>Lock</code> replaces the use of synchronized methods and statements, a <code>Condition</code> replaces the use of the Object monitor methods</strong>.<br><strong><code>Conditions</code> (also known as condition queues or condition variables) provide a means for one thread to suspend execution (to <code>&quot;wait&quot;</code>) until notified by another thread that some state condition may now be true</strong>. Because access to this shared state information occurs in different threads, it must be <strong>protected</strong>, so a lock of some form is associated with the condition. The <strong>key property</strong> that waiting for a condition provides is that <strong>it atomically releases the associated lock and suspends the current thread, just like <code>Object.wait</code></strong>.</p>
+<p>A <code>Condition</code> instance is intrinsically bound to a <code>lock</code>. To obtain a <code>Condition instance</code> for a particular <code>Lock instance</code> use its <code>newCondition()</code> method.</p>
+<details>
+    <summary>Example: Implement Thread Safe Blocking Queue using Lock and Condition</summary>
+
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">BoundedBlockingQueue</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> capacity<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Deque<span class="token operator">&lt;</span>Integer<span class="token operator">></span> que<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Lock lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Condition notFull <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Condition notEmpty <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// OOD - implement a non-param constructor.</span>
+    <span class="token keyword">public</span> <span class="token function">BoundedBlockingQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">BoundedBlockingQueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>que <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>capacity <span class="token operator">=</span> capacity<span class="token punctuation">;</span>     
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> element<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>capacity<span class="token punctuation">)</span> 
+                <span class="token keyword">this</span><span class="token punctuation">.</span>notFull<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>notEmpty<span class="token punctuation">.</span><span class="token function">signal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>notEmpty<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>notFull<span class="token punctuation">.</span><span class="token function">signal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+           <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>que<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</details>
+
+<h4 id="4-Class-Semaphore"><a href="#4-Class-Semaphore" class="headerlink" title="(4). Class Semaphore"></a><font color="tomato">(4). Class Semaphore</font></h4><a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="noopener">document</a>
+<p><code>java.util.concurrent.Semaphore</code><br>A counting semaphore, used to restrict the number of threads that can access some resource. </p>
+<ul>
+<li>Each <code>acquire()</code> blocks if necessary until a permit is available, and then tasks it.</li>
+<li>Each <code>release()</code> adds a permit, potentially releasing a blocking acquirer.</li>
+</ul>
+<h3 id="3-volatile-modifier"><a href="#3-volatile-modifier" class="headerlink" title="3. volatile modifier"></a><font color="dodgerblue">3. volatile modifier</font></h3><p>First, we have to understand a little about the Java memory model.</p>
+<img src="thread_memory.png" width="50%" height="50%">
+
+<ul>
+<li>In Java, each thread has a separeate memory space (CPU cache). Each thread copies variables from main memory into CPU cache. </li>
+<li>Memory writes that happen in one thread can “leak through” and be seen by another thread, but this is by no means guaranteed. <strong>Without <em>explicit communication</em>, you can’t guarantee which writes get seen by other threads, or even the order in which they get seen.</strong> </li>
+<li>Special mechanisms to guarantee that communication happens between these threads would be needed.</li>
+</ul>
+<h4 id="What-does-volatile-mean-in-Java"><a href="#What-does-volatile-mean-in-Java" class="headerlink" title="What does volatile mean in Java?"></a><font color="tomato">What does volatile mean in Java?</font></h4><ul>
+<li><font color="royalblue">The Java <code>volatile</code> modifier is an example of a special mechanism to guarantee that communication happens between threads.</font> When one thread writes to a <code>volatile</code> variable, and another thread sees that write.</li>
+<li><font color="royalblue"><code>volatile</code> keyword is intended to address variable <strong>visibility</strong> problem.</font></li>
+<li>It is <font color="red"><strong>not</strong> suitable for cases where we want to <strong>Read-Update-Write</strong></font> as an atomic operation. For example, if two threads are both reading and writing to a shared variable, then using <code>volatile</code> keyword for that is not enough, using <strong>synchronized</strong> in that case to guarantee that the reading and writing of that variable is <strong>atomic</strong>. (<code>synchronization</code> modifier supports <strong>mutual execlusion</strong> and <strong>visibility</strong>.)</li>
+</ul>
+<h4 id="volatile-vs-atomic"><a href="#volatile-vs-atomic" class="headerlink" title="volatile vs. atomic"></a><font color="tomato">volatile vs. atomic</font></h4><ul>
+<li>An atomic action is one that effectively <strong>happeds all</strong> at once. An atomic action cannot stop in the middle: it either happens completely, or it doesn’t happen at all.</li>
+<li><code>Volatile</code> and <code>Atomic</code> are two different concepts. <code>Volatile</code> ensures, that a certain, expected (memory) state is true across different threads, while <code>Atomics</code> ensure that operation on variables are performed atomically.<font color="red"><strong>Volatile Does Not Mean Atomic!</strong></font></li>
+</ul>
+<p>For example, </p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">volatile</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+Thread <span class="token number">1</span><span class="token operator">:</span>
+i<span class="token operator">++</span><span class="token punctuation">;</span>
+
+Thread <span class="token number">2</span><span class="token operator">:</span>
+i<span class="token operator">--</span><span class="token punctuation">;</span></code></pre>
+<p>Should i become 0 after program execution ? <font color="red"><strong>No!</strong></font><br>First we need to know that <font color="red"><strong><code>++</code> operation is not atomic</strong></font>. What <code>i++</code> does is equivalent to <code>i = i + 1</code>. It does one read and one write – is <strong>not</strong> atomic.<br>If we do an increment of a <strong>volatile integer</strong>, three separate operations are actually performing:</p>
+<ol>
+<li>Read the integer to a local.</li>
+<li>Increment the locl.</li>
+<li>Write the integer back out to the volatile filed.<br>So, what we really have is this:<pre class=" language-java"><code class="language-java"><span class="token keyword">volatile</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+Thread <span class="token number">1</span><span class="token operator">:</span>
+r1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+r2 <span class="token operator">=</span> r1 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+i <span class="token operator">=</span> r2<span class="token punctuation">;</span>
+Thread <span class="token number">2</span><span class="token operator">:</span>
+r3 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+r4 <span class="token operator">=</span> r3 <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+i <span class="token operator">=</span> r4<span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<p>So, if <code>Thread 1</code> and <code>2</code> both read v and see the value <code>0</code>, then <code>Thread 1</code> will write <code>1</code> to it and <code>Thread 2</code> will write -1 to it.</p>
+<p>To solve this problem, that is we want an <strong>atomic increment</strong>, we need to use <a href="https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/atomic/package-summary.html" target="_blank" rel="noopener">`java.util.concurrent.atomic` classes</a>, like <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html" target="_blank" rel="noopener">`AtomicInteger`</a>.</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone, qq, weibo, douban"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>Reprint policy</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                    <img alt style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png">
+                </a>
+            </div>
+            <br>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">
+                    《Study Notes - Multithreading (2)》
+                </span> by
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/28/multithreading-udemy-2/" property="cc:attributionName" rel="cc:attributionURL">
+                Tong Shi
+            </a> is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+                Creative Commons Attribution 4.0 International License
+            </a> 
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2019/10/28/multithreading-udemy-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Study Notes - Multithreading (2)">
+                        
+                        <span class="card-title">Study Notes - Multithreading (2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Study notes of multithreading in Java.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Thread/" target="_blank">
+                        <span class="chip bg-color">Thread</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/24/leetcodeQ388/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Longest Absolute File Path">
+                        
+                        <span class="card-title">Longest Absolute File Path</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Given a string representing the file system in the above format, return the length of the longest absolute path to file in the abstracted file system.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tong Shi
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/" target="_blank">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                    <a href="/tags/String/" target="_blank">
+                        <span class="chip bg-color">String</span>
+                    </a>
+                    
+                    <a href="/tags/Stack/" target="_blank">
+                        <span class="chip bg-color">Stack</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Tong Shi&nbsp;@
+            <a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>&nbsp;
+            <br>
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;Total Words:&nbsp;<span class="white-color">169.5k</span>&nbsp;
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="fa fa-eye"></i>&nbsp;Total visits:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fa fa-users"></i>&nbsp;Total visitors:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;
+            </span>
+            
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tongshi049" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:tshi3@ualberta.ca" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140095224-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-140095224-1');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
